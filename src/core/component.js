@@ -2,7 +2,6 @@ export default class Component {
 	$target;
 
 	props;
-
 	state;
 
 	constructor($target, props) {
@@ -14,8 +13,7 @@ export default class Component {
 		this.componentDidMount();
 	}
 
-	initProps(props) {
-		this.props = props;
+	initProps(props) {this.props = props;
 	}
 
 	// 초기 상태 설정
