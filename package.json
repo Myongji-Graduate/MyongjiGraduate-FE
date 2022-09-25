@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon app.js",
     "dev": "webpack-dev-server --mode development --hot",
-    "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
-    "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
