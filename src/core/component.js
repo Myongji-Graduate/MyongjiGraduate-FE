@@ -42,6 +42,7 @@ export default class Component {
 
 	// 이벤트 추가(버블링)
 	addEvent(eventType, selector, callback) {
+		const a = 12;
 		const targetList = [...this.$target.querySelectorAll(selector)];
 
 		const getTarget = (dom) => {
