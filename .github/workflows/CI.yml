@@ -37,7 +37,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '{{ EVENT_PAYLOAD.sender }}가 ${{ github.ref }}에 요청한 ${{ github.event_name }}이 실패했습니다.'
+          args: '{{ EVENT_PAYLOAD.sender.username }}가 ${{ github.ref }}에 요청한 ${{ github.event_name }}이 실패했습니다.'
 
       - name: send discord message when completed
         if: ${{ success() }}
@@ -45,5 +45,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '{{ EVENT_PAYLOAD.sender }}가 ${{ github.ref }}에 요청한 ${{ github.event_name }}이 성공했습니다.'
+          args: '{{ EVENT_PAYLOAD.sender.username }}가 ${{ github.ref }}에 요청한 ${{ github.event_name }}이 성공했습니다.'
           
