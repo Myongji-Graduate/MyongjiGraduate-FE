@@ -45,5 +45,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '{{ github.actor }}가 ${{ github.ref_name }}에 요청한 ${{ github.event_name }}이 성공했습니다.'
+          args: '${{ github.actor }}가 ${{ github.ref_name }}에 요청한 ${{ github.event_name }}이 성공했습니다.'
           
