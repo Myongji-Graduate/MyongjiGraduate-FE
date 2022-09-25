@@ -18,13 +18,13 @@ export default class Component {
 	}
 
 	// 초기 상태 설정
-	initState() {
-		this.state = {};
+	initState() { this.state = {};
 	}
 
 	// 렌더링
 	render() {
 		this.$target.innerHTML = this.template();
+    
 		this.mounted();
 	}
 
