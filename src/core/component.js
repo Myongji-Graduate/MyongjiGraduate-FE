@@ -2,7 +2,6 @@ export default class Component {
 	$target;
 
 	props;
-
 	state;
 
 	constructor($target, props) {
