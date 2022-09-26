@@ -1,3 +1,5 @@
+import { updateDom } from './dom';
+
 export default class Component {
 	rootClassName;
 
@@ -54,7 +56,7 @@ export default class Component {
 			return false;
 		};
 
-		this.$root.addEventListener(eventType, (event) => {
+		$root.addEventListener(eventType, (event) => {
 			const target = getTarget(event.target);
 
 			if (!target) return false;
@@ -67,5 +69,11 @@ export default class Component {
 		return document.querySelector(`.${this.rootClassName}`);
 	}
 
-	setState() {}
+	setState(newState) {
+		this.state = {
+			...this.state,
+			...newState,
+		};
+		updateDom(this);
+	}
 }
