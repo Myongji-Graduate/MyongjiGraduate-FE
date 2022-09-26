@@ -1,5 +1,5 @@
 export default class Component {
-	parentSelector;
+	rootClassName;
 
 	props;
 
@@ -7,28 +7,32 @@ export default class Component {
 
 	children;
 
-	constructor(selector) {
-		this.parentSelector = selector;
+	constructor(rootClassName) {
+		this.rootClassName = rootClassName;
 		this.children = [];
 		this.initState();
-		this.render = this.render();
+		this.template = this.template();
 	}
 
 	initState() {
 		this.state = {};
 	}
 
-	addChild(C) {
-		const component = new C();
+	addChild(C, className) {
+		const component = new C(className);
 		this.children.push(component);
 		return component;
 	}
 
-	render() {
+	template() {
 		return (props) => {
 			this.setProps(props);
-			return `<div></div>`;
+			return `<div class="${this.rootClassName}" ></div>`;
 		};
+	}
+
+	render(props) {
+		return this.template(props).trim();
 	}
 
 	setEvent() {}
@@ -38,8 +42,8 @@ export default class Component {
 	}
 
 	addEvent(eventType, selector, callback) {
-		const $parent = document.querySelector(this.parentSelector);
-		const targetList = [...$parent.querySelectorAll(selector)];
+		const $root = this.getRootNode();
+		const targetList = [...$root.querySelectorAll(selector)];
 
 		const getTarget = (dom) => {
 			if (targetList.includes(dom)) return dom;
@@ -50,13 +54,17 @@ export default class Component {
 			return false;
 		};
 
-		this.$parent.addEventListener(eventType, (event) => {
+		this.$root.addEventListener(eventType, (event) => {
 			const target = getTarget(event.target);
 
 			if (!target) return false;
 			callback(event, target);
 			return true;
 		});
+	}
+
+	getRootNode() {
+		return document.querySelector(`.${this.rootClassName}`);
 	}
 
 	setState() {}
