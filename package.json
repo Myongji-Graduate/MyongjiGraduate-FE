@@ -4,7 +4,7 @@
   "description": "[[https://www.notion.so/de10da88385c4e35bcd28291022d4845?v=4834038f407f49a8937061701386b85b](https://www.notion.so/de10da88385c4e35bcd28291022d4845)](https://www.notion.so/myoungji-graduate/7fdc7768a2264b2fa8966d9cbfefc1d5?v=e9c52a4d057b4da5aedf386bc90d915a)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "webpack && node ./be/bundle.js",
     "dev": "webpack-dev-server --mode development --hot",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
