@@ -1,18 +1,20 @@
-import './nomalize.scss';
+// import './nomalize.scss';
 import Component from './core/component';
 
-export default class MainPage extends Component {
-	initState() {
-		this.state = {};
-	}
+import Header from './components/header/header.component';
 
-	template() {
-		return `
-      <div class="main-page">
-        hello world
-      </div>
-    `;
+export default class MainPage extends Component {
+	render() {
+		const header = this.addChild(Header);
+
+		return (props) => {
+			this.setProps(props);
+
+			return `
+				<div class="main-page">
+					${header.render('hi')}
+				</div>
+			`;
+		};
 	}
 }
-
-new MainPage(document.querySelector('.app-container'));

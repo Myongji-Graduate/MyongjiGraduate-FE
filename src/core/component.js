@@ -1,48 +1,45 @@
 export default class Component {
-	$target;
+	parentSelector;
 
 	props;
 
 	state;
 
-	constructor($target, props) {
-		this.$target = $target;
-		this.initProps(props);
+	children;
+
+	constructor(selector) {
+		this.parentSelector = selector;
+		this.children = [];
 		this.initState();
-		this.render();
-		this.setEvent();
-		this.componentDidMount();
+		this.render = this.render();
 	}
 
-	initProps(props) {
-		this.props = props;
-	}
-
-	// 초기 상태 설정
 	initState() {
 		this.state = {};
 	}
 
-	// 렌더링
+	addChild(C) {
+		const component = new C();
+		this.children.push(component);
+		return component;
+	}
+
 	render() {
-		this.$target.innerHTML = this.template();
-		this.mounted();
+		return (props) => {
+			this.setProps(props);
+			return `<div></div>`;
+		};
 	}
 
-	// innerHtml에 삽입할 html tags return
-	template() {
-		return '';
-	}
-
-	// 자식 컴포넌트들 마운트
-	mounted() {}
-
-	// 이벤트 등록
 	setEvent() {}
 
-	// 이벤트 추가(버블링)
+	setProps(newProps) {
+		this.props = newProps;
+	}
+
 	addEvent(eventType, selector, callback) {
-		const targetList = [...this.$target.querySelectorAll(selector)];
+		const $parent = document.querySelector(this.parentSelector);
+		const targetList = [...$parent.querySelectorAll(selector)];
 
 		const getTarget = (dom) => {
 			if (targetList.includes(dom)) return dom;
@@ -53,7 +50,7 @@ export default class Component {
 			return false;
 		};
 
-		this.$target.addEventListener(eventType, (event) => {
+		this.$parent.addEventListener(eventType, (event) => {
 			const target = getTarget(event.target);
 
 			if (!target) return false;
@@ -62,40 +59,5 @@ export default class Component {
 		});
 	}
 
-	componentDidMount() {}
-
-	// updateComponent($nextTarget, nextProps) {
-	//   const shouldUpdate = this.shouldComponentUpdate(nextProps);
-
-	//   if (shouldUpdate) {
-	//     this.updateProps(nextProps);
-	//     this.$target = $nextTarget;
-	//     this.render();
-	//   } else {
-	//     $nextTarget.innerHTML = this.$target.innerHTML;
-	//     this.$target = $nextTarget;
-	//   }
-
-	//   this.setEvent();
-	//   this.compoenntDidUpdate();
-	// }
-
-	shouldComponentUpdate(nextProps) {
-		return !!Object.keys(nextProps).filter((key) => {
-			return !this.props[key] || nextProps[key] !== this.props[key];
-		});
-	}
-
-	updateProps(nextProps) {
-		this.props = { ...nextProps };
-	}
-
-	compoenntDidUpdate() {}
-
-	// 상태 변경
-	setState(newState) {
-		this.state = { ...this.state, ...newState };
-		this.render();
-		this.compoenntDidUpdate();
-	}
+	setState() {}
 }
