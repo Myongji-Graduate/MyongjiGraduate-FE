@@ -15,3 +15,5 @@ export const serverRenderer = (RootComponent) => `
   </body>
   </html>
 `;
+
+export const Path = () => {};
