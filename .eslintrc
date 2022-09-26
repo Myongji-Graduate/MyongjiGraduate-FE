@@ -11,6 +11,7 @@
   "rules": {
     "class-methods-use-this": "off",
     "max-len": "off",
-    "no-new": "off"
+    "no-new": "off",
+    "no-param-reassign": "off"
   }
 }
