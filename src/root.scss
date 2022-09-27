@@ -1,1 +1,5 @@
-body {}
+$font-large: 38px;
+@import './nomalize.scss';
+@import './components/header/header.style.scss';
+@import './routers/main-page/main-page.style.scss';
+@import './routers/tutorial-page/tutorial-page.style.scss';

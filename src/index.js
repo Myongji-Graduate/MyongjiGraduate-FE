@@ -1,4 +1,5 @@
-import './nomalize.scss';
+import './root.scss';
+
 import * as dom from './core/dom';
 
 import { router } from './routers';

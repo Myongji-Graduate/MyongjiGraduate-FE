@@ -21,7 +21,6 @@ export function updateEvent(component) {
 }
 
 export function createDom(parentNode, component) {
-	console.log('asd');
 	if (typeof parentNode === 'string') parentNode = document.querySelector(parentNode);
 
 	const newNode = parentNode.cloneNode(true);

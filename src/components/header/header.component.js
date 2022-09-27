@@ -1,6 +1,5 @@
 import Component from '../../core/component';
 import { store } from '../../store/store';
-// import './header.style.scss';
 
 export default class Header extends Component {
 	initState() {

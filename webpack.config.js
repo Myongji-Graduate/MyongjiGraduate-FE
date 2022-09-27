@@ -35,17 +35,7 @@ module.exports = [{
         use: [
           "style-loader",
           "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              additionalData: (content, loaderContext) => {
-                const rootPath = path.resolve(__dirname, 'src/root.scss');
-                const { resourcePath } = loaderContext;
-                const relativePath = path.relative(resourcePath, rootPath).slice(3);
-                return `@import "${relativePath}";` + content;
-              },
-            },
-          }
+          "sass-loader"
         ]
       },
       {
@@ -71,6 +61,6 @@ module.exports = [{
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'be')
   },
-  target: 'node'
+  target: 'node',
 }
 ];
