@@ -1,18 +1,17 @@
-import { updateDom } from './dom';
+import { subscribe, unlockSubscribe } from './observer';
+import * as dom from './dom';
 
 export default class Component {
-	rootClassName;
-
 	props;
 
 	state;
 
 	children;
 
-	constructor(rootClassName) {
-		this.rootClassName = rootClassName;
+	constructor() {
 		this.children = [];
 		this.initState();
+		this.setProps({});
 		this.template = this.template();
 	}
 
@@ -20,8 +19,8 @@ export default class Component {
 		this.state = {};
 	}
 
-	addChild(C, className) {
-		const component = new C(className);
+	addChild(C, ...args) {
+		const component = new C(...args);
 		this.children.push(component);
 		return component;
 	}
@@ -29,12 +28,15 @@ export default class Component {
 	template() {
 		return (props) => {
 			this.setProps(props);
-			return `<div class="${this.rootClassName}" ></div>`;
+			return `<div></div>`;
 		};
 	}
 
 	render(props) {
-		return this.template(props).trim();
+		subscribe(this);
+		const html = this.template(props).trim();
+		unlockSubscribe();
+		return html;
 	}
 
 	setEvent() {}
@@ -47,10 +49,10 @@ export default class Component {
 		const $root = this.getRootNode();
 		const targetList = [...$root.querySelectorAll(selector)];
 
-		const getTarget = (dom) => {
-			if (targetList.includes(dom)) return dom;
+		const getTarget = (eventDom) => {
+			if (targetList.includes(eventDom)) return eventDom;
 
-			const target = dom.closest(selector);
+			const target = eventDom.closest(selector);
 
 			if (target) return target;
 			return false;
@@ -66,7 +68,10 @@ export default class Component {
 	}
 
 	getRootNode() {
-		return document.querySelector(`.${this.rootClassName}`);
+		const el = document.createElement('div');
+		el.innerHTML = this.render(this.props);
+		const className = el.firstChild.classList[0];
+		return document.querySelector(`.${className}`);
 	}
 
 	setState(newState) {
@@ -74,6 +79,6 @@ export default class Component {
 			...this.state,
 			...newState,
 		};
-		updateDom(this);
+		dom.updateDom(this);
 	}
 }

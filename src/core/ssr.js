@@ -1,4 +1,6 @@
-export const serverRenderer = (RootComponent) => `
+import { router } from '../routers';
+
+export const serverRenderer = (pathname) => `
   <!doctype html>
   <html lang="ko">
   <head>
@@ -6,7 +8,7 @@ export const serverRenderer = (RootComponent) => `
     <title>Server Side Rendering</title>
   </head>
   <body>
-  <div class="app-container">${RootComponent}</div>
+  <div class="app-container">${router.serverRender(pathname)}</div>
   
   <!-- csr을 위한 script 태그 추가 -->
   <script defer="defer" src="bundle.js"></script>
@@ -16,4 +18,4 @@ export const serverRenderer = (RootComponent) => `
   </html>
 `;
 
-export const Path = () => {};
+export const path = () => {};

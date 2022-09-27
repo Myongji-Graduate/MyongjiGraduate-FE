@@ -21,6 +21,7 @@ export function updateEvent(component) {
 }
 
 export function createDom(parentNode, component) {
+	console.log('asd');
 	if (typeof parentNode === 'string') parentNode = document.querySelector(parentNode);
 
 	const newNode = parentNode.cloneNode(true);
@@ -38,9 +39,8 @@ export function createDom(parentNode, component) {
 }
 
 export function updateDom(component) {
-	const parentNode = document.querySelector(`.${component.rootClassName}`);
-
 	const newNode = getNode(component);
+	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
 	const newChildNodes = [...newNode.childNodes];
 	const oldChildNodes = [...parentNode.childNodes];
