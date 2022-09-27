@@ -1,5 +1,5 @@
 import Component from '../../core/component';
-
+import { store } from '../../store/store';
 // import './header.style.scss';
 
 export default class Header extends Component {
@@ -16,7 +16,7 @@ export default class Header extends Component {
 			return `
         <div class="header">
           <div class ="header__test">
-            header ${this.props} ${this.state.test}
+            header ${this.props} ${this.state.test} ${store.getState().test}
           </div>
         </div>
       `;
@@ -25,9 +25,8 @@ export default class Header extends Component {
 
 	setEvent() {
 		this.addEvent('click', `.header__test`, () => {
-			this.setState({
-				test: 'jh',
-			});
+			const { router } = store.getState();
+			router.navigate('/product');
 		});
 	}
 }
