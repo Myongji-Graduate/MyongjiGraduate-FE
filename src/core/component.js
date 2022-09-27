@@ -1,16 +1,13 @@
 import { updateDom } from './dom';
 
 export default class Component {
-	rootClassName;
-
 	props;
 
 	state;
 
 	children;
 
-	constructor(rootClassName) {
-		this.rootClassName = rootClassName;
+	constructor() {
 		this.children = [];
 		this.initState();
 		this.template = this.template();
@@ -20,8 +17,8 @@ export default class Component {
 		this.state = {};
 	}
 
-	addChild(C, className) {
-		const component = new C(className);
+	addChild(C) {
+		const component = new C();
 		this.children.push(component);
 		return component;
 	}
@@ -29,7 +26,7 @@ export default class Component {
 	template() {
 		return (props) => {
 			this.setProps(props);
-			return `<div class="${this.rootClassName}" ></div>`;
+			return `<div></div>`;
 		};
 	}
 
@@ -66,7 +63,10 @@ export default class Component {
 	}
 
 	getRootNode() {
-		return document.querySelector(`.${this.rootClassName}`);
+		const el = document.createElement('div');
+		el.innerHTML = this.render(this.props);
+		const className = el.firstChild.classList[0];
+		return document.querySelector(`.${className}`);
 	}
 
 	setState(newState) {

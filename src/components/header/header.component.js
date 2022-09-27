@@ -14,8 +14,8 @@ export default class Header extends Component {
 			if (props) this.setProps(props);
 
 			return `
-        <div class="${this.rootClassName}">
-          <div class ="${this.rootClassName}__test">
+        <div class="header">
+          <div class ="header__test">
             header ${this.props} ${this.state.test}
           </div>
         </div>
@@ -24,7 +24,7 @@ export default class Header extends Component {
 	}
 
 	setEvent() {
-		this.addEvent('click', `.${this.rootClassName}__test`, () => {
+		this.addEvent('click', `.header__test`, () => {
 			this.setState({
 				test: 'jh',
 			});

@@ -38,9 +38,8 @@ export function createDom(parentNode, component) {
 }
 
 export function updateDom(component) {
-	const parentNode = document.querySelector(`.${component.rootClassName}`);
-
 	const newNode = getNode(component);
+	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
 	const newChildNodes = [...newNode.childNodes];
 	const oldChildNodes = [...parentNode.childNodes];
