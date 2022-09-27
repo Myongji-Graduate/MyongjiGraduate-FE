@@ -1,4 +1,5 @@
-import { updateDom } from './dom';
+import { subscribe, unlockSubscribe } from './observer';
+import * as dom from './dom';
 
 export default class Component {
 	props;
@@ -10,6 +11,7 @@ export default class Component {
 	constructor() {
 		this.children = [];
 		this.initState();
+		this.setProps({});
 		this.template = this.template();
 	}
 
@@ -17,8 +19,8 @@ export default class Component {
 		this.state = {};
 	}
 
-	addChild(C) {
-		const component = new C();
+	addChild(C, ...args) {
+		const component = new C(...args);
 		this.children.push(component);
 		return component;
 	}
@@ -31,7 +33,10 @@ export default class Component {
 	}
 
 	render(props) {
-		return this.template(props).trim();
+		subscribe(this);
+		const html = this.template(props).trim();
+		unlockSubscribe();
+		return html;
 	}
 
 	setEvent() {}
@@ -44,10 +49,10 @@ export default class Component {
 		const $root = this.getRootNode();
 		const targetList = [...$root.querySelectorAll(selector)];
 
-		const getTarget = (dom) => {
-			if (targetList.includes(dom)) return dom;
+		const getTarget = (eventDom) => {
+			if (targetList.includes(eventDom)) return eventDom;
 
-			const target = dom.closest(selector);
+			const target = eventDom.closest(selector);
 
 			if (target) return target;
 			return false;
@@ -74,6 +79,6 @@ export default class Component {
 			...this.state,
 			...newState,
 		};
-		updateDom(this);
+		dom.updateDom(this);
 	}
 }
