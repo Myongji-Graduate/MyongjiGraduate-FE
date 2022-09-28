@@ -1,5 +1,11 @@
 $font-large: 38px;
-@import './nomalize.scss';
+// @import './nomalize.scss';
+// @import './responsive.scss';
+// @media only screen and (min-width: 300px) {
+//   body {
+//     background-color: lightblue;
+//   }
+// }
 @import './components/header/header.style.scss';
 @import './routers/main-page/main-page.style.scss';
 @import './routers/tutorial-page/tutorial-page.style.scss';

@@ -1,5 +1,8 @@
+@import '../../responsive.scss';
 .header {
-  &__test {
-    font-size: $font-large;
+
+  @include mobile {
+    font-size: 100px;
+    color: yellow;
   }
 }
