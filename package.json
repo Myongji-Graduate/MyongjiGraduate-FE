@@ -4,12 +4,15 @@
   "description": "[[https://www.notion.so/de10da88385c4e35bcd28291022d4845?v=4834038f407f49a8937061701386b85b](https://www.notion.so/de10da88385c4e35bcd28291022d4845)](https://www.notion.so/myoungji-graduate/7fdc7768a2264b2fa8966d9cbfefc1d5?v=e9c52a4d057b4da5aedf386bc90d915a)",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node ./be/bundle.js",
-    "dev": "webpack-dev-server --mode development --hot",
+    "start": "npm run build:production && node ./be/bundle.js",
+    "dev": "npm run build:dev && NODE_ENV=development node ./be/bundle.js",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build:production": "NODE_ENV=production npm run build:client && NODE_ENV=production npm run build:server",
+    "build:dev": "NODE_ENV=development npm run build:client && NODE_ENV=development npm run build:server",
+    "build:client": "webpack --env env=client --progress",
+    "build:server": "webpack --env env=server --progress"
   },
   "repository": {
     "type": "git",
@@ -44,6 +47,9 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-middleware": "^5.3.3",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.25.2",
+    "webpack-node-externals": "^3.0.0"
   }
 }
