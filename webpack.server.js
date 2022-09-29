@@ -13,6 +13,17 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'be')
   },
-  
+
+  module : {
+    rules: [
+      {
+        test: /\.(png|jpe?g|svg)$/i,
+        use: {
+          loader: 'file-loader'
+        }
+      }
+    ]
+  },
+
   externals: [nodeExternals()],
 }

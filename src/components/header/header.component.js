@@ -23,6 +23,7 @@ export default class Header extends Component {
 	}
 
 	setEvent() {
+		console.log('asdasdas');
 		this.addEvent('click', `.header__test`, () => {
 			const { router } = store.getState();
 			router.navigate('/product');

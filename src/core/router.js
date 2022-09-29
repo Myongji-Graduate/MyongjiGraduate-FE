@@ -32,7 +32,7 @@ export default class Router extends Component {
 	}
 
 	serverRender(pathname) {
-		return this.route(pathname);
+		return this.route(pathname).render();
 	}
 
 	route(pathname) {

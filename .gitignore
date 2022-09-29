@@ -1,3 +1,4 @@
 node_modules
 dist
 be
+.DS_Store

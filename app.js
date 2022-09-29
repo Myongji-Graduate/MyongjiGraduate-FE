@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import { serverRenderer } from './src/core/ssr';
+import { router } from './src/routers';
 
 const __dirname = path.resolve();
 
@@ -34,6 +35,6 @@ app.get('*', (req, res) => {
   res.send(serverRenderer(req.path))
 })
 
-app.listen(3000, () => {
-  console.log('listen to http://localhost:3000');
+app.listen(3001, () => {
+  console.log('listen to http://localhost:3001');
 })

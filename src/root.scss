@@ -1,6 +1,9 @@
-$font-large: 38px;
+$color-primary: #0B4093;
+
+
 @import './nomalize.scss';
 @import './responsive.scss';
 @import './components/header/header.style.scss';
+@import './components/GNB/GNB.style.scss';
 @import './routers/main-page/main-page.style.scss';
 @import './routers/tutorial-page/tutorial-page.style.scss';

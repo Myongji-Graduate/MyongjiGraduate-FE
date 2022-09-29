@@ -1,16 +1,18 @@
 import Component from '../../core/component';
-import Header from '../../components/header/header.component';
+
+import GNB from '../../components/GNB/GNB.component';
 
 export default class MainPage extends Component {
 	template() {
-		const header = this.addChild(Header);
+
+		const gnb = this.addChild(GNB);
 
 		return (props) => {
 			if (props) this.setProps(props);
 
 			return `
 				<div class="main-page">
-					${header.render('hi')}
+					${gnb.render()}
 				</div>
 			`;
 		};
