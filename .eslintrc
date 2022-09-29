@@ -12,6 +12,7 @@
     "class-methods-use-this": "off",
     "max-len": "off",
     "no-new": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-constructor-return": "off"
   }
 }
