@@ -1,5 +1,9 @@
 $color-primary: #0B4093;
 
+@font-face {
+  font-family: vitro;
+  src: url("../public/fonts/vitro-core.ttf") format("truetype");
+}
 
 @import './nomalize.scss';
 @import './responsive.scss';

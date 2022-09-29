@@ -10,7 +10,6 @@ export default class GNB extends Component {
 
     return (props) => {
       if (props) this.setProps(props);
-      const { name } = this.props;
 
       return `
         <div class="GNB">
