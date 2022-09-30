@@ -5,7 +5,7 @@ $color-primary: #0B4093;
   src: url("../public/fonts/vitro-core.ttf") format("truetype");
 }
 
-@import './nomalize.scss';
+@import './normalize.scss';
 @import './responsive.scss';
 @import './components/header/header.style.scss';
 @import './components/GNB/GNB.style.scss';
