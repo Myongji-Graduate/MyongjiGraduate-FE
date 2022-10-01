@@ -32,7 +32,8 @@ export default class Router extends Component {
 	}
 
 	serverRender(pathname) {
-		return this.route(pathname).render();
+		const pageComponent = this.route(pathname);
+		return new pageComponent().render();
 	}
 
 	route(pathname) {
@@ -48,7 +49,7 @@ export default class Router extends Component {
 		if (!RouterPage) {
 			RouterPage = this.getDefaultPage();
 		}
-		return new RouterPage();
+		return RouterPage;
 	}
 
 	getDefaultPage() {
@@ -56,7 +57,8 @@ export default class Router extends Component {
 	}
 
 	render(pathname) {
-		return this.route(pathname);
+		const pageComponent = this.route(pathname);
+		return new pageComponent().render();
 	}
 
 	findRouterPage(routerObjects, path) {

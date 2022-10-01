@@ -14,7 +14,7 @@ export default class Component {
 		this.children = [];
 		this.eventListeners = [];
 		this.initState();
-		this.setProps({});
+		this.setDefaultProps();
 		this.template = this.template();
 	}
 
@@ -44,8 +44,15 @@ export default class Component {
 
 	setEvent() {}
 
+	setDefaultProps() {
+		this.props = {};
+	}
+
 	setProps(newProps) {
-		this.props = newProps;
+		this.props = {
+			...this.props,
+			...newProps
+		};
 	}
 
 	addEvent(eventType, selector, callback) {

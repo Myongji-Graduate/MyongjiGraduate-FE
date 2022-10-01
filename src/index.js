@@ -1,7 +1,6 @@
 import './root.scss';
 
 import * as dom from './core/dom';
+import App from './app';
 
-import { router } from './routers';
-
-dom.createDom('.app-container', router.browserRender());
+dom.createDom('.app-container', new App());
