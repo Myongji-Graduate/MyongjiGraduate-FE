@@ -1,13 +1,23 @@
 $color-primary: #0B4093;
+$color-secondary: #002968;
+$color-point_blue: #3B61FF;
+$color-point_yellow: #FFF38B;
+$color-title: #2F2F2F;
 
 @font-face {
   font-family: vitro;
   src: url("../public/fonts/vitro-core.ttf") format("truetype");
 }
-
+@font-face {
+  font-family: pretendard;
+  src: url("../public/fonts/PretendardVariable.ttf") format("truetype");
+}
 @import './normalize.scss';
 @import './responsive.scss';
 @import './components/header/header.style.scss';
 @import './components/GNB/GNB.style.scss';
+@import './components/button/mainpageBtn.style.scss';
+@import './components/main-title/main-title.style.scss';
+@import './components/modal/modal.style.scss';
 @import './routers/main-page/main-page.style.scss';
 @import './routers/tutorial-page/tutorial-page.style.scss';

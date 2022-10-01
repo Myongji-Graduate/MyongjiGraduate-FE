@@ -6,7 +6,6 @@ import mainLogo from '../../../public/icons/main-logo.svg';
 export default class GNB extends Component {
 
   template() {
-    // 자식들
 
     return (props) => {
       if (props) this.setProps(props);
@@ -15,7 +14,7 @@ export default class GNB extends Component {
         <div class="GNB">
           <img class="GNB__main-logo" src=${mainLogo} />
           <div class="GNB__tab-navigator">
-            <div>듀토리얼</div>
+            <div>튜토리얼</div>
           </div>
         </div>
       `
@@ -23,7 +22,7 @@ export default class GNB extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '.GNB__main-logo', () => {
+    this.addEvent('click', '.GNB__tab-navigator', () => {
       const { router } = store.getState();
       router.navigate('/product');
     })

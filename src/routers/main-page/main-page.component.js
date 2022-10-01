@@ -1,18 +1,31 @@
 import Component from '../../core/component';
 
 import GNB from '../../components/GNB/GNB.component';
+import Maintitle from '../../components/main-title/main-title.component';
+import MainBtn from '../../components/button/mainpageBtn.component';
+import Modal from '../../components/modal/modal.component';
+
+import roundLogo from '../../../public/icons/round-logo.svg';
 
 export default class MainPage extends Component {
 	template() {
-
 		const gnb = this.addChild(GNB);
+		const maintitle = this.addChild(Maintitle);
+		const startBtn = this.addChild(MainBtn);
+		const modal = this.addChild(Modal);
 
 		return (props) => {
 			if (props) this.setProps(props);
 
 			return `
-				<div class="main-page">
-					${gnb.render()}
+			${modal.render()}
+				<div class="main-page">				
+				<div class="main-page__GNB">${gnb.render()}</div>				
+				<img class="main-page__round-logo" src=${roundLogo} />
+				<div class= "main-page__content">
+				${maintitle.render()}
+				${startBtn.render()}					
+				</div>
 				</div>
 			`;
 		};
