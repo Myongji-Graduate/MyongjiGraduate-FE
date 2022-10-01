@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 
 import { serverRenderer } from './src/core/ssr';
-import { router } from './src/routers';
 
 const __dirname = path.resolve();
 
@@ -28,6 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 app.use(express.static(path.join(__dirname, 'dist')));
+
 
 app.get('*', (req, res) => {
   if (req.url === "/__webpack_hmr") return;

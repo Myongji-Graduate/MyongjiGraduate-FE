@@ -1,0 +1,72 @@
+@font-face {
+  font-family: vitro;
+  src: url("../public/fonts/vitro-core.ttf") format("truetype");
+}
+@font-face {
+  font-family: pretendard;
+  src: url("../public/fonts/PretendardVariable.ttf") format("truetype");
+}
+
+html {
+  font-family: pretendard;
+
+  @include pc-large {
+    font-size: 48px;
+  }
+
+  @include pc-medium {
+    font-size: 36px;
+  }
+
+  @include pc-small {
+    font-size: 28px;
+  }
+
+  @include tablet {
+    font-size: 24px;
+  }
+
+  @include mobile {
+    font-size: 16px;
+  }
+
+}
+
+@mixin main-title {
+  font-family: vitro;
+  font-weight: 900;
+  font-size: 2.1rem;
+  line-height: 2.7rem;
+}
+
+@mixin title {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+@mixin subhead1 {
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.9rem;
+}
+
+@mixin subhead2 {
+  font-weight: 500;
+  font-size: 0.37rem;
+  line-height: 0.43rem;
+}
+
+@mixin subhead3 {
+  font-weight: 500;
+  font-size: 0.5rem;
+  line-height: 0.6rem;
+}
+
+@mixin body1 {
+  font-weight: 400;
+  font-size: 0.4rem;
+  line-height: 0.5rem;
+}
+
+

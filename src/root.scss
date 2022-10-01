@@ -3,17 +3,17 @@ $color-secondary: #002968;
 $color-point_blue: #3B61FF;
 $color-point_yellow: #FFF38B;
 $color-title: #2F2F2F;
+$color-grey-scale1: #353535;
+$color-grey-scale2: #CFCFCF;
+$color-grey-scale3: #E5E5E5;
+$color-g1: #E7EBFF;
+$color-g2: #7590FF;
+$color-g3: #FFC8C8;
+$color-g4: #FF6D6D;
 
-@font-face {
-  font-family: vitro;
-  src: url("../public/fonts/vitro-core.ttf") format("truetype");
-}
-@font-face {
-  font-family: pretendard;
-  src: url("../public/fonts/PretendardVariable.ttf") format("truetype");
-}
 @import './normalize.scss';
 @import './responsive.scss';
+@import './typography.scss';
 @import './components/header/header.style.scss';
 @import './components/GNB/GNB.style.scss';
 @import './components/button/mainpageBtn.style.scss';
