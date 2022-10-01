@@ -28,12 +28,13 @@ export default class Router extends Component {
 	browserRender() {
 		const { pathname } = window.location;
 		this.setEvent();
-		return this.route(pathname);
+		const PageComponent = this.route(pathname);
+		return new PageComponent();
 	}
 
 	serverRender(pathname) {
-		const pageComponent = this.route(pathname);
-		return new pageComponent().render();
+		const PageComponent = this.route(pathname);
+		return new PageComponent().render();
 	}
 
 	route(pathname) {
@@ -57,8 +58,8 @@ export default class Router extends Component {
 	}
 
 	render(pathname) {
-		const pageComponent = this.route(pathname);
-		return new pageComponent().render();
+		const PageComponent = this.route(pathname);
+		return new PageComponent().render();
 	}
 
 	findRouterPage(routerObjects, path) {
@@ -84,6 +85,6 @@ export default class Router extends Component {
 	}
 
 	updatePage() {
-		dom.createDom('.app-container', this.render(window.location.pathname));
+		dom.createDom('.app-container', this.browserRender());
 	}
 }

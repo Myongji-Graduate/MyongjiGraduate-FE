@@ -51,7 +51,7 @@ export default class Component {
 	setProps(newProps) {
 		this.props = {
 			...this.props,
-			...newProps
+			...newProps,
 		};
 	}
 
@@ -74,11 +74,11 @@ export default class Component {
 			if (!target) return false;
 			callback(event, target);
 			return true;
-		}
+		};
 
 		this.eventListeners.push({
 			eventListener,
-			eventType
+			eventType,
 		});
 
 		$root.addEventListener(eventType, eventListener);
@@ -93,7 +93,7 @@ export default class Component {
 
 	clearEvent() {
 		const $root = this.getRootNode();
-		this.eventListeners.forEach(({eventType, eventListener}) => {
+		this.eventListeners.forEach(({ eventType, eventListener }) => {
 			$root.removeEventListener(eventType, eventListener);
 		});
 	}
