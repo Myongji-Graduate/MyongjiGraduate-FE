@@ -9,7 +9,7 @@ export function updateAttributes(oldNode, newNode) {
 	});
 
 	oldProps.forEach(({ name }) => {
-		if (newNode.getAttribute(name) === undefined) {
+		if (!newNode.getAttribute(name)) {
 			oldNode.removeAttribute(name);
 		}
 	});

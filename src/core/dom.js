@@ -26,13 +26,7 @@ export function createDom(parentNode, component) {
 	const newNode = parentNode.cloneNode(true);
 	newNode.innerHTML = component.render();
 
-	// root가 없을 시에 어캐 할지 고려
-	// 결국에 업데이트를 위해서 old와 new의 계층을 맞출 필요 있다.
-
-	const newChildNodes = [...newNode.childNodes];
-	const oldChildNodes = [...parentNode.childNodes];
-
-	update(parentNode, newChildNodes, oldChildNodes);
+	diff.updateElement(parentNode, newNode, parentNode);
 
 	updateEvent(component);
 }
@@ -41,10 +35,7 @@ export function updateDom(component) {
 	const newNode = getNode(component);
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
-	const newChildNodes = [...newNode.childNodes];
-	const oldChildNodes = [...parentNode.childNodes];
-
-	update(parentNode, newChildNodes, oldChildNodes);
+	diff.updateElement(parentNode, newNode, parentNode);
 
 	updateEvent(component);
 }

@@ -7,15 +7,22 @@ export default class modal extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
+         const { isModalShow } = this.props;
+
 			return `
-        <div class="modal">
+        <div class="modal" style="display:${isModalShow ? 'block' : 'none'}" >
            <div class="modal__body">
           dfsd
-           <img class="modal__btn" src=${closeBtn} />      
+           <img class="modal__close-btn" src=${closeBtn} />      
            </div>                 
         </div>    
         `;
 		};
 	}
-	// button click시 modal display none처리
+   setEvent() {
+      const { toggleModal } = this.props;
+		this.addEvent('click', '.modal__close-btn', () => {
+         toggleModal();
+		});
+	}
 }
