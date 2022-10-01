@@ -15,6 +15,7 @@ export default class GNB extends Component {
             <div>튜토리얼</div>
           </div>
         </div>
+        <div class="GNB__divider"></div>
       `;
 		};
 	}
