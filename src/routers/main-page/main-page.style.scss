@@ -7,7 +7,10 @@ html,body, .app-container{
     position: relative;
      background-color: $color-primary; 
      overflow: hidden;
-    //  display: flex;
+     display: flex;
+     align-content: center;
+    justify-content: center;
+
     &__round-logo{
         position: absolute;
         right:0%;
