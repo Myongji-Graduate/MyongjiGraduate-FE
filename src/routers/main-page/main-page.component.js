@@ -20,9 +20,9 @@ export default class MainPage extends Component {
 
 			// ${modal.render()}
 			return `
+			<div class="main-page__GNB">${gnb.render()}</div>				
 				<div class="main-page" >
 					<img class="main-page__background-img" src=${MainBackgroundImg} />				
-				<div class="main-page__GNB">${gnb.render()}</div>				
 				<img class="main-page__round-logo" src=${roundLogo} />
 				<div class= "main-page__content">
 				${maintitle.render()}
