@@ -8,8 +8,11 @@ export default class Component {
 
 	children;
 
+	eventListeners;
+
 	constructor() {
 		this.children = [];
+		this.eventListeners = [];
 		this.initState();
 		this.setProps({});
 		this.template = this.template();
@@ -58,13 +61,20 @@ export default class Component {
 			return false;
 		};
 
-		$root.addEventListener(eventType, (event) => {
+		const eventListener = (event) => {
 			const target = getTarget(event.target);
 
 			if (!target) return false;
 			callback(event, target);
 			return true;
+		}
+
+		this.eventListeners.push({
+			eventListener,
+			eventType
 		});
+
+		$root.addEventListener(eventType, eventListener);
 	}
 
 	getRootNode() {
@@ -72,6 +82,13 @@ export default class Component {
 		el.innerHTML = this.render(this.props);
 		const className = el.firstChild.classList[0];
 		return document.querySelector(`.${className}`);
+	}
+
+	clearEvent() {
+		const $root = this.getRootNode();
+		this.eventListeners.forEach(({eventType, eventListener}) => {
+			$root.removeEventListener(eventType, eventListener);
+		});
 	}
 
 	setState(newState) {

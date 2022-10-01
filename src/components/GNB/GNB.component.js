@@ -10,12 +10,14 @@ export default class GNB extends Component {
 
 			return `
         <div class="GNB">
-          <img class="GNB__main-logo" src=${mainLogo} />
-          <div class="GNB__tab-navigator">
-            <div>튜토리얼</div>
+          <div class="GNB__content">
+            <img class="GNB__main-logo" src=${mainLogo} />
+            <div class="GNB__tab-navigator">
+              <div>튜토리얼</div>
+            </div>
           </div>
+          <div class="GNB__divider"></div>
         </div>
-        <div class="GNB__divider"></div>
       `;
 		};
 	}

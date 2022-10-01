@@ -14,9 +14,10 @@ export function getNode(component) {
 }
 
 export function updateEvent(component) {
+	component.clearEvent();
 	component.setEvent();
 	component.children.forEach((child) => {
-		child.setEvent();
+		updateEvent(child);
 	});
 }
 
@@ -26,7 +27,7 @@ export function createDom(parentNode, component) {
 	const newNode = parentNode.cloneNode(true);
 	newNode.innerHTML = component.render();
 
-	diff.updateElement(parentNode, newNode, parentNode);
+	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 
 	updateEvent(component);
 }
@@ -35,7 +36,7 @@ export function updateDom(component) {
 	const newNode = getNode(component);
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
-	diff.updateElement(parentNode, newNode, parentNode);
+	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 
 	updateEvent(component);
 }
