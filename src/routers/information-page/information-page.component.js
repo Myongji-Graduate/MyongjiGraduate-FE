@@ -1,6 +1,7 @@
 import Component from "../../core/component";
 
 import GNB from "../../components/GNB/GNB.component";
+import InformationForm from "../../components/information-form/information-form.component";
 
 import informationBackgroundImage from '../../../public/images/sub-background.png'
 import backgroundBottomImage from '../../../public/images/header-bottom.png';
@@ -8,6 +9,7 @@ import backgroundBottomImage from '../../../public/images/header-bottom.png';
 export default class InformationPage extends Component {
   template() {
     const gnb = this.addChild(GNB);
+    const informationForm = this.addChild(InformationForm);
 
     return (props) => {
       if (props) this.setProps(props);
@@ -20,7 +22,9 @@ export default class InformationPage extends Component {
             <img src=${backgroundBottomImage} class="information-page__bottom-img" />
           </div>
           <div class="information-page__body">
-            <div class="information-page__content">asdasd</div>
+            <div class="information-page__content">
+              ${informationForm.render()}
+            </div>
           </div>
         </div>
       `
