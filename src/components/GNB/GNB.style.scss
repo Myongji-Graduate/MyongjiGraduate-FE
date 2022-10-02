@@ -7,16 +7,21 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 1.25rem;
+    height: 100%;
   }
 
   &__main-logo {
     width: 5rem;
-    height: 2.41rem;
+    height: 1.25rem;
+    position: relative;
+    z-index: 1000;
   }
   
   &__tab-navigator {
     @include subhead3;
     color: white;
+    position: relative;
+    z-index: 1000;
   }
 
   &__divider {

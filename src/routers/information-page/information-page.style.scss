@@ -1,0 +1,15 @@
+.information-page {
+
+  &__background {
+    height: 5rem;
+    background-color: $color-primary;
+  }
+
+  &__background-img {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 7.1rem;
+  }
+}

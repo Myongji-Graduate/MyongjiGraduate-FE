@@ -14,7 +14,7 @@ export default class MainBtn extends Component {
 	setEvent() {
 		this.addEvent('click', '.button', () => {
 			const { router } = store.getState();
-			router.navigate('/product');
+			router.navigate('/information');
 		});
 	}
 }
