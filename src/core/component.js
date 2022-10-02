@@ -68,7 +68,7 @@ export default class Component {
 			return false;
 		};
 
-		const eventListener = (event) => {
+		const eventListener = function(event) {
 			const target = getTarget(event.target);
 
 			if (!target) return false;
@@ -96,6 +96,7 @@ export default class Component {
 		this.eventListeners.forEach(({ eventType, eventListener }) => {
 			$root.removeEventListener(eventType, eventListener);
 		});
+		this.eventListeners = [];
 	}
 
 	setState(newState) {

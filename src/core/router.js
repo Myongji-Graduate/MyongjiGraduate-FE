@@ -5,6 +5,8 @@ import { store, createAction, actionType } from '../store/store';
 let instance;
 
 export default class Router extends Component {
+	lastPage
+
 	constructor(routerObjects) {
 		if (instance) {
 			return instance;
@@ -13,6 +15,8 @@ export default class Router extends Component {
 
 		this.routerObjects = routerObjects;
 		this.initGlobalStore();
+		this.lastPage = undefined;
+		this.isEnrolledEvent = false;
 
 		instance = this;
 	}
@@ -27,9 +31,12 @@ export default class Router extends Component {
 
 	browserRender() {
 		const { pathname } = window.location;
-		this.setEvent();
+		if (this.isEnrolledEvent === false) {
+			this.setEvent();
+		}
 		const PageComponent = this.route(pathname);
-		return new PageComponent();
+		this.lastPage = new PageComponent();
+		return this.lastPage;
 	}
 
 	serverRender(pathname) {
@@ -79,12 +86,12 @@ export default class Router extends Component {
 	}
 
 	setEvent() {
-		window.addEventListener('popstate', () => {
-			this.updatePage();
-		});
+		window.addEventListener('popstate', this.updatePage.bind(this));
+		this.isEnrolledEvent = true;
 	}
 
 	updatePage() {
-		dom.createDom('.app-container', this.browserRender());
+		const lastComponent = this.lastPage;
+		dom.createDom('.app-container', this.browserRender(), lastComponent);
 	}
 }

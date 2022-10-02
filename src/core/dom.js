@@ -13,30 +13,38 @@ export function getNode(component) {
 	return el.firstChild;
 }
 
-export function updateEvent(component) {
-	component.clearEvent();
+export function enrollEvent(component) {
 	component.setEvent();
 	component.children.forEach((child) => {
-		updateEvent(child);
+		enrollEvent(child);
 	});
 }
 
-export function createDom(parentNode, component) {
+export function clearEvent(component) {
+	component.clearEvent();
+	component.children.forEach((child) => {
+		clearEvent(child);
+	});
+}
+
+export function createDom(parentNode, component, lastComponent) {
 	if (typeof parentNode === 'string') parentNode = document.querySelector(parentNode);
 
 	const newNode = parentNode.cloneNode(true);
 	newNode.innerHTML = component.render();
 
+	if (lastComponent) clearEvent(lastComponent);
 	diff.updateElement(parentNode.parentNode, newNode, parentNode);
-
-	updateEvent(component);
+	enrollEvent(component);
 }
 
 export function updateDom(component) {
 	const newNode = getNode(component);
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
+	clearEvent(component);
+
 	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 
-	updateEvent(component);
+	enrollEvent(component);
 }
