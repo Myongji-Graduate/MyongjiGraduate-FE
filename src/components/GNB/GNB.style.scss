@@ -14,19 +14,19 @@
     width: 5rem;
     height: 1.25rem;
     position: relative;
-    z-index: 1000;
+    z-index: 1;
   }
   
   &__tab-navigator {
     @include subhead3;
     color: white;
     position: relative;
-    z-index: 1000;
+    z-index: 1;
   }
 
   &__divider {
     position: relative;
-    z-index: 1000;
+    z-index: 1;
     height: 0.02rem;
     background-color: $color-grey-scale3;
   }
