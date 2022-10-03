@@ -1,0 +1,26 @@
+.modal-file-upload {
+  padding: 0.6rem;
+
+  &__header {
+    text-align: center;
+    @include title
+  }
+
+  &__divider {
+    height: 0.06rem;
+    background-color: #E5E5E5;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  &__body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__file-upload-box-container {
+    margin-top: 0.8rem;
+  }
+}

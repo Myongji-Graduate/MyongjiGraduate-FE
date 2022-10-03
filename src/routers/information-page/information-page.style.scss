@@ -23,18 +23,22 @@
     z-index: 10;
   }
 
+  &__body {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
 
 
   &__content {
-    position: absolute;
-    left: 50%;
+    position: relative;
+    top: -1.5rem;
+    width: fit-content;
     z-index: 10;
-    transform: translate(-50%, -13%);
 
     background-color: white;
     padding: 1rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
-
   }
 }
