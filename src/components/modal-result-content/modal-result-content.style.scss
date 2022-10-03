@@ -1,8 +1,6 @@
-.modal-result-content {
-    margin: 2.12rem 1.04rem;
+.modal-result-content {    
     text-align: center;
-    &__head{       
-        width: 24.83rem;
+    &__head{              
         display: flex;
         background-color: $color-g1;
         color : $color-g2;
@@ -19,7 +17,6 @@
         }
     }
     &__body{
-        width: 24.83rem;
         border : 1px solid rgba(0, 0, 0, 0.3);
         border-radius: 16px;
         @include subhead3;

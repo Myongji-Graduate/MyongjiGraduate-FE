@@ -36,6 +36,8 @@ export default class ResultPage extends Component {
 					<div class="result-page__gnb-container">
 					${gnb.render()}
 					</div>
+
+					
 					<h1>(๑•᎑< ๑)♡</h1>
 					<h1>(ɔ ˘⌣˘)˘⌣˘ c)♡</h1>							
 				</div>

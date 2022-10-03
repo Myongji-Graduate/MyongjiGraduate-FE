@@ -31,14 +31,14 @@ export default class modal extends Component {
 			};
 
 			return `
-        <div class="modal" style=${utils.getInlineStyle(modalStyle)}>
-         <div class="modal__body" style=${utils.getInlineStyle(modalBodyStyle)}>
-         ${isShowCloseBtn ? `<img class='modal__close-btn' src=${closeBtn} />` : ''}
-         <div class="modal__body-content">
-         ${contentComponent.render()}
-         </div>
-           </div>                 
-        </div>    
+			<div class="modal" style=${utils.getInlineStyle(modalStyle)}>
+				<div class="modal__body" style=${utils.getInlineStyle(modalBodyStyle)}>
+				${isShowCloseBtn ? `<img class='modal__close-btn' src=${closeBtn} />` : ''}
+					<div class="modal__body-content">
+					${contentComponent.render()}
+					</div>
+				</div>                 
+			</div>    
         `;
 		};
 	}

@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 
 import Maintitle from '../../components/main-title/main-title.component';
-import MainBtn from '../../components/button/mainpageBtn.component';
+import MainBtn from '../../components/button/button.component';
 import Modal from '../../components/modal/modal.component';
 import ModalLoading from '../../components/modal-loading/modal-loading.component';
 import GNB from '../../components/GNB/GNB.component';
@@ -48,7 +48,12 @@ export default class MainPage extends Component {
 					<img class="main-page__round-logo" src=${roundLogo} />
 					<div class="main-page__content">
 						${maintitle.render()}
-						${startBtn.render()}					
+						${startBtn.render({
+							width: 539,
+							height: 104,
+							content: '검사시작',
+							direct: '/result',
+						})}					
 					</div>
 				</div>
 			</div>
