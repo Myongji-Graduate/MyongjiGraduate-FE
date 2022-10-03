@@ -1,0 +1,34 @@
+.modal-result-header{
+    display: flex;      
+    justify-content: space-between;
+    &__title{
+        &__part{           
+            @include title;
+            color : $color-title;
+        }
+        &__explain{
+            @include subhead5;
+            color : #9F9F9F;
+            margin-top: 0.5rem;
+        }
+    }
+    &__credit{            
+        &__info{
+            color: $color-title;
+            @include title;
+        }
+        &__info > span{
+            color: $color-point_blue;
+        }
+        &__underline{//( •◡-)✧˖° 
+            border: 0.16rem solid $color-point_blue;
+            background-color: $color-point_blue;
+            transform: rotate(180deg);
+            margin-top: 0.5rem;
+            width: 1.85rem;
+            border-radius: 20px;    
+            float: right;
+        }
+    }
+ 
+}

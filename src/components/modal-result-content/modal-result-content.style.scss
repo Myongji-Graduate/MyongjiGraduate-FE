@@ -1,0 +1,40 @@
+.modal-result-content {
+    margin: 2.12rem 1.04rem;
+    text-align: center;
+    &__head{       
+        width: 24.83rem;
+        display: flex;
+        background-color: $color-g1;
+        color : $color-g2;
+        @include title2;
+        border-radius: 100px;
+        margin-bottom: 0.27rem;
+        &__column{
+            margin: 0.44rem 0;
+            width: 16%;
+            &__3{
+                margin: 0.44rem 0;
+                width: 36%;
+            }
+        }
+    }
+    &__body{
+        width: 24.83rem;
+        border : 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 16px;
+        @include subhead3;
+        color: $color-title;
+        &__tr{                     
+            display: flex;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);          
+            &__column{              
+                margin: 0.44rem 0;
+                width:16%;
+                &__3{
+                    margin: 0.44rem 0;
+                    width:36%;
+                }
+            }
+        }
+    }
+}
