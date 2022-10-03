@@ -58,8 +58,7 @@ export default class InputGroup extends Component {
     const { type, onChange } = this.props;
 
     this.addEvent('change', `.input-group__${type}`, (_, target) => {
-      console.log(target.value);
       onChange(target.value)
-    })
+    });
   }
 }
