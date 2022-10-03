@@ -1,0 +1,47 @@
+.information-form {
+  width: 12.5rem;
+  height: 10rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__pencil-icon {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.25rem;
+  }  
+
+  &__header-text {
+    @include title3;
+  }
+  
+  &__body {
+    padding: 0.75rem 0.6rem;
+  }
+
+  &__studentNumber-input-group-container {
+    margin-bottom: 0.75rem;
+  }
+
+  &__major-input-group-container {
+    margin-bottom: 1.25rem;
+  }
+
+  &__create-modal-button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__create-modal-button {
+    width: 5.5rem;
+    height: 1.4rem;
+    background: #0B4093;
+    border-radius: 35px;
+    @include subhead3;
+    color: white;
+  }
+
+
+}

@@ -55,12 +55,14 @@ export default class Component {
 		};
 	}
 
-	addEvent(eventType, selector, callback) {
+	addEvent(eventType, selector, callback, strict = false) {
 		const $root = this.getRootNode();
-		const targetList = [...$root.querySelectorAll(selector)];
+		const targetList = [...$root.parentNode.querySelectorAll(selector)];
 
 		const getTarget = (eventDom) => {
 			if (targetList.includes(eventDom)) return eventDom;
+
+			if (strict) return false;
 
 			const target = eventDom.closest(selector);
 

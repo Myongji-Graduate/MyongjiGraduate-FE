@@ -1,0 +1,32 @@
+.input-group {
+
+  &__label {
+    @include subhead5;
+    color: $color-point_blue;
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    justify-content: space-between;
+  }
+
+  &__text, &__select {
+    box-sizing: border-box;
+    height: 1.25rem;
+    @include subhead3;
+    padding: 0.25rem;
+    border: 0.922508px solid #EDEDED;
+    border-radius: 2.76752px;
+  }
+
+  &__text::placeholder {
+    color: $color-grey-scale2;
+  }
+
+  &__select-placeholder {
+    display: none;
+  }
+
+  &__select:invalid {
+    color: $color-grey-scale2;
+  }
+}
