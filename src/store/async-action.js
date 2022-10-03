@@ -29,6 +29,24 @@ export const fetchMockApi = () => (dispatch, getState) => {
   });
 }
 
+export const fetchLocal = (formData) => (dispatch, getState) => {
+  dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
+  return fetch('/api/result', {
+    method: 'POST',
+    body: formData
+  }).then(response => {
+    console.log(response);
+    return response.text();
+  }).then(result => {
+    const {router} = getState();
+    console.log(result);
+    dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, {
+      result
+    }));
+    // router.navigate('/result');
+  });
+}
+
 export const fetchApi = () => (dispatch, getState) => {
   console.log(dispatch);
   dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
