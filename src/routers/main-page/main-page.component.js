@@ -6,6 +6,8 @@ import Modal from '../../components/modal/modal.component';
 import ModalLoading from '../../components/modal-loading/modal-loading.component';
 import GNB from '../../components/GNB/GNB.component';
 
+import { store } from '../../store/store';
+
 import MainBackgroundImg from '../../../public/images/main-background.png';
 import roundLogo from '../../../public/icons/round-logo.svg';
 
@@ -48,12 +50,15 @@ export default class MainPage extends Component {
 					<img class="main-page__round-logo" src=${roundLogo} />
 					<div class="main-page__content">
 						${maintitle.render()}
+						<div class="main-page__start-button">
 						${startBtn.render({
-							width: 539,
-							height: 104,
 							content: '검사시작',
-							direct: '/result',
+							onClick: () => {
+								const { router } = store.getState();
+								router.navigate('/information');
+							}
 						})}					
+						</div>
 					</div>
 				</div>
 			</div>

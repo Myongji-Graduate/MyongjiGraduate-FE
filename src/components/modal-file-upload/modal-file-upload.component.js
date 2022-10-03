@@ -2,12 +2,15 @@ import Component from "../../core/component";
 
 import FileUploadGuide from "../file-upload-guide/file-upload-guide.component";
 import FileUploadBox from "../file-upload-box/file-upload-box.component";
+import Button from "../button/button.component";
+import { buttonTypes } from "../../helper/types";
 
 export default class ModalFileUpload extends Component {
 
   template() {
     const guide = this.addChild(FileUploadGuide);
     const fileUploadBox = this.addChild(FileUploadBox);
+    const submitButton = this.addChild(Button);
 
     return (props) => {
       if (props) this.setProps(props)
@@ -27,18 +30,17 @@ export default class ModalFileUpload extends Component {
             </div>
           </div>
           <div class="modal-file-upload__footer">
-            <button class="modal-file-upload__submit-button">업로드</button>
+            ${submitButton.render({
+              content: '업로드',
+              type: buttonTypes.primary,
+              size: 'md',
+              key: 'modal-submit',
+              onClick: this.props.onSubmit
+            })}
           </div>
         </div>
       `
     }
   }
 
-  setEvent() {
-    const { onSubmit } = this.props;
-
-    this.addEvent('click', '.modal-file-upload__submit-button', () => {
-      onSubmit();
-    })
-  }
 }

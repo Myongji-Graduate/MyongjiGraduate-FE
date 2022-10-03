@@ -1,13 +1,49 @@
 .button{
-	background-color: $color-secondary;
+	
 	position: relative;
 	z-index: 1;
 	box-shadow: 0px 8px 10px rgba(20, 45, 84, 0.3);
 	border-radius: 100px;
-	color: white;
-	border: 0;	
-	font-weight: 500;
-	font-size: 0.83rem;
-	line-height: 1rem;	
-	margin: 1.25rem;
+	
+
+	&--normal {
+		background-color: $color-secondary;
+		color: white; 
+		border: 0;
+	}
+
+	&--outlined {
+		border: 3px solid $color-primary;
+		color: $color-primary;
+	}
+
+	&--inverted {
+		background-color: white;
+		color: $color-secondary;
+		border: 0;	
+	}
+
+	&--primary {
+		background-color: $color-primary;
+		color: white;
+	}
+
+	&--lg {
+		font-weight: 500;
+		font-size: 0.83rem;
+		line-height: 1rem;	
+		border-radius: 2rem;
+		padding: 0.6rem 4rem;
+	}
+
+	&--md {
+		@include subhead3;
+		padding: 0.4rem 1.9rem;
+	}
+
+	&--sm {
+		padding: 0.3rem 1.7rem;
+		@include subhead2;
+	}
 }
+

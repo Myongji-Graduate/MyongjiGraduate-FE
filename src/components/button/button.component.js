@@ -1,15 +1,15 @@
 import Component from '../../core/component';
-import { store } from '../../store/store';
 
 import * as utils from '../../helper/utils';
+import { buttonTypes } from '../../helper/types';
 
-export default class MainBtn extends Component {
+export default class Button extends Component {
 	setDefaultProps() {
 		this.props = {
-			width: 539,
-			height: 104,
 			content: 'innertext',
-			direct: '',
+			onClick: () => {},
+			type: buttonTypes.normal,
+			size: 'lg'
 		};
 	}
 
@@ -17,15 +17,11 @@ export default class MainBtn extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { width, height, content, direct } = this.props;
+			const { content, type, size, key } = this.props;
 
-			const modalBodyStyle = {
-				width: `${utils.convertPXToREM(width)}rem`,
-				height: `${utils.convertPXToREM(height)}rem`,
-			};
 
 			return `
-        <button class="button" style=${utils.getInlineStyle(modalBodyStyle)}> 
+        <button class="${key ? `button__${key} ` : ''}button--${type} button--${size} button" > 
 		${content} 
 		</button>
       `;
@@ -33,11 +29,9 @@ export default class MainBtn extends Component {
 	}
 
 	setEvent() {
+		const { onClick } = this.props;
 		this.addEvent('click', '.button', () => {
-			if (this.props.direct !== '') {
-				const { router } = store.getState();
-				router.navigate(this.props.direct);
-			}
+			onClick();
 		});
 	}
 }

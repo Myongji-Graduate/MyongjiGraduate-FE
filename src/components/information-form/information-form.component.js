@@ -7,9 +7,10 @@ import InputGroup from "../input-group/input-group.component";
 import Modal from "../modal/modal.component";
 import ModalFileUpload from "../modal-file-upload/modal-file-upload.component";
 import ModalLoading from "../modal-loading/modal-loading.component";
+import Button from "../button/button.component";
 
 import pencilIcon from '../../../public/icons/pencil-icon.svg';
-import { inputTypes } from "../../helper/types";
+import { buttonTypes, inputTypes } from "../../helper/types";
 
 export default class InformationForm extends Component {
 
@@ -42,6 +43,7 @@ export default class InformationForm extends Component {
   template() {
     const studentNumberInputGroup = this.addChild(InputGroup);
     const majorInputGroup = this.addChild(InputGroup);
+    const displayModalButton = this.addChild(Button);
 
     const modal = this.addChild(Modal);
     const modalFileUpload = this.addChild(ModalFileUpload);
@@ -73,7 +75,6 @@ export default class InformationForm extends Component {
         width: 1220,
         padding: 100
       }
-
 
       const studentNumberInputProps = {
         name: '학번',
@@ -111,16 +112,17 @@ export default class InformationForm extends Component {
               ${majorInputGroup.render(majorInputProps)}
             </div>
             <div class="information-form__create-modal-button-container">
-              <button class="information-form__create-modal-button">다음으로</button>
+              ${displayModalButton.render({
+                content: '다음으로',
+                type: buttonTypes.primary,
+                onClick: this.toggleFileUploadModal.bind(this),
+                size: 'md',
+                key: 'modal-display'
+              })}
             </div>
           </div>
         </div>
       `;
     }
-  }
-  setEvent() {
-    this.addEvent('click', '.information-form__create-modal-button', () => {
-			this.toggleFileUploadModal();
-		});
   }
 }
