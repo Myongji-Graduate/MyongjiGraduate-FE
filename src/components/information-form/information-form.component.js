@@ -1,6 +1,12 @@
 import Component from "../../core/component";
 
+import { store } from "../../store/store";
+import { fetchApi } from "../../store/async-action";
+
 import InputGroup from "../input-group/input-group.component";
+import Modal from "../modal/modal.component";
+import ModalFileUpload from "../modal-file-upload/modal-file-upload.component";
+import ModalLoading from "../modal-loading/modal-loading.component";
 
 import pencilIcon from '../../../public/icons/pencil-icon.svg';
 import { inputTypes } from "../../helper/types";
@@ -11,15 +17,63 @@ export default class InformationForm extends Component {
     this.state = {
       studentNumber: "",
       major: "",
+      file: undefined,
+      isFileUploadModalShow: false
     }
+  }
+
+  toggleFileUploadModal() {
+		this.setState({
+			isFileUploadModalShow: !this.state.isFileUploadModalShow,
+		});
+	}
+
+  uploadFile(file) {
+    console.log(file);
+    this.setState({
+      file: file
+    })
+  }
+
+  submitData() {
+    store.dispatch(fetchApi());
   }
 
   template() {
     const studentNumberInputGroup = this.addChild(InputGroup);
     const majorInputGroup = this.addChild(InputGroup);
 
+    const modal = this.addChild(Modal);
+    const modalFileUpload = this.addChild(ModalFileUpload);
+    const modalLoading = this.addChild(ModalLoading);
+
     return (props) => {
       if (props) this.setProps(props);
+
+      const { isLoadingModalShow } = store.getState();
+
+      const modalLoadingProps = {
+        isModalShow: isLoadingModalShow,
+        contentComponent: modalLoading,
+        width: 790,
+        padding: 200
+      }
+
+      const modalFileUploadProps = {
+        onDrag: this.uploadFile.bind(this),
+        file: this.state.file,
+        onSubmit: this.submitData,
+      }
+
+      const modalProps = {
+        isModalShow: this.state.isFileUploadModalShow,
+        toggleModal: this.toggleFileUploadModal.bind(this),
+        contentComponent: modalFileUpload,
+        contentComponentProps: {...modalFileUploadProps},
+        width: 1220,
+        padding: 100
+      }
+
 
       const studentNumberInputProps = {
         name: '학번',
@@ -41,7 +95,9 @@ export default class InformationForm extends Component {
 
       return `
         <div class="information-form">
-          <div class="information-form__header">
+        ${modal.render(modalProps)}
+        ${modal.render(modalLoadingProps)}
+        <div class="information-form__header">
             <img class="information-form__pencil-icon" src=${pencilIcon} />
             <span class="information-form__header-text">
               정보를 입력해주세요
@@ -59,7 +115,12 @@ export default class InformationForm extends Component {
             </div>
           </div>
         </div>
-      `
+      `;
     }
+  }
+  setEvent() {
+    this.addEvent('click', '.information-form__create-modal-button', () => {
+			this.toggleFileUploadModal();
+		});
   }
 }
