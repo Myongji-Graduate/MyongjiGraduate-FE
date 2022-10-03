@@ -1,0 +1,33 @@
+.file-upload-box {
+  border: 2.15203px dashed #B4CAF0;
+  background: #E9F1FF;
+  width: 13rem;
+  height: 3.14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__label {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+
+  &__upload-icon {
+    height: 0.8rem;
+    width: 1.27rem;
+  }
+
+  &__upload-text {
+    @include body1;
+    margin-top: 0.25rem;
+    color: #547BC8;
+    text-align: center;
+  }
+
+  &__upload-input {
+    display: none;
+  }
+}
