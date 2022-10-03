@@ -3,6 +3,7 @@ import Component from '../../core/component';
 import GNB from '../../components/GNB/GNB.component';
 import Modal from '../../components/modal/modal.component';
 import ModalHackmunguicho from '../../components/modal-hackmunguicho/modal-hackmunguicho.component';
+import { store } from '../../store/store';
 
 export default class ResultPage extends Component {
 	initState() {
@@ -24,6 +25,9 @@ export default class ResultPage extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
+			const { graduationResult } = store.getState();
+			console.log(graduationResult);
+
 			return `
 				<div class="result-page">
 				${modal.render({
@@ -37,11 +41,15 @@ export default class ResultPage extends Component {
 					${gnb.render()}
 					</div>
 
+					<h1>${graduationResult.basicAcademicCulture.detailCategory[0].haveToTakeElectiveLectures[0].title}</h1>					
 					
 					<h1>(๑•᎑< ๑)♡</h1>
-					<h1>(ɔ ˘⌣˘)˘⌣˘ c)♡</h1>							
-				</div>
-			`;
-		};
-	}
-}
+					<h1>(ɔ ˘⌣˘)˘⌣˘ c)♡</h1>		
+					</div>
+					`;
+				};
+			}
+		}
+		
+
+		

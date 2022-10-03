@@ -1,7 +1,7 @@
 import Component from "../../core/component";
 
 import { store } from "../../store/store";
-import { fetchApi } from "../../store/async-action";
+import { fetchApi, fetchMockApi } from "../../store/async-action";
 
 import InputGroup from "../input-group/input-group.component";
 import Modal from "../modal/modal.component";
@@ -37,7 +37,7 @@ export default class InformationForm extends Component {
   }
 
   submitData() {
-    store.dispatch(fetchApi());
+    store.dispatch(fetchMockApi());
   }
 
   template() {
