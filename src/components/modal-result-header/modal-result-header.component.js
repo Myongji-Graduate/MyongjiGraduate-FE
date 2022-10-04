@@ -26,6 +26,7 @@ export default class ModalResultHeader extends Component {
                <div class="modal-result-header__credit__info"> <span>${takenCredits}</span> / ${totalCredits} </div>  
                <div class="modal-result-header__credit__underline"></div>   
             </div>
+			
         </div>
       `;
 		};
