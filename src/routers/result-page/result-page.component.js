@@ -2,8 +2,8 @@ import Component from '../../core/component';
 
 import GNB from '../../components/GNB/GNB.component';
 import Modal from '../../components/modal/modal.component';
-import ModalHackmunguicho from '../../components/modal-hackmunguicho/modal-hackmunguicho.component';
-import { store } from '../../store/store';
+//import ModalHackmunguicho from '../../components/modal-hackmunguicho/modal-hackmunguicho.component';
+import ModalHackgyo from '../../components/modal-hackgyo/modal-hackgyo.component';
 
 export default class ResultPage extends Component {
 	initState() {
@@ -21,25 +21,22 @@ export default class ResultPage extends Component {
 	template() {
 		const gnb = this.addChild(GNB);
 		const modal = this.addChild(Modal);
-		const hackmunguicho = this.addChild(ModalHackmunguicho);
+		const hackgyo = this.addChild(ModalHackgyo);
 		return (props) => {
-			if (props) this.setProps(props);
-
-			const { graduationResult } = store.getState();
+			if (props) this.setProps(props);	
 
 			return `
 				<div class="result-page">
 				${modal.render({
 					isModalShow: this.state.isModalShow,
 					toggleModal: this.toggleModal.bind(this),
-					contentComponent: hackmunguicho,
+					contentComponent: hackgyo,
 					width: 1480,
 					padding: 90,
 				})}
 					<div class="result-page__gnb-container">
 					${gnb.render()}
 					</div>
-					<h1>${graduationResult.basicAcademicCulture.detailCategory[0].haveToTakeElectiveLectures[0].title}</h1>	
 					</div>
 					`;
 		};

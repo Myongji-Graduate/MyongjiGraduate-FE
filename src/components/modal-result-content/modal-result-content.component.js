@@ -4,6 +4,7 @@ export default class ModalResultContent extends Component {
 	setDefaultProps() {
 		this.props = {
 			content: {},
+      part : "",
 		};
 	}
 
@@ -11,7 +12,7 @@ export default class ModalResultContent extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { content } = this.props;
+			const { content, part } = this.props;
 			const variable = content.detailCategory[0];
 
 			return `
@@ -30,7 +31,7 @@ export default class ModalResultContent extends Component {
            <div class="modal-result-content__body__tr__column">${haveToTakeElectiveLecture.id}</div>
            <div class="modal-result-content__body__tr__column">${haveToTakeElectiveLecture.code}</div>
            <div class="modal-result-content__body__tr__column__3">${haveToTakeElectiveLecture.title}</div>
-           <div class="modal-result-content__body__tr__column">학문기초교양</div>
+           <div class="modal-result-content__body__tr__column">${part}</div>
            <div class="modal-result-content__body__tr__column">${haveToTakeElectiveLecture.credit}</div>
          </div>`
 				)}      
@@ -40,3 +41,4 @@ export default class ModalResultContent extends Component {
 		};
 	}
 }
+//logic수정하기
