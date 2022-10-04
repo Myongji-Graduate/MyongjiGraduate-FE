@@ -38,7 +38,7 @@ export default class ModalElectiveLecture extends Component {
           <div class="modal-elective-lecture__header">
           ${resultHeader.render({
 						part,
-						explain,
+						explain : part,
 						totalCredit,
 						takenCredit,
 					})}
