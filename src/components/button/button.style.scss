@@ -26,6 +26,7 @@
 	&--primary {
 		background-color: $color-primary;
 		color: white;
+		border: 0;	
 	}
 
 	&--lg {
@@ -33,16 +34,19 @@
 		font-size: 0.83rem;
 		line-height: 1rem;	
 		border-radius: 2rem;
-		padding: 0.6rem 4rem;
+		width: 11rem;
+		height: 2.2rem;
 	}
 
 	&--md {
 		@include subhead3;
-		padding: 0.4rem 1.9rem;
+		width: 5.5rem;
+		height: 1.4rem;
 	}
 
 	&--sm {
-		padding: 0.3rem 1.7rem;
+		width: 4rem;
+		height: 1.1rem;
 		@include subhead2;
 	}
 }

@@ -37,13 +37,15 @@ export default class InformationForm extends Component {
   }
 
   submitData() {
-    const formData = new FormData();
+    // const formData = new FormData();
     
-    formData.append('studentNumber', this.state.studentNumber);
-    formData.append('major', this.state.major);
-    formData.append('file', this.state.file, 'grade.pdf');
+    // formData.append('studentNumber', this.state.studentNumber);
+    // formData.append('major', this.state.major);
+    // formData.append('file', this.state.file, 'grade.pdf');
 
-    store.dispatch(fetchLocal(formData));
+    // store.dispatch(fetchLocal(formData));
+    store.dispatch(fetchMockApi());
+    
   }
 
   template() {
