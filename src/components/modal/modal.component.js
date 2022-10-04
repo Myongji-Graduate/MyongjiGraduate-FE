@@ -12,7 +12,7 @@ export default class Modal extends Component {
 			isModalShow: false,
 			isShowCloseBtn: false,
 			contentComponent: {},
-			contentComponentProps: undefined
+			contentComponentProps: undefined,
 		};
 	}
 
@@ -50,8 +50,13 @@ export default class Modal extends Component {
 			if (toggleModal) toggleModal();
 		});
 
-		this.addEvent('click', '.modal', () => {
-			if (toggleModal) toggleModal();
-		}, true);
+		this.addEvent(
+			'click',
+			'.modal',
+			() => {
+				if (toggleModal) toggleModal();
+			},
+			true
+		);
 	}
 }

@@ -3,11 +3,7 @@ import Component from '../../core/component';
 export default class ModalResultContent extends Component {
 	setDefaultProps() {
 		this.props = {
-			subjectCode: [1023, 1024],
-			curriculumCode: ['교필137', '교필137'],
-			subjectName: ['ICT비즈니스와 경영', '융합공학입문설계'],
-			division: ['전필', '전필'],
-			credit: [3, 3],
+			content: {},
 		};
 	}
 
@@ -15,7 +11,8 @@ export default class ModalResultContent extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { subjectCode, curriculumCode, subjectName, division, credit } = this.props;
+			const { content } = this.props;
+			const variable = content.detailCategory[0];
 
 			return `
       <div class="modal-result-content">
@@ -27,18 +24,19 @@ export default class ModalResultContent extends Component {
                <div class="modal-result-content__head__column">학점</div>
         </div>
         <div class="modal-result-content__body">
-             <div class="modal-result-content__body__tr"> 
-               <div class="modal-result-content__body__tr__column">${subjectCode[0]}</div>
-               <div class="modal-result-content__body__tr__column">${curriculumCode[0]}</div>
-               <div class="modal-result-content__body__tr__column__3">${subjectName[0]}</div>
-               <div class="modal-result-content__body__tr__column">${division[0]}</div>
-               <div class="modal-result-content__body__tr__column">${credit[0]}</div>
-             </div>
-        </div>        
+        ${variable.haveToTakeElectiveLectures.map(
+					(haveToTakeElectiveLecture) =>
+						`<div class="modal-result-content__body__tr">
+           <div class="modal-result-content__body__tr__column">${haveToTakeElectiveLecture.id}</div>
+           <div class="modal-result-content__body__tr__column">${haveToTakeElectiveLecture.code}</div>
+           <div class="modal-result-content__body__tr__column__3">${haveToTakeElectiveLecture.title}</div>
+           <div class="modal-result-content__body__tr__column">학문기초교양</div>
+           <div class="modal-result-content__body__tr__column">${haveToTakeElectiveLecture.credit}</div>
+         </div>`
+				)}      
+        </div>
       </div>
       `;
 		};
 	}
 }
-// for each문 || component하나 더파서 render로 수정 -> 마지막 div에 style border-bottom none처리
-// 선배 진짜 코드 너무 더러운데 classname 이거 맞아요? 8 (ᵒ̌▱ ๋ ᵒ̌) ა

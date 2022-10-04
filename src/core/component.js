@@ -70,7 +70,7 @@ export default class Component {
 			return false;
 		};
 
-		const eventListener = function(event) {
+		const eventListener = function (event) {
 			const target = getTarget(event.target);
 
 			if (!target) return false;

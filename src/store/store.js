@@ -23,12 +23,12 @@ export const reducer = (state = initState, action = {}) => {
 		case actionType.enrollRouter:
 			return { ...state, router: payload.router };
 		case RESULT_ACTION_TYPES.FETCH_RESULT_START:
-			return { ...state, isLoadingModalShow: true};
+			return { ...state, isLoadingModalShow: true };
 		case RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS:
-			return {...state, isLoadingModalShow: false, graduationResult: payload.result}
-		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED: 
-			return { ...state, isLoadingModalShow: false, error: payload.error};
-		default: 
+			return { ...state, isLoadingModalShow: false, graduationResult: payload.result };
+		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
+			return { ...state, isLoadingModalShow: false, error: payload.error };
+		default:
 			return state;
 	}
 };

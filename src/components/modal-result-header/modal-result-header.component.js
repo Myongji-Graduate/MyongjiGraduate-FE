@@ -5,8 +5,8 @@ export default class ModalResultHeader extends Component {
 		this.props = {
 			part: '핵심교양',
 			explain: '핵심교양 과목 중 미수강한 과목이 표시됩니다.',
-			preCredit: 6,
-			totalCredit: 18,
+			takenCredits: 6,
+			totalCredits: 18,
 		};
 	}
 
@@ -14,7 +14,7 @@ export default class ModalResultHeader extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { part, explain, preCredit, totalCredit } = this.props;
+			const { part, explain, takenCredits, totalCredits } = this.props;
 
 			return `
         <div class="modal-result-header">
@@ -23,7 +23,7 @@ export default class ModalResultHeader extends Component {
                <div class="modal-result-header__title__explain">${explain}</div>
             </div>
             <div class="modal-result-header__credit">
-               <div class="modal-result-header__credit__info"> <span>${preCredit}</span> / ${totalCredit} </div>  
+               <div class="modal-result-header__credit__info"> <span>${takenCredits}</span> / ${totalCredits} </div>  
                <div class="modal-result-header__credit__underline"></div>   
             </div>
         </div>

@@ -1,20 +1,20 @@
-import Component from "../../core/component";
+import Component from '../../core/component';
 
-import GNB from "../../components/GNB/GNB.component";
-import InformationForm from "../../components/information-form/information-form.component";
+import GNB from '../../components/GNB/GNB.component';
+import InformationForm from '../../components/information-form/information-form.component';
 
-import informationBackgroundImage from '../../../public/images/sub-background.png'
+import informationBackgroundImage from '../../../public/images/sub-background.png';
 import backgroundBottomImage from '../../../public/images/header-bottom.png';
 
 export default class InformationPage extends Component {
-  template() {
-    const gnb = this.addChild(GNB);
-    const informationForm = this.addChild(InformationForm);
+	template() {
+		const gnb = this.addChild(GNB);
+		const informationForm = this.addChild(InformationForm);
 
-    return (props) => {
-      if (props) this.setProps(props);
+		return (props) => {
+			if (props) this.setProps(props);
 
-      return `
+			return `
         <div class="information-page">
           <div class="information-page__header">
             ${gnb.render()}
@@ -27,7 +27,7 @@ export default class InformationPage extends Component {
             </div>
           </div>
         </div>
-      `
-    }
-  }
+      `;
+		};
+	}
 }
