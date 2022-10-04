@@ -29,7 +29,6 @@ export default class InformationForm extends Component {
 	}
 
 	uploadFile(file) {
-		console.log(file);
 		this.setState({
 			file,
 		});

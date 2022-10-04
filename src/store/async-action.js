@@ -21,11 +21,9 @@ export const fetchMockApi = () => (dispatch, getState) => {
   return fetch(ROOT_URL).then(response => {
     return response.json();
   }).then(result => {
-    console.log(result);
+    const payload = parseGraduationResult(result);
     const {router} = getState();
-    dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, {
-      result
-    }));
+    dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
     router.navigate('/result');
   });
 }
@@ -58,11 +56,29 @@ export const parseGraduationResult = (result) => {
 
   categoryList.push(mandatoryMajor);
   categoryList.push(electiveyMajor);
-  categoryList.push({...result.commonCulture});
-  categoryList.push({...result.coreCulture});
-  categoryList.push({...result.commonCulture});
+  result.commonCulture.categoryName = '공통교양';
   categoryList.push({...result.commonCulture});
 
+  result.coreCulture.categoryName = '핵심교양';
+  categoryList.push({...result.coreCulture});
+
+  result.basicAcademicalCulture.categoryName = '학문기초교양';
+  categoryList.push({...result.basicAcademicalCulture});
+
+  
+  result.normalCulture.categoryName = '일반교양';
+  categoryList.push({...result.normalCulture});
+  
+  result.freeElective.categoryName = '자유선택';
+  categoryList.push({...result.freeElective});
+
+  // result.chapelResult.categoryName = '채플';
+  // categoryList.push({...result.chapelResult});
+
+  return {
+    basicUserInfo,
+    categoryList
+  }
 
 }
 
@@ -77,7 +93,7 @@ export const parseMandatoryMajorResult = (majorResult) => {
   }, {
     totalCredit: 0,
     takenCredit: 0,
-    categoryName: '전필',
+    categoryName: '전공필수',
     detailCategory: [
       {
         categoryName: '전공필수',
@@ -111,7 +127,7 @@ export const parseElectiveMajorResult = (majorResult) => {
   }, {
     totalCredit: 0,
     takenCredit: 0,
-    categoryName: '전선',
+    categoryName: '전공선택',
     detailCategory: [
       {
         categoryName: '전공선택',

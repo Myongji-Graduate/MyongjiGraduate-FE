@@ -7,7 +7,8 @@ const initState = {
 	router: () => {},
 	isLoadingModalShow: false,
 	error: null,
-	graduationResult: null,
+	basicUserInfo: null,
+	categoryList: null,
 };
 
 export const actionType = {
@@ -25,7 +26,8 @@ export const reducer = (state = initState, action = {}) => {
 		case RESULT_ACTION_TYPES.FETCH_RESULT_START:
 			return { ...state, isLoadingModalShow: true };
 		case RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS:
-			return { ...state, isLoadingModalShow: false, graduationResult: payload.result };
+			const { basicUserInfo, categoryList } = payload;
+			return { ...state, isLoadingModalShow: false, basicUserInfo, categoryList };
 		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
 		default:

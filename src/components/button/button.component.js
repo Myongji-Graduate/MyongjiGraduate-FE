@@ -16,9 +16,8 @@ export default class Button extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-
+	
 			const { content, type, size, key } = this.props;
-
 			return `
         <button class="${key ? `button__${key} ` : ''}button--${type} button--${size} button" > 
 		${content} 
@@ -28,7 +27,8 @@ export default class Button extends Component {
 	}
 
 	setEvent() {
-		const { onClick } = this.props;
+		const { onClick, key } = this.props;
+		console.log('event', key);
 		this.addEvent('click', '.button', () => {
 			onClick();
 		});

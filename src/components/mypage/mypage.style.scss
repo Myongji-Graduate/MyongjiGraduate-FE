@@ -1,0 +1,40 @@
+
+.mypage{
+    padding: 60px;
+    width : 777px;
+    height : 289px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
+    border-radius: 19px;
+    background-color: rgb(252, 237, 237);
+    &__totalcredit{
+        color:$color-title;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 33px;
+        margin-bottom: 28px;
+    }
+    &__totalcredit > span {color : $color-point_blue;}
+    &__info{
+        display: flex;
+        height: 0px;
+        border-top: 1px solid #CFCFCF;
+        &-table{            
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 29px;
+            color: #9F9F9F;
+            border-collapse: collapse;
+            width: 200px;
+            margin: 38px 100px 0 0;
+        }
+        &-table td:last-child{   
+            color: $color-title;       
+        }
+        &-piechart{
+            width: 224px;
+            height: 224px;
+            margin: 30px 0;
+        }
+    }
+    
+}

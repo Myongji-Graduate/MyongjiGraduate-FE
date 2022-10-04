@@ -12,8 +12,9 @@ export default class CategoryCard extends Component {
     this.props = {
       title: '공통교양',
       key: 1,
-      totalCredits: 30,
-      takenCredits: 12
+      totalCredit: 30,
+      takenCredit: 12,
+      buttonOnClick: () => {},
     }
   }
 
@@ -24,8 +25,8 @@ export default class CategoryCard extends Component {
     return (props) => {
       if (props) this.setProps(props);
 
-      const { title, totalCredits, takenCredits, key } = this.props;
-      const percentage = Math.round(takenCredits / totalCredits * 100)
+      const { title, totalCredit, takenCredit, key, buttonOnClick } = this.props;
+      const percentage = Math.round(takenCredit / totalCredit * 100)
 
       const pieChartProps = {
         percentage
@@ -35,11 +36,12 @@ export default class CategoryCard extends Component {
         content: '미이수과목 확인',
         type: buttonTypes.primary,
         size: 'sm',
-        key: key
+        key: key,
+        onClick: buttonOnClick
       }
 
       return `
-        <div class="category-card">
+        <div class="category-card__${key} category-card">
           <div class="category-card__header">
             <div class="category-card__icon-container">
               <img src=${bookIcon} class="category-card__icon" />
@@ -55,11 +57,11 @@ export default class CategoryCard extends Component {
             <div class="category-card__display-credits">
               <div class="category-card__total-credits-container">
                 <div class="category-card__row-text">기준학점</div>
-                <div class="category-card__row-total-credits">${totalCredits}</div>
+                <div class="category-card__row-total-credits">${totalCredit}</div>
               </div>
               <div class="category-card__taken-credits-container">
                 <div class="category-card__row-text">이수학점</div>
-                <div class="category-card__row-taken-credits">${takenCredits}</div>
+                <div class="category-card__row-taken-credits">${takenCredit}</div>
               </div>
             </div>
             <div class="category-card__create-modal-button">
