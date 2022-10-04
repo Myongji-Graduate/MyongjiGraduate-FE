@@ -44,7 +44,6 @@ export function updateElement(parentNode, newNode, oldNode) {
 
 	const newChildNodes = filterTextNode([...newNode.childNodes]);
 	const oldChildNodes = filterTextNode([...oldNode.childNodes]);
-	// console.log(newChildNodes, oldChildNodes);
 
 	const maxLength = Math.max(newChildNodes.length, oldChildNodes.length);
 

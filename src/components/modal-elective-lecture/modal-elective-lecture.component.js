@@ -1,7 +1,6 @@
 import Component from '../../core/component';
 import ResultHeader from '../modal-result-header/modal-result-header.component';
 import ResultContent from '../modal-result-content/modal-result-content.component';
-import { store } from '../../store/store';
 
 export default class ModalElectiveLecture extends Component {
 
@@ -21,13 +20,10 @@ export default class ModalElectiveLecture extends Component {
 		const resultHeader = this.addChild(ResultHeader);
 		const resultContent = this.addChild(ResultContent);
 
-
-
 		// const { graduationResult } = store.getState();
 		// const variable = graduationResult.basicAcademicCulture;
 
 		return (props) => {
-			console.log(props);
 			if (props) this.setProps(props);
 
 			const { part, explain, categoryData: { totalCredit, takenCredit, detailCategory }} = this.props;

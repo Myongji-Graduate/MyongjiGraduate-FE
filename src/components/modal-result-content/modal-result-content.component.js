@@ -29,7 +29,9 @@ export default class ModalResultContent extends Component {
           <div class="modal-result-content__info">
             ${info.render({part: category.categoryName, totalCredits: category.totalCredits, takenCredits:category.takenCredits})}
             </div>
+          <div class="modal-result-content__complete-content">
           ${resultCompleteContent.render()}
+          </div>
           </div>
           `;
 
