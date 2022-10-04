@@ -56,7 +56,7 @@ export default class MainPage extends Component {
 							onClick: () => {
 								const { router } = store.getState();
 								router.navigate('/information');
-							}
+							},
 						})}					
 						</div>
 					</div>

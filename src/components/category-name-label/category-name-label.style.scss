@@ -1,0 +1,11 @@
+.category-name-label{
+    width: 2.7rem;
+    height: 0.7rem;
+    background-color:$color-g2;
+    border-radius: 100px;
+    padding :0.31rem 0.5rem;
+    @include title2;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 0.27rem;
+}

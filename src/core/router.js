@@ -5,7 +5,7 @@ import { store, createAction, actionType } from '../store/store';
 let instance;
 
 export default class Router extends Component {
-	lastPage
+	lastPage;
 
 	constructor(routerObjects) {
 		if (instance) {

@@ -9,7 +9,7 @@ export default class Button extends Component {
 			content: 'innertext',
 			onClick: () => {},
 			type: buttonTypes.normal,
-			size: 'lg'
+			size: 'lg',
 		};
 	}
 
@@ -18,7 +18,6 @@ export default class Button extends Component {
 			if (props) this.setProps(props);
 
 			const { content, type, size, key } = this.props;
-
 
 			return `
         <button class="${key ? `button__${key} ` : ''}button--${type} button--${size} button" > 

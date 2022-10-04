@@ -1,22 +1,20 @@
-import Component from "../../core/component";
+import Component from '../../core/component';
 
 import fileUplpadIcon from '../../../public/icons/file-upload-icon.svg';
 
 export default class FileUploadBox extends Component {
+	setDefaultProps() {
+		this.props = {
+			file: undefined,
+			onDrag: () => {},
+		};
+	}
 
-  setDefaultProps() {
-    this.props = {
-      file: undefined,
-      onDrag: () => {}
-    }
-  }
+	template() {
+		return (props) => {
+			if (props) this.setProps(props);
 
-  template() {
-
-    return (props) => {
-      if (props) this.setProps(props)
-
-      return `
+			return `
         <div class="file-upload-box">
           <labal class="file-upload-box__label">
             <img class="file-upload-box__upload-icon" src=${fileUplpadIcon} />
@@ -27,30 +25,30 @@ export default class FileUploadBox extends Component {
             <input type="file" class="file-upload-box__upload-input" >
         </div>
       `;
-    }
-  }
+		};
+	}
 
-  setEvent() {
-    const { onDrag } = this.props;
+	setEvent() {
+		const { onDrag } = this.props;
 
-    this.addEvent('dragover', '.file-upload-box', (e) => {
-      e.preventDefault();
-    })
+		this.addEvent('dragover', '.file-upload-box', (e) => {
+			e.preventDefault();
+		});
 
-    this.addEvent('drop', '.file-upload-box', (e) => {
-      e.preventDefault();
-      const file = e.dataTransfer.files[0];
-      if (file.type === "application/pdf") onDrag(file)
-    })
+		this.addEvent('drop', '.file-upload-box', (e) => {
+			e.preventDefault();
+			const file = e.dataTransfer.files[0];
+			if (file.type === 'application/pdf') onDrag(file);
+		});
 
-    this.addEvent('click', '.file-upload-box__upload-icon', (e) => {
-      const fileUploadInput = document.querySelector('.file-upload-box__upload-input')
-      fileUploadInput.click();
-    })
+		this.addEvent('click', '.file-upload-box__upload-icon', (e) => {
+			const fileUploadInput = document.querySelector('.file-upload-box__upload-input');
+			fileUploadInput.click();
+		});
 
-    this.addEvent('change', '.file-upload-box__upload-input', (e) => {
-      const file = e.target.files[0];
-      if (file.type === "application/pdf") onDrag(file)
-    })
-  }
+		this.addEvent('change', '.file-upload-box__upload-input', (e) => {
+			const file = e.target.files[0];
+			if (file.type === 'application/pdf') onDrag(file);
+		});
+	}
 }
