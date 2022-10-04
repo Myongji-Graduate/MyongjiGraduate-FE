@@ -27,6 +27,7 @@ export default class ModalElectiveLecture extends Component {
 		// const variable = graduationResult.basicAcademicCulture;
 
 		return (props) => {
+			console.log(props);
 			if (props) this.setProps(props);
 
 			const { part, explain, categoryData: { totalCredit, takenCredit, detailCategory }} = this.props;

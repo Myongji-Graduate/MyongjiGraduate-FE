@@ -6,7 +6,8 @@
     height: 100%;
     z-index: 100;
     background-color: rgba(0,0,0,0.5);   
-    overflow: scroll;
+    
+
 
     display: block;   
     &__body{
@@ -16,7 +17,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: white;
-        border-radius: 20px;      
+        border-radius: 20px;  
+        max-height: 90vh;
+        overflow-y: auto;
+    
     }
     &__close-btn{
         position: absolute;

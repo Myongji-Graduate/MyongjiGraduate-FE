@@ -6,6 +6,10 @@ export default class Mypage extends Component {
   setDefaultProps() {
 		this.props = {
 		totalCredit: 0,
+    takenCredit: 0,
+    name: '',
+    studentNumber: '',
+    department: '',
 		};
 	}
 
@@ -13,23 +17,39 @@ export default class Mypage extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
       const pieChart = this.addChild(PieChart);
-      const {totalCredit } = this.props;
+      const { totalCredit, takenCredit, name, studentNumber, department } = this.props;
+
+      const percentage = Math.round(takenCredit / totalCredit * 100);
 
 			return `
         <div class="mypage">
         <div class="mypage__totalcredit">
-        총 기준학점보다 <span>${totalCredit}</span> 학점이 부족합니다
+        <div>총 기준학점보다 </div>       
+        <div class="mypage__totalcredit-credit">&nbsp;${totalCredit - takenCredit}&nbsp;</div> 
+        <div> 학점이 부족합니다</div>        
         </div>
+
         <div class="mypage__info">
-        <table class="mypage__info-table">
-          <tr><td>이름</td><td>${totalCredit}</td></tr>
-          <tr><td>학번</td><td>${totalCredit}</td></tr>
-          <tr><td>학과</td><td>${totalCredit}</td></tr>
-          <tr><td>총 기준 학점</td><td>${totalCredit}</td></tr>
-          <tr><td>총 이수 학점</td><td>${totalCredit}</td></tr>
-        </table> 
-        <div class="mypage__info-piechart">${pieChart.render()}</div> 
-        </div> 
+        <div class="mypage__info__table">
+        <div class="mypage__info__table-key">
+        <div>이름</div>       
+        <div>학번</div>
+        <div>학과</div>
+        <div>총 기준 학점</div>
+        <div>총 이수 학점</div>
+        </div>
+        <div class="mypage__info__table-value">
+        <div>${name}</div>  
+        <div>${studentNumber}</div>  
+        <div>${department}</div>  
+        <div>${totalCredit}</div>  
+        <div>${takenCredit}</div>  
+        </div>    
+         </div> 
+        <div class="mypage__info__piechart">${pieChart.render({
+          percentage
+        })}</div> 
+        </div>
         </div>
       `;
 		};

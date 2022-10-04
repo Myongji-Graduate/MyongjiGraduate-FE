@@ -43,6 +43,9 @@ export function updateDom(component) {
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
 	clearEvent(component);
+	console.dir(component);
+	console.dir(newNode);
+	console.dir(parentNode);
 
 	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 

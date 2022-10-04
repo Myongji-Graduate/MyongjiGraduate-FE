@@ -16,6 +16,7 @@ export function updateAttributes(oldNode, newNode) {
 }
 
 export function updateElement(parentNode, newNode, oldNode) {
+
 	if (!newNode && oldNode) {
 		oldNode.remove();
 		return;
@@ -41,12 +42,23 @@ export function updateElement(parentNode, newNode, oldNode) {
 
 	updateAttributes(oldNode, newNode);
 
-	const newChildNodes = [...newNode.childNodes];
-	const oldChildNodes = [...oldNode.childNodes];
+	const newChildNodes = filterTextNode([...newNode.childNodes]);
+	const oldChildNodes = filterTextNode([...oldNode.childNodes]);
+	// console.log(newChildNodes, oldChildNodes);
 
 	const maxLength = Math.max(newChildNodes.length, oldChildNodes.length);
 
 	for (let i = 0; i < maxLength; i += 1) {
 		updateElement(oldNode, newChildNodes[i], oldChildNodes[i]);
 	}
+}
+
+
+function filterTextNode(childNodes) {
+	return childNodes.filter(childNode => {
+		if (childNode.nodeType !== 3) return true;
+		const text = childNode.data.replaceAll('\n', '').trim();
+
+		return text.length === 0 ? false : true;
+	});
 }

@@ -23,9 +23,9 @@ export default class GNB extends Component {
 	}
 
 	setEvent() {
-		this.addEvent('click', '.GNB__tab-navigator', () => {
+		this.addEvent('click', '.GNB__main-logo', () => {
 			const { router } = store.getState();
-			router.navigate('/product');
+			router.navigate('/');
 		});
 	}
 }

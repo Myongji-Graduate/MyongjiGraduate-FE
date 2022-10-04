@@ -22,9 +22,24 @@
     z-index: 10;
   }
 
-  &__content {
+  &__summary {
+    margin-bottom: 1.45rem;
+  }
+
+  &__body {
+    position: relative;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__content {
+    border-radius: 0.39rem;
+    position: relative;
+    width: fit-content;
+    top: -2rem;
+    z-index: 10;
+    background-color: white;
   }
 
   &__category-grid-container {

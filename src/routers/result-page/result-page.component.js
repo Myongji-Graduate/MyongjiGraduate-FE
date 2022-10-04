@@ -4,6 +4,7 @@ import GNB from '../../components/GNB/GNB.component';
 import Modal from '../../components/modal/modal.component';
 import ModalElectiveLecture from '../../components/modal-elective-lecture/modal-elective-lecture.component';
 import CategoryCard from '../../components/category-card/category-card.component';
+import Mypage from '../../components/mypage/mypage.component';
 
 import { store } from '../../store/store';
 
@@ -29,7 +30,6 @@ export default class ResultPage extends Component {
 	}
 
 	clickCategoryButton(index) {
-		console.log(index);
 		const { categoryList } = store.getState();
 		const categoryData = {...categoryList[index]};
 
@@ -43,6 +43,7 @@ export default class ResultPage extends Component {
 		const gnb = this.addChild(GNB);
 		const modal = this.addChild(Modal);
 		const modalElectiveLecture = this.addChild(ModalElectiveLecture);
+		const mypage = this.addChild(Mypage);
 		const categoryCardList = new Array(7).fill().map(() => this.addChild(CategoryCard));
 		// const categoryCardList = this.addChild(CategoryCard);
 
@@ -51,8 +52,6 @@ export default class ResultPage extends Component {
 
 			const { selectedCategoryData } = this.state;
 			const { basicUserInfo, categoryList } = store.getState();
-			console.log('basic', basicUserInfo);
-			console.log('category', categoryList);
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
@@ -79,7 +78,7 @@ export default class ResultPage extends Component {
           </div>
 					<div class="result-page__body">
 						<div class="result-page__content">
-							<div class="result-page__summary"></div>
+							<div class="result-page__summary">${mypage.render({...basicUserInfo})}</div>
 							<div class="result-page__category-grid-container">
 								${categoryList.map(({categoryName, totalCredit, takenCredit}, index) => {
 									return categoryCardList[index].render({

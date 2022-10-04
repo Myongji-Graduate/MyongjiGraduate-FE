@@ -24,7 +24,6 @@ export const createStore = (reducer, applyMiddleware) => {
 				state[key] = value;
 			}
 		});
-		console.log(state);
 	};
 
 	const getKeys = () => {

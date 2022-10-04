@@ -1,4 +1,6 @@
 import Component from '../../core/component';
+import CategoryInfo from '../category-info/category-info.component';
+import ResultCompleteContent from '../result-complete-content/result-complete-content.component';
 
 export default class ModalResultContent extends Component {
 	setDefaultProps() {
@@ -8,9 +10,11 @@ export default class ModalResultContent extends Component {
 	}
 
 	template() {
+    const resultCompleteContent = this.addChild(ResultCompleteContent);
+
 		return (props) => {
 			if (props) this.setProps(props);
-
+      const info = this.addChild(CategoryInfo);
 			const { detailCategory } = this.props;
 
 			return `
@@ -20,7 +24,20 @@ export default class ModalResultContent extends Component {
           if (category.haveToMandatoryLectures.length !== 0) lectures = category.haveToMandatoryLectures;
           if (category.haveToElectiveLectures.length !== 0) lectures = category.haveToElectiveLectures;
 
+          if (category.completed) return `
+          <div class="modal-result-content__content">
+          <div class="modal-result-content__info">
+            ${info.render({part: category.categoryName, totalCredits: category.totalCredits, takenCredits:category.takenCredits})}
+            </div>
+          ${resultCompleteContent.render()}
+          </div>
+          `;
+
           return `
+          <div class="modal-result-content__content">
+          <div class="modal-result-content__info">
+         ${info.render({part: category.categoryName, totalCredits: category.totalCredits, takenCredits:category.takenCredits})}
+          </div>         
            <div class="modal-result-content__head">
                <div class="modal-result-content__head__column">과목코드</div>
                <div class="modal-result-content__head__column">과목명</div>
@@ -37,6 +54,7 @@ export default class ModalResultContent extends Component {
               `
             })}
           </div>
+          </div>
           `
 
         }).toString().replaceAll(',', '')}
@@ -44,4 +62,3 @@ export default class ModalResultContent extends Component {
 		};
 	}
 }
-//logic수정하기

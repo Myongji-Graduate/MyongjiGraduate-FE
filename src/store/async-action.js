@@ -24,7 +24,9 @@ export const fetchMockApi = () => (dispatch, getState) => {
     const payload = parseGraduationResult(result);
     const {router} = getState();
     dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
-    router.navigate('/result');
+    requestAnimationFrame(() => {
+      router.navigate('/result');
+    })
   });
 }
 
@@ -86,8 +88,8 @@ export const parseMandatoryMajorResult = (majorResult) => {
   const mandatoryMajor = majorResult.detailCategory[0].takenMandatoryLectures.reduce((acc, lecture) => {
     acc.totalCredit += lecture.credit;
     acc.takenCredit += lecture.credit;
-    acc.detailCategory[0].totalCredit += lecture.credit;
-    acc.detailCategory[0].totalCredit += lecture.credit;
+    acc.detailCategory[0].totalCredits += lecture.credit;
+    acc.detailCategory[0].takenCredits += lecture.credit;
     acc.detailCategory[0].takenMandatoryLectures.push(lecture);
     return acc;
   }, {
@@ -97,7 +99,7 @@ export const parseMandatoryMajorResult = (majorResult) => {
     detailCategory: [
       {
         categoryName: '전공필수',
-        totalCredit: 0,
+        totalCredits: 0,
         takenCredits: 0,
         takenMandatoryLectures: [],
         haveToMandatoryLectures: [],
@@ -109,7 +111,7 @@ export const parseMandatoryMajorResult = (majorResult) => {
 
   return majorResult.detailCategory[0].haveToMandatoryLectures.reduce((acc, lecture) => {
     acc.totalCredit += lecture.credit;
-    acc.detailCategory[0].totalCredit += lecture.credit;
+    acc.detailCategory[0].totalCredits += lecture.credit;
     acc.detailCategory[0].haveToMandatoryLectures.push(lecture);
     return acc;
   }, mandatoryMajor)
@@ -120,8 +122,8 @@ export const parseElectiveMajorResult = (majorResult) => {
   const electiveMajor = majorResult.detailCategory[0].takenElectiveLectures.reduce((acc, lecture) => {
     acc.totalCredit += lecture.credit;
     acc.takenCredit += lecture.credit;
-    acc.detailCategory[0].totalCredit += lecture.credit;
-    acc.detailCategory[0].totalCredit += lecture.credit;
+    acc.detailCategory[0].totalCredits += lecture.credit;
+    acc.detailCategory[0].takenCredits += lecture.credit;
     acc.detailCategory[0].takenElectiveLectures.push(lecture);
     return acc;
   }, {
@@ -131,7 +133,7 @@ export const parseElectiveMajorResult = (majorResult) => {
     detailCategory: [
       {
         categoryName: '전공선택',
-        totalCredit: 0,
+        totalCredits: 0,
         takenCredits: 0,
         takenMandatoryLectures: [],
         haveToMandatoryLectures: [],
@@ -143,7 +145,7 @@ export const parseElectiveMajorResult = (majorResult) => {
 
   return majorResult.detailCategory[0].haveToElectiveLectures.reduce((acc, lecture) => {
     acc.totalCredit += lecture.credit;
-    acc.detailCategory[0].totalCredit += lecture.credit;
+    acc.detailCategory[0].totalCredits += lecture.credit;
     acc.detailCategory[0].haveToElectiveLectures.push(lecture);
     return acc;
   }, electiveMajor)

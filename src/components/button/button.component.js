@@ -28,7 +28,6 @@ export default class Button extends Component {
 
 	setEvent() {
 		const { onClick, key } = this.props;
-		console.log('event', key);
 		this.addEvent('click', '.button', () => {
 			onClick();
 		});

@@ -1,6 +1,7 @@
 import Component from '../../core/component';
 
 import fileUplpadIcon from '../../../public/icons/file-upload-icon.svg';
+import completeCheckIcon from '../../../public/icons/complete-check.svg';
 
 export default class FileUploadBox extends Component {
 	setDefaultProps() {
@@ -14,13 +15,15 @@ export default class FileUploadBox extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
+			const { file } = this.props;
+
 			return `
         <div class="file-upload-box">
           <labal class="file-upload-box__label">
-            <img class="file-upload-box__upload-icon" src=${fileUplpadIcon} />
+            <img class="file-upload-box__upload-icon" src=${file ? completeCheckIcon : fileUplpadIcon} />
           </label>
             <div class="file-upload-box__upload-text">
-            마우스로 드래그 하거나<br/>아이콘을 눌러 직접 추가해주세요
+						${file ? file.name : "마우스로 드래그 하거나<br/>아이콘을 눌러 직접 추가해주세요"}
             </div>
             <input type="file" class="file-upload-box__upload-input" >
         </div>

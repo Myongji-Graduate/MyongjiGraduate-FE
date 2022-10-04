@@ -84,7 +84,7 @@ export default class InformationForm extends Component {
 
 			const studentNumberInputProps = {
 				name: '학번',
-				placeholder: '한글을 입력하세요',
+				placeholder: 'ex)60181649',
 				value: this.state.studentNumber,
 				onChange: (newValue) => {
 					this.setState({ studentNumber: newValue });
