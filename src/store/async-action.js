@@ -77,11 +77,13 @@ export const parseGraduationResult = (result) => {
   // result.chapelResult.categoryName = '채플';
   // categoryList.push({...result.chapelResult});
 
+  // console.log(categoryList);
+  const filteredCategoryList = filterCategoryListCredit(categoryList)
+  // console.log(filteredCategoryList);
   return {
     basicUserInfo,
-    categoryList
-  }
-
+    categoryList: filteredCategoryList
+  };
 }
 
 export const parseMandatoryMajorResult = (majorResult) => {
@@ -149,4 +151,17 @@ export const parseElectiveMajorResult = (majorResult) => {
     acc.detailCategory[0].haveToElectiveLectures.push(lecture);
     return acc;
   }, electiveMajor)
+}
+
+
+export const filterCategoryListCredit = (categoryList) => {
+  return categoryList.map(category => {
+    category.takenCredit = Math.min(category.takenCredit, category.totalCredit);
+    console.log(category.detailCategory);
+    category.detailCategory = category.detailCategory.map(detail => {
+      detail.takenCredits = Math.min(detail.takenCredits, detail.totalCredits);
+      return detail;
+    })
+    return category;
+  })
 }
