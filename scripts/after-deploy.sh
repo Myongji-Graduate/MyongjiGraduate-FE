@@ -7,4 +7,4 @@ sudo /usr/bin/npm install
 
 sudo /usr/bin/npm run build:production
 
-sudo /usr/bin/pm2 start ./be/bundle.js
+sudo /usr/bin/pm2 start -f ./be/bundle.js
