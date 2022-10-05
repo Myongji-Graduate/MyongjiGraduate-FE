@@ -42,21 +42,21 @@ export const parseMandatoryMajorResult = (majorResult) => {
 export const parseElectiveMajorResult = (majorResult) => {
 	const electiveMajor = majorResult.detailCategory[0].takenElectiveLectures.reduce(
 		(acc, lecture) => {
-			acc.totalCredit += lecture.credit;
+			// acc.totalCredit += lecture.credit;
 			acc.takenCredit += lecture.credit;
-			acc.detailCategory[0].totalCredits += lecture.credit;
+			// acc.detailCategory[0].totalCredits += lecture.credit;
 			acc.detailCategory[0].takenCredits += lecture.credit;
 			acc.detailCategory[0].takenElectiveLectures.push(lecture);
 			return acc;
 		},
 		{
-			totalCredit: 0,
+			// totalCredit: 0,
 			takenCredit: 0,
 			categoryName: '전공선택',
 			detailCategory: [
 				{
 					categoryName: '전공선택',
-					totalCredits: 0,
+					// totalCredits: 0,
 					takenCredits: 0,
 					takenMandatoryLectures: [],
 					haveToMandatoryLectures: [],
@@ -92,6 +92,14 @@ export const parseGraduationResult = (result) => {
 
 	const mandatoryMajor = parseMandatoryMajorResult(result.major);
 	const electiveyMajor = parseElectiveMajorResult(result.major);
+
+  electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
+
+  electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
+
+  electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
+
+  electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
 
 	categoryList.push(mandatoryMajor);
 	categoryList.push(electiveyMajor);
