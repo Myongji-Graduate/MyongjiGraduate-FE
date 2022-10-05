@@ -33,5 +33,5 @@ app.use('/api', apiRouter);
 app.use('/', ssrRouter);
 
 app.listen(3001, () => {
-  console.log('listen to http://localhost:3001');
+  console.log('listen to http://localhost:3000');
 })
