@@ -12,7 +12,7 @@ export default class maintitle extends Component {
           <div class="main-title__logo">
           <div class="main-title__logo__text">
           <span>졸</span>업을 <span>부</span>탁해
-          <img class="main-title__logo__cap" src=${titleCap}/>
+          <img class="main-title__logo__cap" src=${titleCap} >
             </div>
           </div>
 		     <div class="main-title__explain">명지인을 위한 간편 졸업요건 검사 사이트</div>
