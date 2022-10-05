@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CD
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  pull_request:
+    branches: [ "main" ]
+
+
+env:
+  S3_BUCKET_NAME: myongji-graduate-fe
+  CODEDEPLOY_APPLICATION_NAME: myongji-graduate-fe-cd
+  CODEDEPLOY_GROUP_NAME: myongji-graduate
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: make zip file
+        run: zip -r build.zip .
+      
+      - name: Configure AWS Credentials
+        uses: aaws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload to S3
+        run: aws s3 cp --region ${{ secrets.AWS_REGION }} ./build.zip s3://${{ env.S3_BUCKET_NAME }}/build.zip
+
+      - name: deploy with AWS codeDeploy
+        run: |
+          aws deploy create-deployment \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --application-name ${{ env.CODEDEPLOY_APPLICATION_NAME }} \
+          --deployment-group-name ${{ env.CODEDEPLOY_GROUP_NAME }} \
+          --s3-location bucket=${{ env.S3_BUCKET_NAME }},bundleType=zip,key=build.zip
