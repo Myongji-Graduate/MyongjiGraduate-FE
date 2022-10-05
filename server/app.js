@@ -32,6 +32,6 @@ app.use(express.json());
 app.use('/api', apiRouter);
 app.use('/', ssrRouter);
 
-app.listen(3001, () => {
+app.listen(3000, () => {
   console.log('listen to http://localhost:3000');
 })
