@@ -5,4 +5,6 @@ cd $REPOSITORY
 
 sudo /usr/bin/npm install
 
-sudo /usr/bin/npm start
+sudo /usr/bin/npm run build:production
+
+sudo /usr/bin/pm2 start ./be/bundle.js
