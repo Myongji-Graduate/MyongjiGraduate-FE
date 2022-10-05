@@ -4,7 +4,7 @@ name: CD
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 env:
   S3_BUCKET_NAME: myongji-graduate-fe
