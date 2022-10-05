@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 
 import { store } from '../../store/store';
-import { fetchMockApi } from '../../store/async-action';
+import { fetchLocal } from '../../store/async-action';
 
 import InputGroup from '../input-group/input-group.component';
 import Modal from '../modal/modal.component';
@@ -35,14 +35,14 @@ export default class InformationForm extends Component {
 	}
 
 	submitData() {
-		// const formData = new FormData();
+		const formData = new FormData();
 
-		// formData.append('studentNumber', this.state.studentNumber);
-		// formData.append('major', this.state.major);
-		// formData.append('file', this.state.file, 'grade.pdf');
+		formData.append('studentNumber', this.state.studentNumber);
+		formData.append('major', this.state.major);
+		formData.append('file', this.state.file, 'grade.pdf');
 
-		// store.dispatch(fetchLocal(formData));
-		store.dispatch(fetchMockApi());
+		store.dispatch(fetchLocal(formData));
+		// store.dispatch(fetchMockApi());
 	}
 
 	template() {

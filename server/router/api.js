@@ -21,13 +21,13 @@ router.post('/result', upload.single('file'), async function(req, res) {
   formData.append('entryYear', req.body.studentNumber);
   formData.append('department', req.body.major);
 
-  const result = await axios.post('172.30.1.62:8088/api/v1/graduation/testparser',formData, {
+  const result = await axios.post('http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com/api/v1/graduation/result',formData, {
     headers: {
       ...formData.getHeaders(),
     }
   })
 
-  res.send('Birds home page');
+  res.json(result.data);
 })
 
 export default router;

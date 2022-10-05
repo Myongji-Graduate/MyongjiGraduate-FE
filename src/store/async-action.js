@@ -78,7 +78,6 @@ export const parseElectiveMajorResult = (majorResult) => {
 export const filterCategoryListCredit = (categoryList) => {
 	return categoryList.map((category) => {
 		category.takenCredit = Math.min(category.takenCredit, category.totalCredit);
-		console.log(category.detailCategory);
 		category.detailCategory = category.detailCategory.map((detail) => {
 			detail.takenCredits = Math.min(detail.takenCredits, detail.totalCredits);
 			return detail;
@@ -141,16 +140,13 @@ export const fetchLocal = (formData) => (dispatch, getState) => {
 		body: formData,
 	})
 		.then((response) => {
-			console.log(response);
-			return response.text();
+			return response.json();
 		})
 		.then((result) => {
 			const { router } = getState();
-			console.log(result);
+			const payload = parseGraduationResult(result);
 			dispatch(
-				createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, {
-					result,
-				})
+				createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload)
 			);
 			router.navigate('/result');
 		});
