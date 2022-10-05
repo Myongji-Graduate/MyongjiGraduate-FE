@@ -145,6 +145,7 @@ export const fetchLocal = (formData) => (dispatch, getState) => {
 		.then((result) => {
 			const { router } = getState();
 			const payload = parseGraduationResult(result);
+      console.log(payload);
 			dispatch(
 				createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload)
 			);

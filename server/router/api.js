@@ -27,6 +27,8 @@ router.post('/result', upload.single('file'), async function(req, res) {
     }
   })
 
+  console.log(result);
+
   res.json(result.data);
 })
 
