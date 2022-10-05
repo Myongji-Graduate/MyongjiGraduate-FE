@@ -1,46 +1,45 @@
-import Component from "../../core/component";
+import Component from '../../core/component';
 
-import PieChart from "../pie-chart/pie-chart.component";
+import PieChart from '../pie-chart/pie-chart.component';
 
 import bookIcon from '../../../public/icons/book-icon.svg';
-import Button from "../button/button.component";
-import { buttonTypes } from "../../helper/types";
+import Button from '../button/button.component';
+import { buttonTypes } from '../../helper/types';
 
 export default class CategoryCard extends Component {
+	setDefaultProps() {
+		this.props = {
+			title: '공통교양',
+			key: 1,
+			totalCredit: 30,
+			takenCredit: 12,
+			buttonOnClick: () => {},
+		};
+	}
 
-  setDefaultProps() {
-    this.props = {
-      title: '공통교양',
-      key: 1,
-      totalCredit: 30,
-      takenCredit: 12,
-      buttonOnClick: () => {},
-    }
-  }
+	template() {
+		const pieChart = this.addChild(PieChart);
+		const createModalButton = this.addChild(Button);
 
-  template() {
-    const pieChart = this.addChild(PieChart);
-    const createModalButton = this.addChild(Button);
+		return (props) => {
+			if (props) this.setProps(props);
 
-    return (props) => {
-      if (props) this.setProps(props);
+			const { title, totalCredit, takenCredit, key, buttonOnClick } = this.props;
+			const percentage = Math.round((takenCredit / totalCredit) * 100);
 
-      const { title, totalCredit, takenCredit, key, buttonOnClick } = this.props;
-      const percentage = Math.round(takenCredit / totalCredit * 100)
+			const pieChartProps = {
+				percentage,
+			};
 
-      const pieChartProps = {
-        percentage
-      }
+			const createModalButtonProps = {
+				content: '미이수과목 확인',
+				type: buttonTypes.primary,
+				size: 'sm',
+				key,
+				onClick: buttonOnClick,
+			};
 
-      const createModalButtonProps = {
-        content: '미이수과목 확인',
-        type: buttonTypes.primary,
-        size: 'sm',
-        key: key,
-        onClick: buttonOnClick
-      }
-
-      return `
+			return `
         <div class="category-card__${key} category-card">
           <div class="category-card__header">
             <div class="category-card__icon-container">
@@ -70,6 +69,6 @@ export default class CategoryCard extends Component {
           </div>
         </div>
       `;
-    }
-  }
+		};
+	}
 }

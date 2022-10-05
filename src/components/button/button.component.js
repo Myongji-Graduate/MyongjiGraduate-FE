@@ -1,6 +1,5 @@
 import Component from '../../core/component';
 
-import * as utils from '../../helper/utils';
 import { buttonTypes } from '../../helper/types';
 
 export default class Button extends Component {
@@ -16,7 +15,7 @@ export default class Button extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-	
+
 			const { content, type, size, key } = this.props;
 			return `
         <button class="${key ? `button__${key} ` : ''}button--${type} button--${size} button" > 
@@ -27,7 +26,7 @@ export default class Button extends Component {
 	}
 
 	setEvent() {
-		const { onClick, key } = this.props;
+		const { onClick } = this.props;
 		this.addEvent('click', '.button', () => {
 			onClick();
 		});

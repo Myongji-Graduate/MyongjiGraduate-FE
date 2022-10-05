@@ -23,7 +23,7 @@ export default class FileUploadBox extends Component {
             <img class="file-upload-box__upload-icon" src=${file ? completeCheckIcon : fileUplpadIcon} />
           </label>
             <div class="file-upload-box__upload-text">
-						${file ? file.name : "마우스로 드래그 하거나<br/>아이콘을 눌러 직접 추가해주세요"}
+						${file ? file.name : '마우스로 드래그 하거나<br/>아이콘을 눌러 직접 추가해주세요'}
             </div>
             <input type="file" class="file-upload-box__upload-input" >
         </div>
@@ -44,7 +44,7 @@ export default class FileUploadBox extends Component {
 			if (file.type === 'application/pdf') onDrag(file);
 		});
 
-		this.addEvent('click', '.file-upload-box__upload-icon', (e) => {
+		this.addEvent('click', '.file-upload-box__upload-icon', () => {
 			const fileUploadInput = document.querySelector('.file-upload-box__upload-input');
 			fileUploadInput.click();
 		});

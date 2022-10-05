@@ -38,8 +38,7 @@ export default class ModalFileUpload extends Component {
 						})}
           </div>
         </div>
-      `
-    }
-  }
-
+      `;
+		};
+	}
 }

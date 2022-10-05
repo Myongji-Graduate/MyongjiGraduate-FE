@@ -17,11 +17,11 @@ export const routerObjects = [
 			{
 				path: 'result',
 				element: ResultPage,
-			},	
+			},
 			{
 				path: 'tutorial',
 				element: TutorialPage,
-			},			
+			},
 		],
 	},
 ];

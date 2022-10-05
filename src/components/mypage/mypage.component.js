@@ -3,23 +3,23 @@ import Component from '../../core/component';
 import PieChart from '../pie-chart/pie-chart.component';
 
 export default class Mypage extends Component {
-  setDefaultProps() {
+	setDefaultProps() {
 		this.props = {
-		totalCredit: 0,
-    takenCredit: 0,
-    name: '',
-    studentNumber: '',
-    department: '',
+			totalCredit: 0,
+			takenCredit: 0,
+			name: '',
+			studentNumber: '',
+			department: '',
 		};
 	}
 
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-      const pieChart = this.addChild(PieChart);
-      const { totalCredit, takenCredit, name, studentNumber, department } = this.props;
+			const pieChart = this.addChild(PieChart);
+			const { totalCredit, takenCredit, name, studentNumber, department } = this.props;
 
-      const percentage = Math.round(takenCredit / totalCredit * 100);
+			const percentage = Math.round((takenCredit / totalCredit) * 100);
 
 			return `
         <div class="mypage">
@@ -47,8 +47,8 @@ export default class Mypage extends Component {
         </div>    
          </div> 
         <div class="mypage__info__piechart">${pieChart.render({
-          percentage
-        })}</div> 
+					percentage,
+				})}</div> 
         </div>
         </div>
       `;

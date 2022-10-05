@@ -15,8 +15,16 @@ export function updateAttributes(oldNode, newNode) {
 	});
 }
 
-export function updateElement(parentNode, newNode, oldNode) {
+export function filterTextNode(childNodes) {
+	return childNodes.filter((childNode) => {
+		if (childNode.nodeType !== 3) return true;
+		const text = childNode.data.replaceAll('\n', '').trim();
 
+		return text.length !== 0;
+	});
+}
+
+export function updateElement(parentNode, newNode, oldNode) {
 	if (!newNode && oldNode) {
 		oldNode.remove();
 		return;
@@ -50,14 +58,4 @@ export function updateElement(parentNode, newNode, oldNode) {
 	for (let i = 0; i < maxLength; i += 1) {
 		updateElement(oldNode, newChildNodes[i], oldChildNodes[i]);
 	}
-}
-
-
-function filterTextNode(childNodes) {
-	return childNodes.filter(childNode => {
-		if (childNode.nodeType !== 3) return true;
-		const text = childNode.data.replaceAll('\n', '').trim();
-
-		return text.length === 0 ? false : true;
-	});
 }

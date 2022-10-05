@@ -3,3 +3,5 @@ export const RESULT_ACTION_TYPES = {
 	FETCH_RESULT_SUCCESS: 'result/FETCH_RESULT_SUCCESS',
 	FETCH_RESULT_FAILED: 'result/FETCH_RESULT_FAILED',
 };
+
+export const types = {};

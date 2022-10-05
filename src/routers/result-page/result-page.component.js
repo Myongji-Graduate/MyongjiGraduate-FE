@@ -8,7 +8,7 @@ import Mypage from '../../components/mypage/mypage.component';
 
 import { store } from '../../store/store';
 
-import informationBackgroundImage from '../../../public/images/sub-background.png'
+import informationBackgroundImage from '../../../public/images/sub-background.png';
 import backgroundBottomImage from '../../../public/images/header-bottom.png';
 
 export default class ResultPage extends Component {
@@ -18,7 +18,7 @@ export default class ResultPage extends Component {
 			selectedCategoryData: {
 				takenCredits: 0,
 				totalCredits: 0,
-				detailCategory: []
+				detailCategory: [],
 			},
 		};
 	}
@@ -31,7 +31,7 @@ export default class ResultPage extends Component {
 
 	clickCategoryButton(index) {
 		const { categoryList } = store.getState();
-		const categoryData = {...categoryList[index]};
+		const categoryData = { ...categoryList[index] };
 
 		this.setState({
 			selectedCategoryData: categoryData,
@@ -55,10 +55,9 @@ export default class ResultPage extends Component {
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
-				categoryData: selectedCategoryData
+				categoryData: selectedCategoryData,
 			};
 
-			
 			return `
 			<div class="result-page">
 				<div class="result-page__modal-container">
@@ -78,17 +77,20 @@ export default class ResultPage extends Component {
           </div>
 					<div class="result-page__body">
 						<div class="result-page__content">
-							<div class="result-page__summary">${mypage.render({...basicUserInfo})}</div>
+							<div class="result-page__summary">${mypage.render({ ...basicUserInfo })}</div>
 							<div class="result-page__category-grid-container">
-								${categoryList.map(({categoryName, totalCredit, takenCredit}, index) => {
-									return categoryCardList[index].render({
-										title: categoryName,
-										totalCredit,
-										takenCredit,
-										key: index+1,
-										buttonOnClick: this.clickCategoryButton.bind(this, index)
-									});
-								}).toString().replaceAll(',', '')}
+								${categoryList
+									.map(({ categoryName, totalCredit, takenCredit }, index) => {
+										return categoryCardList[index].render({
+											title: categoryName,
+											totalCredit,
+											takenCredit,
+											key: index + 1,
+											buttonOnClick: this.clickCategoryButton.bind(this, index),
+										});
+									})
+									.toString()
+									.replaceAll(',', '')}
 							</div>
 						</div>
 					</div>

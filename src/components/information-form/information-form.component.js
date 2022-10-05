@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 
-import { store } from "../../store/store";
-import { fetchApi, fetchMockApi, fetchLocal } from "../../store/async-action";
+import { store } from '../../store/store';
+import { fetchMockApi } from '../../store/async-action';
 
 import InputGroup from '../input-group/input-group.component';
 import Modal from '../modal/modal.component';
@@ -34,17 +34,16 @@ export default class InformationForm extends Component {
 		});
 	}
 
-  submitData() {
-    // const formData = new FormData();
-    
-    // formData.append('studentNumber', this.state.studentNumber);
-    // formData.append('major', this.state.major);
-    // formData.append('file', this.state.file, 'grade.pdf');
+	submitData() {
+		// const formData = new FormData();
 
-    // store.dispatch(fetchLocal(formData));
-    store.dispatch(fetchMockApi());
-    
-  }
+		// formData.append('studentNumber', this.state.studentNumber);
+		// formData.append('major', this.state.major);
+		// formData.append('file', this.state.file, 'grade.pdf');
+
+		// store.dispatch(fetchLocal(formData));
+		store.dispatch(fetchMockApi());
+	}
 
 	template() {
 		const studentNumberInputGroup = this.addChild(InputGroup);
@@ -67,11 +66,11 @@ export default class InformationForm extends Component {
 				padding: 200,
 			};
 
-      const modalFileUploadProps = {
-        onDrag: this.uploadFile.bind(this),
-        file: this.state.file,
-        onSubmit: this.submitData.bind(this),
-      }
+			const modalFileUploadProps = {
+				onDrag: this.uploadFile.bind(this),
+				file: this.state.file,
+				onSubmit: this.submitData.bind(this),
+			};
 
 			const modalProps = {
 				isModalShow: this.state.isFileUploadModalShow,

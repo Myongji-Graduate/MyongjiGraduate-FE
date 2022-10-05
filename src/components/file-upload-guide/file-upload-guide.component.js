@@ -2,7 +2,7 @@ import Component from '../../core/component';
 
 export default class FileUploadGuide extends Component {
 	template() {
-		return (props) => {
+		return () => {
 			return `
         <div class="file-upload-guide">
           <div class="file-upload-guide--1">1. 명지대학교 마이아이웹에 접속 후 로그인</div>

@@ -33,6 +33,8 @@ export default class InputGroup extends Component {
 		if (type === 'text') return this.getTextInput();
 
 		if (type === 'select') return this.getSelect();
+
+		return false;
 	}
 
 	getTextInput() {

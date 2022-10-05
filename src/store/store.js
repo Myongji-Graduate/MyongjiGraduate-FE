@@ -26,8 +26,12 @@ export const reducer = (state = initState, action = {}) => {
 		case RESULT_ACTION_TYPES.FETCH_RESULT_START:
 			return { ...state, isLoadingModalShow: true };
 		case RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS:
-			const { basicUserInfo, categoryList } = payload;
-			return { ...state, isLoadingModalShow: false, basicUserInfo, categoryList };
+			return {
+				...state,
+				isLoadingModalShow: false,
+				basicUserInfo: payload.basicUserInfo,
+				categoryList: payload.categoryList,
+			};
 		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
 		default:

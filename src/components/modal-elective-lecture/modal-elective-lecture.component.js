@@ -3,7 +3,6 @@ import ResultHeader from '../modal-result-header/modal-result-header.component';
 import ResultContent from '../modal-result-content/modal-result-content.component';
 
 export default class ModalElectiveLecture extends Component {
-
 	setDefaultProps() {
 		this.props = {
 			part: '학문기초교양',
@@ -11,9 +10,9 @@ export default class ModalElectiveLecture extends Component {
 			categoryData: {
 				takenCredit: 0,
 				totalCredit: 0,
-				detailCategory: []
-			}
-		}
+				detailCategory: [],
+			},
+		};
 	}
 
 	template() {
@@ -26,15 +25,17 @@ export default class ModalElectiveLecture extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { part, explain, categoryData: { totalCredit, takenCredit, detailCategory }} = this.props;
-
+			const {
+				part,
+				categoryData: { totalCredit, takenCredit, detailCategory },
+			} = this.props;
 
 			return `
         <div class="modal-elective-lecture">
           <div class="modal-elective-lecture__header">
           ${resultHeader.render({
 						part,
-						explain : part,
+						explain: part,
 						totalCredit,
 						takenCredit,
 					})}

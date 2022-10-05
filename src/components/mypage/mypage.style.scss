@@ -22,11 +22,12 @@
            border-collapse: collapse;
            &-key{
             width: 2.5rem;
-            overflow: hidden;
             color: #9F9F9F;
             margin-right: 2rem;
             }
             &-value{
+                white-space: nowrap;
+                text-overflow: ellipsis;
                 width: 4.5rem;
                 margin-right: 2.25rem;
             }

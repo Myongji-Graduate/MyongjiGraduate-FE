@@ -1,14 +1,14 @@
-import Component from "../../core/component";
+import Component from '../../core/component';
 
 import completeBackgroundImage from '../../../public/images/complete-background.png';
 import completeCheckIcon from '../../../public/icons/complete-check.svg';
 
 export default class ResultCompleteContent extends Component {
-  template() {
-    return (props) => {
-      if (props) this.setProps(props)
+	template() {
+		return (props) => {
+			if (props) this.setProps(props);
 
-      return `
+			return `
         <div class="result-complete-content">
           <img src=${completeBackgroundImage} class="result-complete-content__background" >
           <div class="result-complete-content__content-container">
@@ -17,6 +17,6 @@ export default class ResultCompleteContent extends Component {
           </div>
         </div>
       `;
-    }
-  }
+		};
+	}
 }
