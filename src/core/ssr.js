@@ -6,7 +6,7 @@ export const serverRenderer = (pathname) => `
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MJU gradulate</title>
+    <title>MJU graduate</title>
   </head>
   <body>
   <div class="app-container">${router.serverRender(pathname)}</div>
