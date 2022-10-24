@@ -18,7 +18,7 @@ export default class ModalError extends Component {
 			if (props) this.setProps(props);
 
 			const { error } = store.getState();
-			const isShow = !!error;
+			const isShow = !!error.code;
 
 			const modalErrorContentProps = {
 				errorMessage: error.message,
@@ -33,6 +33,7 @@ export default class ModalError extends Component {
 						contentComponentProps: modalErrorContentProps,
 						width: 790,
 						padding: 132,
+						key: 'error-modal',
 					})}
         </div>
       `;

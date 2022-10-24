@@ -68,6 +68,7 @@ export default class ResultPage extends Component {
 					contentComponentProps: modalContentProps,
 					width: 1480,
 					padding: 90,
+					key: 'lecture',
 				})}
 				</div>
 					<div class="result-page__header">

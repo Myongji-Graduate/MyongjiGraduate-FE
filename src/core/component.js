@@ -45,7 +45,9 @@ export default class Component {
 	setEvent() {}
 
 	setDefaultProps() {
-		this.props = {};
+		this.props = {
+			key: 'init',
+		};
 	}
 
 	setProps(newProps) {

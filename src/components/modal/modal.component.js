@@ -13,6 +13,7 @@ export default class Modal extends Component {
 			isShowCloseBtn: false,
 			contentComponent: {},
 			contentComponentProps: undefined,
+			key: 'init',
 		};
 	}
 
@@ -32,7 +33,7 @@ export default class Modal extends Component {
 			};
 
 			return `
-        <div class="modal" style=${utils.getInlineStyle(modalStyle)}>
+        <div class="${this.createKeyClass()} modal" style=${utils.getInlineStyle(modalStyle)}>
          <div class="modal__body" style=${utils.getInlineStyle(modalBodyStyle)}>
          ${isShowCloseBtn ? `<img class='modal__close-btn' src=${closeBtn} />` : ''}
          <div class="modal__body-content">
@@ -44,6 +45,11 @@ export default class Modal extends Component {
 		};
 	}
 
+	createKeyClass() {
+		const { key } = this.props;
+		return `modal_${key}`;
+	}
+
 	setEvent() {
 		const { toggleModal } = this.props;
 		this.addEvent('click', '.modal__close-btn', () => {
@@ -52,7 +58,7 @@ export default class Modal extends Component {
 
 		this.addEvent(
 			'click',
-			'.modal',
+			`.${this.createKeyClass()}`,
 			() => {
 				if (toggleModal) toggleModal();
 			},
