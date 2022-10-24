@@ -9,21 +9,21 @@ const __dirname = path.resolve();
 const app = express();
 
 if (process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack');
-  const webpackConfig = require('../webpack.client.js');
+	const webpack = require('webpack');
+	const webpackConfig = require('../webpack.client.js');
 
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
+	const webpackDevMiddleware = require('webpack-dev-middleware');
+	const webpackHotMiddleware = require('webpack-hot-middleware');
 
-  const compiler = webpack(webpackConfig);
+	const compiler = webpack(webpackConfig);
 
-  app.use(
-    webpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath
-    })
-  );
+	app.use(
+		webpackDevMiddleware(compiler, {
+			publicPath: webpackConfig.output.publicPath,
+		})
+	);
 
-  app.use(webpackHotMiddleware(compiler));
+	app.use(webpackHotMiddleware(compiler));
 }
 
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -33,5 +33,5 @@ app.use('/api', apiRouter);
 app.use('/', ssrRouter);
 
 app.listen(3000, () => {
-  console.log('listen to http://localhost:3000');
-})
+	console.log('listen to http://localhost:3000');
+});

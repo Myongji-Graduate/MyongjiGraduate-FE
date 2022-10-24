@@ -93,13 +93,13 @@ export const parseGraduationResult = (result) => {
 	const mandatoryMajor = parseMandatoryMajorResult(result.major);
 	const electiveyMajor = parseElectiveMajorResult(result.major);
 
-  electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
+	electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
 
-  electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
+	electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
 
-  electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
+	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
 
-  electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
+	electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
 
 	categoryList.push(mandatoryMajor);
 	categoryList.push(electiveyMajor);
@@ -153,10 +153,8 @@ export const fetchLocal = (formData) => (dispatch, getState) => {
 		.then((result) => {
 			const { router } = getState();
 			const payload = parseGraduationResult(result);
-      console.log(payload);
-			dispatch(
-				createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload)
-			);
+			console.log(payload);
+			dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
 			router.navigate('/result');
 		});
 };
