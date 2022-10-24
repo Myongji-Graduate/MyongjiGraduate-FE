@@ -20,7 +20,7 @@ export const createStore = (reducer, applyMiddleware) => {
 		const newState = reducer(state, action);
 
 		Object.entries(newState).forEach(([key, value]) => {
-			if (state[key] !== undefined) {
+			if (state[key] !== undefined && state[key] !== value) {
 				state[key] = value;
 			}
 		});
