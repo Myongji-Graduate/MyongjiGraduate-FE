@@ -7,12 +7,13 @@ let instance;
 export default class Router extends Component {
 	lastPage;
 
-	constructor(routerObjects) {
+	constructor(routerObjects, root) {
 		if (instance) {
 			return instance;
 		}
 		super();
 
+		this.root = root;
 		this.routerObjects = routerObjects;
 		this.initGlobalStore();
 		this.lastPage = undefined;
@@ -31,17 +32,24 @@ export default class Router extends Component {
 
 	browserRender() {
 		const { pathname } = window.location;
-		if (this.isEnrolledEvent === false) {
-			this.setEvent();
-		}
 		const PageComponent = this.route(pathname);
 		this.lastPage = new PageComponent();
-		return this.lastPage;
+
+		if (this.isEnrolledEvent === false) {
+			this.setEvent();
+			this.root.initChildComponent(this.lastPage);
+		} else {
+			this.root.setChildComponent(this.lastPage);
+		}
+
+		return this.root;
 	}
 
 	serverRender(pathname) {
 		const PageComponent = this.route(pathname);
-		return new PageComponent().render();
+		this.root.initChildComponent(new PageComponent());
+
+		return this.root.render();
 	}
 
 	route(pathname) {
