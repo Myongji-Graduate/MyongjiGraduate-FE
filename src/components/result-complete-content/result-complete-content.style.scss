@@ -1,0 +1,29 @@
+.result-complete-content {
+  height: 5rem;
+  position: relative;
+
+  &__background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
+    border-radius: 0.75rem;
+  }
+
+  &__check-icon {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  &__content-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include subhead4;
+  }
+}

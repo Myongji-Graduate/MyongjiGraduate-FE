@@ -1,0 +1,36 @@
+.main-title{
+    // text-align: center;
+    background-color: $color-primary;
+  
+    &__logo{
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+    
+        &__cap{ 
+            position: absolute;
+            width: 2.7rem;
+            height: 2.4rem;
+            left: calc(0% - 1.1rem);
+            bottom : 50%;        
+            z-index: -1;     
+         }
+        &__text{          
+            width: fit-content;
+            @include main-title;
+            color: white;
+            & > span{color :$color-point_yellow;}
+            position: relative;
+        }        
+    }
+    &__explain{
+        @include subhead1;   
+        color: rgba(255, 255, 255, 0.75);
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    
+}

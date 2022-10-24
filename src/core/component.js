@@ -1,101 +1,111 @@
-export default class Component {
-	$target;
+import { subscribe, unlockSubscribe } from './observer';
+import * as dom from './dom';
 
+export default class Component {
 	props;
 
 	state;
 
-	constructor($target, props) {
-		this.$target = $target;
-		this.initProps(props);
+	children;
+
+	eventListeners;
+
+	constructor() {
+		this.children = [];
+		this.eventListeners = [];
 		this.initState();
-		this.render();
-		this.setEvent();
-		this.componentDidMount();
+		this.setDefaultProps();
+		this.template = this.template();
 	}
 
-	initProps(props) {
-		this.props = props;
-	}
-
-	// 초기 상태 설정
 	initState() {
 		this.state = {};
 	}
 
-	// 렌더링
-	render() {
-		this.$target.innerHTML = this.template();
-		this.mounted();
+	addChild(C, ...args) {
+		const component = new C(...args);
+		this.children.push(component);
+		return component;
 	}
 
-	// innerHtml에 삽입할 html tags return
 	template() {
-		return '';
+		return (props) => {
+			this.setProps(props);
+			return `<div></div>`;
+		};
 	}
 
-	// 자식 컴포넌트들 마운트
-	mounted() {}
+	render(props) {
+		subscribe(this);
+		const html = this.template(props).trim();
+		unlockSubscribe();
+		return html;
+	}
 
-	// 이벤트 등록
 	setEvent() {}
 
-	// 이벤트 추가(버블링)
-	addEvent(eventType, selector, callback) {
-		const targetList = [...this.$target.querySelectorAll(selector)];
+	setDefaultProps() {
+		this.props = {};
+	}
 
-		const getTarget = (dom) => {
-			if (targetList.includes(dom)) return dom;
+	setProps(newProps) {
+		this.props = {
+			...this.props,
+			...newProps,
+		};
+	}
 
-			const target = dom.closest(selector);
+	addEvent(eventType, selector, callback, strict = false) {
+		const $root = this.getRootNode();
+		const targetList = [...$root.parentNode.querySelectorAll(selector)];
+
+		const getTarget = (eventDom) => {
+			if (targetList.includes(eventDom)) return eventDom;
+
+			if (strict) return false;
+
+			const target = eventDom.closest(selector);
 
 			if (target) return target;
 			return false;
 		};
 
-		this.$target.addEventListener(eventType, (event) => {
+		const eventListener = function (event) {
 			const target = getTarget(event.target);
 
 			if (!target) return false;
 			callback(event, target);
 			return true;
+		};
+
+		this.eventListeners.push({
+			eventListener,
+			eventType,
 		});
+
+		$root.addEventListener(eventType, eventListener);
 	}
 
-	componentDidMount() {}
+	getRootNode() {
+		const el = document.createElement('div');
+		el.innerHTML = this.render(this.props);
+		const className = el.firstChild.classList[0];
+		return document.querySelector(`.${className}`);
+	}
 
-	// updateComponent($nextTarget, nextProps) {
-	//   const shouldUpdate = this.shouldComponentUpdate(nextProps);
-
-	//   if (shouldUpdate) {
-	//     this.updateProps(nextProps);
-	//     this.$target = $nextTarget;
-	//     this.render();
-	//   } else {
-	//     $nextTarget.innerHTML = this.$target.innerHTML;
-	//     this.$target = $nextTarget;
-	//   }
-
-	//   this.setEvent();
-	//   this.compoenntDidUpdate();
-	// }
-
-	shouldComponentUpdate(nextProps) {
-		return !!Object.keys(nextProps).filter((key) => {
-			return !this.props[key] || nextProps[key] !== this.props[key];
+	clearEvent() {
+		const $root = this.getRootNode();
+		this.eventListeners.forEach(({ eventType, eventListener }) => {
+			$root.removeEventListener(eventType, eventListener);
 		});
+		this.eventListeners = [];
 	}
 
-	updateProps(nextProps) {
-		this.props = { ...nextProps };
-	}
-
-	compoenntDidUpdate() {}
-
-	// 상태 변경
 	setState(newState) {
-		this.state = { ...this.state, ...newState };
-		this.render();
-		this.compoenntDidUpdate();
+		this.state = {
+			...this.state,
+			...newState,
+		};
+		dom.updateDom(this);
 	}
 }

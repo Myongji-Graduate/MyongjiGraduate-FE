@@ -4,12 +4,15 @@
   "description": "[[https://www.notion.so/de10da88385c4e35bcd28291022d4845?v=4834038f407f49a8937061701386b85b](https://www.notion.so/de10da88385c4e35bcd28291022d4845)](https://www.notion.so/myoungji-graduate/7fdc7768a2264b2fa8966d9cbfefc1d5?v=e9c52a4d057b4da5aedf386bc90d915a)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "dev": "webpack-dev-server --mode development --hot",
-    "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
-    "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
+    "start": "npm run build:production && node ./be/bundle.js",
+    "dev": "npm run build:dev && cross-env NODE_ENV=development node ./be/bundle.js",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build:production": "cross-env NODE_ENV=production npm run build:client && cross-env NODE_ENV=production npm run build:server",
+    "build:dev": "cross-env NODE_ENV=development npm run build:client && cross-env NODE_ENV=development npm run build:server",
+    "build:client": "webpack --env env=client --progress",
+    "build:server": "webpack --env env=server --progress"
   },
   "repository": {
     "type": "git",
@@ -23,13 +26,17 @@
   },
   "homepage": "https://github.com/Myongji-Graduate/MyongjiGraduate-FE#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "express": "^4.18.1",
+    "form-data": "^4.0.0",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
     "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.24.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -44,6 +51,9 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-middleware": "^5.3.3",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.25.2",
+    "webpack-node-externals": "^3.0.0"
   }
 }

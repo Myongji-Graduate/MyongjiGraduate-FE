@@ -1,0 +1,23 @@
+.category-info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.27rem;
+
+    &__label{
+        height: 0.7rem;
+        background-color:$color-g2;
+        border-radius: 100px;
+        padding :0.31rem 0.5rem;
+        @include title2;
+        text-align: center;
+        color: #FFFFFF;
+        
+    }
+    &__credit{
+        color : rgba($color: #000000, $alpha: 0.5);
+        @include subhead1;
+    }
+}
+ 

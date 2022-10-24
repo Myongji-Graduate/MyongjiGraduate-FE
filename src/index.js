@@ -1,18 +1,7 @@
-import './nomalize.scss';
-import Component from './core/component';
+import './root.scss';
 
-export default class MainPage extends Component {
-	initState() {
-		this.state = {};
-	}
+import * as dom from './core/dom';
 
-	template() {
-		return `
-      <div class="main-page">
-        hello world
-      </div>
-    `;
-	}
-}
+import { router } from './routers';
 
-new MainPage(document.querySelector('.app-container'));
+dom.createDom('.app-container', router.browserRender());

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request_target:
+    branches: [ dev ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: setting Node.js
+        uses: actions/setup-node@v3.1.1
+        with:
+          node-version: ${{ secrets.NODE_VERSION }}
+      
+      - name: Cache
+        uses: actions/cache@v3.0.2
+        id: cache
+        with:
+          path: node_modules
+          key: npm-packages-${{ hashFiles('**/package-lock.json') }}
+    
+      - name: install dependency
+        if: steps.cache.output.cache-hit != true
+        run: npm install
+        
+      - run: npm run lint
+        if: ${{ always() }}
+
+      - name: send discord message when failed
+        if: ${{ failure() }}
+        env: 
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: '${{ github.actor }}가 ${{ github.ref_name }}에 요청한 ${{ github.event_name }}이 실패했습니다.'
+
+      - name: send discord message when completed
+        if: ${{ success() }}
+        env: 
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: '${{ github.actor }}가 ${{ github.ref_name }}에 요청한 ${{ github.event_name }}이 성공했습니다.'
+          

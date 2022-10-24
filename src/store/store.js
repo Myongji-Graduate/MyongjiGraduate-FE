@@ -1,0 +1,47 @@
+import { createStore, applyMiddleware } from '../core/store';
+import { thunk, logger } from '../core/middleware';
+import { RESULT_ACTION_TYPES } from './types';
+
+const initState = {
+	test: 'ok',
+	router: () => {},
+	isLoadingModalShow: false,
+	error: null,
+	basicUserInfo: null,
+	categoryList: null,
+};
+
+export const actionType = {
+	test: 'test',
+	enrollRouter: 'enroll-router',
+};
+
+export const reducer = (state = initState, action = {}) => {
+	const { type, payload } = action;
+	switch (type) {
+		case actionType.test:
+			return { ...state, test: 'no' };
+		case actionType.enrollRouter:
+			return { ...state, router: payload.router };
+		case RESULT_ACTION_TYPES.FETCH_RESULT_START:
+			return { ...state, isLoadingModalShow: true };
+		case RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS:
+			return {
+				...state,
+				isLoadingModalShow: false,
+				basicUserInfo: payload.basicUserInfo,
+				categoryList: payload.categoryList,
+			};
+		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
+			return { ...state, isLoadingModalShow: false, error: payload.error };
+		default:
+			return state;
+	}
+};
+
+export const store = createStore(reducer, applyMiddleware([thunk, logger]));
+
+export const createAction = (type, payload) => ({
+	type,
+	payload,
+});
