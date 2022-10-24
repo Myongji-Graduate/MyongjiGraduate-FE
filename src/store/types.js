@@ -4,4 +4,7 @@ export const RESULT_ACTION_TYPES = {
 	FETCH_RESULT_FAILED: 'result/FETCH_RESULT_FAILED',
 };
 
-export const types = {};
+export const ERROR_ACTION_TYPES = {
+	SHOW_ERROR: 'error/HIDE_ERROR',
+	HIDE_ERROR: 'error/HIDE_ERROR',
+};

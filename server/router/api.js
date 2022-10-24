@@ -20,17 +20,20 @@ router.post('/result', upload.single('file'), async function (req, res) {
 	formData.append('entryYear', req.body.studentNumber);
 	formData.append('department', req.body.major);
 
-	const result = await axios.post(
-		'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com/api/v1/graduation/result',
-		formData,
-		{
-			headers: {
-				...formData.getHeaders(),
-			},
-		}
-	);
-
-	res.json(result.data);
+	try {
+		const result = await axios.post(
+			'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com/api/v1/graduation/result',
+			formData,
+			{
+				headers: {
+					...formData.getHeaders(),
+				},
+			}
+		);
+		res.json(result.data);
+	} catch (error) {
+		res.json(error.response.data);
+	}
 });
 
 export default router;

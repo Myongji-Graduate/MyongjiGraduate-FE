@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 
 import { store } from '../../store/store';
-import { fetchLocal } from '../../store/async-action';
+import { fetchResult } from '../../store/async-action';
 
 import InputGroup from '../input-group/input-group.component';
 import Modal from '../modal/modal.component';
@@ -23,6 +23,7 @@ export default class InformationForm extends Component {
 	}
 
 	toggleFileUploadModal() {
+		console.log('adas');
 		this.setState({
 			isFileUploadModalShow: !this.state.isFileUploadModalShow,
 		});
@@ -41,7 +42,7 @@ export default class InformationForm extends Component {
 		formData.append('major', this.state.major);
 		formData.append('file', this.state.file, 'grade.pdf');
 
-		store.dispatch(fetchLocal(formData));
+		store.dispatch(fetchResult(formData));
 		// store.dispatch(fetchMockApi());
 	}
 
@@ -50,7 +51,8 @@ export default class InformationForm extends Component {
 		const majorInputGroup = this.addChild(InputGroup);
 		const displayModalButton = this.addChild(Button);
 
-		const modal = this.addChild(Modal);
+		const modalFileContainer = this.addChild(Modal);
+		const modalLoadingContainer = this.addChild(Modal);
 		const modalFileUpload = this.addChild(ModalFileUpload);
 		const modalLoading = this.addChild(ModalLoading);
 
@@ -64,12 +66,14 @@ export default class InformationForm extends Component {
 				contentComponent: modalLoading,
 				width: 790,
 				padding: 200,
+				key: 'loading',
 			};
 
 			const modalFileUploadProps = {
 				onDrag: this.uploadFile.bind(this),
 				file: this.state.file,
 				onSubmit: this.submitData.bind(this),
+				key: 'file',
 			};
 
 			const modalProps = {
@@ -79,6 +83,7 @@ export default class InformationForm extends Component {
 				contentComponentProps: { ...modalFileUploadProps },
 				width: 1220,
 				padding: 100,
+				key: 'file',
 			};
 
 			const studentNumberInputProps = {
@@ -103,8 +108,8 @@ export default class InformationForm extends Component {
 
 			return `
         <div class="information-form">
-        ${modal.render(modalProps)}
-        ${modal.render(modalLoadingProps)}
+        ${modalFileContainer.render(modalProps)}
+        ${modalLoadingContainer.render(modalLoadingProps)}
         <div class="information-form__header">
             <img class="information-form__pencil-icon" src=${pencilIcon} />
             <span class="information-form__header-text">

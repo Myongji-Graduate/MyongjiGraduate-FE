@@ -125,23 +125,7 @@ export const parseGraduationResult = (result) => {
 	};
 };
 
-export const fetchMockApi = () => (dispatch, getState) => {
-	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
-	return fetch(ROOT_URL)
-		.then((response) => {
-			return response.json();
-		})
-		.then((result) => {
-			const payload = parseGraduationResult(result);
-			const { router } = getState();
-			dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
-			requestAnimationFrame(() => {
-				router.navigate('/result');
-			});
-		});
-};
-
-export const fetchLocal = (formData) => (dispatch, getState) => {
+export const fetchResult = (formData) => (dispatch, getState) => {
 	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
 	return fetch('/api/result', {
 		method: 'POST',
@@ -151,10 +135,33 @@ export const fetchLocal = (formData) => (dispatch, getState) => {
 			return response.json();
 		})
 		.then((result) => {
-			const { router } = getState();
-			const payload = parseGraduationResult(result);
-			console.log(payload);
-			dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
-			router.navigate('/result');
+			if (result.code) {
+				dispatch(
+					createAction(RESULT_ACTION_TYPES.FETCH_RESULT_FAILED, {
+						error: result,
+					})
+				);
+			} else {
+				const { router } = getState();
+				const payload = parseGraduationResult(result);
+				dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
+				router.navigate('/result');
+			}
 		});
 };
+
+// export const fetchMockApi = () => (dispatch, getState) => {
+// 	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
+// 	return fetch(ROOT_URL)
+// 		.then((response) => {
+// 			return response.json();
+// 		})
+// 		.then((result) => {
+// 			const payload = parseGraduationResult(result);
+// 			const { router } = getState();
+// 			dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
+// 			requestAnimationFrame(() => {
+// 				router.navigate('/result');
+// 			});
+// 		});
+// };
