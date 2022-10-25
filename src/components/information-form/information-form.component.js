@@ -11,6 +11,7 @@ import Button from '../button/button.component';
 
 import pencilIcon from '../../../public/icons/pencil-icon.svg';
 import { buttonTypes, inputTypes } from '../../helper/types';
+import { validateStudentNumber } from '../../helper/validation';
 
 export default class InformationForm extends Component {
 	initState() {
@@ -19,7 +20,17 @@ export default class InformationForm extends Component {
 			major: '',
 			file: undefined,
 			isFileUploadModalShow: false,
+			isValidationOfStudentNumber: false,
+		
 		};
+	}
+
+	validationCallbackOfStudentNumber(studentNumber){
+		const result = validateStudentNumber(studentNumber);
+		console.log(result)
+		this.setState({
+			isValidationOfStudentNumber: result,
+		})
 	}
 
 	toggleFileUploadModal() {
@@ -93,6 +104,9 @@ export default class InformationForm extends Component {
 				onChange: (newValue) => {
 					this.setState({ studentNumber: newValue });
 				},
+				isValidation: this.state.isValidationOfStudentNumber,
+				validationCallback: this.validationCallbackOfStudentNumber.bind(this),
+				errorMessage : '학번 입력이 틀렸습니다',
 			};
 
 			const majorInputProps = {

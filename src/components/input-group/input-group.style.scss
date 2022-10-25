@@ -5,10 +5,13 @@
     color: $color-point_blue;
     display: flex;
     flex-direction: column;
-    height: 2rem;
+    height: 2.5083rem;
     justify-content: space-between;
   }
-
+  &__error-message{
+    color: $color-error;
+    @include body2;
+  }
   &__text, &__select {
     box-sizing: border-box;
     height: 1.25rem;
