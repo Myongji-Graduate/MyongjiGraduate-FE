@@ -30,9 +30,18 @@ router.post('/result', upload.single('file'), async function (req, res) {
 				},
 			}
 		);
+		console.log('result', result.data);
 		res.json(result.data);
 	} catch (error) {
-		res.json(error.response.data);
+		console.log('error', error);
+		if (error.response.data.code) {
+			res.status(400).json(error.response.data);
+		} else {
+			res.status(500).json({
+				code: 500,
+				message: '서버에 장애가 있습니다.',
+			});
+		}
 	}
 });
 

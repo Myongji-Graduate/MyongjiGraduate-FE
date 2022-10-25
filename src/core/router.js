@@ -47,7 +47,7 @@ export default class Router extends Component {
 
 	serverRender(pathname) {
 		const PageComponent = this.route(pathname);
-		this.root.initChildComponent(new PageComponent());
+		this.root.setChildComponent(new PageComponent());
 
 		return this.root.render();
 	}
