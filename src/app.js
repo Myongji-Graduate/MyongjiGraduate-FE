@@ -18,7 +18,6 @@ export default class App extends Component {
 		const modalError = this.addChild(ModalError);
 		return (props) => {
 			if (props) this.setProps(props);
-			console.log(this.children);
 
 			const childComponent = this.getChildComponent();
 
