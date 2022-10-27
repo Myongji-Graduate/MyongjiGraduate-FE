@@ -6,13 +6,11 @@
     height: 100%;
     z-index: 100;
     background-color: rgba(0,0,0,0.5);      
-
     display: block;   
-    &__body{
-        @include mobile{
-            max-width: 90%;
-            height: auto;
-          }
+    &__body{     
+        @include mobile{ 
+           padding: 0 !important;
+        }
         position: absolute;
         box-sizing: border-box;
         top: 50%;
@@ -21,7 +19,8 @@
         background-color: white;
         border-radius: 20px;  
         max-height: 70vh;
-        width: auto;
+        max-width: 90%;
+        min-width: 6rem;        
         overflow-y: auto;       
     }
      ::-webkit-scrollbar {
