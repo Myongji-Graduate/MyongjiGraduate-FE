@@ -1,5 +1,4 @@
 .modal-error-content {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,4 +19,8 @@
     @include body2;
     color: $color-grey-scale4;
   }
+  
+  @include mobile{ 
+    padding: 2rem ;  
+ }
 }

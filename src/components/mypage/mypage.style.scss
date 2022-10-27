@@ -1,7 +1,5 @@
 .mypage{
     padding: 1.25rem;
-    width : 16.18rem;
-    height : 6.02rem;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
     border-radius: 0.39rem;
     &__totalcredit{
@@ -11,34 +9,40 @@
         margin-bottom: 0.58rem;
         &-credit{color : $color-point_blue;}
     }
-  
     &__info{
         border-top: 1px solid #CFCFCF;
         display: flex;
         padding-top: 0.79rem;
-        &__table{            
-           display: flex;
+        &__table{           
            @include subhead3;
+           display: flex;
            border-collapse: collapse;
            &-key{
             width: 2.5rem;
             color: #9F9F9F;
             margin-right: 2rem;
+            @include mobile{ 
+                margin-right: 1rem;
+            }
             }
             &-value{
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                width: 4.5rem;
+                width: 4.5rem;               
                 margin-right: 2.25rem;
+                @include mobile{
+                    width: 1rem; 
+                    margin-right: 3.5rem;
+                }
             }
         }
         &__table div{
             margin-bottom: 0.3rem; 
         }
         &__piechart{
+            margin: auto;
             width: 4.67rem;
-            height: 4.67rem;
+            height: 4.67rem;            
         }
     }
-    
 }

@@ -33,7 +33,7 @@
     flex-direction: column;
   }
 
-  &__content {
+  &__content {   
     border-radius: 0.39rem;
     position: relative;
     width: fit-content;
@@ -41,12 +41,18 @@
     z-index: 10;
     background-color: white;
   }
-
   &__category-grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 0.8rem;
     grid-row-gap: 0.8rem;
-    width: fit-content;
+    @include mobile{ 
+      margin-top: 1rem;     
+      display: flex;
+      overflow-x: scroll;
+      width: 100%;
+      left: 0;
+      position: fixed;
+    }
   }
 }

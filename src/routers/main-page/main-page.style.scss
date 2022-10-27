@@ -19,6 +19,9 @@ html,body, .app-container{
     }
 
     &__round-logo{
+        @include mobile{
+           display: none;
+          }
         position: absolute;
         right:0%;
         margin: 2%;

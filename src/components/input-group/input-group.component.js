@@ -11,6 +11,14 @@ export default class InputGroup extends Component {
 			value: '',
 			type: inputTypes.text,
 			options: [],
+			isValidation: false,
+			validationCallback:() => {},
+			errorMessage:'error',
+		};
+	}
+	initState() {
+		this.state = {
+			unuse: true,
 		};
 	}
 
@@ -18,17 +26,24 @@ export default class InputGroup extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { name, type } = this.props;
-
+			const { name, type, errorMessage, isValidation } = this.props;
+			
 			return `
         <div class="input-group--${name} input-group">
           <labal class="input-group__label" for=${name}>${name}</label>
           ${this.getInputByType(type)}
+		  ${this.checkIsShowErrorMessage() ?`<div class="input-group__error-message">${errorMessage}</div>` : '<div></div>' }
         </div>
       `;
 		};
 	}
 
+	checkIsShowErrorMessage(){
+		const {unuse} =this.state;
+		const { isValidation } = this.props;
+
+		return !unuse && !isValidation;
+	}
 	getInputByType(type) {
 		if (type === 'text') return this.getTextInput();
 
@@ -57,10 +72,15 @@ export default class InputGroup extends Component {
 	}
 
 	setEvent() {
-		const { type, onChange } = this.props;
+		const { type, onChange, validationCallback } = this.props;
 
 		this.addEvent('change', `.input-group__${type}`, (_, target) => {
 			onChange(target.value);
+		});
+		this.addEvent('focusout', `.input-group__${type}`, (_, target) => {
+			this.setState({unuse: false});
+			console.log(this)
+			validationCallback(target.value);
 		});
 	}
 }
