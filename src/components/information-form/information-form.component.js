@@ -21,16 +21,15 @@ export default class InformationForm extends Component {
 			file: undefined,
 			isFileUploadModalShow: false,
 			isValidationOfStudentNumber: false,
-		
 		};
 	}
 
-	validationCallbackOfStudentNumber(studentNumber){
+	validationCallbackOfStudentNumber(studentNumber) {
 		const result = validateStudentNumber(studentNumber);
-		console.log(result)
+		console.log(result);
 		this.setState({
 			isValidationOfStudentNumber: result,
-		})
+		});
 	}
 
 	toggleFileUploadModal() {
@@ -106,7 +105,7 @@ export default class InformationForm extends Component {
 				},
 				isValidation: this.state.isValidationOfStudentNumber,
 				validationCallback: this.validationCallbackOfStudentNumber.bind(this),
-				errorMessage : '학번 입력이 틀렸습니다',
+				errorMessage: '학번 입력이 틀렸습니다',
 			};
 
 			const majorInputProps = {
