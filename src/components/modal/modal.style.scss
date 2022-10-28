@@ -17,11 +17,17 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: white;
-        border-radius: 20px;  
-        max-height: 70vh;
+        border-radius: 20px;       
         max-width: 90%;
         min-width: 6rem;        
-        overflow-y: auto;       
+        overflow-y: auto;
+        max-height: 70vh;       
+        @include pc-large{
+            max-height: 90vh !important;
+         }
+         @include pc-medium{
+            max-height: 90vh !important;
+         }
     }
      ::-webkit-scrollbar {
         display: none;

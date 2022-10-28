@@ -16,13 +16,27 @@
     position: relative;
     z-index: 1;
   }
-  
-  &__tab-navigator {
-    @include subhead3;
-    color: white;
-    position: relative;
+  &__tab-navigator{
     z-index: 1;
-  }
+    &__general{
+      position: relative;
+       @include subhead3;
+       color: white;     
+       @include mobile{display: none;}
+      }
+      &__mobile{
+        display: grid !important;      
+        &-line{     
+          @include mobile{                        
+            border: 0.05rem solid white;          
+            background-color: white;
+            border-radius: 4px;
+            width: 0.7rem;
+            margin: 0.06rem 0;            
+          }
+        }  
+      }
+  }  
 
   &__divider {
     position: relative;

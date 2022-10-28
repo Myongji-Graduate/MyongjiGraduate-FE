@@ -33,7 +33,6 @@ export default class InformationForm extends Component {
 	}
 
 	toggleFileUploadModal() {
-		console.log('adas');
 		this.setState({
 			isFileUploadModalShow: !this.state.isFileUploadModalShow,
 		});
