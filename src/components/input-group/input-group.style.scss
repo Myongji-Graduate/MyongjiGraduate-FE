@@ -5,11 +5,10 @@
     color: $color-point_blue;
     display: flex;
     flex-direction: column;
-    height: 2.5083rem;
-    //justify-content: space-between;
   }
   &__error-message{
     color: $color-error;
+    height: 0.3rem !important;
     @include body2;
   }
   &__text, &__select {
@@ -24,6 +23,7 @@
 
   &__text::placeholder {
     color: $color-grey-scale2;
+    @include body1;
   }
 
   &__select-placeholder {

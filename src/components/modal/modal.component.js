@@ -56,8 +56,13 @@ export default class Modal extends Component {
 			if (toggleModal) toggleModal();
 		});
 
-		this.addEvent('click', `.${this.createKeyClass()}`, () => {
+		this.addEvent(
+			'click',
+			`.${this.createKeyClass()}`,
+			() => {
 				if (toggleModal) toggleModal();
-		}, true);
+			},
+			true
+		);
 	}
 }

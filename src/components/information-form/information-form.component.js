@@ -11,7 +11,7 @@ import Button from '../button/button.component';
 
 import pencilIcon from '../../../public/icons/pencil-icon.svg';
 import { buttonTypes, inputTypes } from '../../helper/types';
-import { validateStudentNumber } from '../../helper/validation';
+import { validateshortlength } from '../../helper/validation';
 
 export default class InformationForm extends Component {
 	initState() {
@@ -25,7 +25,7 @@ export default class InformationForm extends Component {
 	}
 
 	validationCallbackOfStudentNumber(studentNumber) {
-		const result = validateStudentNumber(studentNumber);
+		const result = validateshortlength(studentNumber);
 		console.log(result);
 		this.setState({
 			isValidationOfStudentNumber: result,
@@ -119,7 +119,7 @@ export default class InformationForm extends Component {
 			};
 
 			return `
-        <div class="information-form">
+        <div class="information-form">		
         ${modalFileContainer.render(modalProps)}
         ${modalLoadingContainer.render(modalLoadingProps)}
         <div class="information-form__header">

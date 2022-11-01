@@ -1,0 +1,38 @@
+.sign-in-form {
+  width: 12.5rem;
+
+
+  &__header {
+    margin-bottom: 1.5rem; 
+  }
+
+  &__body {
+    padding: 0 0.6rem;
+  }
+
+  &__id-input-group-container {
+    margin-bottom: .7083rem;
+  }
+
+  &__create-modal-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom : 0.75rem ;
+  }
+  &__footer{
+    display: flex;
+    @include subhead2;
+    color: $color-grey-scale4;
+    justify-content: center;
+  }
+
+  &__password-input-group-container {
+    margin-bottom: 1.3958rem;
+  }
+
+  &__footer-signup {
+    color: $color-primary;
+    font-weight: 700;
+    margin-left: .3rem;
+  }
+}

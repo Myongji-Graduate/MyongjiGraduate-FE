@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from '../core/store';
 import { thunk, logger } from '../core/middleware';
-import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES } from './types';
+import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES, SIGNIN_ACTION_TYPES } from './types';
 
 const initState = {
 	test: 'ok',
@@ -34,6 +34,8 @@ export const reducer = (state = initState, action = {}) => {
 			};
 		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START: 
+			return { ...state, isLoadingModalShow: true };
 		case ERROR_ACTION_TYPES.HIDE_ERROR:
 			return {
 				...state,

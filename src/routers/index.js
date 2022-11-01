@@ -1,7 +1,8 @@
 import MainPage from './main-page/main-page.component';
 import TutorialPage from './tutorial-page/tutorial-page.component';
 import ResultPage from './result-page/result-page.component';
-import InformationPage from './information-page/information-page.component';
+import SignInPage from './sign-in-page/sign-in-page.component';
+import SignUpPage from './sign-up-page/sign-up-page.component';
 
 import Router from '../core/router';
 import App from '../app';
@@ -12,10 +13,6 @@ export const routerObjects = [
 		element: MainPage,
 		children: [
 			{
-				path: 'information',
-				element: InformationPage,
-			},
-			{
 				path: 'result',
 				element: ResultPage,
 			},
@@ -23,6 +20,14 @@ export const routerObjects = [
 				path: 'tutorial',
 				element: TutorialPage,
 			},
+			{
+				path: 'sign-up',
+				element: SignUpPage,
+			},
+			{
+				path: 'sign-in',
+				element: SignInPage,
+			}
 		],
 	},
 ];

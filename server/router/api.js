@@ -8,6 +8,18 @@ const router = express.Router();
 
 const upload = multer({ dest: '../uploads/' });
 
+function apiErrorHandler(res, error) {
+	console.log('error', error);
+	if (error.response.data.code) {
+		return res.status(400).json(error.response.data);
+	} else {
+		return res.status(500).json({
+			code: 500,
+			message: '서버에 장애가 있습니다.',
+		});
+	}
+}
+
 router.get('/', function (req, res) {
 	res.send('Birds home page');
 });
@@ -33,16 +45,27 @@ router.post('/result', upload.single('file'), async function (req, res) {
 		console.log('result', result.data);
 		res.json(result.data);
 	} catch (error) {
-		console.log('error', error);
-		if (error.response.data.code) {
-			res.status(400).json(error.response.data);
-		} else {
-			res.status(500).json({
-				code: 500,
-				message: '서버에 장애가 있습니다.',
-			});
-		}
+		apiErrorHandler(error);
 	}
 });
+
+router.post('/signin', async function (req, res) {
+	const formData = new FormData();
+
+	formData.append('userId', req.body.id);
+	formData.append('password', req.body.password);
+
+	try {
+		setInterval(() => {
+			res.json({
+				"accessToken" : "accessToken", 
+				"refreshToken" : "refreshToken" 
+		});
+		}, 1000);
+	} catch (error) {
+		apiErrorHandler(error);
+	}
+});
+
 
 export default router;

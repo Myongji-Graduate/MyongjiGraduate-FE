@@ -1,0 +1,13 @@
+.modal-agreement{     
+ text-align: center;
+    &__header{
+        margin: 0 calc((100% - 2.32rem) / 2);
+    }
+    &__context{
+        max-width: 22.5rem;
+        height: 9.125rem;
+        border : 1px solid $color-grey-scale2;
+        border-radius: .3333rem;
+        margin: 0.8rem;       
+    }  
+}

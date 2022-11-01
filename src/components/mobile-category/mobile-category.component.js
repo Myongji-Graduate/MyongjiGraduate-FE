@@ -7,7 +7,6 @@ export default class MobileCategory extends Component {
 			if (props) this.setProps(props);
 
 			const { ismobileCategoryShow } = this.props;
-
 			const modalStyle = {
 				display: ismobileCategoryShow ? 'block' : 'none',
 			};
@@ -23,11 +22,11 @@ export default class MobileCategory extends Component {
         `;
 		};
 	}
-    // setEvent() {
-	// 	const { togglemobileCategory,ismobileCategoryShow } = this.props;
+	setEvent() {
+		const { togglemobileCategory,ismobileCategoryShow } = this.props;
 
-	// 	this.addEvent('click', '.mobile-category', () => {              
-    //         if (ismobileCategoryShow) togglemobileCategory();         
-    //     }, true);
-	// }
+		this.addEvent('click', '.mobile-category', () => {
+	        if (ismobileCategoryShow) togglemobileCategory();
+	    }, true);
+	}
 }

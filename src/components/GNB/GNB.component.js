@@ -5,7 +5,7 @@ import { store } from '../../store/store';
 import mainLogo from '../../../public/icons/main-logo.svg';
 
 export default class GNB extends Component {
-	initState(){
+	initState() {
 		this.state = {
 			ismobileCategoryShow: false,
 		};
@@ -20,13 +20,14 @@ export default class GNB extends Component {
 	template() {
 		const mobileCategoryContainer = this.addChild(MobileCategory);
 
-		const mobileCategoryProps = {
-			ismobileCategoryShow: this.state.ismobileCategoryShow,
-			togglemobileCategory: this.togglemobileCategory.bind(this),
-			};
+		
 		return (props) => {
 			if (props) this.setProps(props);
 
+			const mobileCategoryProps = {
+				ismobileCategoryShow: this.state.ismobileCategoryShow,
+				togglemobileCategory: this.togglemobileCategory.bind(this),
+			};
 			return `
         <div class="GNB">
 		${mobileCategoryContainer.render(mobileCategoryProps)}
@@ -54,7 +55,7 @@ export default class GNB extends Component {
 		});
 		this.addEvent('click', '.GNB__tab-navigator__mobile', () => {
 			this.togglemobileCategory();
-			//data변경확인, redering미확인
+			// data변경확인, redering미확인
 		});
 	}
 }

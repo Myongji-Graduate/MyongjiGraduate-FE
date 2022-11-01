@@ -13,37 +13,33 @@ export default class InputGroup extends Component {
 			options: [],
 			isValidation: false,
 			validationCallback: () => {},
-			errorMessage: 'error',
+			errorMessage: '',
 		};
 	}
 
-	initState() {
-		this.state = {
-			unuse: true,
-		};
-	}
 
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { name, type, errorMessage } = this.props; // isValidation
+			const { name, type, errorMessage, key } = this.props; // isValidation
 
 			return `
-        <div class="input-group--${name} input-group">
+        <div class="input-group__${key} input-group--${name} input-group">
           <labal class="input-group__label" for=${name}>${name}</label>
           ${this.getInputByType(type)}
-		  ${this.checkIsShowErrorMessage() ? `<div class="input-group__error-message">${errorMessage}</div>` : '<div></div>'}
+					<div class="input-group__error-message">
+					${this.checkIsShowErrorMessage() ? errorMessage : ''}
+					</div>
         </div>
       `;
 		};
 	}
 
 	checkIsShowErrorMessage() {
-		const { unuse } = this.state;
-		const { isValidation } = this.props;
+		const { isValidation, value } = this.props;
 
-		return !unuse && !isValidation;
+		return value.length !== 0 && !isValidation;
 	}
 
 	getInputByType(type) {
@@ -81,7 +77,6 @@ export default class InputGroup extends Component {
 		});
 		this.addEvent('focusout', `.input-group__${type}`, (_, target) => {
 			this.setState({ unuse: false });
-			console.log(this);
 			validationCallback(target.value);
 		});
 	}

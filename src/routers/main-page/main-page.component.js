@@ -45,7 +45,7 @@ export default class MainPage extends Component {
 							content: '검사시작',
 							onClick: () => {
 								const { router } = store.getState();
-								router.navigate('/information');
+								router.navigate('/sign-in');
 							},
 						})}					
 						</div>

@@ -4,6 +4,7 @@
 }
 @font-face {
   font-family: pretendard;
+  font-weight: 45 920;
   src: url("../public/fonts/PretendardVariable.ttf") format("truetype");
 }
 
@@ -23,7 +24,6 @@ html {
   }
 
   @include tablet {
-   
     font-size: 28px;
   }
 
@@ -58,6 +58,11 @@ html {
   line-height: 0.5rem;
 }
 
+@mixin title4 {
+  font-weight: 700;
+  font-size:  0.67rem;
+  line-height: 0.8rem;
+}
 @mixin subhead1 {
   font-weight: 500;
   font-size: 0.75rem;

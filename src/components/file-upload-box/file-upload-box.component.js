@@ -46,7 +46,7 @@ export default class FileUploadBox extends Component {
 
 		this.addEvent('click', '.file-upload-box__upload-icon', () => {
 			const fileUploadInput = document.querySelector('.file-upload-box__upload-input');
-			fileUploadInput.click();		
+			fileUploadInput.click();
 		});
 
 		this.addEvent('change', '.file-upload-box__upload-input', (e) => {

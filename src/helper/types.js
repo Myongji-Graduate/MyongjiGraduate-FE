@@ -8,4 +8,5 @@ export const buttonTypes = {
 	outlined: 'outlined',
 	inverted: 'inverted',
 	primary: 'primary',
+	grey: 'grey',
 };

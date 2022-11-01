@@ -7,8 +7,6 @@ const router = express.Router();
 router.get('*', (req, res) => {
 	if (req.url === '/__webpack_hmr') return;
 
-	console.log('asd')
-
 	res.send(serverRenderer(req.path));
 });
 
