@@ -6,7 +6,7 @@ const initState = {
 	test: 'ok',
 	router: () => {},
 	isLoadingModalShow: false,
-	error: { code: 400, message: '입학년도를 입력해주세요' },
+	error: { code: null, message: null },
 	basicUserInfo: null,
 	categoryList: null,
 };
