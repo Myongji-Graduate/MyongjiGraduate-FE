@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 
 import { store } from '../../store/store';
-import { fetchResult } from '../../store/async-action';
+import { fetchSignIn } from '../../store/async-action';
 
 import modalHeader from '../modal-header/modal-header.component';
 import InputGroup from '../input-group/input-group.component';
@@ -20,7 +20,14 @@ export default class SigninForm extends Component {
 			password: '',
 			isValidationOfId: false,
 			isValidationOfPassword: false,
+			totalValidation: false,
 		};
+	}
+
+	validationTotal() {
+		const { isValidationOfId, isValidationOfPassword } = this.state;
+		if (isValidationOfId && isValidationOfPassword) return true;
+		return false;
 	}
 
 	validationCallbackOfId(id) {
@@ -41,11 +48,10 @@ export default class SigninForm extends Component {
 	}
 
 	submitData() {
-		const formData = new FormData();
-
-		formData.append('id', this.state.id);
-		formData.append('password', this.state.password);
-		store.dispatch(fetchResult(formData));
+		store.dispatch(fetchSignIn({
+			'id': this.state.id,
+			'password': this.state.password,
+		}));
 	}
 
 	template() {
@@ -107,9 +113,10 @@ export default class SigninForm extends Component {
             <div class="sign-in-form__create-modal-button-container">
               ${signinButton.render({
 								content: '로그인',
-								type: buttonTypes.primary,
+								type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
 								size: 'md',
-								key: 'modal-display',
+								key: 'sign-in',
+								onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
 							})}
             </div>
 			<div class="sign-in-form__footer">

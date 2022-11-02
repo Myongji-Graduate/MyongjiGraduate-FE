@@ -20,10 +20,6 @@ function apiErrorHandler(res, error) {
 	}
 }
 
-router.get('/', function (req, res) {
-	res.send('Birds home page');
-});
-
 router.post('/result', upload.single('file'), async function (req, res) {
 	const formData = new FormData();
 
@@ -49,22 +45,28 @@ router.post('/result', upload.single('file'), async function (req, res) {
 	}
 });
 
-router.post('/signin', async function (req, res) {
+router.post('/signin', function (req, res) {
+	console.log(req.body);
 	const formData = new FormData();
 
-	formData.append('userId', req.body.id);
-	formData.append('password', req.body.password);
+	// formData.append('userId', req.body.id);
+	// formData.append('password', req.body.password);
 
-	try {
-		setInterval(() => {
-			res.json({
-				"accessToken" : "accessToken", 
-				"refreshToken" : "refreshToken" 
-		});
-		}, 1000);
-	} catch (error) {
-		apiErrorHandler(error);
-	}
+	res.json({
+		"accessToken" : "accessToken", 
+		"refreshToken" : "refreshToken" 
+	});
+		// setInterval(() => {
+	// 	res.json({
+	// 		"accessToken" : "accessToken", 
+	// 		"refreshToken" : "refreshToken" 
+	// });
+	// }, 1000);
+	// try {
+		
+	// } catch (error) {
+	// 	apiErrorHandler(res, error);
+	// }
 });
 
 

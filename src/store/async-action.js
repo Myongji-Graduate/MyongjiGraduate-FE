@@ -33,11 +33,13 @@ export const fetchSignIn = (formData) => (dispatch, getState) => {
 	dispatch(createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START));
 	return fetch('/api/signin', {
 		method: 'POST',
-		body: formData,
+		body: JSON.stringify(formData),
+		headers: {
+      'Content-Type': 'application/json'
+    },
 	}).then((response) => {
 		return response.json();
 	}).then((result) => {
-		console.log(result)
 		if (result.code) {
 			dispatch(
 				createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED, {

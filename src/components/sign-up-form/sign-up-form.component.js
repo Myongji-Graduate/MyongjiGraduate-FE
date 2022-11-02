@@ -32,7 +32,16 @@ export default class SignupForm extends Component {
 			isValidationOfReconfirm: false,
 			isValidationOfStudentId: false,
 			isValidationOfEnglishLevel: false,
+			totalValidation: false,
 		};
+	}
+
+	validationTotal() {
+		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId, isValidationOfEnglishLevel } = this.state;
+		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId) {
+			return true;
+		}
+		return false
 	}
 
 	validationCallbackOfId(id) {
@@ -99,7 +108,6 @@ export default class SignupForm extends Component {
 			if (props) this.setProps(props);
 
 			const { isLoadingModalShow } = store.getState();
-
 			const modalLoadingProps = {
 				isModalShow: isLoadingModalShow,
 				contentComponent: modalLoading,
@@ -180,17 +188,21 @@ export default class SignupForm extends Component {
 					<div class="sign-up-form__studentId-input-group-container sign-up-form__input-group">${studentIdInputGroup.render(studentIdInputProps)}</div>
 					<div class="sign-up-form__englishLevel-input-group-container sign-up-form__input-group">${englishLevelInputGroup.render(englishLevelInputProps)}</div>
             <div class="sign-up-form__create-modal-button-container">
-              ${signupButton.render({
+	
+		${
+				signupButton.render({
 								content: '회원가입',
-								type: buttonTypes.primary,
+								type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
 								size: 'md',
 								key: 'modal-display',
-							})}
+								onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
+							})} 
+				
             </div>
-						<div class="sign-up-form__footer">
+			<div class="sign-up-form__footer">
 				이미 계정이 있으신가요? 
-				<div class="sign-up-form__footer-signin">로그인</div>
-          </div>
+			<div class="sign-up-form__footer-signin">로그인</div>
+         	</div>
         </div>
       `;
 		};

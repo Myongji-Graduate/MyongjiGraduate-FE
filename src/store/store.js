@@ -36,6 +36,10 @@ export const reducer = (state = initState, action = {}) => {
 			return { ...state, isLoadingModalShow: false, error: payload.error };
 		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START: 
 			return { ...state, isLoadingModalShow: true };
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS: 
+			return { ...state, isLoadingModalShow: false };
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED:
+			return { ...state, isLoadingModalShow: false, error: payload.error };
 		case ERROR_ACTION_TYPES.HIDE_ERROR:
 			return {
 				...state,
