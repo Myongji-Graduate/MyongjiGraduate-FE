@@ -108,6 +108,6 @@ export default class Component {
 			...this.state,
 			...newState,
 		};
-		dom.updateDom(this);
+		if (typeof window !== 'undefined') dom.updateDom(this);
 	}
 }

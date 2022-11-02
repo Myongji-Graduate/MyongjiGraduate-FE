@@ -23,7 +23,7 @@ export default class App extends Component {
 
 			return `
         <div class="app">
-          <div class="app__error-modal">
+          <div class="app__eror-modal">
             ${modalError.render()}
           </div>
           ${childComponent.render()}

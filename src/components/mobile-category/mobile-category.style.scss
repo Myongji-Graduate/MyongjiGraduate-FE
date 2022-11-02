@@ -16,6 +16,12 @@
         height: 100%;
         background-color: white;
         border-radius: 0.8rem 0 0 0 ;
+        &-info{}
+        &-menu{}
+        &-sign{
+            color: $color-grey-scale4;  
+            @include title4;
+        }
     } 
 }
 @keyframes category {

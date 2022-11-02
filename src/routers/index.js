@@ -4,6 +4,7 @@ import ResultPage from './result-page/result-page.component';
 import SignInPage from './sign-in-page/sign-in-page.component';
 import SignUpPage from './sign-up-page/sign-up-page.component';
 import FileUploadPage from './file-upload-page/file-upload-page.component';
+import MypagePage from './mypage-page/mypage-page.component';
 
 import Router from '../core/router';
 import App from '../app';
@@ -32,6 +33,10 @@ export const routerObjects = [
 			{
 				path: 'file-upload',
 				element: FileUploadPage,
+			},
+			{
+				path: 'mypage',
+				element: MypagePage,
 			},
 		],
 	},

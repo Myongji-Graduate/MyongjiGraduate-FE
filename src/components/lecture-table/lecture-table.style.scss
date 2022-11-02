@@ -1,0 +1,33 @@
+.lecture-table {
+  text-align: center;
+  width: 24.7917rem;
+  // display: flex;
+  &__head{              
+    display: flex;
+    background-color: $color-g1;
+    color : $color-g2;
+    @include title2;
+    border-radius: 100px;
+    margin-bottom: 0.27rem;
+    &__column{
+        margin: 0.44rem 0;
+        width: 33%;
+    }
+}
+&__body{
+    border : 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    @include subhead3;
+    color: $color-title;
+    &__tr{                     
+        display: flex;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);          
+        &__column{              
+            margin: 0.44rem 0;
+            width:33%;
+        
+        }
+    }
+    &__tr:last-child{border-bottom:0px}    
+}
+}
