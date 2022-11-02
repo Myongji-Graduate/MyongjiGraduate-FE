@@ -1,0 +1,17 @@
+.guide-tutorial{
+    &__header{
+        padding: 2rem;    
+        @include subhead1;       
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    &__body{
+        position: inherit;
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        &-item{
+            margin: 1rem;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+.guide-fuction{
+    width: 100%;
+    overflow: hidden;
+    &__header{
+        padding: 2rem;        
+      &-text{
+        @include subhead1;
+        padding-bottom: 0.5rem; 
+        text-align: center;
+    }
+    &-tutorial{
+        animation: left_right 1s infinite;
+        @include body2;
+        display: flex;
+        justify-content: end;
+        &-style{
+            margin-right: 0.1rem;
+            color: $color-primary;           
+        }
+      }
+    }
+    &__content{
+        animation: view 1s;
+        display: flex;
+        @include mobile{
+            display: block;
+        }
+        justify-content: space-between;
+        align-items: center;
+        &-item{
+             margin: 1rem;
+        }
+    }
+}
+@keyframes view {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes left_right {
+    0% {
+        transform: translate(-3px);
+    }
+    50% {
+        transform: translate(3px);
+    }
+    100% {
+        transform: translate(0px);
+    }
+}
