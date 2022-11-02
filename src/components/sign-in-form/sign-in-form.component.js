@@ -9,7 +9,7 @@ import Modal from '../modal/modal.component';
 import ModalLoading from '../modal-loading/modal-loading.component';
 import Button from '../button/button.component';
 
-import { buttonTypes } from '../../helper/types';
+import { buttonTypes, inputTypes } from '../../helper/types';
 import { validateshortlength, validatelonglength, validatespecialSymbol } from '../../helper/validation';
 
 export default class SigninForm extends Component {
@@ -17,33 +17,7 @@ export default class SigninForm extends Component {
 		this.state = {
 			id: '',
 			password: '',
-			isValidationOfId: false,
-			isValidationOfPassword: false,
-			totalValidation: false,
 		};
-	}
-
-	validationTotal() {
-		const { isValidationOfId, isValidationOfPassword } = this.state;
-		if (isValidationOfId && isValidationOfPassword) return true;
-		return false;
-	}
-
-	validationCallbackOfId(id) {
-		let resultId = true;
-		if (validateshortlength(id, 6) || validatelonglength(id, 20)) resultId = false;
-		this.setState({
-			isValidationOfId: resultId,
-		});
-	}
-
-	validationCallbackOfPassword(password) {
-		let resultPassword = true;
-		if (validateshortlength(password, 8) || (validatelonglength(password, 20) && validatespecialSymbol(password)))
-			resultPassword = false;
-		this.setState({
-			isValidationOfPassword: resultPassword,
-		});
 	}
 
 	submitData() {
@@ -85,9 +59,6 @@ export default class SigninForm extends Component {
 				onChange: (newValue) => {
 					this.setState({ id: newValue });
 				},
-				isValidation: this.state.isValidationOfId,
-				validationCallback: this.validationCallbackOfId.bind(this),
-				errorMessage: '8자 이상 20자 이하이어야 합니다',
 				key: 'sign-in-id',
 			};
 
@@ -98,10 +69,8 @@ export default class SigninForm extends Component {
 				onChange: (newValue) => {
 					this.setState({ password: newValue });
 				},
-				isValidation: this.state.isValidationOfPassword,
-				validationCallback: this.validationCallbackOfPassword.bind(this),
-				errorMessage: '',
 				key: 'sign-in-password',
+				type: inputTypes.password,
 			};
 
 			return `
@@ -116,10 +85,10 @@ export default class SigninForm extends Component {
             <div class="sign-in-form__create-modal-button-container">
               ${signinButton.render({
 								content: '로그인',
-								type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
+								type: buttonTypes.primary,
 								size: 'md',
 								key: 'sign-in',
-								onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
+								onClick: this.submitData.bind(this),
 							})}
             </div>
 			<div class="sign-in-form__footer">

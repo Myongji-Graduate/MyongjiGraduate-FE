@@ -145,6 +145,7 @@ export default class SignupForm extends Component {
 				validationCallback: this.validationCallbackOfPassword.bind(this),
 				errorMessage: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하이어야 합니다',
 				key: 'sign-up-password',
+				type: inputTypes.password,
 			};
 			const reconfirmInputProps = {
 				name: '비밀번호 확인',
@@ -157,6 +158,7 @@ export default class SignupForm extends Component {
 				validationCallback: this.validationCallbackOfReconfirm.bind(this),
 				errorMessage: '비밀번호가 일치하지 않습니다.',
 				key: 'sign-up-reconfirm',
+				type: inputTypes.password,
 			};
 			const studentIdInputProps = {
 				name: '학번',

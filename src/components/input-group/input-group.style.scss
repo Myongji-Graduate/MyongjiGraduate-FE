@@ -11,7 +11,7 @@
     height: 0.3rem !important;
     @include body2;
   }
-  &__text, &__select {
+  &__text, &__select, &__password {
     box-sizing: border-box;
     height: 1.25rem;
     @include subhead3;

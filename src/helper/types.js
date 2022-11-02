@@ -1,6 +1,7 @@
 export const inputTypes = {
 	text: 'text',
 	select: 'select',
+	password: 'password',
 };
 
 export const buttonTypes = {

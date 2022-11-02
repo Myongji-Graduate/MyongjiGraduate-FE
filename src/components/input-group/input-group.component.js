@@ -17,7 +17,6 @@ export default class InputGroup extends Component {
 		};
 	}
 
-
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
@@ -43,11 +42,18 @@ export default class InputGroup extends Component {
 	}
 
 	getInputByType(type) {
-		if (type === 'text') return this.getTextInput();
+		if (type === inputTypes.text) return this.getTextInput();
 
-		if (type === 'select') return this.getSelect();
+		if (type === inputTypes.select) return this.getSelect();
+
+		if (type === inputTypes.password) return this.getPassword();
 
 		return false;
+	}
+
+	getPassword() {
+		const { name, placeholder, value } = this.props;
+		return `<input class="input-group__password" type="password" id=${name} value="${value}" placeholder="${placeholder}" >`;
 	}
 
 	getTextInput() {
@@ -76,7 +82,6 @@ export default class InputGroup extends Component {
 			onChange(target.value);
 		});
 		this.addEvent('focusout', `.input-group__${type}`, (_, target) => {
-			this.setState({ unuse: false });
 			validationCallback(target.value);
 		});
 	}
