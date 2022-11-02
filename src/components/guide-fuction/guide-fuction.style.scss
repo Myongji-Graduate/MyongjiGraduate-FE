@@ -22,13 +22,14 @@
     &__content{
         animation: view 1s;
         display: flex;
-        @include mobile{
-            display: block;
-        }
+
         justify-content: space-between;
-        align-items: center;
         &-item{
-             margin: 1rem;
+             padding: 1rem;
+             width: 33%;
+             box-sizing: border-box;
+            //  width: 33;
+
         }
     }
 }

@@ -2,8 +2,6 @@ import Component from '../../core/component';
 
 import Header from '../../components/header/header.component';
 
-import signUpBackgroundImage from '../../../public/images/sub-background.png';
-import backgroundBottomImage from '../../../public/images/header-bottom.png';
 import signImage from '../../../public/images/sign.png';
 import SignupForm from '../../components/sign-up-form/sign-up-form.component';
 

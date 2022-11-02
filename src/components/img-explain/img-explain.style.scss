@@ -1,9 +1,10 @@
 .img-explain{
- &__img{
-    width: 7rem;//확인
-    height: 7rem;//확인
+ &__img{   
     overflow: hidden;
+   
     margin-bottom: 0.3rem;
+    width: 100%;
+    aspect-ratio: 1;
  }
  &__title{
     margin: 0.2rem 0;
