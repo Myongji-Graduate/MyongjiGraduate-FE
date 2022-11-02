@@ -88,7 +88,7 @@ export default class SigninForm extends Component {
 				isValidation: this.state.isValidationOfId,
 				validationCallback: this.validationCallbackOfId.bind(this),
 				errorMessage: '8자 이상 20자 이하이어야 합니다',
-				key: 'id',
+				key: 'sign-in-id',
 			};
 
 			const passwordInputProps = {
@@ -101,7 +101,7 @@ export default class SigninForm extends Component {
 				isValidation: this.state.isValidationOfPassword,
 				validationCallback: this.validationCallbackOfPassword.bind(this),
 				errorMessage: '',
-				key: 'password',
+				key: 'sign-in-password',
 			};
 
 			return `

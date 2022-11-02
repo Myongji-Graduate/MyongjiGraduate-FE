@@ -26,7 +26,7 @@ export default class SignupForm extends Component {
 			password: '',
 			reconfirm: '',
 			studentId: '',
-			englishLevel:'',
+			englishLevel: '',
 			isValidationOfId: false,
 			isValidationOfPassword: false,
 			isValidationOfReconfirm: false,
@@ -37,11 +37,17 @@ export default class SignupForm extends Component {
 	}
 
 	validationTotal() {
-		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId, isValidationOfEnglishLevel } = this.state;
+		const {
+			isValidationOfId,
+			isValidationOfPassword,
+			isValidationOfReconfirm,
+			isValidationOfStudentId,
+			isValidationOfEnglishLevel,
+		} = this.state;
 		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId) {
 			return true;
 		}
-		return false
+		return false;
 	}
 
 	validationCallbackOfId(id) {
@@ -78,7 +84,6 @@ export default class SignupForm extends Component {
 		});
 	}
 
-
 	submitData() {
 		const formData = new FormData();
 
@@ -106,6 +111,7 @@ export default class SignupForm extends Component {
 
 		return (props) => {
 			if (props) this.setProps(props);
+			console.log(this);
 
 			const { isLoadingModalShow } = store.getState();
 			const modalLoadingProps = {
@@ -126,7 +132,7 @@ export default class SignupForm extends Component {
 				isValidation: this.state.isValidationOfId,
 				validationCallback: this.validationCallbackOfId.bind(this),
 				errorMessage: '6자 이상 20자 이하의 글자를 입력해주세요',
-				key: 'id',
+				key: 'sign-up-id',
 			};
 			const passwordInputProps = {
 				name: '비밀번호',
@@ -138,7 +144,7 @@ export default class SignupForm extends Component {
 				isValidation: this.state.isValidationOfPassword,
 				validationCallback: this.validationCallbackOfPassword.bind(this),
 				errorMessage: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하이어야 합니다',
-				key: 'password',
+				key: 'sign-up-password',
 			};
 			const reconfirmInputProps = {
 				name: '비밀번호 확인',
@@ -150,7 +156,7 @@ export default class SignupForm extends Component {
 				isValidation: this.state.isValidationOfReconfirm,
 				validationCallback: this.validationCallbackOfReconfirm.bind(this),
 				errorMessage: '비밀번호가 일치하지 않습니다.',
-				key: 'reconfirm',
+				key: 'sign-up-reconfirm',
 			};
 			const studentIdInputProps = {
 				name: '학번',
@@ -162,7 +168,7 @@ export default class SignupForm extends Component {
 				isValidation: this.state.isValidationOfStudentId,
 				validationCallback: this.validationCallbackOfStudentId.bind(this),
 				errorMessage: '학번 양식(ex)60200000)을 따라야합니다.',
-				key: 'studentId',
+				key: 'sign-up-studentId',
 			};
 			const englishLevelInputProps = {
 				name: '영어',
@@ -174,29 +180,38 @@ export default class SignupForm extends Component {
 					this.setState({ englishLevel: newValue });
 				},
 				isValidation: this.state.isValidationOfEnglishLevel,
-				key: 'englishLevel',
+				key: 'sign-up-englishLevel',
 			};
-			
+
 			return `
         <div class="sign-up-form">		
         ${modalLoadingContainer.render(modalLoadingProps)}
         <div class="sign-up-form__header">${header.render({ title: '회원가입' })}</div>
           <div class="sign-up-form__body">
-					<div class="sign-up-form__id-input-group-container sign-up-form__input-group">	${idInputGroup.render(idInputProps)}</div>       
-					<div class="sign-up-form__password-input-group-container sign-up-form__input-group">${passwordInputGroup.render(passwordInputProps)}</div>
-					<div class="sign-up-form__reconfirm-input-group-container sign-up-form__input-group">	${reconfirmInputGroup.render(reconfirmInputProps)}</div>			
-					<div class="sign-up-form__studentId-input-group-container sign-up-form__input-group">${studentIdInputGroup.render(studentIdInputProps)}</div>
-					<div class="sign-up-form__englishLevel-input-group-container sign-up-form__input-group">${englishLevelInputGroup.render(englishLevelInputProps)}</div>
+					<div class="sign-up-form__id-input-group-container sign-up-form__input-group">	${idInputGroup.render(
+						idInputProps
+					)}</div>       
+					<div class="sign-up-form__password-input-group-container sign-up-form__input-group">${passwordInputGroup.render(
+						passwordInputProps
+					)}</div>
+					<div class="sign-up-form__reconfirm-input-group-container sign-up-form__input-group">	${reconfirmInputGroup.render(
+						reconfirmInputProps
+					)}</div>			
+					<div class="sign-up-form__studentId-input-group-container sign-up-form__input-group">${studentIdInputGroup.render(
+						studentIdInputProps
+					)}</div>
+					<div class="sign-up-form__englishLevel-input-group-container sign-up-form__input-group">${englishLevelInputGroup.render(
+						englishLevelInputProps
+					)}</div>
             <div class="sign-up-form__create-modal-button-container">
 	
-		${
-				signupButton.render({
-								content: '회원가입',
-								type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
-								size: 'md',
-								key: 'modal-display',
-								onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
-							})} 
+		${signupButton.render({
+			content: '회원가입',
+			type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
+			size: 'md',
+			key: 'modal-display',
+			onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
+		})} 
 				
             </div>
 			<div class="sign-up-form__footer">
@@ -207,10 +222,11 @@ export default class SignupForm extends Component {
       `;
 		};
 	}
-	setEvent(){
-		this.addEvent('click','.sign-up-form__footer-signin', () => {
+
+	setEvent() {
+		this.addEvent('click', '.sign-up-form__footer-signin', () => {
 			const { router } = store.getState();
 			router.navigate('./sign-in');
-		})
-	  }
+		});
+	}
 }
