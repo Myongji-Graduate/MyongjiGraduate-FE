@@ -1,0 +1,16 @@
+.img-explain{
+ &__img{
+    width: 7rem;//확인
+    height: 7rem;//확인
+    overflow: hidden;
+    margin-bottom: 0.3rem;
+ }
+ &__title{
+    margin: 0.2rem 0;
+    @include subhead4;
+ }
+ &__explain{
+    margin-bottom: 0.5rem;
+    @include body1;
+ }
+}

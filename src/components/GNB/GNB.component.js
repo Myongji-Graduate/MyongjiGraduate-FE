@@ -53,9 +53,12 @@ export default class GNB extends Component {
 			const { router } = store.getState();
 			router.navigate('/');
 		});
+		this.addEvent('click', '.GNB__tab-navigator__general', () => {
+			const { router } = store.getState();
+			router.navigate('/tutorial');
+		});
 		this.addEvent('click', '.GNB__tab-navigator__mobile', () => {
 			this.togglemobileCategory();
-			// data변경확인, redering미확인
 		});
 	}
 }
