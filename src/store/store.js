@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware } from '../core/store';
 import { thunk, logger } from '../core/middleware';
-import { RESULT_ACTION_TYPES } from './types';
+import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES } from './types';
 
 const initState = {
 	test: 'ok',
 	router: () => {},
 	isLoadingModalShow: false,
-	error: null,
+	error: { code: null, message: null },
 	basicUserInfo: null,
 	categoryList: null,
 };
@@ -34,6 +34,14 @@ export const reducer = (state = initState, action = {}) => {
 			};
 		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
+		case ERROR_ACTION_TYPES.HIDE_ERROR:
+			return {
+				...state,
+				error: {
+					code: null,
+					message: null,
+				},
+			};
 		default:
 			return state;
 	}

@@ -23,11 +23,12 @@ html {
   }
 
   @include tablet {
+   
     font-size: 28px;
   }
 
   @include mobile {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
@@ -93,3 +94,8 @@ html {
   line-height: 0.5rem;
 }
 
+@mixin body2 {
+  font-weight: 400;
+  font-size: .4167rem;
+  line-height: .5rem;
+}

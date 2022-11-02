@@ -1,5 +1,9 @@
 .modal-elective-lecture {
     &__content{
         padding:  2.12rem 1.04rem;
+        @include mobile{ 
+            padding: 1rem !important;  
+         }
     }
+   
 }

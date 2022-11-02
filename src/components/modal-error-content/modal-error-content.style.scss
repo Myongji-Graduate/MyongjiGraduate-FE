@@ -1,0 +1,26 @@
+.modal-error-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 5.5208rem;
+
+  &__error-img {
+    width: 3.125rem;
+    height: 3.125rem;
+    transform: translate(-15%);
+  }
+
+  &__error-message {
+    @include subhead3;
+  }
+
+  &__help-message {
+    @include body2;
+    color: $color-grey-scale4;
+  }
+  
+  @include mobile{ 
+    padding: 2rem ;  
+ }
+}

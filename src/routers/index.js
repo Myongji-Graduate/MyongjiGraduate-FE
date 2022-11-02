@@ -4,6 +4,7 @@ import ResultPage from './result-page/result-page.component';
 import InformationPage from './information-page/information-page.component';
 
 import Router from '../core/router';
+import App from '../app';
 
 export const routerObjects = [
 	{
@@ -26,4 +27,6 @@ export const routerObjects = [
 	},
 ];
 
-export const router = new Router(routerObjects);
+const app = new App();
+
+export const router = new Router(routerObjects, app);

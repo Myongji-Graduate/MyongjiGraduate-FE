@@ -68,6 +68,7 @@ export default class ResultPage extends Component {
 					contentComponentProps: modalContentProps,
 					width: 1480,
 					padding: 90,
+					key: 'lecture',
 				})}
 				</div>
 					<div class="result-page__header">
@@ -77,7 +78,7 @@ export default class ResultPage extends Component {
           </div>
 					<div class="result-page__body">
 						<div class="result-page__content">
-							<div class="result-page__summary">${mypage.render({ ...basicUserInfo })}</div>
+						<div class="result-page__summary">${mypage.render({ ...basicUserInfo })}</div>
 							<div class="result-page__category-grid-container">
 								${categoryList
 									.map(({ categoryName, totalCredit, takenCredit }, index) => {

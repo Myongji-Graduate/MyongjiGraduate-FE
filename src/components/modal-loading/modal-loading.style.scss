@@ -14,6 +14,10 @@
     @include subhead4;
     margin-top: 0.7rem;
   }
+ 
+  @include mobile{ 
+    padding: 2rem ;  
+ }
 }
 
 @keyframes rotate_image{

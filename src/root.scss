@@ -6,10 +6,12 @@ $color-title: #2F2F2F;
 $color-grey-scale1: #353535;
 $color-grey-scale2: #CFCFCF;
 $color-grey-scale3: #E5E5E5;
+$color-grey-scale4: #9F9F9F;
 $color-g1: #E7EBFF;
 $color-g2: #7590FF;
 $color-g3: #FFC8C8;
 $color-g4: #FF6D6D;
+$color-error: #FF1111;
 
 @import './normalize.scss';
 @import './responsive.scss';
@@ -38,3 +40,5 @@ $color-g4: #FF6D6D;
 @import './components/category-info/category-info.style.scss';
 @import './components/result-complete-content/result-complete-content.style.scss';
 @import './components/mypage/mypage.style.scss';
+@import './components/modal-error-content/modal-error-content.style.scss';
+@import './components/modal-error/modal-error.style.scss';

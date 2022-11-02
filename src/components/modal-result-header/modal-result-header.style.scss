@@ -1,6 +1,9 @@
 .modal-result-header{
     display: flex;      
     justify-content: space-between;
+    @include mobile{ 
+        padding: 1rem !important;  
+     }
     &__title{
         &__part{           
             @include title;
