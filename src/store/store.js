@@ -34,9 +34,9 @@ export const reducer = (state = initState, action = {}) => {
 			};
 		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
-		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START: 
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START:
 			return { ...state, isLoadingModalShow: true };
-		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS: 
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS:
 			return { ...state, isLoadingModalShow: false };
 		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
@@ -48,6 +48,8 @@ export const reducer = (state = initState, action = {}) => {
 					message: null,
 				},
 			};
+		case ERROR_ACTION_TYPES.SHOW_ERROR:
+			return { ...state, error: payload.error };
 		default:
 			return state;
 	}

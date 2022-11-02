@@ -9,24 +9,19 @@ const router = express.Router();
 const upload = multer({ dest: '../uploads/' });
 
 function apiErrorHandler(res, error) {
-	console.log('error', error);
 	if (error.response.data.code) {
 		return res.status(400).json(error.response.data);
-	} else {
-		return res.status(500).json({
-			code: 500,
-			message: '서버에 장애가 있습니다.',
-		});
 	}
+	return res.status(500).json({
+		code: 500,
+		message: '서버에 장애가 있습니다.',
+	});
 }
 
 router.post('/result', upload.single('file'), async function (req, res) {
 	const formData = new FormData();
 
 	formData.append('file', fs.createReadStream(req.file.path));
-
-	formData.append('entryYear', req.body.studentNumber);
-	formData.append('department', req.body.major);
 
 	try {
 		const result = await axios.post(
@@ -41,7 +36,8 @@ router.post('/result', upload.single('file'), async function (req, res) {
 		console.log('result', result.data);
 		res.json(result.data);
 	} catch (error) {
-		apiErrorHandler(error);
+		console.log(error.response);
+		apiErrorHandler(res, error);
 	}
 });
 
@@ -53,21 +49,20 @@ router.post('/signin', function (req, res) {
 	// formData.append('password', req.body.password);
 
 	res.json({
-		"accessToken" : "accessToken", 
-		"refreshToken" : "refreshToken" 
+		accessToken: 'accessToken',
+		refreshToken: 'refreshToken',
 	});
-		// setInterval(() => {
+	// setInterval(() => {
 	// 	res.json({
-	// 		"accessToken" : "accessToken", 
-	// 		"refreshToken" : "refreshToken" 
+	// 		"accessToken" : "accessToken",
+	// 		"refreshToken" : "refreshToken"
 	// });
 	// }, 1000);
 	// try {
-		
+
 	// } catch (error) {
 	// 	apiErrorHandler(res, error);
 	// }
 });
-
 
 export default router;

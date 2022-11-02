@@ -2,6 +2,8 @@ import Component from '../../core/component';
 
 import fileUplpadIcon from '../../../public/icons/file-upload-icon.svg';
 import completeCheckIcon from '../../../public/icons/complete-check.svg';
+import { createAction, store } from '../../store/store';
+import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
 
 export default class FileUploadBox extends Component {
 	setDefaultProps() {
@@ -14,7 +16,6 @@ export default class FileUploadBox extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-
 			const { file } = this.props;
 
 			return `
@@ -52,6 +53,13 @@ export default class FileUploadBox extends Component {
 		this.addEvent('change', '.file-upload-box__upload-input', (e) => {
 			const file = e.target.files[0];
 			if (file.type === 'application/pdf') onDrag(file);
+			else {
+				store.dispatch(
+					createAction(ERROR_ACTION_TYPES.SHOW_ERROR, {
+						error: ERROR_TYPES.FILE_EXTENSTION,
+					})
+				);
+			}
 		});
 	}
 }

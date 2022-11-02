@@ -5,7 +5,7 @@ import FileUploadBox from '../file-upload-box/file-upload-box.component';
 import Button from '../button/button.component';
 import { buttonTypes } from '../../helper/types';
 
-export default class ModalFileUpload extends Component {
+export default class FileUploadContent extends Component {
 	template() {
 		const guide = this.addChild(FileUploadGuide);
 		const fileUploadBox = this.addChild(FileUploadBox);
@@ -15,20 +15,20 @@ export default class ModalFileUpload extends Component {
 			if (props) this.setProps(props);
 
 			return `
-        <div class="modal-file-upload">
-          <div class="modal-file-upload__header">
+        <div class="file-upload-content">
+          <div class="file-upload-content__header">
             기이수 성적 업로드
           </div>
-          <div class="modal-file-upload__divider"></div>
-          <div class="modal-file-upload__body">
-            <div class="modal-file-upload__guide-container">
+          <div class="file-upload-content__divider"></div>
+          <div class="file-upload-content__body">
+            <div class="file-upload-content__guide-container">
               ${guide.render()}
             </div>
-            <div class="modal-file-upload__file-upload-box-container">
+            <div class="file-upload-content__file-upload-box-container">
               ${fileUploadBox.render({ ...this.props })}
             </div>
           </div>
-          <div class="modal-file-upload__footer">
+          <div class="file-upload-content__footer">
             ${submitButton.render({
 							content: '업로드',
 							type: buttonTypes.primary,

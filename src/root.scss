@@ -19,7 +19,7 @@ $color-error: #FF1111;
 @import './components/header/header.style.scss';
 @import './app.scss';
 @import './components/modal-loading/modal-loading.style.scss';
-@import './components/modal-file-upload/modal-file-upload.style.scss';
+@import './components/file-upload-content/file-upload-content.style.scss';
 @import './components/information-form/information-form.style.scss';
 @import './components/input-group/input-group.style.scss';
 @import './components/file-upload-guide/file-upload.style.scss';
@@ -48,3 +48,4 @@ $color-error: #FF1111;
 @import './components/sign-up-form/sign-up-form.style.scss';
 @import './routers/sign-in-page/sign-in-page.style.scss';
 @import './routers/sign-up-page/sign-up-page.style.scss';
+@import './routers/file-upload-page/file-upload-page.style.scss'
