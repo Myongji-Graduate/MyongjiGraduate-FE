@@ -11,7 +11,6 @@ import Button from '../button/button.component';
 
 import { buttonTypes } from '../../helper/types';
 import { validateshortlength, validatelonglength, validatespecialSymbol } from '../../helper/validation';
-import { router } from '../../routers';
 
 export default class SigninForm extends Component {
 	initState() {
@@ -48,10 +47,12 @@ export default class SigninForm extends Component {
 	}
 
 	submitData() {
-		store.dispatch(fetchSignIn({
-			'id': this.state.id,
-			'password': this.state.password,
-		}));
+		store.dispatch(
+			fetchSignIn({
+				id: this.state.id,
+				password: this.state.password,
+			})
+		);
 	}
 
 	template() {
@@ -108,7 +109,9 @@ export default class SigninForm extends Component {
         ${modalLoadingContainer.render(modalLoadingProps)}
         <div class="sign-in-form__header">${header.render({ title: '로그인' })}</div>
           <div class="sign-in-form__body">
-            <div class="sign-in-form__id-input-group-container"> ${idInputGroup.render(idInputProps)}</div>                  
+            <div class="sign-in-form__id-input-group-container"> ${idInputGroup.render(
+							idInputProps
+						)}</div>                  
 			<div class="sign-in-form__password-input-group-container"> ${passwordInputGroup.render(passwordInputProps)}  </div>   		
             <div class="sign-in-form__create-modal-button-container">
               ${signinButton.render({
@@ -128,10 +131,11 @@ export default class SigninForm extends Component {
       `;
 		};
 	}
-	setEvent(){
-		this.addEvent('click','.sign-in-form__footer-signup', () => {
+
+	setEvent() {
+		this.addEvent('click', '.sign-in-form__footer-signup', () => {
 			const { router } = store.getState();
 			router.navigate('./sign-up');
-		})
-	  }
+		});
+	}
 }

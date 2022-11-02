@@ -1,7 +1,6 @@
 import Component from '../../core/component';
 
-import GNB from '../../components/GNB/GNB.component';
-// import sign-inForm from '../../components/information-form/information-form.component';
+import Header from '../../components/header/header.component';
 
 import signUpBackgroundImage from '../../../public/images/sub-background.png';
 import backgroundBottomImage from '../../../public/images/header-bottom.png';
@@ -10,7 +9,7 @@ import SignupForm from '../../components/sign-up-form/sign-up-form.component';
 
 export default class SignUpPage extends Component {
 	template() {
-		const gnb = this.addChild(GNB);
+		const header = this.addChild(Header);
 		const signupForm = this.addChild(SignupForm);
 
 		return (props) => {
@@ -19,9 +18,7 @@ export default class SignUpPage extends Component {
 			return `
         <div class="sign-up-page">
           <div class="sign-up-page__header">
-            ${gnb.render()}
-            <img src=${signUpBackgroundImage} class="sign-up-page__background-img" />
-            <img src=${backgroundBottomImage} class="sign-up-page__bottom-img" />
+            ${header.render()}
           </div>
           <div class="sign-up-page__body">
             <div class="sign-up-page__content">
