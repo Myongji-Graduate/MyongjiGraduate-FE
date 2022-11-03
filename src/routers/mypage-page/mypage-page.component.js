@@ -10,7 +10,7 @@ export default class MypagePage extends Component {
 		const header = this.addChild(Header);
 		const infoLogout = this.addChild(InfoLogout);
 		const takenLectureList = this.addChild(TakenLectureList);
-    const takenLecture = this.addChild(TakenLecture);
+		const takenLecture = this.addChild(TakenLecture);
 		return (props) => {
 			if (props) this.setProps(props);
 
@@ -22,22 +22,18 @@ export default class MypagePage extends Component {
           
           <div class="mypage-page__body">
             <div class="mypage-page__content">
-                <div class="mypage-page__info-container"> 
-                ${infoLogout.render()}  
+              <div class="mypage-page__info-container"> 
+                  ${infoLogout.render()}  
                 </div>
-
                 <div class="mypage-page__divider"></div>
-
                 <div class="mypage-page__lecture-container">
-                 <div class="mypage-page__taken-lecture-container">
-                   ${takenLecture.render()}
-                 </div>
+                <div class="mypage-page__taken-lecture-container">
+                  ${takenLecture.render()}
+                </div>
                     <div class="mypage-page__taken-lecture-list-container">
                       ${takenLectureList.render()}
                    </div>
-               
                 </div>
-
             </div>
           </div>
         </div>

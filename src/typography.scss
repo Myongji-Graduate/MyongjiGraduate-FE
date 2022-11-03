@@ -93,6 +93,18 @@ html {
   line-height: 0.5rem;
 }
 
+@mixin subhead6 {
+  font-weight: 500;
+  font-size: .6667rem;
+  line-height: .6138rem;
+}
+
+@mixin subhead7 {
+  font-weight: 500;
+  font-size: .2083rem;
+  line-height: .1667rem;
+}
+
 @mixin body1 {
   font-weight: 400;
   font-size: 0.4rem;
