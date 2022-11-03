@@ -1,0 +1,14 @@
+.taken-lecture-list {
+
+  &__header {
+    display: flex;
+  }
+
+  &__header-button-container {
+    display: flex;
+  }
+
+  &__divider {
+    width: .4167rem;
+  }
+}

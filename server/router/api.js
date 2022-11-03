@@ -65,4 +65,15 @@ router.post('/signin', function (req, res) {
 	// }
 });
 
+router.get('/takenLectures', async function (req, res) {
+	try {
+		const result = await axios.get(
+			'https://b0182694-3460-46e7-97ce-3aceba5200ad.mock.pstmn.io/users/%7Bid%7D/taken-lectures?id'
+		);
+		res.json(result.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
 export default router;
