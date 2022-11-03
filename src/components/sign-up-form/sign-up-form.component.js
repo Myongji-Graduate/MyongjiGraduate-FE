@@ -31,19 +31,12 @@ export default class SignupForm extends Component {
 			isValidationOfPassword: false,
 			isValidationOfReconfirm: false,
 			isValidationOfStudentId: false,
-			isValidationOfEnglishLevel: false,
 			totalValidation: false,
 		};
 	}
 
 	validationTotal() {
-		const {
-			isValidationOfId,
-			isValidationOfPassword,
-			isValidationOfReconfirm,
-			isValidationOfStudentId,
-			isValidationOfEnglishLevel,
-		} = this.state;
+		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId } = this.state;
 		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId) {
 			return true;
 		}

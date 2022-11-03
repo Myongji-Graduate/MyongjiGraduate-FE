@@ -1,0 +1,14 @@
+.taken-lecture{
+    padding: 3rem 1rem;
+    &__title{       
+        @include title;
+    }
+    &__totalcredit{
+        margin: 0.5rem 0;
+        width: 100%;      
+    }
+    &__btn{
+        display: flex;
+        justify-content: center;
+    }
+}

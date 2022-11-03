@@ -1,4 +1,3 @@
-
 export const parseMandatoryMajorResult = (majorResult) => {
 	const mandatoryMajor = majorResult.detailCategory[0].takenMandatoryLectures.reduce(
 		(acc, lecture) => {
@@ -34,7 +33,6 @@ export const parseMandatoryMajorResult = (majorResult) => {
 		return acc;
 	}, mandatoryMajor);
 };
-
 
 export const parseElectiveMajorResult = (majorResult) => {
 	const electiveMajor = majorResult.detailCategory[0].takenElectiveLectures.reduce(
@@ -72,7 +70,6 @@ export const parseElectiveMajorResult = (majorResult) => {
 	}, electiveMajor);
 };
 
-
 export const filterCategoryListCredit = (categoryList) => {
 	return categoryList.map((category) => {
 		category.takenCredit = Math.min(category.takenCredit, category.totalCredit);
@@ -83,7 +80,6 @@ export const filterCategoryListCredit = (categoryList) => {
 		return category;
 	});
 };
-
 
 export const parseGraduationResult = (result) => {
 	const basicUserInfo = { ...result.basicInfo };

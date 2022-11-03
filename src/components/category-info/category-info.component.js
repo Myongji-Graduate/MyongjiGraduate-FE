@@ -12,7 +12,7 @@ export default class CategoryInfo extends Component {
 	getCredit() {
 		const { totalCredits, takenCredits } = this.props;
 		if (totalCredits !== '' && takenCredits !== '') {
-			return '<div class="category-info__credit"> ${takenCredits} / ${totalCredits} </div>';
+			return `<div class="category-info__credit"> ${takenCredits} / ${totalCredits} </div>`;
 		}
 		return '';
 	}

@@ -10,7 +10,6 @@ import ModalLoading from '../modal-loading/modal-loading.component';
 import Button from '../button/button.component';
 
 import { buttonTypes, inputTypes } from '../../helper/types';
-import { validateshortlength, validatelonglength, validatespecialSymbol } from '../../helper/validation';
 
 export default class SigninForm extends Component {
 	initState() {

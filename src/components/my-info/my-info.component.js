@@ -1,6 +1,5 @@
 import Component from '../../core/component';
 import profileImg from '../../../public/images/profile-image.png';
-import { store } from '../../store/store';
 
 export default class MyInfo extends Component {
 	template() {

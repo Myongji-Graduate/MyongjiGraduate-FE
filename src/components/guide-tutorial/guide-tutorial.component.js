@@ -8,7 +8,7 @@ import modalHeader from '../modal-header/modal-header.component';
 export default class GuideTutorial extends Component {
 	template() {
 		const header = this.addChild(modalHeader);
-		const imgExplain= this.addChild(ImgExplain);
+		const imgExplain = this.addChild(ImgExplain);
 		return (props) => {
 			if (props) this.setProps(props);
 
@@ -20,11 +20,31 @@ export default class GuideTutorial extends Component {
 					</div>
 					${header.render({ title: 'PDF 파일 업로드 방법' })}
 					<div class="guide-tutorial__body">
-						<div class="guide-tutorial__body-item">${imgExplain.render({ img: sign, title: '1.', explain:'명지대학교 마이아이웹에 접속 후 로그인'})}</div>
-						<div class="guide-tutorial__body-item">${imgExplain.render({ img: sign, title: '2.', explain:'학생카드 접속 → 학점 현황 클릭'})}</div>
-						<div class="guide-tutorial__body-item">${imgExplain.render({ img: sign, title: '3.', explain:'좌측 성적/졸업 → 성적표(상담용,B4)메뉴 클릭'})}</div>
-						<div class="guide-tutorial__body-item">${imgExplain.render({ img: sign, title: '4.', explain:'우측 상단 조회버튼 클릭 후 PDF로 인쇄'})}</div>
-						<div class="guide-tutorial__body-item">${imgExplain.render({ img: sign, title: '5.', explain:'파일 업로드 후 등록하기 버튼 클릭'})}</div>
+						<div class="guide-tutorial__body-item">${imgExplain.render({
+							img: sign,
+							title: '1.',
+							explain: '명지대학교 마이아이웹에 접속 후 로그인',
+						})}</div>
+						<div class="guide-tutorial__body-item">${imgExplain.render({
+							img: sign,
+							title: '2.',
+							explain: '학생카드 접속 → 학점 현황 클릭',
+						})}</div>
+						<div class="guide-tutorial__body-item">${imgExplain.render({
+							img: sign,
+							title: '3.',
+							explain: '좌측 성적/졸업 → 성적표(상담용,B4)메뉴 클릭',
+						})}</div>
+						<div class="guide-tutorial__body-item">${imgExplain.render({
+							img: sign,
+							title: '4.',
+							explain: '우측 상단 조회버튼 클릭 후 PDF로 인쇄',
+						})}</div>
+						<div class="guide-tutorial__body-item">${imgExplain.render({
+							img: sign,
+							title: '5.',
+							explain: '파일 업로드 후 등록하기 버튼 클릭',
+						})}</div>
 					</div>
 				</div>
 			`;

@@ -3,7 +3,7 @@ import Component from '../../core/component';
 export default class ImgExplain extends Component {
 	setDefaultProps() {
 		this.props = {
-			img : 'url',
+			img: 'url',
 			title: '제목',
 			expalin: '설명',
 		};

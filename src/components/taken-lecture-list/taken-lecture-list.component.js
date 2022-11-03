@@ -10,25 +10,25 @@ export default class TakenLectureList extends Component {
 		};
 	}
 
-	async fetchTakenLecture() {
-		let f;
-		if (typeof window === 'undefined') {
-			f = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
-		} else {
-			f = window.fetch;
-		}
-		const response = await f(
-			'https://b0182694-3460-46e7-97ce-3aceba5200ad.mock.pstmn.io/users/%7Bid%7D/taken-lectures'
-		);
-		const result = await response.json();
+	// async fetchTakenLecture() {
+	// 	let f;
+	// 	if (typeof window === 'undefined') {
+	// 		f = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
+	// 	} else {
+	// 		f = window.fetch;
+	// 	}
+	// 	const response = await f(
+	// 		'https://b0182694-3460-46e7-97ce-3aceba5200ad.mock.pstmn.io/users/%7Bid%7D/taken-lectures'
+	// 	);
+	// 	const result = await response.json();
 
-		this.setState({
-			takenLectures: result.takenLectures,
-		});
-	}
+	// 	this.setState({
+	// 		takenLectures: result.takenLectures,
+	// 	});
+	// }
 
 	template() {
-		this.fetchTakenLecture();
+		// this.fetchTakenLecture();
 		const lectureTable = this.addChild(LectureTable);
 		const tableInfo = this.addChild(CategoryInfo);
 

@@ -20,7 +20,6 @@ export default class GNB extends Component {
 	template() {
 		const mobileCategoryContainer = this.addChild(MobileCategory);
 
-		
 		return (props) => {
 			if (props) this.setProps(props);
 

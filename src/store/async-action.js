@@ -35,26 +35,27 @@ export const fetchSignIn = (formData) => (dispatch, getState) => {
 		method: 'POST',
 		body: JSON.stringify(formData),
 		headers: {
-      'Content-Type': 'application/json'
-    },
-	}).then((response) => {
-		return response.json();
-	}).then((result) => {
-		if (result.code) {
-			dispatch(
-				createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED, {
-					error: result,
-				})
-				)
+			'Content-Type': 'application/json',
+		},
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((result) => {
+			if (result.code) {
+				dispatch(
+					createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED, {
+						error: result,
+					})
+				);
 			} else {
 				const { router } = getState();
 				// 토큰 저장
-				console.log('로그인 성공')
+				console.log('로그인 성공');
 				dispatch(createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS));
-		}
-	});
-}
-
+			}
+		});
+};
 
 // export const fetchMockApi = () => (dispatch, getState) => {
 // 	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
