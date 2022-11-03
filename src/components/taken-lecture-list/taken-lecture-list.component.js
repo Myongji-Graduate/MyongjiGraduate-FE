@@ -10,28 +10,11 @@ export default class TakenLectureList extends Component {
 	initState() {
 		this.state = {
 			takenLectures: [],
+			isEditableMode: true,
+			addedTakenLecutures: [],
+			deletedTakenLecutures: [],
 		};
 	}
-
-	// // async fetchTakenLecture() {
-	// // 	let f;
-	// // 	if (typeof window === 'undefined') {
-	// // 		f = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
-	// // 	} else {import { store } from '../../store/store';
-
-	// // 		f = window.fetch;
-	// // 	}
-	// // 	const response = await f(
-	// // 		'https://b0182694-3460-46e7-97ce-3aceba5200ad.mock.pstmn.io/users/%7Bid%7D/taken-lectures'
-	// // 	);
-	// // 	const result = await response.json();
-
-	// this.setState({
-	// 	takenLectures: result.takenLectures,
-	// });
-	// }
-
-
 
 	fetchTakenLecture() {
 		if (typeof window !== 'undefined') {
@@ -47,6 +30,22 @@ export default class TakenLectureList extends Component {
 		}
 	}
 
+	deleteTakenLecture(lecture) {
+		this.setState({
+			deletedTakenLecutures: [...this.state.deletedTakenLecutures, lecture],
+		});
+	}
+
+	deleteAddedTakenLecture(lecture) {
+		const newAddedTakenLecutures = this.state.addedTakenLecutures.filter(
+			(addedTakenLecuture) => addedTakenLecuture !== lecture.id
+		);
+
+		this.setState({
+			addedTakenLecutures: newAddedTakenLecutures,
+		});
+	}
+
 	template() {
 		this.fetchTakenLecture();
 
@@ -58,7 +57,7 @@ export default class TakenLectureList extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { takenLectures } = this.state;
+			const { takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures } = this.state;
 
 			const customButtonProps = {
 				content: '커스텀하기',
@@ -80,6 +79,15 @@ export default class TakenLectureList extends Component {
 				onClick: uploadButtonOnClick,
 			};
 
+			const lectureTableProps = {
+				lectures: takenLectures,
+				isEditableMode,
+				addedTakenLecutures,
+				deletedTakenLecutures,
+				deleteTakenLecture: this.deleteTakenLecture.bind(this),
+				deleteAddedTakenLecture: this.deleteAddedTakenLecture.bind(this),
+			};
+
 			return `
         <div class="taken-lecture-list">
           <div class="taken-lecture-list__header">
@@ -92,9 +100,7 @@ export default class TakenLectureList extends Component {
               ${uploadNavigationButton.render(uploadNavigationButtonProps)}
             </div>
           </div>
-          ${lectureTable.render({
-						lectures: takenLectures,
-					})}
+          ${lectureTable.render(lectureTableProps)}
         </div>
       `;
 		};

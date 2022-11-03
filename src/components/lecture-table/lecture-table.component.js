@@ -1,34 +1,31 @@
 import Component from '../../core/component';
+import LectureTableHeader from '../lecture-table-header/lecture-table-header.component';
+import LectureTableList from '../lecture-table-list/lecture-table-list.component';
 
 export default class LectureTable extends Component {
 	setDefaultProps() {
 		this.props = {
 			lectures: [],
+			isEditableMode: false,
+			addedTakenLecutures: [],
+			deletedTakenLecutures: [],
+			deleteTakenLecture: () => {},
+			deleteAddedTakenLecture: () => {},
 		};
 	}
 
 	template() {
+		const lectureTableHeader = this.addChild(LectureTableHeader);
+		const lectureTableList = this.addChild(LectureTableList);
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { lectures } = this.props;
-
 			return `
       <div class="lecture-table">
-        <div class="lecture-table__head">
-              <div class="lecture-table__head__column">과목코드</div>
-              <div class="lecture-table__head__column">과목명</div>
-              <div class="lecture-table__head__column">학점</div>
-        </div>
+        ${lectureTableHeader.render()}
         <div class="lecture-table__body">
-          ${lectures.map((lecture) => {
-						return `
-            <div class="lecture-table__body__tr">
-            <div class="lecture-table__body__tr__column">${lecture.code}</div>
-            <div class="lecture-table__body__tr__column">${lecture.name}</div>
-            <div class="lecture-table__body__tr__column">${lecture.credit}</div>
-            </div>
-            `;
+          ${lectureTableList.render({
+						...this.props,
 					})}
         </div>
       </div>

@@ -11,3 +11,8 @@ export const buttonTypes = {
 	primary: 'primary',
 	grey: 'grey',
 };
+
+export const lectureTableItemTypes = {
+	takenLecture: 'takenLecture',
+	addedLecture: 'addedLecture',
+};
