@@ -8,6 +8,7 @@ import InputGroup from '../input-group/input-group.component';
 import Modal from '../modal/modal.component';
 import ModalLoading from '../modal-loading/modal-loading.component';
 import Button from '../button/button.component';
+import ModalAgreement from '../modal-agreement/modal-agreement.component';
 
 import { buttonTypes, inputTypes } from '../../helper/types';
 
@@ -16,6 +17,7 @@ export default class SigninForm extends Component {
 		this.state = {
 			id: '',
 			password: '',
+			isAgreementModal: false,
 		};
 	}
 
@@ -28,6 +30,12 @@ export default class SigninForm extends Component {
 		);
 	}
 
+	agreementModal() {
+		this.setState({
+			isAgreementModal: !this.state.isAgreementModal,
+		});
+	}
+
 	template() {
 		const header = this.addChild(modalHeader);
 
@@ -37,6 +45,8 @@ export default class SigninForm extends Component {
 
 		const modalLoadingContainer = this.addChild(Modal);
 		const modalLoading = this.addChild(ModalLoading);
+		const modalAgreementContainer = this.addChild(Modal);
+		const modalAgreement = this.addChild(ModalAgreement);
 
 		return (props) => {
 			if (props) this.setProps(props);
@@ -49,6 +59,15 @@ export default class SigninForm extends Component {
 				width: 790,
 				padding: 200,
 				key: 'loading',
+			};
+
+			const modalAggrementProps = {
+				isModalShow: this.state.isAgreementModal,
+				toggleModal: this.agreementModal.bind(this),
+				contentComponent: modalAgreement,
+				width: 1220,
+				padding: 100,
+				key: 'aggrement',
 			};
 
 			const idInputProps = {
@@ -75,6 +94,7 @@ export default class SigninForm extends Component {
 			return `
         <div class="sign-in-form">		
         ${modalLoadingContainer.render(modalLoadingProps)}
+		${modalAgreementContainer.render(modalAggrementProps)}
         <div class="sign-in-form__header">${header.render({ title: '로그인' })}</div>
           <div class="sign-in-form__body">
             <div class="sign-in-form__id-input-group-container"> ${idInputGroup.render(
@@ -102,8 +122,7 @@ export default class SigninForm extends Component {
 
 	setEvent() {
 		this.addEvent('click', '.sign-in-form__footer-signup', () => {
-			const { router } = store.getState();
-			router.navigate('./sign-up');
+			this.agreementModal();
 		});
 	}
 }
