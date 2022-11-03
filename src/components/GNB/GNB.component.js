@@ -59,5 +59,7 @@ export default class GNB extends Component {
 		this.addEvent('click', '.GNB__tab-navigator__mobile', () => {
 			this.togglemobileCategory();
 		});
+	
+		
 	}
 }

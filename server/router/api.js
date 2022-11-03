@@ -18,14 +18,15 @@ function apiErrorHandler(res, error) {
 	});
 }
 
+
 router.post('/result', upload.single('file'), async function (req, res) {
 	const formData = new FormData();
-
 	formData.append('file', fs.createReadStream(req.file.path));
 
 	try {
 		const result = await axios.post(
-			'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com/api/v1/graduation/result',
+			//'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com/api/v1/graduation/result',
+			'https://ig81au5s0j.execute-api.ap-northeast-2.amazonaws.com/mju-graduate/parse',
 			formData,
 			{
 				headers: {
@@ -33,8 +34,8 @@ router.post('/result', upload.single('file'), async function (req, res) {
 				},
 			}
 		);
-		console.log('result', result.data);
-		res.json(result.data);
+		res.json(result.data);		
+		console.log(JSON.stringify(result.data));
 	} catch (error) {
 		console.log(error.response);
 		apiErrorHandler(res, error);
@@ -75,5 +76,6 @@ router.get('/takenLectures', async function (req, res) {
 		apiErrorHandler(res, error);
 	}
 });
+
 
 export default router;

@@ -5,7 +5,7 @@
 
 // import InputGroup from '../input-group/input-group.component';
 // import Modal from '../modal/modal.component';
-// // import ModalFileUpload from '../modal-file-upload/modal-file-upload.component';
+// import ModalFileUpload from '../modal-file-upload/modal-file-upload.component';
 // import ModalLoading from '../modal-loading/modal-loading.component';
 // import Button from '../button/button.component';
 

@@ -26,7 +26,7 @@ export default class MainPage extends Component {
 		const gnb = this.addChild(GNB);
 		const maintitle = this.addChild(Maintitle);
 		const startBtn = this.addChild(MainBtn);
-
+	
 		return (props) => {
 			if (props) this.setProps(props);
 

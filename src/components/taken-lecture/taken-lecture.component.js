@@ -4,12 +4,18 @@ import Button from '../button/button.component';
 import takenLectureImage from '../../../public/images/taken-lecture-image.png';
 import takenLectureImageMobile from '../../../public/images/taken-lecture-image-mobile.png';
 import { buttonTypes } from '../../helper/types';
+import { store } from '../../store/store';
 
 export default class TakenLecture extends Component {
 	template() {
 		const takenLectureButton = this.addChild(Button);
 		return (props) => {
 			if (props) this.setProps(props);
+
+			const moveResultOnClick = () => {
+				const { router } = store.getState();
+				router.navigate('/result');
+			};
 
 			return `
        <div class="taken-lecture">       
@@ -24,6 +30,7 @@ export default class TakenLecture extends Component {
 									type: buttonTypes.primary,
 									size: 'md',
 									key: 'taken-Lecture',
+									onClick: moveResultOnClick,
 								})}
             </div>
        </div>

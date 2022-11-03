@@ -91,6 +91,11 @@ export default class SigninForm extends Component {
 				type: inputTypes.password,
 			};
 
+			const go = () => {
+				const { router } = store.getState();
+				router.navigate('/mypage');
+			};
+
 			return `
         <div class="sign-in-form">		
         ${modalLoadingContainer.render(modalLoadingProps)}
@@ -107,7 +112,8 @@ export default class SigninForm extends Component {
 								type: buttonTypes.primary,
 								size: 'md',
 								key: 'sign-in',
-								onClick: this.submitData.bind(this),
+								//onClick: this.submitData.bind(this),
+								onClick:go,
 							})}
             </div>
 			<div class="sign-in-form__footer">

@@ -178,6 +178,12 @@ export default class SignupForm extends Component {
 				key: 'sign-up-englishLevel',
 			};
 
+			const gosignin = () => {
+				const { router } = store.getState();
+				router.navigate('/sign-in');
+				console.log("ghkrdls")
+			};
+
 			return `
         <div class="sign-up-form">		
         ${modalLoadingContainer.render(modalLoadingProps)}
@@ -205,7 +211,8 @@ export default class SignupForm extends Component {
 			type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
 			size: 'md',
 			key: 'modal-display',
-			onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
+			//onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
+			onClick:  gosignin ,
 		})} 
 				
             </div>

@@ -1,10 +1,11 @@
 import Component from '../../core/component';
-
+import Modal from '../modal/modal.component';
 import LectureTable from '../lecture-table/lecture-table.component';
 import CategoryInfo from '../category-info/category-info.component';
 import Button from '../button/button.component';
 import { buttonTypes } from '../../helper/types';
 import { store } from '../../store/store';
+import Custom from '../custom/custom.component';
 
 export default class TakenLectureList extends Component {
 	initState() {
@@ -13,7 +14,14 @@ export default class TakenLectureList extends Component {
 			isEditableMode: true,
 			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
+			isCustomModal: false,
 		};
+	}
+
+	customModal() {
+		this.setState({
+			isCustomModal: !this.state.isCustomModal,
+		});
 	}
 
 	fetchTakenLecture() {
@@ -53,17 +61,29 @@ export default class TakenLectureList extends Component {
 		const tableInfo = this.addChild(CategoryInfo);
 		const customButton = this.addChild(Button);
 		const uploadNavigationButton = this.addChild(Button);
+		const modalCustomContainer = this.addChild(Modal);
+		const custom = this.addChild(Custom);
 
 		return (props) => {
 			if (props) this.setProps(props);
 
 			const { takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures } = this.state;
+			
+			const modalCustomProps = {
+				isModalShow: this.state.isCustomModal,
+				toggleModal: this.customModal.bind(this),
+				contentComponent: custom,
+				width: 1220,
+				padding: 100,
+				key: 'custom',
+			};
 
 			const customButtonProps = {
 				content: '커스텀하기',
 				type: buttonTypes.grey,
 				size: 'xs',
 				key: 'custom-button',
+				onClick: this.customModal.bind(this),
 			};
 
 			const uploadButtonOnClick = () => {
@@ -90,6 +110,7 @@ export default class TakenLectureList extends Component {
 
 			return `
         <div class="taken-lecture-list">
+		${modalCustomContainer.render(modalCustomProps)}
           <div class="taken-lecture-list__header">
             ${tableInfo.render({
 							part: '내 기이수 과목',
