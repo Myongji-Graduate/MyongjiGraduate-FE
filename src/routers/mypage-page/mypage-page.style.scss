@@ -10,6 +10,9 @@
     position: relative;
     top: -3rem;
     width: 35.2708rem;
+    @include mobile {
+      width: 100%;
+    }
     align-items: center;
     // height: 50rem;
     z-index: 10;
@@ -20,10 +23,16 @@
 
   &__info-container {
     width: 22%;
+    @include mobile {
+      display: none;
+    }
     // background-color: red;
   }
   &__lecture-container {
     width: 78%;
+    @include mobile {
+      width: 100%;
+    }
     // background-color: black;
   }
 
@@ -44,5 +53,9 @@
     height: 20rem;
     display: flex;
     justify-content: center;
+  }
+
+  &__info-container {
+    height: 100%;
   }
 }

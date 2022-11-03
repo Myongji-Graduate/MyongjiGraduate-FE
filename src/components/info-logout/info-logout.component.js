@@ -16,7 +16,6 @@ export default class InfoLogout extends Component {
             <div class="info-logout__info"> 
             ${myInfo.render()} 
             </div>                 
-            <br/>
             <div class="info-logout__logout">
             ${logoutButton.render({
 							content: '로그아웃',

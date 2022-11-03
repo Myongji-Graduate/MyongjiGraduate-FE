@@ -11,7 +11,7 @@
         margin: 0 1rem;
     }
     &-text{
-        margin: 2rem 0;
+        margin: 1.1875rem 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -24,7 +24,7 @@
                 margin:.3rem 0 .5rem;
             }
             @include title4;
-            margin-bottom: 1rem;
+            margin-bottom: .75rem;
             display: flex;       
             &-suffix{
                 font-weight: 400 !important;
