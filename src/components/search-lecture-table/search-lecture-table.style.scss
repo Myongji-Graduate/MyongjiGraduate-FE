@@ -1,0 +1,20 @@
+.search-lecture-table {
+
+  margin-bottom: 2.0833rem;
+  &__spacer {
+    width: 0.4rem;
+  }
+
+  &__header-button-container {
+    display: flex;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__spacer {
+    height: .4167rem;
+  }
+}

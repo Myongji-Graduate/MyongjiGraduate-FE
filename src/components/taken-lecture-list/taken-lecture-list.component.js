@@ -1,6 +1,7 @@
 import Component from '../../core/component';
 import LectureTable from '../lecture-table/lecture-table.component';
 import TakenLectureListHeader from '../taken-lecture-list-header/taken-lecture-list-header.component';
+import SearchLectureTable from '../search-lecture-table/search-lecture-table.component';
 
 export default class TakenLectureList extends Component {
 	initState() {
@@ -63,6 +64,12 @@ export default class TakenLectureList extends Component {
 		});
 	}
 
+	addTakenLecture(lecture) {
+		this.setState({
+			addedTakenLecutures: [...this.state.addedTakenLecutures, lecture],
+		});
+	}
+
 	deleteAddedTakenLecture(lecture) {
 		const newAddedTakenLecutures = this.state.addedTakenLecutures.filter(
 			(addedTakenLecuture) => addedTakenLecuture !== lecture.id
@@ -76,6 +83,7 @@ export default class TakenLectureList extends Component {
 	template() {
 		const lectureTable = this.addChild(LectureTable);
 		const takenLectureListHeader = this.addChild(TakenLectureListHeader);
+		const searchLectureTable = this.addChild(SearchLectureTable);
 
 		return (props) => {
 			if (props) this.setProps(props);
@@ -99,8 +107,13 @@ export default class TakenLectureList extends Component {
 				submitEditedLecture: this.submitEditedLecture.bind(this),
 			};
 
+			const searchLectureTableProps = {
+				addedTakenLecuture: this.addTakenLecture.bind(this),
+			};
+
 			return `
       <div class="taken-lecture-list">
+			${isEditableMode ? searchLectureTable.render(searchLectureTableProps) : ``}
 			${takenLectureListHeader.render(takenLectureListHeaderProps)}
 			${lectureTable.render(lectureTableProps)}
         </div>
