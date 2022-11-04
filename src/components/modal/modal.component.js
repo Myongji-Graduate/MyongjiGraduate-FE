@@ -60,6 +60,7 @@ export default class Modal extends Component {
 			'click',
 			`.${this.createKeyClass()}`,
 			() => {
+				console.log('asdas');
 				if (toggleModal) toggleModal();
 			},
 			true

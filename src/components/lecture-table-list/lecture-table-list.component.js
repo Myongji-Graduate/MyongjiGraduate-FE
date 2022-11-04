@@ -17,7 +17,7 @@ export default class LectureTableList extends Component {
 		const { isEditableMode } = this.props;
 
 		if (isEditableMode === false) {
-			return this.getEditableTableList();
+			return this.getPlainTableList();
 		}
 		return this.getEditableTableList();
 	}

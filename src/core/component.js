@@ -59,6 +59,7 @@ export default class Component {
 
 	addEvent(eventType, selector, callback, strict = false) {
 		const $root = this.getRootNode();
+		if ($root === null) return;
 		const targetList = [...$root.parentNode.querySelectorAll(selector)];
 
 		const getTarget = (eventDom) => {

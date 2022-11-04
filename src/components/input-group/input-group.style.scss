@@ -21,7 +21,7 @@
     border-radius: 2.76752px;
   }
 
-  &__text::placeholder {
+  &__text::placeholder, &__password::placeholder {
     color: $color-grey-scale2;
     @include body1;
   }

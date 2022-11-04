@@ -1,27 +1,15 @@
 import Component from '../../core/component';
-import Modal from '../modal/modal.component';
 import LectureTable from '../lecture-table/lecture-table.component';
-import CategoryInfo from '../category-info/category-info.component';
-import Button from '../button/button.component';
-import { buttonTypes } from '../../helper/types';
-import { store } from '../../store/store';
-import Custom from '../custom/custom.component';
+import TakenLectureListHeader from '../taken-lecture-list-header/taken-lecture-list-header.component';
 
 export default class TakenLectureList extends Component {
 	initState() {
 		this.state = {
 			takenLectures: [],
-			isEditableMode: true,
+			isEditableMode: false,
 			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
-			isCustomModal: false,
 		};
-	}
-
-	customModal() {
-		this.setState({
-			isCustomModal: !this.state.isCustomModal,
-		});
 	}
 
 	fetchTakenLecture() {
@@ -36,6 +24,12 @@ export default class TakenLectureList extends Component {
 					});
 				});
 		}
+	}
+
+	toggleEditableMode() {
+		this.setState({
+			isEditableMode: !this.state.isEditableMode,
+		});
 	}
 
 	deleteTakenLecture(lecture) {
@@ -58,46 +52,12 @@ export default class TakenLectureList extends Component {
 		this.fetchTakenLecture();
 
 		const lectureTable = this.addChild(LectureTable);
-		const tableInfo = this.addChild(CategoryInfo);
-		const customButton = this.addChild(Button);
-		const uploadNavigationButton = this.addChild(Button);
-		const modalCustomContainer = this.addChild(Modal);
-		const custom = this.addChild(Custom);
+		const takenLectureListHeader = this.addChild(TakenLectureListHeader);
 
 		return (props) => {
 			if (props) this.setProps(props);
 
 			const { takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures } = this.state;
-			
-			const modalCustomProps = {
-				isModalShow: this.state.isCustomModal,
-				toggleModal: this.customModal.bind(this),
-				contentComponent: custom,
-				width: 1220,
-				padding: 100,
-				key: 'custom',
-			};
-
-			const customButtonProps = {
-				content: '커스텀하기',
-				type: buttonTypes.grey,
-				size: 'xs',
-				key: 'custom-button',
-				onClick: this.customModal.bind(this),
-			};
-
-			const uploadButtonOnClick = () => {
-				const { router } = store.getState();
-				router.navigate('/file-upload');
-			};
-
-			const uploadNavigationButtonProps = {
-				content: '업로드',
-				type: buttonTypes.grey,
-				size: 'xs',
-				key: 'upload-navigation-button',
-				onClick: uploadButtonOnClick,
-			};
 
 			const lectureTableProps = {
 				lectures: takenLectures,
@@ -108,20 +68,15 @@ export default class TakenLectureList extends Component {
 				deleteAddedTakenLecture: this.deleteAddedTakenLecture.bind(this),
 			};
 
+			const takenLectureListHeaderProps = {
+				isEditableMode,
+				toggleEditableMode: this.toggleEditableMode.bind(this),
+			};
+
 			return `
-        <div class="taken-lecture-list">
-		${modalCustomContainer.render(modalCustomProps)}
-          <div class="taken-lecture-list__header">
-            ${tableInfo.render({
-							part: '내 기이수 과목',
-						})}
-            <div class="taken-lecture-list__header-button-container">
-              ${customButton.render(customButtonProps)}
-              <div class="taken-lecture-list__divider"></div>
-              ${uploadNavigationButton.render(uploadNavigationButtonProps)}
-            </div>
-          </div>
-          ${lectureTable.render(lectureTableProps)}
+      <div class="taken-lecture-list">
+			${takenLectureListHeader.render(takenLectureListHeaderProps)}
+			${lectureTable.render(lectureTableProps)}
         </div>
       `;
 		};

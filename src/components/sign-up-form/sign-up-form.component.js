@@ -55,7 +55,6 @@ export default class SignupForm extends Component {
 		let resultPassword = true;
 		if (validateshortlength(password, 8) || validatelonglength(password, 20) || validatespecialSymbol(password))
 			resultPassword = false;
-		console.log(resultPassword);
 		this.setState({
 			isValidationOfPassword: resultPassword,
 		});
@@ -104,7 +103,6 @@ export default class SignupForm extends Component {
 
 		return (props) => {
 			if (props) this.setProps(props);
-			console.log(this);
 
 			const { isLoadingModalShow } = store.getState();
 			const modalLoadingProps = {
@@ -181,7 +179,6 @@ export default class SignupForm extends Component {
 			const gosignin = () => {
 				const { router } = store.getState();
 				router.navigate('/sign-in');
-				console.log("ghkrdls")
 			};
 
 			return `
@@ -211,8 +208,8 @@ export default class SignupForm extends Component {
 			type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
 			size: 'md',
 			key: 'modal-display',
-			//onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
-			onClick:  gosignin ,
+			// onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
+			onClick: gosignin,
 		})} 
 				
             </div>
