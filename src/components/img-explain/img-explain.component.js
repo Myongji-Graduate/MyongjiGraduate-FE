@@ -16,7 +16,7 @@ export default class ImgExplain extends Component {
 			const { img, title, explain } = this.props;
 			return `
        <div class="img-explain">
-			<div class="img-explain__img"><img src=${img}/></div>
+			<div ><img src=${img} class="img-explain__img"/></div>
             <div class="img-explain__title">${title}</div>
 			<div class="img-explain__explain">${explain}</div>           
        </div>

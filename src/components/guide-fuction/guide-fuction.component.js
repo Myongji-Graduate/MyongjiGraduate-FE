@@ -41,7 +41,7 @@ export default class GuideFuction extends Component {
 						<div class="guide-fuction__content-item">${imgExplain.render({
 							img: sign,
 							title: 'first',
-							explain: '졸업을 위해 요구되는 학과별 전공 학점 및 과목 리스트',
+							explain: '강의 커스텀을 통한 졸업 사정 예측',
 						})}</div>			
 						<div class="guide-fuction__content-item">${imgExplain.render({
 							img: sign,
@@ -51,7 +51,7 @@ export default class GuideFuction extends Component {
 						<div class="guide-fuction__content-item">${imgExplain.render({
 							img: sign,
 							title: 'third',
-							explain: '카테고리별(교양 / 전공 ) 기이수/미이수 과목 정보 조회',
+							explain: '카테고리별(교양 / 전공 ) 미이수 과목 정보 및 잔여 학점 조회',
 						})}	</div>		
 				  </div>
 				  ${this.state.isView ? tutorial.render() : `<div></div>`}
