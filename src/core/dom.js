@@ -20,6 +20,13 @@ export function enrollEvent(component) {
 	});
 }
 
+export function Mount(component) {
+	component.componentDidMount();
+	component.children.forEach((child) => {
+		Mount(child);
+	});
+}
+
 export function clearEvent(component) {
 	component.clearEvent();
 	component.children.forEach((child) => {
@@ -36,6 +43,7 @@ export function createDom(parentNode, component, lastComponent) {
 	if (lastComponent) clearEvent(lastComponent);
 	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 	enrollEvent(component);
+	Mount(component);
 }
 
 export function updateDom(component) {

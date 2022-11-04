@@ -16,7 +16,6 @@ export default class Component {
 		this.initState();
 		this.setDefaultProps();
 		this.template = this.template();
-		this.componentDidMount();
 	}
 
 	initState() {
