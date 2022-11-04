@@ -25,7 +25,7 @@ export default class InputGroup extends Component {
 
 			return `
         <div class="input-group__${key} input-group--${name} input-group">
-          <labal class="input-group__label" for=${name}>${name}</label>
+          ${name && `<labal class="input-group__label" for=${name}>${name}</label>`}
           ${this.getInputByType(type)}
 					<div class="input-group__error-message">
 					${this.checkIsShowErrorMessage() ? errorMessage : ''}

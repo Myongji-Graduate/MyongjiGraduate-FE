@@ -112,8 +112,8 @@ export default class SigninForm extends Component {
 								type: buttonTypes.primary,
 								size: 'md',
 								key: 'sign-in',
-								//onClick: this.submitData.bind(this),
-								onClick:go,
+								// onClick: this.submitData.bind(this),
+								onClick: go,
 							})}
             </div>
 			<div class="sign-in-form__footer">

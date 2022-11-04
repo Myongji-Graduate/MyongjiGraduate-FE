@@ -210,6 +210,7 @@ export default class SignupForm extends Component {
 			key: 'modal-display',
 			// onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
 			onClick: gosignin,
+			disabled: !this.validationTotal(),
 		})} 
 				
             </div>
