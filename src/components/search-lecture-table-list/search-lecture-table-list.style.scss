@@ -1,0 +1,42 @@
+.search-lecture-table-list {
+  border : 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  height: 3.625rem;
+
+  &__background-container, &__loading-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__background-icon {
+    width: 1.3958rem;
+    height: 1.3958rem;
+  }
+
+  &__background-text {
+    @include subhead3;
+    color: $color-grey-scale4;
+  }
+
+  &__tr{                     
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);          
+    &__column{              
+        margin: 0.44rem 0;
+        width:33%;
+    
+    }
+    &__button {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+    }
+}
+&__tr:last-child{border-bottom:0px}  
+}
