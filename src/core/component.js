@@ -16,11 +16,14 @@ export default class Component {
 		this.initState();
 		this.setDefaultProps();
 		this.template = this.template();
+		this.componentDidMount();
 	}
 
 	initState() {
 		this.state = {};
 	}
+
+	componentDidMount() {}
 
 	addChild(C, ...args) {
 		const component = new C(...args);
