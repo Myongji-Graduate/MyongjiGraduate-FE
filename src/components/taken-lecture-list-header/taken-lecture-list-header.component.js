@@ -42,7 +42,7 @@ export default class TakenLectureListHeader extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { isEditableMode, toggleEditableMode } = this.props;
+			const { isEditableMode, toggleEditableMode, clearEditedLecture, submitEditedLecture } = this.props;
 
 			const modalContentClickHandler = () => {
 				toggleEditableMode();
@@ -79,7 +79,7 @@ export default class TakenLectureListHeader extends Component {
 				type: buttonTypes.grey,
 				size: 'xs',
 				key: 'clear-lecture-button',
-				onClick: this.customModal.bind(this),
+				onClick: clearEditedLecture,
 			};
 
 			const saveEditedLectureButtonProps = {
@@ -87,7 +87,7 @@ export default class TakenLectureListHeader extends Component {
 				type: buttonTypes.primary,
 				size: 'xs',
 				key: 'save-lecture-button',
-				onClick: this.customModal.bind(this),
+				onClick: submitEditedLecture,
 			};
 
 			const uploadNavigationButtonProps = {

@@ -1,5 +1,6 @@
 import Component from '../../core/component';
 import { lectureTableItemTypes } from '../../helper/types';
+import Loading from '../loading/loading.component';
 
 export default class LectureTableList extends Component {
 	setDefaultProps() {

@@ -9,10 +9,14 @@ export default class TakenLectureList extends Component {
 			isEditableMode: false,
 			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
+			isLoading: false,
 		};
 	}
 
 	fetchTakenLecture() {
+		this.setState({
+			isLoading: true,
+		});
 		if (typeof window !== 'undefined') {
 			fetch('/api/takenLectures')
 				.then((response) => {
@@ -21,15 +25,36 @@ export default class TakenLectureList extends Component {
 				.then((result) => {
 					this.setState({
 						takenLectures: result.takenLectures,
+						isLoading: false,
 					});
 				});
 		}
+	}
+
+	componentDidMount() {
+		this.fetchTakenLecture();
 	}
 
 	toggleEditableMode() {
 		this.setState({
 			isEditableMode: !this.state.isEditableMode,
 		});
+	}
+
+	clearEditedLecture() {
+		this.setState({
+			isEditableMode: false,
+			addedTakenLecuture: [],
+			deletedTakenLecutures: [],
+		});
+	}
+
+	submitEditedLecture() {
+		const { deletedTakenLecutures, addedTakenLecutures } = this.state;
+		const formData = {};
+		formData.deletedTakenLecutures = deletedTakenLecutures.map((deletedTakenLecuture) => deletedTakenLecuture.id);
+		formData.addedTakenLecutures = addedTakenLecutures.map((addedTakenLecuture) => addedTakenLecuture.id);
+		this.clearEditedLecture();
 	}
 
 	deleteTakenLecture(lecture) {
@@ -49,15 +74,13 @@ export default class TakenLectureList extends Component {
 	}
 
 	template() {
-		this.fetchTakenLecture();
-
 		const lectureTable = this.addChild(LectureTable);
 		const takenLectureListHeader = this.addChild(TakenLectureListHeader);
 
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures } = this.state;
+			const { takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures, isLoading } = this.state;
 
 			const lectureTableProps = {
 				lectures: takenLectures,
@@ -66,11 +89,14 @@ export default class TakenLectureList extends Component {
 				deletedTakenLecutures,
 				deleteTakenLecture: this.deleteTakenLecture.bind(this),
 				deleteAddedTakenLecture: this.deleteAddedTakenLecture.bind(this),
+				isLoading,
 			};
 
 			const takenLectureListHeaderProps = {
 				isEditableMode,
 				toggleEditableMode: this.toggleEditableMode.bind(this),
+				clearEditedLecture: this.clearEditedLecture.bind(this),
+				submitEditedLecture: this.submitEditedLecture.bind(this),
 			};
 
 			return `

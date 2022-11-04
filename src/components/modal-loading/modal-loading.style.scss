@@ -4,12 +4,6 @@
   align-items: center;
   flex-direction: column;
 
-  &__loading-img {
-    width: 2.1rem;
-    animation: rotate_image 6s linear infinite;
-    transform-origin: 50% 50%;
-  }
-
   &__content {
     @include subhead4;
     margin-top: 0.7rem;
