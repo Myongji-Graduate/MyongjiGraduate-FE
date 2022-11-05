@@ -5,9 +5,14 @@
     }
     &__context{
         max-width: 22.5rem;
-        height: 9.125rem;
         border : 1px solid $color-grey-scale2;
         border-radius: .3333rem;
-        margin: 0.8rem;       
+        margin: 0.8rem;
+        text-align: left;
+        @include body1;
+        padding: 0.5rem;
+        & > ol {
+            padding-left: 0.5rem;
+        }
     }  
 }

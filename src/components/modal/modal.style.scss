@@ -9,7 +9,7 @@
     display: block;   
     &__body{     
         @include mobile{ 
-           padding: 0 !important;
+           padding: 1.5rem 0 !important;
         }
         position: absolute;
         box-sizing: border-box;
