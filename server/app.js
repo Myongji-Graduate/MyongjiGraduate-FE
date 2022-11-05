@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import compression from 'compression';
 
 import apiRouter from './router/api';
 import ssrRouter from './router/ssr';
@@ -7,6 +8,7 @@ import ssrRouter from './router/ssr';
 const __dirname = path.resolve();
 
 const app = express();
+app.use(compression());
 
 if (process.env.NODE_ENV !== 'production') {
 	const webpack = require('webpack');
