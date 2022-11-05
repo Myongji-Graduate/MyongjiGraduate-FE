@@ -1,11 +1,16 @@
 @font-face {
   font-family: vitro;
-  src: url("../public/fonts/vitro-core.ttf") format("truetype");
+  src: 
+        url("../public/fonts/vitro-core.woff2") format("woff2"),
+        url("../public/fonts/vitro-core.woff") format("woff"),
+        url("../public/fonts/vitro-core.ttf") format("truetype");
 }
 @font-face {
   font-family: pretendard;
-  font-weight: 45 920;
-  src: url("../public/fonts/PretendardVariable.ttf") format("truetype");
+  src: 
+        url("../public/fonts/PretendardVariable.woff2") format("woff2"),
+        url("../public/fonts/PretendardVariable.woff") format("woff"),
+        url("../public/fonts/PretendardVariable.ttf") format("truetype");
 }
 
 html {
