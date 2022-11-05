@@ -18,18 +18,16 @@ export default class FileUploadContent extends Component {
 
 			return `
         <div class="file-upload-content">
-          <div class="file-upload-content__header">
-              <div class="file-upload-content__header__title">
-              기이수 성적 업로드
-              </div>
-              <div class="file-upload-content__header__more">
-              자세히 확인하기
-              </div>
+          <div class="file-upload-content__header">             
+              기이수 성적 업로드             
           </div>
           <div class="file-upload-content__divider"></div>
           <div class="file-upload-content__body">
             <div class="file-upload-content__guide-container">
               ${guide.render()}
+            </div>
+            <div class="file-upload-content__more">
+            자세히 확인하기
             </div>
             <div class="file-upload-content__file-upload-box-container">
               ${fileUploadBox.render({ ...this.props })}
@@ -50,7 +48,7 @@ export default class FileUploadContent extends Component {
 	}
 
   setEvent() {
-    this.addEvent('click', '.file-upload-content__header__more', () => {
+    this.addEvent('click', '.file-upload-content__more', () => {
 			const { router } = store.getState();
 			router.navigate('/tutorial');
 		});

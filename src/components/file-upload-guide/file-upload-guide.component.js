@@ -6,7 +6,7 @@ export default class FileUploadGuide extends Component {
 			return `
         <div class="file-upload-guide">
           <div class="file-upload-guide--1">
-           1. <a class="file-upload-guide--1__link" href="https://sso1.mju.ac.kr/login.do?redirect_uri=https://portal.mju.ac.kr/proc/Login.eps">
+           1. <a class="file-upload-guide--1__link"  target='_blank' href="https://sso1.mju.ac.kr/login.do?redirect_uri=https://portal.mju.ac.kr/proc/Login.eps">
            명지대학교 마이아이웹</a>에 접속 후 로그인         
           </div>
           <div class="file-upload-guide--2">2. 학생정보시스템(MSI) 클릭</div>
