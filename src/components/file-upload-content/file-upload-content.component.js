@@ -3,7 +3,9 @@ import Component from '../../core/component';
 import FileUploadGuide from '../file-upload-guide/file-upload-guide.component';
 import FileUploadBox from '../file-upload-box/file-upload-box.component';
 import Button from '../button/button.component';
+
 import { buttonTypes } from '../../helper/types';
+import { store } from '../../store/store';
 
 export default class FileUploadContent extends Component {
 	template() {
@@ -17,7 +19,12 @@ export default class FileUploadContent extends Component {
 			return `
         <div class="file-upload-content">
           <div class="file-upload-content__header">
-            기이수 성적 업로드
+              <div class="file-upload-content__header__title">
+              기이수 성적 업로드
+              </div>
+              <div class="file-upload-content__header__more">
+              자세히 확인하기
+              </div>
           </div>
           <div class="file-upload-content__divider"></div>
           <div class="file-upload-content__body">
@@ -40,5 +47,12 @@ export default class FileUploadContent extends Component {
         </div>
       `;
 		};
+	}
+
+  setEvent() {
+    this.addEvent('click', '.file-upload-content__header__more', () => {
+			const { router } = store.getState();
+			router.navigate('/tutorial');
+		});
 	}
 }

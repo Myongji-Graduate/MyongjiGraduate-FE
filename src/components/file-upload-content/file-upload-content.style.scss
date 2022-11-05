@@ -3,15 +3,22 @@
   @include mobile{ 
     padding: 2rem !important;  
  }
-  &__header {
-    text-align: center;
-    @include title
+  &__header__title {    
+      text-align: center;
+      @include title;
+  }
+  &__header__more{
+    margin-top: 0.3rem;
+    @include body2;
+    display: flex;
+    justify-content: end;
+    color: $color-grey-scale4;  
   }
 
   &__divider {
+    margin-top: 0.2rem;
     height: 0.06rem;
-    background-color: #E5E5E5;
-    margin-top: 0.5rem;
+    background-color: #E5E5E5;    
     margin-bottom: 0.8rem;
   }
 
