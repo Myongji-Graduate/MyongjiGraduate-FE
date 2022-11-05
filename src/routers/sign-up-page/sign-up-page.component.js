@@ -2,7 +2,7 @@ import Component from '../../core/component';
 
 import Header from '../../components/header/header.component';
 
-import signImage from '../../../public/images/sign.png';
+import signImage from '../../../public/images/mju-maru.jpg';
 import SignupForm from '../../components/sign-up-form/sign-up-form.component';
 
 export default class SignUpPage extends Component {
@@ -20,7 +20,9 @@ export default class SignUpPage extends Component {
           </div>
           <div class="sign-up-page__body">
             <div class="sign-up-page__content">
-            <img src=${signImage} class="sign-up-page__body__img" />
+            <div class="sign-up-page__body__img-container">
+              <img src=${signImage} class="sign-up-page__body__img" />
+            </div>
             <div class="sign-up-page__body__content">           
               ${signupForm.render()}
             </div>

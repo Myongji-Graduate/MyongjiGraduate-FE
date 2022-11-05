@@ -3,7 +3,7 @@ import Component from '../../core/component';
 import SigninForm from '../../components/sign-in-form/sign-in-form.component';
 import Header from '../../components/header/header.component';
 
-import signImage from '../../../public/images/sign.png';
+import signImage from '../../../public/images/mju-maru.jpg';
 
 export default class SignInPage extends Component {
 	template() {
@@ -20,7 +20,9 @@ export default class SignInPage extends Component {
           </div>
           <div class="sign-in-page__body">
             <div class="sign-in-page__content">
-            <img src=${signImage} class="sign-in-page__body__img" />
+            <div class="sign-in-page__body__img-container">
+              <img src=${signImage} class="sign-in-page__body__img" />
+            </div>
             <div class="sign-in-page__body__content">           
               ${signinForm.render()}
             </div>

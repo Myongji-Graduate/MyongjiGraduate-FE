@@ -4,11 +4,15 @@
     display: flex;
     justify-content: center;
 
-     &__img{
+     &__img-container{
       width: 11.25rem;
       @include mobile {
         display: none;
       }
+     }
+
+     &__img {
+      width: inherit;
      }
     &__content {
       padding: 1rem;

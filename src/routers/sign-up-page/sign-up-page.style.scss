@@ -5,12 +5,20 @@
     display: flex;
     justify-content: center;
 
-     &__img{
+     &__img-container{
       width: 11.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       @include mobile {
         display: none;
       }
      }
+
+     &__img {
+      width: inherit;
+     }
+
     &__content {        
       padding: 1rem;
       width: 100%;
