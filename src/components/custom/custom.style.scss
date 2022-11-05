@@ -1,0 +1,29 @@
+.custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title {
+    @include title5;
+  }
+
+  &__divider {
+    width: 100%;
+    height: 0.06rem;
+    background-color: #E5E5E5;
+    
+  }
+
+  &__text {
+    text-align: center; 
+    @include body3;
+  }
+
+  &__subtitle {
+    @include subhead4;
+  }
+
+  &__spacer {
+    width: 100%;
+    height: 0.5rem;
+  }
+}

@@ -63,6 +63,13 @@ html {
   font-size:  0.67rem;
   line-height: 0.8rem;
 }
+
+@mixin title5 {
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 0.9rem;
+}
+
 @mixin subhead1 {
   font-weight: 500;
   font-size: 0.75rem;
@@ -115,4 +122,10 @@ html {
   font-weight: 400;
   font-size: .4167rem;
   line-height: .5rem;
+}
+
+@mixin body3 {
+  font-weight: 400;
+  font-size: 0.5rem;
+  line-height: 0.5rem;
 }
