@@ -13,3 +13,10 @@ export async function handleErrorResponse(response) {
 	const error = await response.json();
 	showErrorModal(error);
 }
+
+export async function handleErrorObject(error) {
+	showErrorModal({
+		code: error.code,
+		message: error.message,
+	});
+}
