@@ -9,7 +9,6 @@ import MypagePage from './mypage-page/mypage-page.component';
 import App from '../app';
 import BrowserRouter from '../core/browser-router';
 import ServerRouter from '../core/server-router';
-import { checkIsSignIn } from '../helper/auth';
 
 export const routerObjects = [
 	{

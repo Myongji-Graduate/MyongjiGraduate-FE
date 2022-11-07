@@ -9,6 +9,7 @@ export function signOut() {
 }
 
 export function checkIsSignIn() {
+	if (typeof window === 'undefined') return false;
 	const isLogin = sessionStorage.getItem('isLogin');
 	if (isLogin === null || isLogin === false) return false;
 	return true;

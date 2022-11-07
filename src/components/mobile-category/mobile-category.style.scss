@@ -24,7 +24,10 @@
             background: #F3F3F3;
             border: 0.15rem solid rgba(0, 0, 0, 0.05);
         }
-        &-sign{            
+        &-menu{
+           
+        }
+        &-signin,  &-signout{            
             width:3rem;
             color: $color-grey-scale4;  
             @include title4;         
@@ -32,7 +35,6 @@
             bottom: 3rem;
             font-weight: 500 !important;
             margin: 0 calc((100% - 3rem) / 2);
-            
         }
     } 
 }
