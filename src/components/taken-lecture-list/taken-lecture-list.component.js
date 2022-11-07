@@ -2,6 +2,8 @@ import Component from '../../core/component';
 import LectureTable from '../lecture-table/lecture-table.component';
 import TakenLectureListHeader from '../taken-lecture-list-header/taken-lecture-list-header.component';
 import SearchLectureTable from '../search-lecture-table/search-lecture-table.component';
+import { createAction, store } from '../../store/store';
+import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
 
 export default class TakenLectureList extends Component {
 	initState() {
@@ -65,15 +67,44 @@ export default class TakenLectureList extends Component {
 	}
 
 	addTakenLecture(lecture) {
+		const { addedTakenLecutures, takenLectures } = this.state;
+
+		if (this.containLecture(addedTakenLecutures, lecture)) {
+			store.dispatch(
+				createAction(ERROR_ACTION_TYPES.SHOW_ERROR, {
+					error: ERROR_TYPES.ALREADY_ADD_LECTURE,
+				})
+			);
+			return;
+		}
+
+		if (this.containLecture(takenLectures, lecture)) {
+			store.dispatch(
+				createAction(ERROR_ACTION_TYPES.SHOW_ERROR, {
+					error: ERROR_TYPES.ALREADY_ADD_TAKEN,
+				})
+			);
+			return;
+		}
+
 		this.setState({
 			addedTakenLecutures: [...this.state.addedTakenLecutures, lecture],
 		});
 	}
 
+	containLecture(lectures, lecture) {
+		return (
+			lectures.filter((lec) => {
+				return lec.id === lecture.id;
+			}).length > 0
+		);
+	}
+
 	deleteAddedTakenLecture(lecture) {
 		const newAddedTakenLecutures = this.state.addedTakenLecutures.filter(
-			(addedTakenLecuture) => addedTakenLecuture !== lecture.id
+			(addedTakenLecuture) => addedTakenLecuture.id !== lecture.id
 		);
+		console.log(newAddedTakenLecutures);
 
 		this.setState({
 			addedTakenLecutures: newAddedTakenLecutures,
@@ -108,7 +139,7 @@ export default class TakenLectureList extends Component {
 			};
 
 			const searchLectureTableProps = {
-				addedTakenLecuture: this.addTakenLecture.bind(this),
+				addTakenLecture: this.addTakenLecture.bind(this),
 			};
 
 			return `

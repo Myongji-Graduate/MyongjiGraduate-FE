@@ -8,6 +8,7 @@ export default class SearchLectureTableList extends Component {
 		this.props = {
 			isLoading: false,
 			searchedLectures: [],
+			addTakenLecture: () => {},
 		};
 	}
 
@@ -15,7 +16,7 @@ export default class SearchLectureTableList extends Component {
 		const { searchedLectures } = this.props;
 
 		if (searchedLectures.length === 0) return this.getDefaultContent();
-		return this.getEditableList(searchedLectures);
+		return this.getEditableList(searchedLectures).join('');
 	}
 
 	getLoadingContent(loadingComponent) {
@@ -33,10 +34,10 @@ export default class SearchLectureTableList extends Component {
 	getEditableTableItemTemplate(lecture) {
 		return `
       <div class="search-lecture-table-list__tr--${lecture.id} search-lecture-table-list__tr">
-        <div class="search-lecture-table-list__tr__column">${lecture.code}</div>
+        <div class="search-lecture-table-list__tr__column">11</div>
         <div class="search-lecture-table-list__tr__column">${lecture.name}</div>
         <div class="search-lecture-table-list__tr__column">${lecture.credit}</div>
-        <div class="search-lecture-table-list__tr__button--${lecture.id} search-lecture-table-list__button">추가</div>
+        <div class="search-lecture-table-list__tr__button--${lecture.id} search-lecture-table-list__tr__button">추가</div>
       </div>`;
 	}
 
@@ -60,5 +61,16 @@ export default class SearchLectureTableList extends Component {
        </div>
       `;
 		};
+	}
+
+	setEvent() {
+		const { searchedLectures, addTakenLecture } = this.props;
+
+		searchedLectures.forEach((lecture) => {
+			this.addEvent('click', `.search-lecture-table-list__tr__button--${lecture.id}`, () => {
+				console.log('adada');
+				addTakenLecture(lecture);
+			});
+		});
 	}
 }

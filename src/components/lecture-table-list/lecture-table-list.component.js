@@ -39,8 +39,8 @@ export default class LectureTableList extends Component {
 
 	getEditableTableList() {
 		return `
-			${this.getAddedTakenLectureList()}
-			${this.getTakenLecutureList()}
+			${this.getAddedTakenLectureList().join('')}
+			${this.getTakenLecutureList().join('')}
 		`;
 	}
 

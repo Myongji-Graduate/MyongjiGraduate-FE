@@ -3,6 +3,10 @@ import { buttonTypes, searchLectureOptionTypes } from '../../helper/types';
 import Button from '../button/button.component';
 import SearchLectureBar from '../search-lecture-bar/search-lecture-bar.component';
 import SearchLectureTableList from '../search-lecture-table-list/search-lecture-table-list.component';
+import { createAction, store } from '../../store/store';
+import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
+import { fetchGetSearchedLecture } from '../../async/lecture';
+import { handleErrorObject, showErrorModal } from '../../helper/errorHandler';
 
 export default class SearchLectureTable extends Component {
 	initState() {
@@ -35,8 +39,44 @@ export default class SearchLectureTable extends Component {
 		});
 	}
 
-	fetchSearchedLecture() {
+	async fetchSearchedLecture() {
 		// todo
+		const { searchText, option } = this.state;
+
+		if (option === searchLectureOptionTypes.name && this.validateSearchTextLength() === false) {
+			store.dispatch(
+				createAction(ERROR_ACTION_TYPES.SHOW_ERROR, {
+					error: ERROR_TYPES.SEARCH_TEXT_LENGTH,
+				})
+			);
+		}
+
+		const formData = {
+			keyword: searchText,
+			qtype: searchLectureOptionTypes.code === option ? 'code' : 'name',
+		};
+
+		this.setState({
+			isLoading: true,
+		});
+
+		try {
+			const result = await fetchGetSearchedLecture(formData);
+			this.setState({
+				searchedLectures: result.searchedLectures,
+			});
+		} catch (error) {
+			handleErrorObject(error);
+		}
+		this.setState({
+			isLoading: false,
+		});
+	}
+
+	validateSearchTextLength() {
+		const { searchText } = this.state;
+		if (searchText.length < 2) return false;
+		return true;
 	}
 
 	template() {
@@ -49,6 +89,7 @@ export default class SearchLectureTable extends Component {
 			if (props) this.setProps(props);
 
 			const { searchText, option, isLoading, searchedLectures } = this.state;
+			const { addTakenLecture } = this.props;
 
 			const searchLectureBarProps = {
 				onChange: this.changeSearchText.bind(this),
@@ -74,6 +115,7 @@ export default class SearchLectureTable extends Component {
 			const searchLectureTableListProps = {
 				isLoading,
 				searchedLectures,
+				addTakenLecture,
 			};
 
 			return `
