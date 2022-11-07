@@ -19,9 +19,6 @@
         text-align: center;
         width: 100%;
         @include subhead6;
-        @include mobile {
-            @include subhead7;
-        }
     }
 
     &__total-credit-text-point {
