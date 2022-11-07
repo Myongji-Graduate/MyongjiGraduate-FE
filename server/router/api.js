@@ -3,6 +3,7 @@ import multer from 'multer';
 import FormData from 'form-data';
 import fs from 'fs';
 import axios from 'axios';
+import { objectToQueryString } from '../../src/helper/utils';
 
 const router = express.Router();
 
@@ -99,6 +100,23 @@ router.get('/takenLectures', async function (req, res) {
 			'https://b0182694-3460-46e7-97ce-3aceba5200ad.mock.pstmn.io/users/%7Bid%7D/taken-lectures?id'
 		);
 		res.json(result.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/search-lecture', async function (req, res) {
+	try {
+		const accessToken = req.cookies.authorization;
+		const response = await axios.get(`${ROOT_URL}/lectures`, {
+			headers: {
+				Authorization: accessToken,
+			},
+			params: req.query,
+		});
+		res.status(200).json({
+			searchedLectures: response.data,
+		});
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
