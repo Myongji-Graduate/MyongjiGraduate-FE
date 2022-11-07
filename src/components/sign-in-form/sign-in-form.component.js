@@ -1,7 +1,6 @@
 import Component from '../../core/component';
 
 import { store } from '../../store/store';
-import { fetchSignIn } from '../../store/async-action';
 
 import modalHeader from '../modal-header/modal-header.component';
 import InputGroup from '../input-group/input-group.component';
@@ -11,6 +10,8 @@ import Button from '../button/button.component';
 import ModalAgreement from '../modal-agreement/modal-agreement.component';
 
 import { buttonTypes, inputTypes } from '../../helper/types';
+import { fetchSignIn } from '../../async/auth';
+import { signIn } from '../../helper/auth';
 
 export default class SigninForm extends Component {
 	initState() {
@@ -18,16 +19,27 @@ export default class SigninForm extends Component {
 			id: '',
 			password: '',
 			isAgreementModal: false,
+			isLoading: false,
 		};
 	}
 
-	submitData() {
-		store.dispatch(
-			fetchSignIn({
-				id: this.state.id,
-				password: this.state.password,
-			})
-		);
+	async submitData() {
+		this.setState({
+			isLoading: true,
+		});
+		const result = await fetchSignIn({
+			id: 'testtest',
+			password: '12345678!',
+		});
+		this.setState({
+			isLoading: false,
+		});
+
+		if (result) {
+			signIn();
+			const { router } = store.getState();
+			router.navigate('/mypage');
+		}
 	}
 
 	agreementModal() {
@@ -51,14 +63,14 @@ export default class SigninForm extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { isLoadingModalShow } = store.getState();
+			const { isLoading } = this.state;
 
 			const modalLoadingProps = {
-				isModalShow: isLoadingModalShow,
+				isModalShow: isLoading,
 				contentComponent: modalLoading,
 				width: 790,
 				padding: 200,
-				key: 'loading',
+				key: 'sign-in-loading',
 			};
 
 			const modalAggrementProps = {
@@ -112,8 +124,7 @@ export default class SigninForm extends Component {
 								type: buttonTypes.primary,
 								size: 'md',
 								key: 'sign-in',
-								// onClick: this.submitData.bind(this),
-								onClick: go,
+								onClick: this.submitData.bind(this),
 							})}
             </div>
 			<div class="sign-in-form__footer">

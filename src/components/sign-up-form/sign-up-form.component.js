@@ -1,7 +1,6 @@
 import Component from '../../core/component';
 
 import { store } from '../../store/store';
-import { fetchResult } from '../../store/async-action';
 
 import modalHeader from '../modal-header/modal-header.component';
 import InputGroup from '../input-group/input-group.component';
@@ -84,7 +83,7 @@ export default class SignupForm extends Component {
 		formData.append('reconfirm', this.state.reconfirm);
 		formData.append('studentId', this.state.studentId);
 		formData.append('eglishLevel', this.state.eglishLevel);
-		store.dispatch(fetchResult(formData));
+		// store.dispatch(fetchResult(formData));
 		// store.dispatch(fetchMockApi());
 	}
 
@@ -110,7 +109,7 @@ export default class SignupForm extends Component {
 				contentComponent: modalLoading,
 				width: 790,
 				padding: 200,
-				key: 'loading',
+				key: 'sign-up-loading',
 			};
 
 			const idInputProps = {

@@ -4,32 +4,32 @@ import { parseGraduationResult } from '../helper/parse';
 
 const ROOT_URL = 'https://1db2775e-5c12-4472-ba45-a118a0c06ef5.mock.pstmn.io/test'; // eslint-disable-line no-unused-vars
 
-export const fetchResult = (formData) => (dispatch, getState) => {
-	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
-	return fetch('/api/result', {
-		method: 'POST',
-		body: formData,
-	})
-		.then((response) => {
-			return response.json();
-		})
-		.then((result) => {
-			if (result.code) {
-				dispatch(
-					createAction(RESULT_ACTION_TYPES.FETCH_RESULT_FAILED, {
-						error: result,
-					})
-				);
-			} else {
-				const { router } = getState();
-				const payload = parseGraduationResult(result);
-				dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
-				router.navigate('/result');
-			}
-		});
-};
+// export const fetchResult = (formData) => (dispatch, getState) => {
+// 	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
+	// return fetch('/api/result', {
+	// 	method: 'POST',
+	// 	body: formData,
+	// })
+// 		.then((response) => {
+// 			return response.json();
+// 		})
+// 		.then((result) => {
+// 			if (result.code) {
+// 				dispatch(
+// 					createAction(RESULT_ACTION_TYPES.FETCH_RESULT_FAILED, {
+// 						error: result,
+// 					})
+// 				);
+// 			} else {
+// 				const { router } = getState();
+// 				const payload = parseGraduationResult(result);
+// 				dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS, payload));
+// 				router.navigate('/result');
+// 			}
+// 		});
+// };
 
-export const fetchSignIn = (formData) => (dispatch, getState) => {
+export const fetchSign = (formData) => (dispatch, getState) => {
 	dispatch(createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START));
 	return fetch('/api/signin', {
 		method: 'POST',
