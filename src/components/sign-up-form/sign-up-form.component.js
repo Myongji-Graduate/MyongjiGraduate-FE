@@ -6,6 +6,7 @@ import modalHeader from '../modal-header/modal-header.component';
 import InputGroup from '../input-group/input-group.component';
 import Modal from '../modal/modal.component';
 import ModalLoading from '../modal-loading/modal-loading.component';
+import { fetchSignUp } from '../../async/auth';
 import Button from '../button/button.component';
 
 import { buttonTypes, inputTypes } from '../../helper/types';
@@ -34,6 +35,8 @@ export default class SignupForm extends Component {
 		};
 	}
 
+
+	
 	validationTotal() {
 		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId } = this.state;
 		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId) {
@@ -75,17 +78,20 @@ export default class SignupForm extends Component {
 		});
 	}
 
-	submitData() {
-		const formData = new FormData();
+	async submitData() {
+		const result = await fetchSignUp({
+			id: this.state.id,
+			password: this.state.password,
+			studentId: this.state.studentId,
+			englishLevel:this.state.eglishLevel,
+		});
 
-		formData.append('id', this.state.id);
-		formData.append('password', this.state.password);
-		formData.append('reconfirm', this.state.reconfirm);
-		formData.append('studentId', this.state.studentId);
-		formData.append('eglishLevel', this.state.eglishLevel);
-		// store.dispatch(fetchResult(formData));
-		// store.dispatch(fetchMockApi());
+		if (result) {
+			const { router } = store.getState();
+			router.navigate('/sign-in');
+		}
 	}
+
 
 	template() {
 		const header = this.addChild(modalHeader);
@@ -152,14 +158,14 @@ export default class SignupForm extends Component {
 			};
 			const studentIdInputProps = {
 				name: '학번',
-				placeholder: '',
+				placeholder: 'ex)60xxxxxx',
 				value: this.state.studentId,
 				onChange: (newValue) => {
 					this.setState({ studentId: newValue });
 				},
 				isValidation: this.state.isValidationOfStudentId,
 				validationCallback: this.validationCallbackOfStudentId.bind(this),
-				errorMessage: '학번 양식(ex)60200000)을 따라야합니다.',
+				errorMessage: '학번 양식(ex)60xxxxxx)을 따라야합니다.',
 				key: 'sign-up-studentId',
 			};
 			const englishLevelInputProps = {
@@ -175,10 +181,10 @@ export default class SignupForm extends Component {
 				key: 'sign-up-englishLevel',
 			};
 
-			const gosignin = () => {
-				const { router } = store.getState();
-				router.navigate('/sign-in');
-			};
+			// const gosignin = () => {
+			// 	const { router } = store.getState();
+			// 	router.navigate('/sign-in');
+			// };
 
 			return `
         <div class="sign-up-form">		
@@ -207,8 +213,7 @@ export default class SignupForm extends Component {
 			type: this.validationTotal() ? buttonTypes.primary : buttonTypes.grey,
 			size: 'md',
 			key: 'modal-display',
-			// onClick: this.state.totalValidation ? this.submitData.bind(this) : null,
-			onClick: gosignin,
+			onClick: this.submitData.bind(this),
 			disabled: !this.validationTotal(),
 		})} 
 				
