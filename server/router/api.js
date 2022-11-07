@@ -95,6 +95,13 @@ router.post('/signin', async function (req, res) {
 	}
 });
 
+router.get('/signout', function (req, res) {
+		res.cookie('authorization', 'logout', {
+			httpOnly: true,
+		});
+		res.status(200).end();
+});
+
 router.post('/signup', async function (req, res) {
 	const formData = {
 		userId: req.body.id,

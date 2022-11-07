@@ -19,7 +19,9 @@
   &__tab-navigator{
     z-index: 1;
     &__general{
-      position: relative;
+      &-item{width: 3rem;}
+       position: relative;
+       display: flex;
        @include subhead3;
        color: white;     
        @include mobile{display: none;}

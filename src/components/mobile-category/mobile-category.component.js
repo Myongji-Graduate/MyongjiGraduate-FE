@@ -6,10 +6,14 @@ import { checkIsSignIn, signOut } from '../../helper/auth';
 import { store } from '../../store/store';
 
 export default class MobileCategory extends Component {
-	initState() {
-		this.state = {
-			isLogin: checkIsSignIn(),
-		};
+
+	setDefaultProps() {
+		this.props = {
+			ismobileCategoryShow: false,
+			isLogin: false,
+			togglemobileCategory: () => {},
+			logOut: () => {},
+		}
 	}
 
 	template() {
@@ -17,7 +21,7 @@ export default class MobileCategory extends Component {
 			if (props) this.setProps(props);
 			const myInfo = this.addChild(MyInfo);
 			const mobileNavigate=this.addChild(MobileNavigate);
-			const { ismobileCategoryShow } = this.props;
+			const { ismobileCategoryShow, isLogin } = this.props;
 
 			const modalStyle = {
 				display: ismobileCategoryShow ? 'block' : 'none',
@@ -27,8 +31,8 @@ export default class MobileCategory extends Component {
 			return `
 			<div class="mobile-category" style=${utils.getInlineStyle(modalStyle)}>
 			<div class="mobile-category__content">
-			${ this.state.isLogin				
-			?	`				
+			${isLogin				
+			?	`
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
 					 
@@ -37,8 +41,8 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-menu">${mobileNavigate.render({ title:'튜토리얼', navigate:'tutorial' })}</div>
 					 				
 					 <div class="mobile-category__content-signout">로그아웃</div>			
-				`				
-			:	`			
+				`
+			:	`
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
 					 
@@ -54,7 +58,7 @@ export default class MobileCategory extends Component {
 	}
 
 	setEvent() {
-		const { togglemobileCategory, ismobileCategoryShow } = this.props;
+		const { togglemobileCategory, ismobileCategoryShow, logOut } = this.props;
 
 		this.addEvent('click', '.mobile-category', () => {
 				if (ismobileCategoryShow) togglemobileCategory();
@@ -66,10 +70,7 @@ export default class MobileCategory extends Component {
 		});
 
 		this.addEvent('click', '.mobile-category__content-signout', () => {
-			signOut();		
-			this.setState({
-				isLogin: sessionStorage.isLogin,
-			});		
+			logOut();
 		});
 	}
 }

@@ -9,17 +9,16 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);          
         &__column{              
             margin: 0.44rem 0;
-            width:33%;
-        
+            width:33%;        
         }
         &__button {
           position: absolute;
           top: 50%;
-          right: 0;
+          right: 5%;
           transform: translate(0, -50%);
         }
         &--addedLecture {
-            color: $color-point_blue
+            color: $color-point_blue;
         }
     }
     &__tr:last-child{border-bottom:0px}    
