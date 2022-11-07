@@ -8,6 +8,38 @@ const router = express.Router();
 
 const upload = multer({ dest: '../uploads/' });
 
+const DEFAULT_HOST = 'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com';
+const PREFIX = '/api/v1';
+const ROOT_URL = DEFAULT_HOST + PREFIX;
+
+export async function validateAccessToken(req) {
+	const accessToken = req.cookies.authorization;
+	if (accessToken === undefined) return false;
+	try {
+		await axios.get(`${ROOT_URL}/auth/check-atk`, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		return true;
+	} catch (error) {
+		return false;
+	}
+}
+
+export async function parsePDF(formData) {
+	const response = await axios.post(
+		'https://ig81au5s0j.execute-api.ap-northeast-2.amazonaws.com/mju-graduate/parse',
+		formData,
+		{
+			headers: {
+				...formData.getHeaders(),
+			},
+		}
+	);
+	return response.data;
+}
+
 function apiErrorHandler(res, error) {
 	if (error.response.data.code) {
 		return res.status(400).json(error.response.data);
@@ -18,52 +50,47 @@ function apiErrorHandler(res, error) {
 	});
 }
 
-
-router.post('/result', upload.single('file'), async function (req, res) {
+router.post('/file-upload', upload.single('file'), async function (req, res) {
 	const formData = new FormData();
 	formData.append('file', fs.createReadStream(req.file.path));
 
 	try {
-		const result = await axios.post(
-			//'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.com/api/v1/graduation/result',
-			'https://ig81au5s0j.execute-api.ap-northeast-2.amazonaws.com/mju-graduate/parse',
-			formData,
-			{
-				headers: {
-					...formData.getHeaders(),
-				},
-			}
-		);
-		res.json(result.data);		
-		console.log(JSON.stringify(result.data));
+		const pdfText = await parsePDF(formData);
+
+		// const response = await axios.post(`${ROOT_URL}/auth/sign-+in`, {
+		// 	parsingText: pdfText,
+		// });
+		console.log(response);
+		console.log(await response.text());
 	} catch (error) {
-		console.log(error.response);
+		console.log(error);
+		// apiErrorHandler(res, error);
+	}
+});
+
+router.post('/signin', async function (req, res) {
+	const formData = {
+		userId: req.body.id,
+		password: req.body.password,
+	};
+
+	try {
+		const result = await axios.post(`${ROOT_URL}/auth/sign-in`, formData);
+		res.cookie('authorization', result.headers.authorization, {
+			httpOnly: true,
+		});
+		res.status(200).end();
+	} catch (error) {
 		apiErrorHandler(res, error);
 	}
 });
 
-router.post('/signin', function (req, res) {
-	console.log(req.body);
-	const formData = new FormData();
-
-	// formData.append('userId', req.body.id);
-	// formData.append('password', req.body.password);
-
-	res.json({
-		accessToken: 'accessToken',
-		refreshToken: 'refreshToken',
-	});
-	// setInterval(() => {
-	// 	res.json({
-	// 		"accessToken" : "accessToken",
-	// 		"refreshToken" : "refreshToken"
-	// });
-	// }, 1000);
-	// try {
-
-	// } catch (error) {
-	// 	apiErrorHandler(res, error);
-	// }
+router.get('/check-atk', async function (req, res) {
+	if (await validateAccessToken(req)) {
+		res.status(200).end();
+	} else {
+		res.status(400).end();
+	}
 });
 
 router.get('/takenLectures', async function (req, res) {
@@ -76,6 +103,5 @@ router.get('/takenLectures', async function (req, res) {
 		apiErrorHandler(res, error);
 	}
 });
-
 
 export default router;

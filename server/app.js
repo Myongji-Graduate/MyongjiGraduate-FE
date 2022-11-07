@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import compression from 'compression';
+import cookieParser from 'cookie-parser';
 
 import apiRouter from './router/api';
 import ssrRouter from './router/ssr';
@@ -30,6 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api', apiRouter);
 app.use('/', ssrRouter);

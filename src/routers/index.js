@@ -6,8 +6,10 @@ import SignUpPage from './sign-up-page/sign-up-page.component';
 import FileUploadPage from './file-upload-page/file-upload-page.component';
 import MypagePage from './mypage-page/mypage-page.component';
 
-import Router from '../core/router';
 import App from '../app';
+import BrowserRouter from '../core/browser-router';
+import ServerRouter from '../core/server-router';
+import { checkIsSignIn } from '../helper/auth';
 
 export const routerObjects = [
 	{
@@ -17,6 +19,7 @@ export const routerObjects = [
 			{
 				path: 'result',
 				element: ResultPage,
+				authentication: true,
 			},
 			{
 				path: 'tutorial',
@@ -33,10 +36,12 @@ export const routerObjects = [
 			{
 				path: 'file-upload',
 				element: FileUploadPage,
+				authentication: true,
 			},
 			{
 				path: 'mypage',
 				element: MypagePage,
+				authentication: true,
 			},
 		],
 	},
@@ -44,4 +49,5 @@ export const routerObjects = [
 
 const app = new App();
 
-export const router = new Router(routerObjects, app);
+export const browserRouter = new BrowserRouter(routerObjects, app);
+export const serverRouter = new ServerRouter(routerObjects, app);

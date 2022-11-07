@@ -1,6 +1,4 @@
-import { router } from '../routers';
-
-export const serverRenderer = (pathname) => `
+const ssrTemplate = (content, isLogin) => `
   <!doctype html>
   <html lang="ko">
   <head>
@@ -9,10 +7,11 @@ export const serverRenderer = (pathname) => `
     <title>MJU graduate</title>
   </head>
   <body>
-  <div class="app-container">${router.serverRender(pathname)}</div>
+  <div class="app-container">${content}</div>
   
   <!-- csr을 위한 script 태그 추가 -->
   <script defer="defer" src="bundle.js"></script>
+  <script>${isLogin ? `window.sessionStorage.setItem('isLogin', true)` : ''}</script>
   <!-- / csr을 위한 script 태그 추가 -->
   <!-- Channel Plugin Scripts -->
   <script>
@@ -61,4 +60,4 @@ export const serverRenderer = (pathname) => `
   </html>
 `;
 
-export const path = () => {};
+export default ssrTemplate;
