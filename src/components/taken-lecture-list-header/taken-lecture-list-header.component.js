@@ -102,21 +102,20 @@ export default class TakenLectureListHeader extends Component {
       <div class="taken-lecture-list-header">
 			 ${modalCustomContainer.render(modalCustomProps)}
           <div class="taken-lecture-list-header__header">
-            ${tableInfo.render({
-							part: '내 기이수 과목',
-						})}
+            ${tableInfo.render({part: '내 기이수 과목',})}
             <div class="taken-lecture-list-header__header-button-container">
-            ${
-							isEditableMode
-								? `
+            ${isEditableMode
+				? `
                 ${saveEditedLectureButton.render(saveEditedLectureButtonProps)}
                 <div class="taken-lecture-list-header__divider"></div>
                 ${clearEditedLectureButton.render(clearEditedLectureButtonProps)}
                 `
-								: `${customButton.render(customButtonProps)}
-            <div class="taken-lecture-list-header__divider"></div>
-            ${uploadNavigationButton.render(uploadNavigationButtonProps)}`
-						}
+				:
+				`${customButton.render(customButtonProps)}
+				<div class="taken-lecture-list-header__divider"></div>
+				${uploadNavigationButton.render(uploadNavigationButtonProps)}
+				`
+			}
               
             </div>
           </div>

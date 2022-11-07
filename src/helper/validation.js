@@ -21,3 +21,12 @@ export function validateOnlyNumber(text) {
 export function validatespecialSymbol(text) {
 	return text.search(/[!@#$%^&*]/gi) < 0;
 }
+
+// export async function validateStudentId(text) {
+// 	const result = await fetchValidateId({id: text,});
+// 	return !result;
+// }
+// export async function validateId(text) {
+// 	const result = await fetchValidateStudentId({studentId: text,});
+// 	return !result;
+// }

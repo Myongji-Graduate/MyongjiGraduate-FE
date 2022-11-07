@@ -8,15 +8,17 @@
     
     border-bottom: 1px solid $color-grey-scale3;
     &__img{
-        width : 2rem;
+        max-width: 2rem;
+        margin-left: 5%;
+        width:10%;
     }
     &__name{
-        margin-left: 0.5rem;
-        width : 8.5rem;
+        margin-left: 5%;
+        width: 75%;
         @include subhead1;
     }
     &__arrow{
-        width : 1rem;
+        width:10%;
         @include subhead1;
     }
 }
