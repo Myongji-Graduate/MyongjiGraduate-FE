@@ -56,6 +56,16 @@ export async function parsePDF(formData) {
 	return response.data;
 }
 
+export async function validateStudentNumber(formData) {
+	const response = await axios.post(`${ROOT_URL}/users/studentNumber-validity-checks`, formData);
+	return !response.data.isNotDuplicated;
+}
+
+export async function validateUserId(formData) {
+	const response = await axios.post(`${ROOT_URL}/users/userid-validity-checks`, formData);
+	return !response.data.isNotDuplicated;
+}
+
 function apiErrorHandler(res, error) {
 	if (error.response.data.code) {
 		return res.status(400).json(error.response.data);
@@ -104,6 +114,41 @@ router.post('/signin', async function (req, res) {
 		res.cookie('authorization', result.headers.authorization, {
 			httpOnly: true,
 		});
+		res.status(200).end();
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/signout', function (req, res) {
+	res.cookie('authorization', 'logout', {
+		httpOnly: true,
+	});
+	res.status(200).end();
+});
+
+router.post('/signup', async function (req, res) {
+	const formData = {
+		userId: req.body.id,
+		password: req.body.password,
+		studentNumber: req.body.studentId,
+		engLv: req.body.eglishLevel,
+	};
+
+	try {
+		if (await validateUserId({ userId: req.body.id }))
+			return res.status(400).json({
+				code: 400,
+				message: '이미 아이디가 존재합니다.',
+			});
+
+		if (await validateStudentNumber({ studentNumber: req.body.studentId }))
+			return res.status(400).json({
+				code: 400,
+				message: '이미 등록된 학번입니다.',
+			});
+
+		const result = await axios.post(`${ROOT_URL}/auth/sign-up`, formData);
 		res.status(200).end();
 	} catch (error) {
 		apiErrorHandler(res, error);

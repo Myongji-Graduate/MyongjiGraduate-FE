@@ -106,7 +106,7 @@ export default class SearchLectureTable extends Component {
 			};
 
 			const toggleOptionButtonProps = {
-				content: option,
+				content: option +" »",
 				type: buttonTypes.grey,
 				size: 'xs',
 				key: 'option-button',
