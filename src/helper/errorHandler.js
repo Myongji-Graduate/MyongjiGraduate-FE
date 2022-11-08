@@ -9,6 +9,13 @@ export function showErrorModal(error) {
 	);
 }
 
+export async function makeError(response) {
+	const result = await response.json();
+	const error = new Error(result.message);
+	error.code = result.code;
+	return error;
+}
+
 export async function handleErrorResponse(response) {
 	const error = await response.json();
 	showErrorModal(error);

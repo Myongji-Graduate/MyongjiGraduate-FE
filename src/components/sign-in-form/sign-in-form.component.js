@@ -11,7 +11,7 @@ import ModalAgreement from '../modal-agreement/modal-agreement.component';
 
 import { buttonTypes, inputTypes } from '../../helper/types';
 import { fetchSignIn } from '../../async/auth';
-import { signIn } from '../../helper/auth';
+import { signIn, init } from '../../helper/auth';
 
 export default class SigninForm extends Component {
 	initState() {
@@ -28,8 +28,8 @@ export default class SigninForm extends Component {
 			isLoading: true,
 		});
 		const result = await fetchSignIn({
-			id: 'testtest',
-			password: '12345678!',
+			id: 'didtjdgns852',
+			password: 'hj@1027612',
 		});
 		this.setState({
 			isLoading: false,
@@ -37,6 +37,8 @@ export default class SigninForm extends Component {
 
 		if (result) {
 			signIn();
+			// todo
+			init();
 			const { router } = store.getState();
 			router.navigate('/mypage');
 		}

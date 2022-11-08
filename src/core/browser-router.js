@@ -44,6 +44,7 @@ export default class BrowserRouter extends Router {
 	}
 
 	authentication(routerObject) {
+		console.log('aas');
 		if (checkIsSignIn()) {
 			if (checkIsInit() === false) return this.redirectInitPage();
 			return routerObject;

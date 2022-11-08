@@ -29,6 +29,7 @@ export async function validateAccessToken(req) {
 }
 
 export async function validateInit(req) {
+	console.log('first');
 	const accessToken = req.cookies.authorization;
 	if (accessToken === undefined) return false;
 	try {
@@ -37,6 +38,7 @@ export async function validateInit(req) {
 				Authorization: accessToken,
 			},
 		});
+		console.log(response);
 		return response.data.init;
 	} catch (error) {
 		return false;
@@ -82,6 +84,7 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 
 	try {
 		const pdfText = await parsePDF(formData);
+		console.log(pdfText);
 
 		const accessToken = req.cookies.authorization;
 		const response = await axios.post(
@@ -98,7 +101,7 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 		console.log(response.data);
 		res.status(200).json(response.data);
 	} catch (error) {
-		console.log(error);
+		console.log('error', error);
 		apiErrorHandler(res, error);
 	}
 });

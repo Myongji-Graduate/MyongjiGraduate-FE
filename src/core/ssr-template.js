@@ -5,6 +5,7 @@ const ssrTemplate = (content, isLogin, isInit) => `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MJU graduate</title>
+    <link rel="shortcut icon" href="#">
   </head>
   <body>
   <div class="app-container">${content}</div>

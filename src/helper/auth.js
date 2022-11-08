@@ -15,6 +15,12 @@ export async function signOut() {
 	}
 }
 
+export function init() {
+	sessionStorage.setItem('isInit', true);
+	const { router } = store.getState();
+	router.navigate('/mypage');
+}
+
 export function checkIsSignIn() {
 	if (typeof window === 'undefined') return false;
 	const isLogin = sessionStorage.getItem('isLogin');

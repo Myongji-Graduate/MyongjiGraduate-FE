@@ -5,6 +5,9 @@ import FileUploadContent from '../../components/file-upload-content/file-upload-
 import Modal from '../../components/modal/modal.component';
 import ModalLoading from '../../components/modal-loading/modal-loading.component';
 import { fetchPDFFileUpload } from '../../async/file';
+import { handleErrorObject } from '../../helper/errorHandler';
+import { store } from '../../store/store';
+import { init } from '../../helper/auth';
 
 export default class FileUploadPage extends Component {
 	initState() {
@@ -27,7 +30,13 @@ export default class FileUploadPage extends Component {
 		const formData = new FormData();
 
 		formData.append('file', this.state.file, 'grade.pdf');
-		await fetchPDFFileUpload(formData);
+		try {
+			await fetchPDFFileUpload(formData);
+			init();
+		} catch (error) {
+			console.log('asdad');
+			handleErrorObject(error);
+		}
 		this.setState({
 			isLoading: false,
 		});
