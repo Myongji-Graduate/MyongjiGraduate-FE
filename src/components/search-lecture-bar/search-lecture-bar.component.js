@@ -7,6 +7,7 @@ export default class SearchLectureBar extends Component {
 		this.props = {
 			value: '',
 			onChange: () => {},
+			buttonKey: undefined,
 		};
 	}
 
@@ -24,10 +25,19 @@ export default class SearchLectureBar extends Component {
 	}
 
 	setEvent() {
-		const { onChange } = this.props;
+		const { onChange, buttonKey } = this.props;
 
 		this.addEvent('change', `.search-lecture-bar__input`, (_, target) => {
 			onChange(target.value);
 		});
+
+		if (buttonKey) {
+			this.addEvent('keyup', `.search-lecture-bar__input`, (event, target) => {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+					document.querySelector(`.button__${buttonKey}`).click();
+				}
+			});
+		}
 	}
 }

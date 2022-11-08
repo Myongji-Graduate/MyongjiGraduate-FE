@@ -94,6 +94,7 @@ export default class SearchLectureTable extends Component {
 			const searchLectureBarProps = {
 				onChange: this.changeSearchText.bind(this),
 				value: searchText,
+				buttonKey: 'search-button',
 			};
 
 			const searchButtonProps = {

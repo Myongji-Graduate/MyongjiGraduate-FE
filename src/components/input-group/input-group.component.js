@@ -14,6 +14,7 @@ export default class InputGroup extends Component {
 			isValidation: false,
 			validationCallback: () => {},
 			errorMessage: '',
+			buttonKey: undefined,
 		};
 	}
 
@@ -76,7 +77,7 @@ export default class InputGroup extends Component {
 	}
 
 	setEvent() {
-		const { type, onChange, validationCallback } = this.props;
+		const { type, onChange, validationCallback, buttonKey } = this.props;
 
 		this.addEvent('change', `.input-group__${type}`, (_, target) => {
 			onChange(target.value);
@@ -84,5 +85,14 @@ export default class InputGroup extends Component {
 		this.addEvent('focusout', `.input-group__${type}`, (_, target) => {
 			validationCallback(target.value);
 		});
+
+		if (buttonKey) {
+			this.addEvent('keyup', `.input-group__${type}`, (event, target) => {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+					document.querySelector(`.button__${buttonKey}`).click();
+				}
+			});
+		}
 	}
 }

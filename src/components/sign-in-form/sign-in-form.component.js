@@ -101,6 +101,7 @@ export default class SigninForm extends Component {
 				},
 				key: 'sign-in-password',
 				type: inputTypes.password,
+				buttonKey: 'sign-in',
 			};
 
 			const go = () => {
