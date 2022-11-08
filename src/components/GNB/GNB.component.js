@@ -20,7 +20,6 @@ export default class GNB extends Component {
 
 	async logOut() {
 		await signOut();
-
 		this.setState({
 			isLogin: checkIsSignIn(),
 		});

@@ -3,12 +3,14 @@ import Component from '../../core/component';
 import { buttonTypes } from '../../helper/types';
 import Button from '../button/button.component';
 import MyInfo from '../my-info/my-info.component';
+import GNB from '../GNB/GNB.component';
 
 export default class InfoLogout extends Component {
 	template() {
 		return (props) => {
 			const logoutButton = this.addChild(Button);
 			const myInfo = this.addChild(MyInfo);
+			const gnb = this.addChild(GNB);
 			if (props) this.setProps(props);
 
 			return `
@@ -22,6 +24,7 @@ export default class InfoLogout extends Component {
 							type: buttonTypes.grey,
 							size: 'sm',
 							key: 'logout',
+							onClick: gnb.logOut.bind(this),
 						})}   
             </div>
        </div>
