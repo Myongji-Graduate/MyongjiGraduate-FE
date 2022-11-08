@@ -19,7 +19,10 @@
   &__tab-navigator{
     z-index: 1;
     &__general{
-      &-item{width: 3rem;}
+      &-item{
+        width: 3rem;
+        text-align: center;
+      }
        position: relative;
        display: flex;
        @include subhead3;

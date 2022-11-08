@@ -3,7 +3,7 @@
   border-radius: 16px;
   height: 6rem;
   @include subhead3;
-  overflow: scroll;
+  overflow-y: scroll;
   text-align: center;
 
   &__background-container, &__loading-container {
@@ -36,7 +36,7 @@
     &__button {
       position: absolute;
       top: 50%;
-      right: 0;
+      right: 5%;
       transform: translate(0, -50%);
     }
 }
