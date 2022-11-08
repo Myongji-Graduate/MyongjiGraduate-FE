@@ -36,7 +36,11 @@
     &__button {
       position: absolute;
       top: 50%;
-      right: 5%;
+      right: 3%;
+      background-color: #35353557;
+      border-radius: .2083rem;
+      padding: 0.2rem 0.4rem;
+      color: white;
       transform: translate(0, -50%);
     }
 }

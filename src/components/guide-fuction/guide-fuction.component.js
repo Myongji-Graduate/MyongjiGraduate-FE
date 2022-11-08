@@ -67,7 +67,7 @@ export default class GuideFuction extends Component {
 			this.setState({
 				isView: !this.state.isView,
 			});
-			document.querySelector('.guide-tutorial').scrollIntoView(true);
+			document.querySelector('.guide-tutorial').scrollIntoView({ behavior: "smooth" });
 		});
 	}
 }
