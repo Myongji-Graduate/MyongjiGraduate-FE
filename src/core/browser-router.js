@@ -1,7 +1,7 @@
 import Router from './router';
 import { store, createAction, actionType } from '../store/store';
 import * as dom from './dom';
-import { checkIsSignIn } from '../helper/auth';
+import { checkIsInit, checkIsSignIn } from '../helper/auth';
 
 export default class BrowserRouter extends Router {
 	lastPage;
@@ -45,6 +45,7 @@ export default class BrowserRouter extends Router {
 
 	authentication(routerObject) {
 		if (checkIsSignIn()) {
+			if (checkIsInit() === false) return this.redirectInitPage();
 			return routerObject;
 		}
 		return this.redirectAuthPage();
@@ -53,6 +54,11 @@ export default class BrowserRouter extends Router {
 	redirectAuthPage() {
 		window.history.pushState(null, null, '/sign-in');
 		return this.route('/sign-in');
+	}
+
+	redirectInitPage() {
+		window.history.pushState(null, null, '/file-upload');
+		return this.route('/file-upload');
 	}
 
 	navigate(url) {

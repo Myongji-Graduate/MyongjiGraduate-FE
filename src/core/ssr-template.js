@@ -1,4 +1,4 @@
-const ssrTemplate = (content, isLogin) => `
+const ssrTemplate = (content, isLogin, isInit) => `
   <!doctype html>
   <html lang="ko">
   <head>
@@ -11,7 +11,10 @@ const ssrTemplate = (content, isLogin) => `
   
   <!-- csr을 위한 script 태그 추가 -->
   <script defer="defer" src="bundle.js"></script>
-  <script>${isLogin ? `window.sessionStorage.setItem('isLogin', true)` : ''}</script>
+  <script>
+  ${isLogin ? `window.sessionStorage.setItem('isLogin', true);` : ''}
+  ${isInit ? `window.sessionStorage.setItem('isInit', true);` : ''}
+  </script>
   <!-- / csr을 위한 script 태그 추가 -->
   <!-- Channel Plugin Scripts -->
   <script>
