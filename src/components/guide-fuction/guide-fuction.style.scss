@@ -2,7 +2,16 @@
     width: 100%;
     overflow: hidden;
     &__header{
-        padding: 2rem;        
+        padding: 2rem;       
+      &-title{
+        text-align: center;
+        @include title;
+      }
+      &-divider{
+        margin: 1rem 0;
+        height: 0.06rem;
+        background-color: #E5E5E5;    
+      }
       &-text{
         @include subhead1;
         padding-bottom: 0.5rem; 

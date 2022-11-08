@@ -19,7 +19,7 @@ export default class FileUploadContent extends Component {
 			return `
         <div class="file-upload-content">
           <div class="file-upload-content__header">             
-              기이수 성적 업로드             
+              성적표 입력으로 </br> 맞춤형 결과를 확인하세요 !             
           </div>
           <div class="file-upload-content__divider"></div>
           <div class="file-upload-content__body">
@@ -47,8 +47,8 @@ export default class FileUploadContent extends Component {
 		};
 	}
 
-  setEvent() {
-    this.addEvent('click', '.file-upload-content__more', () => {
+	setEvent() {
+		this.addEvent('click', '.file-upload-content__more', () => {
 			const { router } = store.getState();
 			router.navigate('/tutorial');
 		});

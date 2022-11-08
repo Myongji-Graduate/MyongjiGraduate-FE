@@ -11,7 +11,7 @@ export default class GNB extends Component {
 			isLogin: checkIsSignIn(),
 		};
 	}
-	
+
 	togglemobileCategory() {
 		this.setState({
 			ismobileCategoryShow: !this.state.ismobileCategoryShow,
@@ -22,8 +22,8 @@ export default class GNB extends Component {
 		await signOut();
 
 		this.setState({
-			isLogin: checkIsSignIn()
-		})
+			isLogin: checkIsSignIn(),
+		});
 	}
 
 	template() {
@@ -36,7 +36,7 @@ export default class GNB extends Component {
 				ismobileCategoryShow: this.state.ismobileCategoryShow,
 				togglemobileCategory: this.togglemobileCategory.bind(this),
 				isLogin: this.state.isLogin,
-				logOut: this.logOut.bind(this)
+				logOut: this.logOut.bind(this),
 			};
 			return `
         <div class="GNB">
@@ -45,10 +45,12 @@ export default class GNB extends Component {
             <img class="GNB__main-logo" src=${mainLogo} />
             <div class="GNB__tab-navigator">
               <div class="GNB__tab-navigator__general">
-			  ${ this.state.isLogin
-				?`<div class="GNB__tab-navigator__general-item gnb-mypage">마이페이지</div> 
+			  ${
+					this.state.isLogin
+						? `<div class="GNB__tab-navigator__general-item gnb-mypage">마이페이지</div> 
 				  <div class="GNB__tab-navigator__general-item gnb-result">결과페이지</div>`
-				:`<div class="GNB__tab-navigator__general-item gnb-signin">로그인</div>`}
+						: `<div class="GNB__tab-navigator__general-item gnb-signin">로그인</div>`
+				}
 				 <div class="GNB__tab-navigator__general-item gnb-tutorial">튜토리얼</div>
 			  </div>
 			  <div class="GNB__tab-navigator__mobile">
@@ -66,11 +68,21 @@ export default class GNB extends Component {
 
 	setEvent() {
 		const { router } = store.getState();
-		this.addEvent('click', '.GNB__main-logo', () => { router.navigate('/')});
-		this.addEvent('click', '.gnb-mypage', () => {router.navigate('/mypage')});
-		this.addEvent('click', '.gnb-result', () => {router.navigate('/result')});
-		this.addEvent('click', '.gnb-signin', () => {router.navigate('/sign-in')});
-		this.addEvent('click', '.gnb-tutorial', () => {router.navigate('/tutorial')});
+		this.addEvent('click', '.GNB__main-logo', () => {
+			router.navigate('/');
+		});
+		this.addEvent('click', '.gnb-mypage', () => {
+			router.navigate('/mypage');
+		});
+		this.addEvent('click', '.gnb-result', () => {
+			router.navigate('/result');
+		});
+		this.addEvent('click', '.gnb-signin', () => {
+			router.navigate('/sign-in');
+		});
+		this.addEvent('click', '.gnb-tutorial', () => {
+			router.navigate('/tutorial');
+		});
 		this.addEvent('click', '.GNB__tab-navigator__mobile', () => {
 			this.togglemobileCategory();
 		});

@@ -2,19 +2,20 @@ import Component from '../../core/component';
 import { store } from '../../store/store';
 
 import mobileNavigateImg from '../../../public/images/mobile-navigate.png';
+
 export default class MobileNavigate extends Component {
-    setDefaultProps() {
+	setDefaultProps() {
 		this.props = {
-            title:'',
-            navigate:'',
+			title: '',
+			navigate: '',
 		};
 	}
+
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-		
-            const { title } =  this.props;
 
+			const { title } = this.props;
 
 			return `
             <div class="mobile-navigate">
@@ -27,7 +28,7 @@ export default class MobileNavigate extends Component {
 	}
 
 	setEvent() {
-        const { navigate } = this.props;
+		const { navigate } = this.props;
 		this.addEvent('click', '.mobile-navigate', () => {
 			const { router } = store.getState();
 			router.navigate(`/${navigate}`);

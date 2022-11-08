@@ -24,11 +24,12 @@ export default class GuideFuction extends Component {
 
 			return `
 				<div class="guide-fuction">
-				  <div class="guide-fuction__header">				
-						<div class="guide-fuction__header-text">	
-							안녕하세요! <br/>
+				  <div class="guide-fuction__header">	
+				  		<div class="guide-fuction__header-title">튜토리얼</div>		
+						<div class="guide-fuction__header-divider"></div>	
+						<div class="guide-fuction__header-text">								
 							여러분을 위한 졸업 요건 충족도 확인 서비스 ‘졸업을 부탁해’ 입니다. <br/>
-							가이드를 통해 우리 서비스의 주요정보와 사용법을 확인해보세요😊 		
+							가이드를 통해 우리 서비스의 주요정보와 사용법을 확인해보세요😊 
 						</div>		
 						<div class="guide-fuction__header-tutorial">
 						${
@@ -67,7 +68,7 @@ export default class GuideFuction extends Component {
 			this.setState({
 				isView: !this.state.isView,
 			});
-			document.querySelector('.guide-tutorial').scrollIntoView({ behavior: "smooth" });
+			document.querySelector('.guide-tutorial').scrollIntoView({ behavior: 'smooth' });
 		});
 	}
 }
