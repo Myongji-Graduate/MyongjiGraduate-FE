@@ -43,12 +43,12 @@ export async function parsePDF(formData) {
 
 export async function validateStudentNumber(formData) {
 	const response = await axios.post(`${ROOT_URL}/users/studentNumber-validity-checks`, formData);
-	return response.data.isNotDuplicated;
+	return !response.data.isNotDuplicated;
 }
 
 export async function validateUserId(formData) {
 	const response = await axios.post(`${ROOT_URL}/users/userid-validity-checks`, formData);
-	return response.data.isNotDuplicated;
+	return !response.data.isNotDuplicated;
 }
 
 function apiErrorHandler(res, error) {
@@ -112,12 +112,12 @@ router.post('/signup', async function (req, res) {
 	};
 
 	try {
-		if (await validateUserId()) return res.status(400).json({
+		if (await validateUserId({userId: req.body.id,})) return res.status(400).json({
 				code: 400,
 				message: '이미 아이디가 존재합니다.'
 			})
 			
-		if(await validateStudentNumber()) return res.status(400).json({
+		if(await validateStudentNumber({studentNumber: req.body.studentId,})) return res.status(400).json({
 			code: 400,
 			message: '이미 등록된 학번입니다.'
 		})
