@@ -41,7 +41,7 @@ export default class GNB extends Component {
         <div class="GNB">
 		${mobileCategoryContainer.render(mobileCategoryProps)}
           <div class="GNB__content">
-            <img class="GNB__main-logo" src=${mainLogo} />
+            <img class="GNB__main-logo" src=${mainLogo} alt="GNB__main-logo"/>
             <div class="GNB__tab-navigator">
               <div class="GNB__tab-navigator__general">
 			  ${

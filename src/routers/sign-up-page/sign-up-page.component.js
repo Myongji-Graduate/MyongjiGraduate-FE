@@ -21,7 +21,7 @@ export default class SignUpPage extends Component {
           <div class="sign-up-page__body">
             <div class="sign-up-page__content">
             <div class="sign-up-page__body__img-container">
-              <img src=${signImage} class="sign-up-page__body__img" />
+              <img src=${signImage} class="sign-up-page__body__img" alt="sign-up-page__body__img" />
             </div>
             <div class="sign-up-page__body__content">           
               ${signupForm.render()}

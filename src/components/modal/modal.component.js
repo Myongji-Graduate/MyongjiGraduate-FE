@@ -35,7 +35,7 @@ export default class Modal extends Component {
 			return `
         <div class="${this.createKeyClass()} modal" style=${utils.getInlineStyle(modalStyle)}>
          <div class="modal__body" style=${utils.getInlineStyle(modalBodyStyle)}>
-         ${isShowCloseBtn ? `<img class='modal__close-btn' src=${closeBtn} />` : ''}
+         ${isShowCloseBtn ? `<img class='modal__close-btn' src=${closeBtn} alt="modal__close-btn" />` : ''}
          <div class="modal__body-content">
          ${contentComponent.render(contentComponentProps)}
          </div>

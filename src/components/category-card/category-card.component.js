@@ -43,7 +43,7 @@ export default class CategoryCard extends Component {
         <div class="category-card__${key} category-card">
           <div class="category-card__header">
             <div class="category-card__icon-container">
-              <img src=${bookIcon} class="category-card__icon" />
+              <img src=${bookIcon} class="category-card__icon" alt="category-card__icon" />
             </div>
             ${title}
           </div>

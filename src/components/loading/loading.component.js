@@ -9,7 +9,7 @@ export default class Loading extends Component {
 
 			return `
         <div class="loading">
-          <img src=${loadingImage} class="loading__loading-img" />
+          <img src=${loadingImage} class="loading__loading-img" alt="loading__loading-img" />
         </div>
       `;
 		};

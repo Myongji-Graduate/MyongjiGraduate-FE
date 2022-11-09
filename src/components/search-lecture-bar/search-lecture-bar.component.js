@@ -17,7 +17,7 @@ export default class SearchLectureBar extends Component {
 
 			return `
        <div class="search-lecture-bar">
-          <img class="search-lecture-bar__search-icon" src=${searchIcon} />
+          <img class="search-lecture-bar__search-icon" src=${searchIcon} alt="search-lecture-bar__search-icon" />
           <input placeholder="검색어를 입력해주세요" type="text" class="search-lecture-bar__input" />   
        </div>
       `;

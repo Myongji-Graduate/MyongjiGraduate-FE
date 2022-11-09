@@ -22,7 +22,7 @@ export default class TakenLecture extends Component {
             <div class="taken-lecture__title">마이페이지</div>
             <div class="taken-lecture__total-credit-container">
                 <div class="taken-lecture__total-credit-text">샛별님, 총 기준학점 중 <span class="taken-lecture__total-credit-text-point">70</span>학점을 수강하셨습니다!</div>
-                <img src=${takenLectureImage} srcset="${takenLectureImageMobile} 650w, ${takenLectureImage} 1920w" class="taken-lecture__total-credit-image" />
+                <img src=${takenLectureImage} srcset="${takenLectureImageMobile} 650w, ${takenLectureImage} 1920w" class="taken-lecture__total-credit-image" alt="taken-lecture__total-credit-image" />
             </div>
             <div class="taken-lecture__btn">
                 ${takenLectureButton.render({

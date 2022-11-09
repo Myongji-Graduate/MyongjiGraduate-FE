@@ -11,7 +11,7 @@ export default class MyInfo extends Component {
 
 			return `
        <div class="my-info">       
-            <img src=${profileImg} class="my-info-img"/>
+            <img src=${profileImg} class="my-info-img" alt="my-info-img" />
             <div class="my-info-text">
             <div class="my-info-text__name">
             ${

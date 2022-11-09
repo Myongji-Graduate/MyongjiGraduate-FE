@@ -123,7 +123,7 @@
 //         ${modalFileContainer.render(modalProps)}
 //         ${modalLoadingContainer.render(modalLoadingProps)}
 //         <div class="information-form__header">
-//             <img class="information-form__pencil-icon" src=${pencilIcon} />
+//             <img class="information-form__pencil-icon" src=${pencilIcon} alt="information-form__pencil-icon" />
 //             <span class="information-form__header-text">
 //               정보를 입력해주세요
 //             </span>

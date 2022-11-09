@@ -43,7 +43,7 @@ export default class SearchLectureTableList extends Component {
 
 	getDefaultContent() {
 		return `<div class="search-lecture-table-list__background-container">
-    <img src=${lectureIcon} class="search-lecture-table-list__background-icon" />
+    <img src=${lectureIcon} class="search-lecture-table-list__background-icon" alt="search-lecture-table-list__background-icon" />
     <div class="search-lecture-table-list__background-text">검색 결과가 표시됩니다</div>
   </div>`;
 	}

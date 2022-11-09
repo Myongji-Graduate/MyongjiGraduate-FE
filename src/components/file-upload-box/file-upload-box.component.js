@@ -21,7 +21,7 @@ export default class FileUploadBox extends Component {
 			return `
         <div class="file-upload-box">
           <labal class="file-upload-box__label">
-            <img class="file-upload-box__upload-icon" src=${file ? completeCheckIcon : fileUplpadIcon} />
+            <img class="file-upload-box__upload-icon" src=${file ? completeCheckIcon : fileUplpadIcon} alt="file-upload-box__upload-icon" />
           </label>
             <div class="file-upload-box__upload-text">
 						${file ? file.name : '마우스로 드래그 하거나<br/>아이콘을 눌러 직접 추가해주세요'}

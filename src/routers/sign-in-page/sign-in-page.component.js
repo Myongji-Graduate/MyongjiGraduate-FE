@@ -21,7 +21,7 @@ export default class SignInPage extends Component {
           <div class="sign-in-page__body">
             <div class="sign-in-page__content">
             <div class="sign-in-page__body__img-container">
-              <img src=${signImage} class="sign-in-page__body__img" />
+              <img src=${signImage} class="sign-in-page__body__img" alt=""sign-in-page__body__img" />
             </div>
             <div class="sign-in-page__body__content">           
               ${signinForm.render()}

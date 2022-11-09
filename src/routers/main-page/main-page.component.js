@@ -36,8 +36,8 @@ export default class MainPage extends Component {
 			${gnb.render()}
 			</div>
 				<div class="main-page__body" >
-					<img class="main-page__background-img" src=${MainBackgroundImg} />				
-					<img class="main-page__round-logo" src=${roundLogo} />
+					<img class="main-page__background-img" src=${MainBackgroundImg} alt="main-page__background-img"/>				
+					<img class="main-page__round-logo" src=${roundLogo} alt="main-page__round-logo" />
 					<div class="main-page__content">
 						${maintitle.render()}
 						<div class="main-page__start-button">

@@ -19,7 +19,7 @@ export default class MobileNavigate extends Component {
 
 			return `
             <div class="mobile-navigate">
-                <img src=${mobileNavigateImg} class="mobile-navigate__img"/>
+                <img src=${mobileNavigateImg} class="mobile-navigate__img" alt="mobile-navigate__img" />
                 <div class="mobile-navigate__name">${title}</div>
                 <div class="mobile-navigate__arrow">></div>
             </div>
