@@ -40,5 +40,10 @@ module.exports = {
 		],
 	},
 
-	plugins: [new webpack.DefinePlugin({}), new webpack.HotModuleReplacementPlugin()],
+	plugins: [
+		new webpack.DefinePlugin({
+			IMAGE_URL: JSON.stringify('https://dc49tfy8ac9y2.cloudfront.net/images'),
+		}),
+		new webpack.HotModuleReplacementPlugin(),
+	],
 };

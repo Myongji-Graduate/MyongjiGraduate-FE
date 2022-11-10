@@ -38,7 +38,7 @@ export default class SigninForm extends Component {
 		if (result) {
 			signIn();
 			// todo
-			init();
+			// init();
 			const { router } = store.getState();
 			router.navigate('/mypage');
 		}

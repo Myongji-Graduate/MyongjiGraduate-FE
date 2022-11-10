@@ -1,10 +1,19 @@
 import Component from '../../core/component';
 import Button from '../button/button.component';
 
-import takenLectureImage from '../../../public/images/taken-lecture-image.png';
-import takenLectureImageMobile from '../../../public/images/taken-lecture-image-mobile.png';
 import { buttonTypes } from '../../helper/types';
 import { store } from '../../store/store';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 580,
+	tablet: 690,
+	sm: 690,
+	md: 890,
+	lg: 1180,
+};
+
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes);
 
 export default class TakenLecture extends Component {
 	template() {
@@ -16,13 +25,17 @@ export default class TakenLecture extends Component {
 				const { router } = store.getState();
 				router.navigate('/result');
 			};
-
+			console.log(IMAGE_URL);
+			console.log(sizeAttr);
 			return `
        <div class="taken-lecture">       
             <div class="taken-lecture__title">마이페이지</div>
             <div class="taken-lecture__total-credit-container">
                 <div class="taken-lecture__total-credit-text">샛별님, 총 기준학점 중 <span class="taken-lecture__total-credit-text-point">70</span>학점을 수강하셨습니다!</div>
-                <img size="(min-width:651px) 1000px, 650px"  src=${takenLectureImage} srcset="${takenLectureImageMobile} 650w, ${takenLectureImage} 1920w" class="taken-lecture__total-credit-image" alt="taken-lecture__total-credit-image" />
+                <img 
+								sizes="${sizeAttr}" 
+								srcset="${srcsetAttr}" 
+								class="taken-lecture__total-credit-image" />
             </div>
             <div class="taken-lecture__btn">
                 ${takenLectureButton.render({

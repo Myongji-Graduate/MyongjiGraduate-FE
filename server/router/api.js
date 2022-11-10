@@ -29,7 +29,6 @@ export async function validateAccessToken(req) {
 }
 
 export async function validateInit(req) {
-	console.log('first');
 	const accessToken = req.cookies.authorization;
 	if (accessToken === undefined) return false;
 	try {
@@ -84,7 +83,6 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 
 	try {
 		const pdfText = await parsePDF(formData);
-		console.log(pdfText);
 
 		const accessToken = req.cookies.authorization;
 		const response = await axios.post(
@@ -98,7 +96,7 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 				},
 			}
 		);
-		console.log(response.data);
+		console.log('file-upload', response);
 		res.status(200).json(response.data);
 	} catch (error) {
 		console.log('error', error);
@@ -168,11 +166,17 @@ router.get('/check-atk', async function (req, res) {
 
 router.get('/takenLectures', async function (req, res) {
 	try {
-		const result = await axios.get(
-			'https://b0182694-3460-46e7-97ce-3aceba5200ad.mock.pstmn.io/users/%7Bid%7D/taken-lectures?id'
-		);
+		const accessToken = req.cookies.authorization;
+		const result = await axios.get(`${ROOT_URL}/users/me/taken-lectures`, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		console.log(result);
 		res.json(result.data);
+		// res.json(result.data);
 	} catch (error) {
+		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
