@@ -194,4 +194,5 @@ router.get('/search-lecture', async function (req, res) {
 	}
 });
 
+
 export default router;

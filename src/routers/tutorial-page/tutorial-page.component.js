@@ -18,8 +18,8 @@ export default class TutorialPage extends Component {
 				<div class="tutorial-page">
 					<div class="tutorial-page__header">
 						${gnb.render()}	
-						<img src=${signInBackgroundImage} class="tutorial-page__background-img" />
-						<img src=${backgroundBottomImage} class="tutorial-page__bottom-img" />
+						<img src=${signInBackgroundImage} class="tutorial-page__background-img" alt="tutorial-page__background-img"/>
+						<img src=${backgroundBottomImage} class="tutorial-page__bottom-img" alt="tutorial-page__bottom-img" />
 					</div>	
 					
 					<div class="tutorial-page__body">

@@ -15,8 +15,8 @@ export default class Header extends Component {
 					<div class="header__gnb-container">
 						${gnb.render()}
 					</div>
-					<img src=${backgroundImage} class="header__background-img" />
-					<img src=${backgroundBottomImage} class="header__bottom-img" />
+					<img src=${backgroundImage} class="header__background-img" alt="header__background-img" />
+					<img src=${backgroundBottomImage} class="header__bottom-img" alt="header__bottom-img" />
         </div>
       `;
 		};
