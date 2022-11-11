@@ -14,7 +14,7 @@ const ssrTemplate = (content, isLogin, isInit) => `
   <div class="app-container">${content}</div>
   
   <!-- csr을 위한 script 태그 추가 -->
-  <script defer="defer" src="${IMAGE_URL}/build/bundle.js"></script>
+  <script defer="defer" src="${IMAGE_URL}/build/bundle.js.gz"></script>
   <script>
   ${isLogin ? `window.sessionStorage.setItem('isLogin', true);` : ''}
   ${isInit ? `window.sessionStorage.setItem('isInit', true);` : ''}
