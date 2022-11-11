@@ -1,7 +1,6 @@
 import Component from '../../core/component';
 import { getResponseiveImage } from '../../helper/images';
 
-
 const sizes_feature = {
 	mobile: 150,
 	tablet: 176,
@@ -32,7 +31,10 @@ export default class ImgExplain extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 			const { fix, img, title, explain } = this.props;
-			const [sizeAttr, srcsetAttr] = getResponseiveImage( fix ? sizes_feature : sizes_tutorial, `${IMAGE_URL}/${img}.png`);
+			const [sizeAttr, srcsetAttr] = getResponseiveImage(
+				fix ? sizes_feature : sizes_tutorial,
+				`${IMAGE_URL}/${img}.png`
+			);
 			return `
        <div class="img-explain">
 			<div ><img

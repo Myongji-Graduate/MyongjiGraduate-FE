@@ -1,8 +1,25 @@
 import Component from '../../core/component';
 import GNB from '../GNB/GNB.component';
 
-import backgroundImage from '../../../public/images/sub-background.png';
-import backgroundBottomImage from '../../../public/images/header-bottom.png';
+import { getResponseiveImage } from '../../helper/images';
+
+const backgroundImageSizes = {
+	mobile: 650,
+	tablet: 1008,
+	sm: 1440,
+	md: 1920,
+	lg: 1920,
+};
+
+const [backgroundSizesAttr, backgroundSrcsetAttr] = getResponseiveImage(
+	backgroundImageSizes,
+	`${IMAGE_URL}/sub-background.png`
+);
+
+const [backgroundBottomSizesAttr, backgroundBottomSrcsetAttr] = getResponseiveImage(
+	backgroundImageSizes,
+	`${IMAGE_URL}/header-bottom.png`
+);
 
 export default class Header extends Component {
 	template() {
@@ -15,8 +32,8 @@ export default class Header extends Component {
 					<div class="header__gnb-container">
 						${gnb.render()}
 					</div>
-					<img src=${backgroundImage} class="header__background-img" alt="header__background-img" />
-					<img src=${backgroundBottomImage} class="header__bottom-img" alt="header__bottom-img" />
+					<img sizes="${backgroundSizesAttr}" srcset="${backgroundSrcsetAttr}" class="header__background-img" alt="header__background-img" />
+					<img sizes="${backgroundBottomSizesAttr}" srcset="${backgroundBottomSrcsetAttr}" class="header__bottom-img" alt="header__bottom-img" />
         </div>
       `;
 		};
