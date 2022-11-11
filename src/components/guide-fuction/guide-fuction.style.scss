@@ -20,6 +20,7 @@
     &-tutorial{
         animation: left_right 1s infinite;
         @include body2;
+        cursor: pointer;
         display: flex;
         justify-content: end;
         &-style{
