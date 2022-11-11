@@ -14,8 +14,8 @@ const sizes = {
 };
 
 
-const [completeCheckSizesAttr, completeCheckSrcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/complete-check.svg`);
-const [fileUploadSizesAttr, fileUploadSrcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/file-upload-icon.svg`);
+const [completeCheckSizesAttr, completeCheckSrcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/complete-check.svg`);
+const [fileUploadSizesAttr, fileUploadSrcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/file-upload-icon.svg`);
 
 export default class FileUploadBox extends Component {
 	setDefaultProps() {
