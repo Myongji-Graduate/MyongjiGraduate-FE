@@ -3,6 +3,8 @@ REPOSITORY=/home/ec2-user/build
 
 cd $REPOSITORY
 
+sudo /usr/bin/pm2 kill
+
 sudo /usr/bin/npm install
 
 sudo /usr/bin/npm run build:production
