@@ -6,6 +6,7 @@ export default class InputGroup extends Component {
 	setDefaultProps() {
 		this.props = {
 			name: '',
+			id: '',
 			placeholder: '',
 			onChange: () => {},
 			value: '',
@@ -53,8 +54,8 @@ export default class InputGroup extends Component {
 	}
 
 	getPassword() {
-		const { name, placeholder, value } = this.props;
-		return `<input class="input-group__password" type="password" id=${name} value="${value}" placeholder="${placeholder}" >`;
+		const { placeholder, value, id } = this.props;
+		return `<input class="input-group__password" type="password" id=${id} value="${value}" placeholder="${placeholder}" >`;
 	}
 
 	getTextInput() {

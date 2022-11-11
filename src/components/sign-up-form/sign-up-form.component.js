@@ -83,7 +83,7 @@ export default class SignupForm extends Component {
 			id: this.state.id,
 			password: this.state.password,
 			studentId: this.state.studentId,
-			englishLevel:this.state.eglishLevel,
+			englishLevel: this.state.eglishLevel,
 		});
 
 		if (result) {
@@ -132,6 +132,7 @@ export default class SignupForm extends Component {
 			};
 			const passwordInputProps = {
 				name: '비밀번호',
+				id: 'password',
 				placeholder: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하',
 				value: this.state.password,
 				onChange: (newValue) => {
@@ -144,7 +145,8 @@ export default class SignupForm extends Component {
 				type: inputTypes.password,
 			};
 			const reconfirmInputProps = {
-				name: '비밀번호확인',
+				name: '비밀번호 확인',
+				id: 'passwordConfirm',
 				placeholder: '',
 				value: this.state.reconfirm,
 				onChange: (newValue) => {
