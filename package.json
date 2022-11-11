@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Myongji-Graduate/MyongjiGraduate-FE#readme",
   "dependencies": {
+    "aws-sdk": "^2.1252.0",
     "axios": "^0.27.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
