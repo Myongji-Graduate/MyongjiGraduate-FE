@@ -12,7 +12,7 @@ const fileStream = fs.createReadStream('./dist/bundle.js');
 
 const uploadParams = {
 	Bucket: BUCKET,
-	Key: 'build/build.js',
+	Key: 'build/bundle.js',
 	Body: fileStream,
 };
 
