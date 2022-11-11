@@ -5,9 +5,8 @@ import { validateAccessToken, validateInit } from './api';
 const router = express.Router();
 
 router.get('*', async (req, res) => {
-	console.log(req.url);
 	if (req.url === '/__webpack_hmr' || req.url === '/favicon.ico') return;
-	
+
 	if (!serverRouter.checkAuthentication(req.path)) {
 		res.send(serverRouter.serverRender(req.path));
 	} else if (await validateAccessToken(req)) {

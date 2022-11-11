@@ -1,17 +1,37 @@
 @font-face {
   font-family: vitro;
-  src:
+  font-weight: 900;
+  src: local('vitro')
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.woff2") format("woff2"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.woff") format("woff"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.ttf") format("truetype");
   font-display: swap;
 }
+
 @font-face {
   font-family: pretendard;
-  src:
-        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/PretendardVariable.woff2") format("woff2"),
-        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/PretendardVariable.woff") format("woff"),
-        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/PretendardVariable.ttf") format("truetype");
+  font-weight: 400;
+  src: local('pretendard')
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Regular.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Regular.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: pretendard;
+  font-weight: 500;
+  src: local('pretendard')
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Medium.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Medium.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: pretendard;
+  font-weight: 700;
+  src: local('pretendard')
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Bold.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Bold.woff") format("woff");
   font-display: swap;
 }
 
