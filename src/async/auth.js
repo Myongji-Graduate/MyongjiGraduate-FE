@@ -49,17 +49,3 @@ export async function fetchValidateATK() {
 	if (response.status === 400) return false;
 	return false;
 }
-
-// export async function fetchValidateId() {
-// 	const response = await fetch('/api/userid');
-// 	if (response.status === 200) return true;
-// 	if (response.status === 400) return false;
-// 	return false;
-// }
-
-// export async function fetchValidateStudentId() {
-// 	const response = await fetch('/api/studentNumber');
-// 	if (response.status === 200) return true;
-// 	if (response.status === 400) return false;
-// 	return false;
-// }

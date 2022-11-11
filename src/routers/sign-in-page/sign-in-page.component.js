@@ -6,7 +6,7 @@ import Header from '../../components/header/header.component';
 import { getResponseiveImage } from '../../helper/images';
 
 const sizes = {
-	mobile: 0,
+	mobile: 315,
 	tablet: 315,
 	sm: 315,
 	md: 405,

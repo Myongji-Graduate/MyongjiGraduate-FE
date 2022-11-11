@@ -106,11 +106,6 @@ export default class SigninForm extends Component {
 				buttonKey: 'sign-in',
 			};
 
-			const go = () => {
-				const { router } = store.getState();
-				router.navigate('/mypage');
-			};
-
 			return `
         <div class="sign-in-form">		
         ${modalLoadingContainer.render(modalLoadingProps)}

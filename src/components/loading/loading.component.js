@@ -6,7 +6,7 @@ const sizes = {
 	mobile: 65,
 	tablet: 80,
 	sm: 80,
-	md: 1000,
+	md: 100,
 	lg: 140,
 };
 const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/loading-image.png`);

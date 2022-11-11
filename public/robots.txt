@@ -1,7 +1,5 @@
 User-agent: *
-Disallow: /fonts/
 Disallow: /icons/
-Disallow: /images/
 Disallow: /mypage
 Disallow: /sign-in
 Disallow: /sign-up

@@ -144,7 +144,7 @@ export default class SignupForm extends Component {
 				type: inputTypes.password,
 			};
 			const reconfirmInputProps = {
-				name: '비밀번호 확인',
+				name: '비밀번호확인',
 				placeholder: '',
 				value: this.state.reconfirm,
 				onChange: (newValue) => {
