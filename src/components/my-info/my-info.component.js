@@ -1,6 +1,15 @@
 import Component from '../../core/component';
-import profileImg from '../../../public/images/profile-image.png';
 import { checkIsSignIn } from '../../helper/auth';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 80,
+	tablet: 100,
+	sm: 100,
+	md: 130,
+	lg: 172,
+};
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/profile-image.png`);
 
 export default class MyInfo extends Component {
 	template() {
@@ -11,7 +20,7 @@ export default class MyInfo extends Component {
 
 			return `
        <div class="my-info">       
-            <img src=${profileImg} class="my-info-img" alt="my-info-img" />
+            <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="my-info-img" alt="my-info-img" />
             <div class="my-info-text">
             <div class="my-info-text__name">
             ${

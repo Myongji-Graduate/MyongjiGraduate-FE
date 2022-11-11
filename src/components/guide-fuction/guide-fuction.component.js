@@ -3,9 +3,7 @@ import Component from '../../core/component';
 import GuideTutorial from '../guide-tutorial/guide-tutorial.component';
 import ImgExplain from '../img-explain/img-explain.component';
 import modalHeader from '../modal-header/modal-header.component';
-import feature1 from '../../../public/images/feature1.png';
-import feature2 from '../../../public/images/feature2.png';
-import feature3 from '../../../public/images/feature3.png';
+
 
 export default class GuideFuction extends Component {
 	initState() {
@@ -42,17 +40,20 @@ export default class GuideFuction extends Component {
 				  ${header.render({ title: '주요 기능' })}
 				  <div class="guide-fuction__content">
 						<div class="guide-fuction__content-item">${imgExplain.render({
-							img: feature1,
+							fix: true,
+							img: 'feature1',
 							title: 'first',
 							explain: '강의 커스텀을 통한 졸업 사정 예측',
 						})}</div>			
 						<div class="guide-fuction__content-item">${imgExplain.render({
-							img: feature2,
+							fix: true,
+							img: 'feature2',
 							title: 'second',
 							explain: '카테고리별(교양 / 전공) 수강 학점 현황 조회',
 						})}	</div>		
 						<div class="guide-fuction__content-item">${imgExplain.render({
-							img: feature3,
+							fix: true,
+							img: 'feature3',
 							title: 'third',
 							explain: '카테고리별(교양 / 전공 ) 미이수 과목 정보 및 잔여 학점 조회',
 						})}	</div>		

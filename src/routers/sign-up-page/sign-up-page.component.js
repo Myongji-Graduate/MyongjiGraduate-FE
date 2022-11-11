@@ -2,8 +2,17 @@ import Component from '../../core/component';
 
 import Header from '../../components/header/header.component';
 
-import signImage from '../../../public/images/mju-maru.jpg';
 import SignupForm from '../../components/sign-up-form/sign-up-form.component';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 0,
+	tablet: 315,
+	sm: 315,
+	md: 405,
+	lg: 540,
+};
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/mju-maru.jpg`);
 
 export default class SignUpPage extends Component {
 	template() {
@@ -21,7 +30,7 @@ export default class SignUpPage extends Component {
           <div class="sign-up-page__body">
             <div class="sign-up-page__content">
             <div class="sign-up-page__body__img-container">
-              <img src=${signImage} class="sign-up-page__body__img" alt="sign-up-page__body__img" />
+              <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="sign-up-page__body__img" alt="sign-up-page__body__img" />
             </div>
             <div class="sign-up-page__body__content">           
               ${signupForm.render()}

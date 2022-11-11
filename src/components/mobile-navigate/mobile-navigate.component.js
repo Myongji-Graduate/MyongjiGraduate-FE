@@ -1,7 +1,16 @@
 import Component from '../../core/component';
 import { store } from '../../store/store';
 
-import mobileNavigateImg from '../../../public/images/mobile-navigate.png';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 44,
+	tablet: 56,
+	sm: 56,
+	md: 72,
+	lg: 96,
+};
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/mobile-navigate.png`);
 
 export default class MobileNavigate extends Component {
 	setDefaultProps() {
@@ -19,7 +28,7 @@ export default class MobileNavigate extends Component {
 
 			return `
             <div class="mobile-navigate">
-                <img src=${mobileNavigateImg} class="mobile-navigate__img" alt="mobile-navigate__img" />
+                <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="mobile-navigate__img" alt="mobile-navigate__img" />
                 <div class="mobile-navigate__name">${title}</div>
                 <div class="mobile-navigate__arrow">></div>
             </div>

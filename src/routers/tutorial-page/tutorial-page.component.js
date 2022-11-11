@@ -1,14 +1,12 @@
 import Component from '../../core/component';
 
-import GNB from '../../components/GNB/GNB.component';
+import Header from '../../components/header/header.component';
 import GuideFuction from '../../components/guide-fuction/guide-fuction.component';
 
-import signInBackgroundImage from '../../../public/images/sub-background.png';
-import backgroundBottomImage from '../../../public/images/header-bottom.png';
 
 export default class TutorialPage extends Component {
 	template() {
-		const gnb = this.addChild(GNB);
+		const header = this.addChild(Header);
 		const tutorialFunction = this.addChild(GuideFuction);
 
 		return (props) => {
@@ -17,11 +15,8 @@ export default class TutorialPage extends Component {
 			return `
 				<div class="tutorial-page">
 					<div class="tutorial-page__header">
-						${gnb.render()}	
-						<img src=${signInBackgroundImage} class="tutorial-page__background-img" alt="tutorial-page__background-img"/>
-						<img src=${backgroundBottomImage} class="tutorial-page__bottom-img" alt="tutorial-page__bottom-img" />
-					</div>	
-					
+						${header.render()}	
+						</div>	
 					<div class="tutorial-page__body">
 						<div class="tutorial-page__body__content">
 						${tutorialFunction.render()}

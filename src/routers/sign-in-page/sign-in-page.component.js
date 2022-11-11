@@ -3,7 +3,16 @@ import Component from '../../core/component';
 import SigninForm from '../../components/sign-in-form/sign-in-form.component';
 import Header from '../../components/header/header.component';
 
-import signImage from '../../../public/images/mju-maru.jpg';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 0,
+	tablet: 315,
+	sm: 315,
+	md: 405,
+	lg: 540,
+};
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/mju-maru.jpg`);
 
 export default class SignInPage extends Component {
 	template() {
@@ -21,7 +30,7 @@ export default class SignInPage extends Component {
           <div class="sign-in-page__body">
             <div class="sign-in-page__content">
             <div class="sign-in-page__body__img-container">
-              <img src=${signImage} class="sign-in-page__body__img" alt="sign-in-page__body__img" />
+              <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="sign-in-page__body__img" alt="sign-in-page__body__img" />
             </div>
             <div class="sign-in-page__body__content">           
               ${signinForm.render()}

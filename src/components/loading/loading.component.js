@@ -1,6 +1,15 @@
 import Component from '../../core/component';
 
-import loadingImage from '../../../public/images/loading-image.png';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 65,
+	tablet: 80,
+	sm: 80,
+	md: 1000,
+	lg: 140,
+};
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/loading-image.png`);
 
 export default class Loading extends Component {
 	template() {
@@ -9,7 +18,7 @@ export default class Loading extends Component {
 
 			return `
         <div class="loading">
-          <img src=${loadingImage} class="loading__loading-img" alt="loading__loading-img" />
+          <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="loading__loading-img" alt="loading__loading-img" />
         </div>
       `;
 		};

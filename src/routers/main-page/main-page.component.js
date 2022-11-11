@@ -6,8 +6,17 @@ import GNB from '../../components/GNB/GNB.component';
 
 import { store } from '../../store/store';
 
-import MainBackgroundImg from '../../../public/images/main-background.png';
 import roundLogo from '../../../public/icons/round-logo.svg';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 400,
+	tablet: 600,
+	sm: 900,
+	md: 1151,
+	lg: 1200,
+};
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/main-background.png`);
 
 export default class MainPage extends Component {
 	initState() {
@@ -36,7 +45,7 @@ export default class MainPage extends Component {
 			${gnb.render()}
 			</div>
 				<div class="main-page__body" >
-					<img class="main-page__background-img" src=${MainBackgroundImg} alt="main-page__background-img"/>				
+					<img class="main-page__background-img" sizes="${sizeAttr}" srcset="${srcsetAttr}" alt="main-page__background-img"/>				
 					<img class="main-page__round-logo" src=${roundLogo} alt="main-page__round-logo" />
 					<div class="main-page__content">
 						${maintitle.render()}
