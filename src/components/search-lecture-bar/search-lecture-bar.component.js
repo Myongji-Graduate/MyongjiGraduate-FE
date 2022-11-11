@@ -10,7 +10,7 @@ const sizes = {
 	lg: 32,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/search-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/search-icon.svg`);
 
 export default class SearchLectureBar extends Component {
 	setDefaultProps() {

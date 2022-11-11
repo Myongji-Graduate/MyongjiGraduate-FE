@@ -11,7 +11,7 @@ const sizes = {
 	lg: 192,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/lecture-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/lecture-icon.svg`);
 
 export default class SearchLectureTableList extends Component {
 	setDefaultProps() {

@@ -17,7 +17,7 @@ const backgroundSizes = {//추후 수정
 	lg: 1180,
 };
 
-const [checkSizeAttr, checkSrcsetAttr] = getResponseiveImage(checkSizes,`${IMAGE_URL}/icons/complete-check.svg`);
+const [checkSizeAttr, checkSrcsetAttr] = getResponseiveImage(checkSizes,`${IMAGE_URL}/images/complete-check.svg`);
 const [backgroundSizeAttr, backgroundSrcsetAttr] = getResponseiveImage(backgroundSizes,`${IMAGE_URL}/images/complete-background.png`);
 
 

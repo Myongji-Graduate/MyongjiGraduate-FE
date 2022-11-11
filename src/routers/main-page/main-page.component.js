@@ -6,7 +6,6 @@ import GNB from '../../components/GNB/GNB.component';
 
 import { store } from '../../store/store';
 
-import roundLogo from '../../../public/icons/round-logo.svg';
 import { getResponseiveImage } from '../../helper/images';
 
 const sizes = {
@@ -16,7 +15,16 @@ const sizes = {
 	md: 1151,
 	lg: 1200,
 };
+
+const roundSizes = {
+	mobile: 112,
+	tablet: 112,
+	sm: 112,
+	md: 145,
+	lg: 192,
+};
 const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/main-background.png`);
+const [roundSizeAttr, roundSrcsetAttr] = getResponseiveImage(roundSizes,`${IMAGE_URL}/images/round-logo.svg`);
 
 export default class MainPage extends Component {
 	initState() {
@@ -46,7 +54,7 @@ export default class MainPage extends Component {
 			</div>
 				<div class="main-page__body" >
 					<img class="main-page__background-img" sizes="${sizeAttr}" srcset="${srcsetAttr}" alt="main-page__background-img"/>				
-					<img class="main-page__round-logo" src=${roundLogo} alt="main-page__round-logo" />
+					<img class="main-page__round-logo" sizes="${roundSizeAttr}" srcset="${roundSrcsetAttr}" alt="main-page__round-logo" />
 					<div class="main-page__content">
 						${maintitle.render()}
 						<div class="main-page__start-button">

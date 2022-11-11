@@ -12,7 +12,7 @@ const sizes = {//추후수정
 	lg: 70,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/close_btn.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/close_btn.svg`);
 
 export default class Modal extends Component {
 	setDefaultProps() {

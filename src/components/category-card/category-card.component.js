@@ -14,7 +14,7 @@ const sizes = {//추후수정
 	lg: 1920,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/book-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/book-icon.svg`);
 
 export default class CategoryCard extends Component {
 	setDefaultProps() {
