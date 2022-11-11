@@ -1,7 +1,7 @@
 @font-face {
   font-family: vitro;
   font-weight: 900;
-  src: local('vitro')
+  src: local('vitro'),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.woff2") format("woff2"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.woff") format("woff"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.ttf") format("truetype");
@@ -11,7 +11,7 @@
 @font-face {
   font-family: pretendard;
   font-weight: 400;
-  src: local('pretendard')
+  src: local('pretendard'),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Regular.woff2") format("woff2"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Regular.woff") format("woff");
   font-display: swap;
