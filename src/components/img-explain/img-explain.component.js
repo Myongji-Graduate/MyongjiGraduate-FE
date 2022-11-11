@@ -33,7 +33,7 @@ export default class ImgExplain extends Component {
 			const { fix, img, title, explain } = this.props;
 			const [sizeAttr, srcsetAttr] = getResponseiveImage(
 				fix ? sizes_feature : sizes_tutorial,
-				`${IMAGE_URL}/${img}.png`
+				`${IMAGE_URL}/images/${img}.png`
 			);
 			return `
        <div class="img-explain">

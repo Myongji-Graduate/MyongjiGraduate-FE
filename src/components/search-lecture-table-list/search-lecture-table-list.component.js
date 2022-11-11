@@ -1,7 +1,17 @@
 import Component from '../../core/component';
 
-import lectureIcon from '../../../public/icons/lecture-icon.svg';
 import Loading from '../loading/loading.component';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 112,
+	tablet: 112,
+	sm: 112,
+	md: 144,
+	lg: 192,
+};
+
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/lecture-icon.svg`);
 
 export default class SearchLectureTableList extends Component {
 	setDefaultProps() {
@@ -43,7 +53,7 @@ export default class SearchLectureTableList extends Component {
 
 	getDefaultContent() {
 		return `<div class="search-lecture-table-list__background-container">
-    <img src=${lectureIcon} class="search-lecture-table-list__background-icon" alt="search-lecture-table-list__background-icon" />
+    <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="search-lecture-table-list__background-icon" alt="search-lecture-table-list__background-icon" />
     <div class="search-lecture-table-list__background-text">검색 결과가 표시됩니다</div>
   </div>`;
 	}

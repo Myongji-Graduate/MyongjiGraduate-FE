@@ -13,7 +13,7 @@ const sizes = {
 	lg: 1180,
 };
 
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/taken-lecture-image.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/taken-lecture-image.png`);
 
 export default class TakenLecture extends Component {
 	template() {

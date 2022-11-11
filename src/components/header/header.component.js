@@ -13,12 +13,12 @@ const backgroundImageSizes = {
 
 const [backgroundSizesAttr, backgroundSrcsetAttr] = getResponseiveImage(
 	backgroundImageSizes,
-	`${IMAGE_URL}/sub-background.png`
+	`${IMAGE_URL}/images/sub-background.png`
 );
 
 const [backgroundBottomSizesAttr, backgroundBottomSrcsetAttr] = getResponseiveImage(
 	backgroundImageSizes,
-	`${IMAGE_URL}/header-bottom.png`
+	`${IMAGE_URL}/images/header-bottom.png`
 );
 
 export default class Header extends Component {

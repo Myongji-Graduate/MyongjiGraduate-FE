@@ -9,7 +9,7 @@ const sizes = {
 	md: 130,
 	lg: 172,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/profile-image.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/profile-image.png`);
 
 export default class MyInfo extends Component {
 	template() {

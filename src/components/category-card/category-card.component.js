@@ -2,9 +2,19 @@ import Component from '../../core/component';
 
 import PieChart from '../pie-chart/pie-chart.component';
 
-import bookIcon from '../../../public/icons/book-icon.svg';
 import Button from '../button/button.component';
 import { buttonTypes } from '../../helper/types';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {//추후수정
+	mobile: 650,
+	tablet: 1008,
+	sm: 1440,
+	md: 1920,
+	lg: 1920,
+};
+
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/book-icon.svg`);
 
 export default class CategoryCard extends Component {
 	setDefaultProps() {
@@ -43,7 +53,7 @@ export default class CategoryCard extends Component {
         <div class="category-card__${key} category-card">
           <div class="category-card__header">
             <div class="category-card__icon-container">
-              <img src=${bookIcon} class="category-card__icon" alt="category-card__icon" />
+              <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="category-card__icon" alt="category-card__icon" />
             </div>
             ${title}
           </div>

@@ -1,6 +1,16 @@
 import Component from '../../core/component';
 
-import searchIcon from '../../../public/icons/search-icon.svg';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 15,
+	tablet: 20,
+	sm: 20,
+	md: 25,
+	lg: 32,
+};
+
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/search-icon.svg`);
 
 export default class SearchLectureBar extends Component {
 	setDefaultProps() {
@@ -17,7 +27,7 @@ export default class SearchLectureBar extends Component {
 
 			return `
        <div class="search-lecture-bar">
-          <img class="search-lecture-bar__search-icon" src=${searchIcon} alt="search-lecture-bar__search-icon" />
+          <img class="search-lecture-bar__search-icon" sizes="${sizesAttr}" srcset="${srcsetAttr}" alt="search-lecture-bar__search-icon" />
           <input placeholder="검색어를 입력해주세요" type="text" class="search-lecture-bar__input" />   
        </div>
       `;

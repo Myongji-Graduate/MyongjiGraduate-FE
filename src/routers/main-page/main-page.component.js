@@ -16,7 +16,7 @@ const sizes = {
 	md: 1151,
 	lg: 1200,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/main-background.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/main-background.png`);
 
 export default class MainPage extends Component {
 	initState() {

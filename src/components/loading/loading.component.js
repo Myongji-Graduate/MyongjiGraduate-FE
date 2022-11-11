@@ -9,7 +9,7 @@ const sizes = {
 	md: 100,
 	lg: 140,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/loading-image.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/loading-image.png`);
 
 export default class Loading extends Component {
 	template() {

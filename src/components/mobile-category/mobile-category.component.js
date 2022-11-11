@@ -2,7 +2,6 @@ import Component from '../../core/component';
 import * as utils from '../../helper/utils';
 import MyInfo from '../my-info/my-info.component';
 import MobileNavigate from '../mobile-navigate/mobile-navigate.component';
-import { checkIsSignIn, signOut } from '../../helper/auth';
 import { store } from '../../store/store';
 
 export default class MobileCategory extends Component {

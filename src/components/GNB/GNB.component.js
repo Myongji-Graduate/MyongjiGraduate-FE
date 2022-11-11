@@ -2,7 +2,17 @@ import Component from '../../core/component';
 import MobileCategory from '../mobile-category/mobile-category.component';
 import { store } from '../../store/store';
 import { checkIsSignIn, signOut } from '../../helper/auth';
-import mainLogo from '../../../public/icons/main-logo.svg';
+import { getResponseiveImage } from '../../helper/images';
+
+const sizes = {
+	mobile: 110,
+	tablet: 140,
+	sm: 140,
+	md: 180,
+	lg: 240,
+};
+
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/icons/main-logo.svg`);
 
 export default class GNB extends Component {
 	initState() {
@@ -41,7 +51,7 @@ export default class GNB extends Component {
         <div class="GNB">
 		${mobileCategoryContainer.render(mobileCategoryProps)}
           <div class="GNB__content">
-            <img class="GNB__main-logo" src=${mainLogo} alt="GNB__main-logo"/>
+            <img class="GNB__main-logo"  sizes="${sizesAttr}" srcset="${srcsetAttr}" alt="GNB__main-logo"/>
             <div class="GNB__tab-navigator">
               <div class="GNB__tab-navigator__general">
 			  ${

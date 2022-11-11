@@ -42,7 +42,7 @@ module.exports = {
 
 	plugins: [
 		new webpack.DefinePlugin({
-			IMAGE_URL: JSON.stringify('https://dc49tfy8ac9y2.cloudfront.net/images'),
+			IMAGE_URL: JSON.stringify('https://dc49tfy8ac9y2.cloudfront.net'),
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 	],
