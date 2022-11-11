@@ -11,6 +11,7 @@
   }
 
   &__main-logo {
+    cursor: pointer;
     width: 5rem;
     height: 1.25rem;
     position: relative;
@@ -20,6 +21,7 @@
     z-index: 1;
     &__general{
       &-item{
+        cursor: pointer;
         width: 3rem;
         text-align: center;
       }
