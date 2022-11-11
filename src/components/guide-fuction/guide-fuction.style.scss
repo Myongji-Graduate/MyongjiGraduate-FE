@@ -34,6 +34,8 @@
 
         justify-content: space-between;
         &-item{
+            @include mobile{ padding: 0.5rem;}
+            @include tablet{ padding: 0.5rem;}
              padding: 1rem;
              width: 33%;
              box-sizing: border-box;
