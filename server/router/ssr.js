@@ -11,10 +11,8 @@ router.get('*', async (req, res) => {
 		res.send(serverRouter.serverRender(req.path));
 	} else if (await validateAccessToken(req)) {
 		if (await validateInit(req)) {
-			console.log('init -s ');
 			res.send(serverRouter.serverRender(req.path, true, true));
 		} else {
-			console.log('init -d ');
 			res.send(serverRouter.serverRender(req.path, true, false));
 		}
 	} else {

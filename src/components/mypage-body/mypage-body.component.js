@@ -4,6 +4,8 @@ import TakenLectureList from '../taken-lecture-list/taken-lecture-list.component
 import TakenLecture from '../taken-lecture/taken-lecture.component';
 import { createAction, store } from '../../store/store';
 import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
+import { fetchGetTakenLectures, fetchUpdateTakenLecture } from '../../async/lecture';
+import { handleErrorObject } from '../../helper/errorHandler';
 
 export default class MypageBody extends Component {
 	initState() {
@@ -13,24 +15,26 @@ export default class MypageBody extends Component {
 			deletedTakenLecutures: [],
 			isEditableMode: false,
 			isLoading: false,
+			whiteList: ['KMA02101'],
 		};
 	}
 
-	fetchTakenLecture() {
+	async fetchTakenLecture() {
 		this.setState({
 			isLoading: true,
 		});
-		if (typeof window !== 'undefined') {
-			fetch('/api/takenLectures')
-				.then((response) => {
-					return response.json();
-				})
-				.then((result) => {
-					this.setState({
-						takenLectures: result.takenLectures,
-						isLoading: false,
-					});
-				});
+
+		try {
+			const result = await fetchGetTakenLectures();
+			this.setState({
+				takenLectures: result.takenLectures,
+				isLoading: false,
+			});
+		} catch (error) {
+			handleErrorObject(error);
+			this.setState({
+				isLoading: false,
+			});
 		}
 	}
 
@@ -47,17 +51,24 @@ export default class MypageBody extends Component {
 	clearEditedLecture() {
 		this.setState({
 			isEditableMode: false,
-			addedTakenLecuture: [],
+			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
 		});
 	}
 
-	submitEditedLecture() {
+	async submitEditedLecture() {
 		const { deletedTakenLecutures, addedTakenLecutures } = this.state;
 		const formData = {};
-		formData.deletedTakenLecutures = deletedTakenLecutures.map((deletedTakenLecuture) => deletedTakenLecuture.id);
-		formData.addedTakenLecutures = addedTakenLecutures.map((addedTakenLecuture) => addedTakenLecuture.id);
-		this.clearEditedLecture();
+		formData.deletedTakenLectures = deletedTakenLecutures.map((deletedTakenLecuture) => deletedTakenLecuture.id);
+		formData.addedTakenLectures = addedTakenLecutures.map((addedTakenLecuture) => addedTakenLecuture.id);
+		try {
+			await fetchUpdateTakenLecture(formData);
+			this.clearEditedLecture();
+			this.fetchTakenLecture();
+		} catch (error) {
+			handleErrorObject(error);
+		}
+		// this.clearEditedLecture();
 	}
 
 	deleteTakenLecture(lecture) {
@@ -66,10 +77,26 @@ export default class MypageBody extends Component {
 		});
 	}
 
-	addTakenLecture(lecture) {
+	countChaple() {
 		const { addedTakenLecutures, takenLectures } = this.state;
+		const Chaple = {
+			code: 'KMA02101',
+		};
+		return this.countLecture(addedTakenLecutures, Chaple) + this.countLecture(takenLectures, Chaple);
+	}
+
+	addTakenLecture(lecture) {
+		const { addedTakenLecutures, takenLectures, whiteList } = this.state;
 
 		const newLecture = this.formatLecture(lecture);
+
+		if (whiteList.includes(newLecture.code)) {
+			this.setState({
+				addedTakenLecutures: [...this.state.addedTakenLecutures, newLecture],
+			});
+			return;
+		}
+
 		if (this.containLecture(addedTakenLecutures, newLecture)) {
 			store.dispatch(
 				createAction(ERROR_ACTION_TYPES.SHOW_ERROR, {
@@ -95,6 +122,7 @@ export default class MypageBody extends Component {
 
 	formatLecture(searchedLecture) {
 		return {
+			id: searchedLecture.id,
 			year: '커스텀',
 			semester: '커스텀',
 			code: searchedLecture.lectureCode,
@@ -104,11 +132,13 @@ export default class MypageBody extends Component {
 	}
 
 	containLecture(lectures, lecture) {
-		return (
-			lectures.filter((lec) => {
-				return lec.code === lecture.code;
-			}).length > 0
-		);
+		return this.countLecture(lectures, lecture) > 0;
+	}
+
+	countLecture(lectures, lecture) {
+		return lectures.filter((lec) => {
+			return lec.code === lecture.code;
+		}).length;
 	}
 
 	deleteAddedTakenLecture(lecture) {

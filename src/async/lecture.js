@@ -1,4 +1,4 @@
-import { handleErrorResponse } from '../helper/errorHandler';
+import { handleErrorResponse, makeError } from '../helper/errorHandler';
 import { objectToQueryString } from '../helper/utils';
 
 export async function fetchGetSearchedLecture(query) {
@@ -16,4 +16,29 @@ export async function fetchGetSearchedLecture(query) {
 	return result;
 }
 
-export function a() {}
+export async function fetchUpdateTakenLecture(formData) {
+	const response = await fetch('/api/update-lecture', {
+		method: 'POST',
+		body: JSON.stringify(formData),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	if (response.status === 400 || response.status === 500) {
+		throw await makeError(response);
+	}
+
+	return false;
+}
+
+export async function fetchGetTakenLectures() {
+	const response = await fetch('/api/takenLectures');
+
+	if (response.status === 400 || response.status === 500) {
+		throw await makeError(response);
+	}
+
+	const result = await response.json();
+	return result;
+}

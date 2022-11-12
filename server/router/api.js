@@ -37,7 +37,6 @@ export async function validateInit(req) {
 				Authorization: accessToken,
 			},
 		});
-		console.log(response);
 		return response.data.init;
 	} catch (error) {
 		return false;
@@ -96,10 +95,8 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 				},
 			}
 		);
-		console.log('file-upload', response);
 		res.status(200).json(response.data);
 	} catch (error) {
-		console.log('error', error);
 		apiErrorHandler(res, error);
 	}
 });
@@ -172,11 +169,9 @@ router.get('/takenLectures', async function (req, res) {
 				Authorization: accessToken,
 			},
 		});
-		console.log(result.data);
-		res.json(result.data);
+		res.status(200).json(result.data);
 		// res.json(result.data);
 	} catch (error) {
-		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
@@ -194,6 +189,28 @@ router.get('/search-lecture', async function (req, res) {
 			searchedLectures: response.data,
 		});
 	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.post('/update-lecture', async function (req, res) {
+	const formData = {
+		deletedTakenLectures: req.body.deletedTakenLectures,
+		addedTakenLectures: req.body.addedTakenLectures,
+	};
+
+	try {
+		const accessToken = req.cookies.authorization;
+		const result = await axios.patch(`${ROOT_URL}/users/me/taken-lectures`, formData, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		console.log(result);
+
+		res.status(200).end();
+	} catch (error) {
+		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
