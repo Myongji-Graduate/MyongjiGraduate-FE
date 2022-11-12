@@ -6,19 +6,16 @@ export default class InputGroup extends Component {
 	setDefaultProps() {
 		this.props = {
 			name: '',
+			id: '',
 			placeholder: '',
 			onChange: () => {},
 			value: '',
 			type: inputTypes.text,
 			options: [],
 			isValidation: false,
-			validationCallback:() => {},
-			errorMessage:'error',
-		};
-	}
-	initState() {
-		this.state = {
-			unuse: true,
+			validationCallback: () => {},
+			errorMessage: '',
+			buttonKey: undefined,
 		};
 	}
 
@@ -26,30 +23,39 @@ export default class InputGroup extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { name, type, errorMessage, isValidation } = this.props;
-			
+			const { name, type, errorMessage, key } = this.props; // isValidation
+
 			return `
-        <div class="input-group--${name} input-group">
-          <labal class="input-group__label" for=${name}>${name}</label>
+        <div class="input-group__${key} input-group--${name} input-group">
+          ${name && `<labal class="input-group__label" for=${name}>${name}</label>`}
           ${this.getInputByType(type)}
-		  ${this.checkIsShowErrorMessage() ?`<div class="input-group__error-message">${errorMessage}</div>` : '<div></div>' }
+					<div class="input-group__error-message">
+					${this.checkIsShowErrorMessage() ? errorMessage : ''}
+					</div>
         </div>
       `;
 		};
 	}
 
-	checkIsShowErrorMessage(){
-		const {unuse} =this.state;
-		const { isValidation } = this.props;
+	checkIsShowErrorMessage() {
+		const { isValidation, value } = this.props;
 
-		return !unuse && !isValidation;
+		return value.length !== 0 && !isValidation;
 	}
-	getInputByType(type) {
-		if (type === 'text') return this.getTextInput();
 
-		if (type === 'select') return this.getSelect();
+	getInputByType(type) {
+		if (type === inputTypes.text) return this.getTextInput();
+
+		if (type === inputTypes.select) return this.getSelect();
+
+		if (type === inputTypes.password) return this.getPassword();
 
 		return false;
+	}
+
+	getPassword() {
+		const { placeholder, value, id } = this.props;
+		return `<input class="input-group__password" type="password" id=${id} value="${value}" placeholder="${placeholder}" >`;
 	}
 
 	getTextInput() {
@@ -72,15 +78,22 @@ export default class InputGroup extends Component {
 	}
 
 	setEvent() {
-		const { type, onChange, validationCallback } = this.props;
+		const { type, onChange, validationCallback, buttonKey } = this.props;
 
 		this.addEvent('change', `.input-group__${type}`, (_, target) => {
 			onChange(target.value);
 		});
 		this.addEvent('focusout', `.input-group__${type}`, (_, target) => {
-			this.setState({unuse: false});
-			console.log(this)
 			validationCallback(target.value);
 		});
+
+		if (buttonKey) {
+			this.addEvent('keyup', `.input-group__${type}`, (event, target) => {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+					document.querySelector(`.button__${buttonKey}`).click();
+				}
+			});
+		}
 	}
 }

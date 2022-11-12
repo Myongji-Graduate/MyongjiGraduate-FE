@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from '../core/store';
 import { thunk, logger } from '../core/middleware';
-import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES } from './types';
+import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES, SIGNIN_ACTION_TYPES } from './types';
 
 const initState = {
 	test: 'ok',
@@ -23,16 +23,11 @@ export const reducer = (state = initState, action = {}) => {
 			return { ...state, test: 'no' };
 		case actionType.enrollRouter:
 			return { ...state, router: payload.router };
-		case RESULT_ACTION_TYPES.FETCH_RESULT_START:
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START:
 			return { ...state, isLoadingModalShow: true };
-		case RESULT_ACTION_TYPES.FETCH_RESULT_SUCCESS:
-			return {
-				...state,
-				isLoadingModalShow: false,
-				basicUserInfo: payload.basicUserInfo,
-				categoryList: payload.categoryList,
-			};
-		case RESULT_ACTION_TYPES.FETCH_RESULT_FAILED:
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS:
+			return { ...state, isLoadingModalShow: false };
+		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
 		case ERROR_ACTION_TYPES.HIDE_ERROR:
 			return {
@@ -42,6 +37,8 @@ export const reducer = (state = initState, action = {}) => {
 					message: null,
 				},
 			};
+		case ERROR_ACTION_TYPES.SHOW_ERROR:
+			return { ...state, error: payload.error };
 		default:
 			return state;
 	}

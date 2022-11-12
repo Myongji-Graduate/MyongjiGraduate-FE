@@ -22,6 +22,8 @@ export default class Component {
 		this.state = {};
 	}
 
+	componentDidMount() {}
+
 	addChild(C, ...args) {
 		const component = new C(...args);
 		this.children.push(component);
@@ -59,6 +61,7 @@ export default class Component {
 
 	addEvent(eventType, selector, callback, strict = false) {
 		const $root = this.getRootNode();
+		if ($root === null) return;
 		const targetList = [...$root.parentNode.querySelectorAll(selector)];
 
 		const getTarget = (eventDom) => {
@@ -108,6 +111,6 @@ export default class Component {
 			...this.state,
 			...newState,
 		};
-		dom.updateDom(this);
+		if (typeof window !== 'undefined') dom.updateDom(this);
 	}
 }

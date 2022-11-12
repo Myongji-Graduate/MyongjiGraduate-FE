@@ -20,6 +20,13 @@ export function enrollEvent(component) {
 	});
 }
 
+export function Mount(component) {
+	component.componentDidMount();
+	component.children.forEach((child) => {
+		Mount(child);
+	});
+}
+
 export function clearEvent(component) {
 	component.clearEvent();
 	component.children.forEach((child) => {
@@ -36,13 +43,17 @@ export function createDom(parentNode, component, lastComponent) {
 	if (lastComponent) clearEvent(lastComponent);
 	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 	enrollEvent(component);
+	Mount(component);
 }
 
 export function updateDom(component) {
 	const newNode = getNode(component);
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
+	console.log(parentNode);
 	clearEvent(component);
+
+	if (parentNode === null) return;
 
 	diff.updateElement(parentNode.parentNode, newNode, parentNode);
 

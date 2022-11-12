@@ -1,0 +1,16 @@
+.modal-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &__title{
+        @include title4;
+    }
+    &__underline{
+        border: 0.1rem solid $color-primary;;          
+        background-color: $color-primary;
+        border-radius: 4px;
+        width: 1.16rem;
+        margin-top: .4rem;
+    }
+}

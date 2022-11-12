@@ -1,15 +1,25 @@
 import express from 'express';
-
-import { serverRenderer } from '../../src/core/ssr';
+import { serverRouter } from '../../src/routers';
+import { validateAccessToken, validateInit } from './api';
 
 const router = express.Router();
 
-router.get('*', (req, res) => {
-	if (req.url === '/__webpack_hmr') return;
+router.get('*', async (req, res) => {
+	if (req.url === '/__webpack_hmr' || req.url === '/favicon.ico') return;
 
-	console.log('asd')
-
-	res.send(serverRenderer(req.path));
+	if (!serverRouter.checkAuthentication(req.path)) {
+		res.send(serverRouter.serverRender(req.path));
+	} else if (await validateAccessToken(req)) {
+		if (await validateInit(req)) {
+			console.log('init -s ');
+			res.send(serverRouter.serverRender(req.path, true, true));
+		} else {
+			console.log('init -d ');
+			res.send(serverRouter.serverRender(req.path, true, false));
+		}
+	} else {
+		res.redirect('/sign-in');
+	}
 });
 
 export default router;

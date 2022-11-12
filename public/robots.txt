@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /mypage
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /result
+Disallow: /file-upload

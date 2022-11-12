@@ -1,31 +1,41 @@
 import Component from '../../core/component';
-import { store } from '../../store/store';
+import GNB from '../GNB/GNB.component';
+
+import { getResponseiveImage } from '../../helper/images';
+
+const backgroundImageSizes = {
+	mobile: 650,
+	tablet: 1008,
+	sm: 1440,
+	md: 1920,
+	lg: 1920,
+};
+
+const [backgroundSizesAttr, backgroundSrcsetAttr] = getResponseiveImage(
+	backgroundImageSizes,
+	`${IMAGE_URL}/images/sub-background.png`
+);
+
+const [backgroundBottomSizesAttr, backgroundBottomSrcsetAttr] = getResponseiveImage(
+	backgroundImageSizes,
+	`${IMAGE_URL}/images/header-bottom.png`
+);
 
 export default class Header extends Component {
-	initState() {
-		this.state = {
-			test: 'sh',
-		};
-	}
-
 	template() {
+		const gnb = this.addChild(GNB);
 		return (props) => {
 			if (props) this.setProps(props);
 
 			return `
         <div class="header">
-          <div class ="header__test">
-            header ${this.props} ${this.state.test} ${store.getState().test}
-          </div>
+					<div class="header__gnb-container">
+						${gnb.render()}
+					</div>
+					<img sizes="${backgroundSizesAttr}" srcset="${backgroundSrcsetAttr}" class="header__background-img" alt="header__background-img" />
+					<img sizes="${backgroundBottomSizesAttr}" srcset="${backgroundBottomSrcsetAttr}" class="header__bottom-img" alt="header__bottom-img" />
         </div>
       `;
 		};
-	}
-
-	setEvent() {
-		this.addEvent('click', `.header__test`, () => {
-			const { router } = store.getState();
-			router.navigate('/product');
-		});
 	}
 }

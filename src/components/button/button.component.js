@@ -9,6 +9,7 @@ export default class Button extends Component {
 			onClick: () => {},
 			type: buttonTypes.normal,
 			size: 'lg',
+			disabled: false,
 		};
 	}
 
@@ -16,9 +17,11 @@ export default class Button extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { content, type, size, key } = this.props;
+			const { content, type, size, key, disabled } = this.props;
 			return `
-        <button class="${key ? `button__${key} ` : ''}button--${type} button--${size} button" > 
+        <button ${disabled && 'disabled'} class="${
+				key ? `button__${key} ` : ''
+			}button--${type} button--${size} button" > 
 		${content} 
 		</button>
       `;

@@ -2,6 +2,6 @@ import './root.scss';
 
 import * as dom from './core/dom';
 
-import { router } from './routers';
+import { browserRouter } from './routers';
 
-dom.createDom('.app-container', router.browserRender());
+dom.createDom('.app-container', browserRouter.browserRender());

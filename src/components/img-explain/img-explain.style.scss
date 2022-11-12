@@ -1,0 +1,15 @@
+.img-explain{ 
+ &__img{     
+    margin-bottom: 0.3rem;
+    width: 100%;
+    aspect-ratio: 1;
+ }
+ &__title{
+    margin: 0.2rem 0;
+    @include subhead4;
+ }
+ &__explain{
+    margin-bottom: 0.5rem;
+    @include body1;
+ }
+}

@@ -1,0 +1,46 @@
+
+.sign-up-page {
+
+  &__body {   
+    display: flex;
+    justify-content: center;
+
+     &__img-container{
+      width: 11.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mobile {
+        display: none;
+      }
+     }
+
+     &__img {
+      width: inherit;
+     }
+
+    &__content {        
+      padding: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__content {
+    @include mobile {
+      margin: 0 3rem;
+    }
+    display: flex;
+    position: relative;
+    top: -3rem;
+    width: 30.8333rem;
+    z-index: 10;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+  
+

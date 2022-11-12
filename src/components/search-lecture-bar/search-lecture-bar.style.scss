@@ -1,0 +1,29 @@
+.search-lecture-bar {
+  position: relative;
+
+  &__input {
+    background-color: $color-grey-scale5;
+    border: none;
+    border-radius: 2.0833rem;
+    height: 1.3125rem;
+    width: 12.5208rem;
+    @include mobile {
+      width: 70%
+    }
+    @include subhead3;
+    padding-left: 1.6042rem;
+
+    &::placeholder{
+      color: $color-grey-scale4;
+    }
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: .625rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: .6667rem;
+    height: .6667rem;
+  }
+}

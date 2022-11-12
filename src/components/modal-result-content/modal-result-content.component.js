@@ -1,6 +1,7 @@
 import Component from '../../core/component';
 import CategoryInfo from '../category-info/category-info.component';
 import ResultCompleteContent from '../result-complete-content/result-complete-content.component';
+import LectureTable from '../lecture-table/lecture-table.component';
 
 export default class ModalResultContent extends Component {
 	setDefaultProps() {
@@ -49,23 +50,10 @@ export default class ModalResultContent extends Component {
 						totalCredits: category.totalCredits,
 						takenCredits: category.takenCredits,
 					})}
-          </div>         
-           <div class="modal-result-content__head">
-               <div class="modal-result-content__head__column">과목코드</div>
-               <div class="modal-result-content__head__column">과목명</div>
-               <div class="modal-result-content__head__column">학점</div>
           </div>
-          <div class="modal-result-content__body">
-            ${lectures.map((lecture) => {
-							return `
-              <div class="modal-result-content__body__tr">
-              <div class="modal-result-content__body__tr__column">${lecture.code}</div>
-              <div class="modal-result-content__body__tr__column">${lecture.name}</div>
-              <div class="modal-result-content__body__tr__column">${lecture.credit}</div>
-              </div>
-              `;
-						})}
-          </div>
+					${LectureTable.render({
+						lectures,
+					})}
           </div>
           `;
 					})

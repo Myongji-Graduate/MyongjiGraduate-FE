@@ -1,10 +1,38 @@
 @font-face {
   font-family: vitro;
-  src: url("../public/fonts/vitro-core.ttf") format("truetype");
+  font-weight: 900;
+  src: local('vitro'),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.woff") format("woff"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/vitro-core.ttf") format("truetype");
+  font-display: swap;
 }
+
 @font-face {
   font-family: pretendard;
-  src: url("../public/fonts/PretendardVariable.ttf") format("truetype");
+  font-weight: 400;
+  src: local('pretendard'),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Regular.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Regular.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: pretendard;
+  font-weight: 500;
+  src: local('pretendard')
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Medium.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Medium.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: pretendard;
+  font-weight: 700;
+  src: local('pretendard')
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Bold.woff2") format("woff2"),
+        url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Bold.woff") format("woff");
+  font-display: swap;
 }
 
 html {
@@ -23,7 +51,6 @@ html {
   }
 
   @include tablet {
-   
     font-size: 28px;
   }
 
@@ -58,6 +85,18 @@ html {
   line-height: 0.5rem;
 }
 
+@mixin title4 {
+  font-weight: 700;
+  font-size:  0.67rem;
+  line-height: 0.8rem;
+}
+
+@mixin title5 {
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 0.9rem;
+}
+
 @mixin subhead1 {
   font-weight: 500;
   font-size: 0.75rem;
@@ -88,6 +127,18 @@ html {
   line-height: 0.5rem;
 }
 
+@mixin subhead6 {
+  font-weight: 500;
+  font-size: .6667rem;
+  line-height: .6138rem;
+}
+
+@mixin subhead7 {
+  font-weight: 500;
+  font-size: .2083rem;
+  line-height: .1667rem;
+}
+
 @mixin body1 {
   font-weight: 400;
   font-size: 0.4rem;
@@ -98,4 +149,10 @@ html {
   font-weight: 400;
   font-size: .4167rem;
   line-height: .5rem;
+}
+
+@mixin body3 {
+  font-weight: 400;
+  font-size: 0.5rem;
+  line-height: 0.5rem;
 }
