@@ -15,10 +15,12 @@ export default class MobileCategory extends Component {
 	}
 
 	template() {
+		const myInfo = this.addChild(MyInfo);
+		const tutorialNavigate = this.addChild(MobileNavigate);
+		const mypageNavigate = this.addChild(MobileNavigate);
+		const resultNavigate = this.addChild(MobileNavigate);
 		return (props) => {
 			if (props) this.setProps(props);
-			const myInfo = this.addChild(MyInfo);
-			const mobileNavigate = this.addChild(MobileNavigate);
 			const { ismobileCategoryShow, isLogin } = this.props;
 
 			const modalStyle = {
@@ -34,9 +36,9 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
 					 
-					 <div class="mobile-category__content-menu">${mobileNavigate.render({ title: '결과페이지', navigate: 'result' })}</div>
-					 <div class="mobile-category__content-menu">${mobileNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>					
-					 <div class="mobile-category__content-menu">${mobileNavigate.render({ title: '튜토리얼', navigate: 'tutorial' })}</div>
+					 <div class="mobile-category__content-menu">${resultNavigate.render({ title: '결과페이지', navigate: 'result' })}</div>
+					 <div class="mobile-category__content-menu">${mypageNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>			
+					 <div class="mobile-category__content-menu">${tutorialNavigate.render({ title: '튜토리얼', navigate: 'tutorial' })}</div>
 					 				
 					 <div class="mobile-category__content-signout">로그아웃</div>			
 				`
@@ -44,7 +46,7 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
 					 
-					 <div class="mobile-category__content-menu">${mobileNavigate.render({ title: '튜토리얼', navigate: 'tutorial' })}</div>
+					 <div class="mobile-category__content-menu">${tutorialNavigate.render({ title: '튜토리얼', navigate: 'tutorial' })}</div>
 					 
 					 <div class="mobile-category__content-signin">로그인</div>
 				`
