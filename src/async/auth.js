@@ -1,4 +1,6 @@
 import { handleErrorResponse } from '../helper/errorHandler';
+import { showSuccessModal } from '../helper/successHandler';
+import { SUCCESS_TYPES } from '../store/types';
 
 export async function fetchSignIn(formData) {
 	const response = await fetch('/api/signin', {
@@ -31,6 +33,7 @@ export async function fetchSignUp(formData) {
 	});
 
 	if (response.status === 200) {
+		showSuccessModal(SUCCESS_TYPES.SIGN_UP);
 		return true;
 	}
 

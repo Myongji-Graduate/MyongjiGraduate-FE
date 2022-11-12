@@ -27,7 +27,6 @@ export default class ModalErrorContent extends Component {
 		   class="modal-error-content__error-img" 
 		   alt="modal-error-content__error-img" />
           <div class="modal-error-content__error-message">${errorMessage}</div>
-					<div class="modal-error-content__help-message">도와주세요</div>
         </div>
       `;
 		};

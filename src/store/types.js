@@ -3,6 +3,11 @@ export const ERROR_ACTION_TYPES = {
 	HIDE_ERROR: 'error/HIDE_ERROR',
 };
 
+export const SUCCESS_ACTION_TYPES = {
+	SHOW_SUCCESS: 'sucess/SHOW_SUCCESS',
+	HIDE_SUCCESS: 'sucess/HIDE_SUCCESS',
+};
+
 export const SIGNIN_ACTION_TYPES = {
 	FETCH_SIGNIN_START: 'signin/FETCH_SIGNIN_START',
 	FETCH_SIGNIN_SUCCESS: 'signin/FETCH_SIGNIN_SUCCESS',
@@ -25,5 +30,12 @@ export const ERROR_TYPES = {
 	ALREADY_ADD_TAKEN: {
 		code: 101,
 		message: '이미 수강한 과목입니다.',
+	},
+};
+
+export const SUCCESS_TYPES = {
+	SIGN_UP: {
+		code: 100,
+		message: '회원가입에 성공하셨습니다.',
 	},
 };

@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 import { lectureTableItemTypes } from '../../helper/types';
 
-export default class LectureTableList extends Component {
+export default class ResultLectureTableList extends Component {
 	setDefaultProps() {
 		this.props = {
 			lectures: [],
@@ -28,12 +28,10 @@ export default class LectureTableList extends Component {
 		return lectures
 			.map((lecture) => {
 				return `
-            <div class="lecture-table-list__body">
-			<div class="lecture-table-list__body__column">${lecture.year}</div>
-            <div class="lecture-table-list__body__column">${lecture.semester}</div>
-            <div class="lecture-table-list__body__column">${lecture.code}</div>
-            <div class="lecture-table-list__body__column">${lecture.name}</div>
-            <div class="lecture-table-list__body__column">${lecture.credit}</div>
+            <div class="result-lecture-table-list__body">
+            <div class="result-lecture-table-list__body__column">${lecture.code}</div>
+            <div class="result-lecture-table-list__body__column">${lecture.name}</div>
+            <div class="result-lecture-table-list__body__column">${lecture.credit}</div>
             </div>
             `;
 			})
@@ -77,18 +75,11 @@ export default class LectureTableList extends Component {
 
 	getEditableTableItemTemplate(lecture, type) {
 		return `
-<<<<<<< Updated upstream
-      <div class="lecture-table-list__body--${lecture.code} lecture-table-list__body lecture-table-list__body--${type}">
-        <div class="lecture-table-list__body__column">${lecture.code}</div>
-=======
-      <div class="lecture-table-list__body--${lecture.id} lecture-table-list__body lecture-table-list__body--${type}">
-		<div class="lecture-table-list__body__column">${lecture.year}</div>
-		<div class="lecture-table-list__body__column">${lecture.semester}</div>   
-		<div class="lecture-table-list__body__column">${lecture.code}</div>
->>>>>>> Stashed changes
-        <div class="lecture-table-list__body__column">${lecture.name}</div>
-        <div class="lecture-table-list__body__column">${lecture.credit}</div>
-        <div class="lecture-table-list__body__button lecture-table-list__body__button--${lecture.code}">삭제</div>
+      <div class="result-lecture-table-list__body--${lecture.id} lecture-table-list__body lecture-table-list__body--${type}">
+        <div class="result-lecture-table-list__body__column">${lecture.code}</div>
+        <div class="result-lecture-table-list__body__column">${lecture.name}</div>
+        <div class="result-lecture-table-list__body__column">${lecture.credit}</div>
+        <div class="result-lecture-table-list__body__button result-lecture-table-list__body__button--${lecture.id}">삭제</div>
       </div>`;
 	}
 
@@ -96,7 +87,7 @@ export default class LectureTableList extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 			return `
-        <div class="lecture-table-list">
+        <div class="result-lecture-table-list">
           ${this.getTableList()}
        </div>
       `;
@@ -107,14 +98,13 @@ export default class LectureTableList extends Component {
 		const { isEditableMode, deleteTakenLecture, addedTakenLecutures, deleteAddedTakenLecture } = this.props;
 		if (isEditableMode) {
 			this.getNotDeletedTakenLectureList().forEach((lecture) => {
-				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {
+				this.addEvent('click', `.result-lecture-table-list__body__button--${lecture.id}`, () => {
 					deleteTakenLecture(lecture);
 				});
 			});
-			console.log(addedTakenLecutures);
 
 			addedTakenLecutures.forEach((lecture) => {
-				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {
+				this.addEvent('click', `.result-lecture-table-list__body__button--${lecture.id}`, () => {
 					deleteAddedTakenLecture(lecture);
 				});
 			});

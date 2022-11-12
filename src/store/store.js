@@ -1,12 +1,13 @@
 import { createStore, applyMiddleware } from '../core/store';
 import { thunk, logger } from '../core/middleware';
-import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES, SIGNIN_ACTION_TYPES } from './types';
+import { RESULT_ACTION_TYPES, ERROR_ACTION_TYPES, SIGNIN_ACTION_TYPES, SUCCESS_ACTION_TYPES } from './types';
 
 const initState = {
 	test: 'ok',
 	router: () => {},
 	isLoadingModalShow: false,
 	error: { code: null, message: null },
+	success: { code: null, message: null },
 	basicUserInfo: null,
 	categoryList: null,
 };
@@ -26,7 +27,7 @@ export const reducer = (state = initState, action = {}) => {
 		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_START:
 			return { ...state, isLoadingModalShow: true };
 		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS:
-			return { ...state, isLoadingModalShow: false };
+			return { ...state, isLoadingModalShow: false, success: payload.success };
 		case SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED:
 			return { ...state, isLoadingModalShow: false, error: payload.error };
 		case ERROR_ACTION_TYPES.HIDE_ERROR:
@@ -39,6 +40,16 @@ export const reducer = (state = initState, action = {}) => {
 			};
 		case ERROR_ACTION_TYPES.SHOW_ERROR:
 			return { ...state, error: payload.error };
+		case SUCCESS_ACTION_TYPES.HIDE_SUCCESS:
+			return {
+				...state,
+				success: {
+					code: null,
+					message: null,
+				},
+			};
+		case SUCCESS_ACTION_TYPES.SHOW_SUCCESS:
+			return { ...state, success: payload.success };
 		default:
 			return state;
 	}

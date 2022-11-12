@@ -1,4 +1,5 @@
 import Component from '../../core/component';
+import * as utils from '../../helper/utils';
 
 import Loading from '../loading/loading.component';
 import { getResponseiveImage } from '../../helper/images';
@@ -42,13 +43,16 @@ export default class SearchLectureTableList extends Component {
 	}
 
 	getEditableTableItemTemplate(lecture) {
+
+		const Style = { color : lecture.revoke ? 'red' : 'black' };
+
 		return `
-      <div class="search-lecture-table-list__tr--${lecture.id} search-lecture-table-list__tr">
-        <div class="search-lecture-table-list__tr__column">11</div>
-        <div class="search-lecture-table-list__tr__column">${lecture.name}</div>
-        <div class="search-lecture-table-list__tr__column">${lecture.credit}</div>
-        <div class="search-lecture-table-list__tr__button--${lecture.id} search-lecture-table-list__tr__button">추가</div>
-      </div>`;
+		<div class="search-lecture-table-list__tr--${lecture.id} search-lecture-table-list__tr" style=${utils.getInlineStyle(Style)}>
+			<div class="search-lecture-table-list__tr__column">${lecture.lectureCode}</div>
+			<div class="search-lecture-table-list__tr__column">${lecture.name}</div>
+			<div class="search-lecture-table-list__tr__column">${lecture.credit}</div>
+			<div class="search-lecture-table-list__tr__button--${lecture.id} search-lecture-table-list__tr__button">추가</div>
+     	</div>`;
 	}
 
 	getDefaultContent() {
