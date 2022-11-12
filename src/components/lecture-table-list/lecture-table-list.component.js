@@ -26,15 +26,17 @@ export default class LectureTableList extends Component {
 	getPlainTableList() {
 		const { lectures } = this.props;
 
-		return lectures.map((lecture) => {
-			return `
+		return lectures
+			.map((lecture) => {
+				return `
             <div class="lecture-table-list__body">
             <div class="lecture-table-list__body__column">${lecture.code}</div>
             <div class="lecture-table-list__body__column">${lecture.name}</div>
             <div class="lecture-table-list__body__column">${lecture.credit}</div>
             </div>
             `;
-		});
+			})
+			.join('');
 	}
 
 	getEditableTableList() {
@@ -85,7 +87,6 @@ export default class LectureTableList extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-
 			return `
         <div class="lecture-table-list">
           ${this.getTableList()}

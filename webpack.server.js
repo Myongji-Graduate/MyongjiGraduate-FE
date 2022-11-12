@@ -28,6 +28,10 @@ module.exports = {
 	plugins: [
 		new webpack.DefinePlugin({
 			IMAGE_URL: JSON.stringify('https://dc49tfy8ac9y2.cloudfront.net'),
+			BUILD_FILE:
+				process.env.NODE_ENV === 'production'
+					? JSON.stringify('https://dc49tfy8ac9y2.cloudfront.net/build/bundle.js.gz')
+					: JSON.stringify('bundle.js'),
 		}),
 	],
 

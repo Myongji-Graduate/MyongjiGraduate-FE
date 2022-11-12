@@ -172,7 +172,7 @@ router.get('/takenLectures', async function (req, res) {
 				Authorization: accessToken,
 			},
 		});
-		console.log(result);
+		console.log(result.data);
 		res.json(result.data);
 		// res.json(result.data);
 	} catch (error) {
@@ -197,6 +197,5 @@ router.get('/search-lecture', async function (req, res) {
 		apiErrorHandler(res, error);
 	}
 });
-
 
 export default router;
