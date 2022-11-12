@@ -1,0 +1,28 @@
+.mypage-body {
+  &__lecture-container {
+    width: 78%;
+    @include mobile {
+      width: 100%;
+    }
+    // background-color: black;
+  }
+
+  &__divider {
+    width: 1px;
+    background-color: $color-grey-scale2;
+    height: 95%;
+  }
+
+  &__taken-lecture-container {
+    width: 100%;
+    height: 12.9375rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__taken-lecture-list-container {
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+  }
+}

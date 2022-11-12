@@ -2,15 +2,13 @@ import Component from '../../core/component';
 
 import Header from '../../components/header/header.component';
 import InfoLogout from '../../components/info-logout/info-logout.component';
-import TakenLectureList from '../../components/taken-lecture-list/taken-lecture-list.component';
-import TakenLecture from '../../components/taken-lecture/taken-lecture.component';
+import MypageBody from '../../components/mypage-body/mypage-body.component';
 
 export default class MypagePage extends Component {
 	template() {
 		const header = this.addChild(Header);
 		const infoLogout = this.addChild(InfoLogout);
-		const takenLectureList = this.addChild(TakenLectureList);
-		const takenLecture = this.addChild(TakenLecture);
+		const body = this.addChild(MypageBody);
 		return (props) => {
 			if (props) this.setProps(props);
 
@@ -26,14 +24,7 @@ export default class MypagePage extends Component {
                   ${infoLogout.render()}  
                 </div>
                 <div class="mypage-page__divider"></div>
-                <div class="mypage-page__lecture-container">
-                <div class="mypage-page__taken-lecture-container">
-                  ${takenLecture.render()}
-                </div>
-                    <div class="mypage-page__taken-lecture-list-container">
-                      ${takenLectureList.render()}
-                   </div>
-                </div>
+               ${body.render()}
             </div>
           </div>
         </div>
