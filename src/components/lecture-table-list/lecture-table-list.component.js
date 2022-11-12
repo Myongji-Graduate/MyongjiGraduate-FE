@@ -77,15 +77,10 @@ export default class LectureTableList extends Component {
 
 	getEditableTableItemTemplate(lecture, type) {
 		return `
-<<<<<<< Updated upstream
       <div class="lecture-table-list__body--${lecture.code} lecture-table-list__body lecture-table-list__body--${type}">
-        <div class="lecture-table-list__body__column">${lecture.code}</div>
-=======
-      <div class="lecture-table-list__body--${lecture.id} lecture-table-list__body lecture-table-list__body--${type}">
 		<div class="lecture-table-list__body__column">${lecture.year}</div>
 		<div class="lecture-table-list__body__column">${lecture.semester}</div>   
 		<div class="lecture-table-list__body__column">${lecture.code}</div>
->>>>>>> Stashed changes
         <div class="lecture-table-list__body__column">${lecture.name}</div>
         <div class="lecture-table-list__body__column">${lecture.credit}</div>
         <div class="lecture-table-list__body__button lecture-table-list__body__button--${lecture.code}">삭제</div>

@@ -112,7 +112,13 @@ router.post('/signin', async function (req, res) {
 		res.cookie('authorization', result.headers.authorization, {
 			httpOnly: true,
 		});
-		res.status(200).end();
+
+		const response = await axios.get(`${ROOT_URL}/users/me/init`, {
+			headers: {
+				Authorization: result.headers.authorization,
+			},
+		});
+		res.status(200).json({ isInit: response.data.init });
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}

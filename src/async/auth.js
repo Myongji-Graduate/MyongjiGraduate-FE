@@ -1,6 +1,7 @@
 import { handleErrorResponse } from '../helper/errorHandler';
 import { showSuccessModal } from '../helper/successHandler';
 import { SUCCESS_TYPES } from '../store/types';
+import { signIn, init } from '../helper/auth';
 
 export async function fetchSignIn(formData) {
 	const response = await fetch('/api/signin', {
@@ -12,6 +13,11 @@ export async function fetchSignIn(formData) {
 	});
 
 	if (response.status === 200) {
+		signIn();
+		const result = await response.json();
+		if (result.isInit) {
+			init();
+		}
 		return true;
 	}
 
