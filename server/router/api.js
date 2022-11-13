@@ -12,8 +12,14 @@ const DEFAULT_HOST = 'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.
 const PREFIX = '/api/v1';
 const ROOT_URL = DEFAULT_HOST + PREFIX;
 
-export async function validateAccessToken(req) {
+export function getAuthorizationCookie(req) {
 	const accessToken = req.cookies.authorization;
+	if (accessToken === undefined) return 'null';
+	return accessToken;
+}
+
+export async function validateAccessToken(req) {
+	const accessToken = getAuthorizationCookie(req);
 	if (accessToken === undefined) return false;
 	try {
 		await axios.get(`${ROOT_URL}/auth/check-atk`, {
@@ -28,7 +34,7 @@ export async function validateAccessToken(req) {
 }
 
 export async function validateInit(req) {
-	const accessToken = req.cookies.authorization;
+	const accessToken = getAuthorizationCookie(req);
 	if (accessToken === undefined) return false;
 	try {
 		const response = await axios.get(`${ROOT_URL}/users/me/init`, {
@@ -82,7 +88,7 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 	try {
 		const pdfText = await parsePDF(formData);
 
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const response = await axios.post(
 			`${ROOT_URL}/users/me/taken-lectures`,
 			{
@@ -168,7 +174,7 @@ router.get('/check-atk', async function (req, res) {
 
 router.get('/takenLectures', async function (req, res) {
 	try {
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const result = await axios.get(`${ROOT_URL}/users/me/taken-lectures`, {
 			headers: {
 				Authorization: accessToken,
@@ -183,7 +189,7 @@ router.get('/takenLectures', async function (req, res) {
 
 router.get('/search-lecture', async function (req, res) {
 	try {
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const response = await axios.get(`${ROOT_URL}/lectures`, {
 			headers: {
 				Authorization: accessToken,
@@ -205,7 +211,7 @@ router.post('/update-lecture', async function (req, res) {
 	};
 
 	try {
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const result = await axios.patch(`${ROOT_URL}/users/me/taken-lectures`, formData, {
 			headers: {
 				Authorization: accessToken,
@@ -222,16 +228,41 @@ router.post('/update-lecture', async function (req, res) {
 
 router.get('/myInfo', async function (req, res) {
 	try {
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const result = await axios.get(`${ROOT_URL}/users/me/information`, {
 			headers: {
 				Authorization: accessToken,
 			},
 		});
 		res.status(200).json(result.data);
-		console.log(result)
+		console.log(result);
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
 });
+
+router.get('/graduation-result', async function (req, res) {
+	console.log('asdasjncjkasnkj');
+	try {
+		const accessToken = getAuthorizationCookie(req);
+		const result = await axios.get(`${ROOT_URL}/graduation/result`, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		console.log(result);
+		res.status(200).json(result.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/check-init', async function (req, res) {
+	if (await validateInit(req)) {
+		res.status(200).end();
+	} else {
+		res.status(400).end();
+	}
+});
+
 export default router;

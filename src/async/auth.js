@@ -58,3 +58,11 @@ export async function fetchValidateATK() {
 	if (response.status === 400) return false;
 	return false;
 }
+
+export async function fetchValidateInit() {
+	const response = await fetch('/api/check-init');
+
+	if (response.status === 200) return true;
+	if (response.status === 400) return false;
+	return false;
+}

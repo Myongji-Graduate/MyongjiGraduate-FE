@@ -1,7 +1,9 @@
 import Router from './router';
 import { store, createAction, actionType } from '../store/store';
 import * as dom from './dom';
-import { checkIsInit, checkIsSignIn } from '../helper/auth';
+
+import { userRule } from '../helper/types';
+import { fetchValidateATK, fetchValidateInit } from '../async/auth';
 
 export default class BrowserRouter extends Router {
 	lastPage;
@@ -21,13 +23,10 @@ export default class BrowserRouter extends Router {
 		);
 	}
 
-	browserRender() {
+	async browserRender() {
 		const { pathname } = window.location;
 		let routerObject = this.route(pathname);
-
-		if (routerObject.authentication) {
-			routerObject = this.authentication(routerObject);
-		}
+		routerObject = await this.authentication(routerObject);
 
 		const PageComponent = routerObject.element;
 
@@ -43,12 +42,16 @@ export default class BrowserRouter extends Router {
 		return this.root;
 	}
 
-	authentication(routerObject) {
-		if (checkIsSignIn()) {
-			if (checkIsInit() === false) return this.redirectInitPage();
-			return routerObject;
-		}
-		return this.redirectAuthPage();
+	async authentication(routerObject) {
+		if (routerObject.authentication === userRule.guest) return routerObject;
+
+		if ((await fetchValidateATK()) === false) return this.redirectAuthPage();
+
+		if (routerObject.authentication === userRule.init) return routerObject;
+
+		if ((await fetchValidateInit()) === false) return this.redirectInitPage();
+
+		return routerObject;
 	}
 
 	redirectAuthPage() {
@@ -71,8 +74,8 @@ export default class BrowserRouter extends Router {
 		this.isEnrolledEvent = true;
 	}
 
-	updatePage() {
+	async updatePage() {
 		const lastComponent = this.lastPage;
-		dom.createDom('.app-container', this.browserRender(), lastComponent);
+		dom.createDom('.app-container', await this.browserRender(), lastComponent);
 	}
 }

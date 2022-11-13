@@ -1,4 +1,4 @@
-const ssrTemplate = (content, isLogin, isInit) => `
+const ssrTemplate = (content) => `
   <!doctype html>
   <html lang="ko">
   <head>
@@ -15,10 +15,6 @@ const ssrTemplate = (content, isLogin, isInit) => `
   
   <!-- csr을 위한 script 태그 추가 -->
   <script defer="defer" src="${BUILD_FILE}"></script>
-  <script>
-  ${isLogin ? `window.sessionStorage.setItem('isLogin', true);` : ''}
-  ${isInit ? `window.sessionStorage.setItem('isInit', true);` : ''}
-  </script>
   <!-- / csr을 위한 script 태그 추가 -->
   
   

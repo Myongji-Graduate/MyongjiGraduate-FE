@@ -21,3 +21,9 @@ export const searchLectureOptionTypes = {
 	code: '과목코드',
 	name: '과목명',
 };
+
+export const userRule = {
+	guest: 'guest',
+	init: 'init',
+	normal: 'normal',
+};
