@@ -123,6 +123,7 @@ router.get('/signout', function (req, res) {
 });
 
 router.post('/signup', async function (req, res) {
+	console.log(req.body);
 	const formData = {
 		userId: req.body.id,
 		password: req.body.password,

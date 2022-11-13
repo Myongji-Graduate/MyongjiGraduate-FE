@@ -47,6 +47,7 @@ module.exports = {
 				process.env.NODE_ENV === 'production'
 					? JSON.stringify('https://dc49tfy8ac9y2.cloudfront.net/build/bundle.js.gz')
 					: JSON.stringify('bundle.js'),
+			FIREBASE_KEY: JSON.stringify('AIzaSyDKw8WQDbG-Rc1gR3_wAyt72ZxCIcsYuls'),
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 	],

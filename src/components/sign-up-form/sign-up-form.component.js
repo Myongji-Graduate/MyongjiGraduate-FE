@@ -81,7 +81,7 @@ export default class SignupForm extends Component {
 			id: this.state.id,
 			password: this.state.password,
 			studentId: this.state.studentId,
-			englishLevel: this.state.eglishLevel,
+			englishLevel: this.state.englishLevel,
 		});
 
 		if (result) {
