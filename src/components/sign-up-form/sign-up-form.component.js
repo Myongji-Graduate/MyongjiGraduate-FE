@@ -177,9 +177,9 @@ export default class SignupForm extends Component {
 				type: inputTypes.select,
 				options: ['기초영어', 'Level12', 'Level34', '면제'],
 				onChange: (newValue) => {
-					if(newValue==='기초영어'||newValue==='Level12') this.setState({ englishLevel: 0 });
-					if(newValue==='Level34') this.setState({ englishLevel: 1 });
-					if(newValue==='면제') this.setState({ englishLevel: 2 });
+					if(newValue==='기초영어'||newValue==='Level12') this.setState({ englishLevel: 'ENG12' });
+					if(newValue==='Level34') this.setState({ englishLevel: 'ENG34' });
+					if(newValue==='면제') this.setState({ englishLevel: 'FREE' });
 				},
 				isValidation: this.state.isValidationOfEnglishLevel,
 				key: 'sign-up-englishLevel',
