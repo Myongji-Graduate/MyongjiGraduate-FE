@@ -17,6 +17,7 @@ export default class MypageBody extends Component {
 			isEditableMode: false,
 			isLoading: false,
 			whiteList: ['KMA02101'],
+			totalCredit: 0,
 		};
 	}
 
@@ -29,6 +30,7 @@ export default class MypageBody extends Component {
 			const result = await fetchGetTakenLectures();
 			this.setState({
 				takenLectures: result.takenLectures,
+				totalCredit: result.totalCredit,
 				isLoading: false,
 			});
 		} catch (error) {
@@ -157,7 +159,8 @@ export default class MypageBody extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures, isLoading } = this.state;
+			const { totalCredit, takenLectures, isEditableMode, addedTakenLecutures, deletedTakenLecutures, isLoading } =
+				this.state;
 
 			const tableLectureListProps = {
 				takenLectures,
@@ -176,7 +179,9 @@ export default class MypageBody extends Component {
 			return `
       <div class="mypage-body__lecture-container">
         <div class="mypage-body__taken-lecture-container">
-          ${takenLecture.render()}
+          ${takenLecture.render({
+						totalCredit,
+					})}
         </div>
         <div class="mypage-body__taken-lecture-list-container">
           ${takenLectureList.render(tableLectureListProps)}

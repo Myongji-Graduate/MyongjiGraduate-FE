@@ -7,16 +7,18 @@ import GNB from '../GNB/GNB.component';
 
 export default class InfoLogout extends Component {
 	template() {
+		const logoutButton = this.addChild(Button);
+		const myInfo = this.addChild(MyInfo);
+		const gnb = this.addChild(GNB);
 		return (props) => {
-			const logoutButton = this.addChild(Button);
-			const myInfo = this.addChild(MyInfo);
-			const gnb = this.addChild(GNB);
 			if (props) this.setProps(props);
 
 			return `
        <div class="info-logout">       
             <div class="info-logout__info"> 
-            ${myInfo.render()} 
+            ${myInfo.render({
+							key: 'profile',
+						})} 
             </div>                 
             <div class="info-logout__logout">
             ${logoutButton.render({

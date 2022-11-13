@@ -5,8 +5,8 @@ import Modal from '../../components/modal/modal.component';
 import ModalElectiveLecture from '../../components/modal-elective-lecture/modal-elective-lecture.component';
 import CategoryCard from '../../components/category-card/category-card.component';
 import Mypage from '../../components/mypage/mypage.component';
-
-import { store } from '../../store/store';
+import { fetchGraduationResult } from '../../async/graduation';
+import { parseGraduationResult } from '../../helper/parse';
 
 export default class ResultPage extends Component {
 	initState() {
@@ -17,6 +17,14 @@ export default class ResultPage extends Component {
 				totalCredits: 0,
 				detailCategory: [],
 			},
+			basicUserInfo: {
+				name: '',
+				studentNumber: '',
+				department: '',
+				totalCredit: 0,
+				takenCredit: 0,
+			},
+			categoryList: [],
 		};
 	}
 
@@ -26,8 +34,24 @@ export default class ResultPage extends Component {
 		});
 	}
 
+	componentDidMount() {
+		this.fetchData();
+	}
+
+	async fetchData() {
+		try {
+			const result = await fetchGraduationResult();
+			const parseResult = parseGraduationResult(result);
+			console.log(parseResult);
+			this.setState({
+				basicUserInfo: parseResult.basicUserInfo,
+				categoryList: parseResult.categoryList,
+			});
+		} catch (error) {}
+	}
+
 	clickCategoryButton(index) {
-		const { categoryList } = store.getState();
+		const { categoryList } = this.state;
 		const categoryData = { ...categoryList[index] };
 
 		this.setState({
@@ -42,13 +66,11 @@ export default class ResultPage extends Component {
 		const modalElectiveLecture = this.addChild(ModalElectiveLecture);
 		const mypage = this.addChild(Mypage);
 		const categoryCardList = new Array(7).fill().map(() => this.addChild(CategoryCard));
-		// const categoryCardList = this.addChild(CategoryCard);
 
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { selectedCategoryData } = this.state;
-			const { basicUserInfo, categoryList } = store.getState();
+			const { basicUserInfo, selectedCategoryData, categoryList } = this.state;
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,

@@ -6,10 +6,10 @@ const ROOT_URL = 'https://1db2775e-5c12-4472-ba45-a118a0c06ef5.mock.pstmn.io/tes
 
 // export const fetchResult = (formData) => (dispatch, getState) => {
 // 	dispatch(createAction(RESULT_ACTION_TYPES.FETCH_RESULT_START));
-	// return fetch('/api/result', {
-	// 	method: 'POST',
-	// 	body: formData,
-	// })
+// return fetch('/api/result', {
+// 	method: 'POST',
+// 	body: formData,
+// })
 // 		.then((response) => {
 // 			return response.json();
 // 		})

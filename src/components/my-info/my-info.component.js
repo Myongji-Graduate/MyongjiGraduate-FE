@@ -3,7 +3,6 @@ import { checkIsSignIn } from '../../helper/auth';
 import { getResponseiveImage } from '../../helper/images';
 import { fetchGetMyInfo } from '../../async/info';
 import Info from '../info/info.component';
-import { handleErrorObject } from '../../helper/errorHandler';
 
 const sizes = {
 	mobile: 80,
@@ -12,71 +11,60 @@ const sizes = {
 	md: 130,
 	lg: 172,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/profile-image.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/profile-image.png`);
 
 export default class MyInfo extends Component {
-  initState() {
+	initState() {
 		this.state = {
-      studentNumber: 'studnetId',
-      studentName: 'name',
-      department: 'department', 
+			studentNumber: 'studnetId',
+			studentName: 'name',
+			department: 'department',
 		};
 	}
-  
-	async fetchMyInfo() {
-		this.setState({
-			isLoading: true,
-		});
 
+	async fetchMyInfo() {
 		try {
+			console.log(this);
 			const result = await fetchGetMyInfo();
-     
 			this.setState({
 				studentNumber: result.studentNumber,
-        studentName: result.studentName,
-        department: result.department,
+				studentName: result.studentName,
+				department: result.department,
 				isLoading: false,
 			});
-
-		} catch (error) {
-			handleErrorObject(error);
-			this.setState({
-				isLoading: false,
-			});
-		}
+		} catch (error) {}
 	}
 
-  componentDidMount() {
+	componentDidMount() {
 		this.fetchMyInfo();
 	}
 
 	template() {
-    const info = this.addChild(Info);
+		const info = this.addChild(Info);
 		return (props) => {
 			if (props) this.setProps(props);
-      
-      const { studentNumber, studentName, department } = this.state;
+
+			const { studentNumber, studentName, department } = this.state;
+			const { key } = this.props;
 
 			return `
-       <div class="my-info">       
+       <div class="my-info__${key} my-info">       
             <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="my-info-img" alt="my-info-img" />
                   
             ${
 							checkIsSignIn()
-								?
-                info.render({
-                  studentName : studentName,
-                  studentNumber : studentNumber,
-                  department : department,
-                  exist:true,
-                  })
-								:
-                info.render({
-                  studentName : 'GUEST', 
-                  studentNumber : '',
-                  department : '로그인이 필요합니다.',
-                  exist:false,
-                  })
+								? info.render({
+										studentName,
+										studentNumber,
+										department,
+										exist: true,
+								  })
+								: info.render({
+										studentName: 'GUEST',
+										studentNumber: '',
+										department: '로그인이 필요합니다.',
+										exist: false,
+								  })
 						}
         </div>
       `;

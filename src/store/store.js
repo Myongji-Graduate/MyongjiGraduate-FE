@@ -8,8 +8,6 @@ const initState = {
 	isLoadingModalShow: false,
 	error: { code: null, message: null },
 	success: { code: null, message: null },
-	basicUserInfo: null,
-	categoryList: null,
 };
 
 export const actionType = {

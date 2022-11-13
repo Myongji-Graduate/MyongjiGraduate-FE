@@ -23,8 +23,8 @@ const roundSizes = {
 	md: 145,
 	lg: 192,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/main-background.png`);
-const [roundSizeAttr, roundSrcsetAttr] = getResponseiveImage(roundSizes,`${IMAGE_URL}/images/round-logo.svg`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/main-background.png`);
+const [roundSizeAttr, roundSrcsetAttr] = getResponseiveImage(roundSizes, `${IMAGE_URL}/images/round-logo.svg`);
 
 export default class MainPage extends Component {
 	initState() {
@@ -43,7 +43,7 @@ export default class MainPage extends Component {
 		const gnb = this.addChild(GNB);
 		const maintitle = this.addChild(Maintitle);
 		const startBtn = this.addChild(MainBtn);
-	
+
 		return (props) => {
 			if (props) this.setProps(props);
 
@@ -62,7 +62,7 @@ export default class MainPage extends Component {
 							content: '검사시작',
 							onClick: () => {
 								const { router } = store.getState();
-								router.navigate('/sign-in');
+								router.navigate('/mypage');
 							},
 						})}					
 						</div>

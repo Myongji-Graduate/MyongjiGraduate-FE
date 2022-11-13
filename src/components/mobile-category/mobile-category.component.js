@@ -33,12 +33,15 @@ export default class MobileCategory extends Component {
 			${
 				isLogin
 					? `
-					 <div class="mobile-category__content-info">${myInfo.render()}</div>
+					 <div class="mobile-category__content-info">${myInfo.render({ key: 'mobile' })}</div>
 					 <div class="mobile-category__content-divider"></div>
 					 
 					 <div class="mobile-category__content-menu">${resultNavigate.render({ title: '결과페이지', navigate: 'result' })}</div>
 					 <div class="mobile-category__content-menu">${mypageNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>			
-					 <div class="mobile-category__content-menu">${tutorialNavigate.render({ title: '튜토리얼', navigate: 'tutorial' })}</div>
+					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
+							title: '튜토리얼',
+							navigate: 'tutorial',
+						})}</div>
 					 				
 					 <div class="mobile-category__content-signout">로그아웃</div>			
 				`
@@ -46,7 +49,10 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
 					 
-					 <div class="mobile-category__content-menu">${tutorialNavigate.render({ title: '튜토리얼', navigate: 'tutorial' })}</div>
+					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
+							title: '튜토리얼',
+							navigate: 'tutorial',
+						})}</div>
 					 
 					 <div class="mobile-category__content-signin">로그인</div>
 				`
