@@ -82,7 +82,6 @@ export default class SearchLectureTableList extends Component {
 
 		searchedLectures.forEach((lecture) => {
 			this.addEvent('click', `.search-lecture-table-list__tr__button--${lecture.id}`, () => {
-				console.log('adada');
 				addTakenLecture(lecture);
 			});
 		});

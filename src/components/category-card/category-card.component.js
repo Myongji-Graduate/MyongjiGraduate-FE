@@ -6,7 +6,8 @@ import Button from '../button/button.component';
 import { buttonTypes } from '../../helper/types';
 import { getResponseiveImage } from '../../helper/images';
 
-const sizes = {//추후수정
+const sizes = {
+	// 추후수정
 	mobile: 650,
 	tablet: 1008,
 	sm: 1440,
@@ -14,7 +15,7 @@ const sizes = {//추후수정
 	lg: 1920,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/book-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/book-icon.svg`);
 
 export default class CategoryCard extends Component {
 	setDefaultProps() {
@@ -25,6 +26,12 @@ export default class CategoryCard extends Component {
 			takenCredit: 12,
 			buttonOnClick: () => {},
 		};
+	}
+
+	hasDetails() {
+		const { title } = this.props;
+		if (title === '일반교양' || title === '자유선택') return false;
+		return true;
 	}
 
 	template() {
@@ -48,7 +55,6 @@ export default class CategoryCard extends Component {
 				key,
 				onClick: buttonOnClick,
 			};
-
 			return `
         <div class="category-card__${key} category-card">
           <div class="category-card__header">
@@ -73,9 +79,15 @@ export default class CategoryCard extends Component {
                 <div class="category-card__row-taken-credits">${takenCredit}</div>
               </div>
             </div>
-            <div class="category-card__create-modal-button">
+						${
+							this.hasDetails()
+								? `
+						<div class="category-card__create-modal-button">
               ${createModalButton.render(createModalButtonProps)}
-            </div>
+            </div>`
+								: ''
+						}
+
           </div>
         </div>
       `;

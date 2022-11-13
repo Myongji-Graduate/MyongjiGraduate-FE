@@ -51,7 +51,6 @@ export const fetchSign = (formData) => (dispatch, getState) => {
 			} else {
 				const { router } = getState();
 				// 토큰 저장
-				console.log('로그인 성공');
 				dispatch(createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_SUCCESS));
 			}
 		});

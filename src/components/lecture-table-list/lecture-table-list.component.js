@@ -106,7 +106,6 @@ export default class LectureTableList extends Component {
 					deleteTakenLecture(lecture);
 				});
 			});
-			console.log(addedTakenLecutures);
 
 			addedTakenLecutures.forEach((lecture) => {
 				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {

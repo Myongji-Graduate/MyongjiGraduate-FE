@@ -73,10 +73,12 @@ export const parseElectiveMajorResult = (majorResult) => {
 export const filterCategoryListCredit = (categoryList) => {
 	return categoryList.map((category) => {
 		category.takenCredit = Math.min(category.takenCredit, category.totalCredit);
-		category.detailCategory = category.detailCategory.map((detail) => {
-			detail.takenCredits = Math.min(detail.takenCredits, detail.totalCredits);
-			return detail;
-		});
+		if (category.detailCategory) {
+			category.detailCategory = category.detailCategory.map((detail) => {
+				detail.takenCredits = Math.min(detail.takenCredits, detail.totalCredits);
+				return detail;
+			});
+		}
 		return category;
 	});
 };
@@ -84,10 +86,8 @@ export const filterCategoryListCredit = (categoryList) => {
 export const parseGraduationResult = (result) => {
 	const basicUserInfo = { ...result.basicInfo };
 	const categoryList = [];
-
 	const mandatoryMajor = parseMandatoryMajorResult(result.major);
 	const electiveyMajor = parseElectiveMajorResult(result.major);
-
 	electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
 
 	electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;

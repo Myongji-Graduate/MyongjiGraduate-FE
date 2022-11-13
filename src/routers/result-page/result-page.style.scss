@@ -9,6 +9,12 @@
     margin-bottom: 1.45rem;
   }
 
+  &__loading-container {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+  }
+
   &__body {
     position: relative;
     display: flex;

@@ -1,7 +1,7 @@
 import Component from '../../core/component';
 import CategoryInfo from '../category-info/category-info.component';
 import ResultCompleteContent from '../result-complete-content/result-complete-content.component';
-import LectureTable from '../lecture-table/lecture-table.component';
+import ResultLectureTable from '../result-lecture-table/result-lecture-table.component';
 
 export default class ModalResultContent extends Component {
 	setDefaultProps() {
@@ -12,10 +12,11 @@ export default class ModalResultContent extends Component {
 
 	template() {
 		const resultCompleteContent = this.addChild(ResultCompleteContent);
+		const info = this.addChild(CategoryInfo);
+		const resultLectureTable = this.addChild(ResultLectureTable);
 
 		return (props) => {
 			if (props) this.setProps(props);
-			const info = this.addChild(CategoryInfo);
 			const { detailCategory } = this.props;
 
 			return `
@@ -31,7 +32,7 @@ export default class ModalResultContent extends Component {
           <div class="modal-result-content__content">
           <div class="modal-result-content__info">
             ${info.render({
-							part: category.categoryName,
+							part: category.detailCategoryName,
 							totalCredits: category.totalCredits,
 							takenCredits: category.takenCredits,
 						})}
@@ -46,19 +47,18 @@ export default class ModalResultContent extends Component {
           <div class="modal-result-content__content">
           <div class="modal-result-content__info">
          ${info.render({
-						part: category.categoryName,
+						part: category.detailCategoryName,
 						totalCredits: category.totalCredits,
 						takenCredits: category.takenCredits,
 					})}
           </div>
-					${LectureTable.render({
+					${resultLectureTable.render({
 						lectures,
 					})}
           </div>
           `;
 					})
-					.toString()
-					.replaceAll(',', '')}
+					.join('')}
       `;
 		};
 	}

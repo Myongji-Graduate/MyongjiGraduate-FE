@@ -34,7 +34,6 @@ export default class FileUploadPage extends Component {
 			await fetchPDFFileUpload(formData);
 			init();
 		} catch (error) {
-			console.log('asdad');
 			handleErrorObject(error);
 		}
 		this.setState({

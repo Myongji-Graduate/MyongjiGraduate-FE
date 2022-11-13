@@ -217,11 +217,9 @@ router.post('/update-lecture', async function (req, res) {
 				Authorization: accessToken,
 			},
 		});
-		console.log(result);
 
 		res.status(200).end();
 	} catch (error) {
-		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
@@ -235,14 +233,12 @@ router.get('/myInfo', async function (req, res) {
 			},
 		});
 		res.status(200).json(result.data);
-		console.log(result);
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
 });
 
 router.get('/graduation-result', async function (req, res) {
-	console.log('asdasjncjkasnkj');
 	try {
 		const accessToken = getAuthorizationCookie(req);
 		const result = await axios.get(`${ROOT_URL}/graduation/result`, {
@@ -250,7 +246,6 @@ router.get('/graduation-result', async function (req, res) {
 				Authorization: accessToken,
 			},
 		});
-		console.log(result);
 		res.status(200).json(result.data);
 	} catch (error) {
 		apiErrorHandler(res, error);

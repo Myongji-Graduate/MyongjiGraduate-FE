@@ -7,6 +7,7 @@ import CategoryCard from '../../components/category-card/category-card.component
 import Mypage from '../../components/mypage/mypage.component';
 import { fetchGraduationResult } from '../../async/graduation';
 import { parseGraduationResult } from '../../helper/parse';
+import Loading from '../../components/loading/loading.component';
 
 export default class ResultPage extends Component {
 	initState() {
@@ -25,6 +26,7 @@ export default class ResultPage extends Component {
 				takenCredit: 0,
 			},
 			categoryList: [],
+			isLoading: false,
 		};
 	}
 
@@ -39,15 +41,22 @@ export default class ResultPage extends Component {
 	}
 
 	async fetchData() {
+		this.setState({
+			isLoading: true,
+		});
 		try {
 			const result = await fetchGraduationResult();
 			const parseResult = parseGraduationResult(result);
-			console.log(parseResult);
 			this.setState({
 				basicUserInfo: parseResult.basicUserInfo,
 				categoryList: parseResult.categoryList,
+				isLoading: false,
 			});
-		} catch (error) {}
+		} catch (error) {
+			this.setState({
+				isLoading: false,
+			});
+		}
 	}
 
 	clickCategoryButton(index) {
@@ -65,12 +74,13 @@ export default class ResultPage extends Component {
 		const modal = this.addChild(Modal);
 		const modalElectiveLecture = this.addChild(ModalElectiveLecture);
 		const mypage = this.addChild(Mypage);
+		const loading = this.addChild(Loading);
 		const categoryCardList = new Array(7).fill().map(() => this.addChild(CategoryCard));
 
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { basicUserInfo, selectedCategoryData, categoryList } = this.state;
+			const { isLoading, basicUserInfo, selectedCategoryData, categoryList } = this.state;
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
@@ -90,28 +100,35 @@ export default class ResultPage extends Component {
 					key: 'lecture',
 				})}
 				</div>
-					<div class="result-page__header">
-           			 ${header.render()}           
-        			  </div>
-					<div class="result-page__body">
+				<div class="result-page__header">
+					${header.render()}           
+				</div>
+				<div class="result-page__body">
+						
+				${
+					isLoading
+						? `<div class="result-page__loading-container">${loading.render()}</div>`
+						: `
 						<div class="result-page__content">
 						<div class="result-page__summary">${mypage.render({ ...basicUserInfo })}</div>
-							<div class="result-page__category-grid-container">
-								${categoryList
-									.map(({ categoryName, totalCredit, takenCredit }, index) => {
-										return categoryCardList[index].render({
-											title: categoryName,
-											totalCredit,
-											takenCredit,
-											key: index + 1,
-											buttonOnClick: this.clickCategoryButton.bind(this, index),
-										});
-									})
-									.toString()
-									.replaceAll(',', '')}
-							</div>
+						<div class="result-page__category-grid-container">
+							${categoryList
+								.map(({ categoryName, totalCredit, takenCredit }, index) => {
+									return categoryCardList[index].render({
+										title: categoryName,
+										totalCredit,
+										takenCredit,
+										key: index + 1,
+										buttonOnClick: this.clickCategoryButton.bind(this, index),
+									});
+								})
+								.join('')}
 						</div>
+						</div>
+			`
+				}
 					</div>
+					
 				</div>
 					`;
 		};

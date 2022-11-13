@@ -35,6 +35,7 @@ export function clearEvent(component) {
 }
 
 export function createDom(parentNode, component, lastComponent) {
+	console.log('create', component);
 	if (typeof parentNode === 'string') parentNode = document.querySelector(parentNode);
 
 	const newNode = parentNode.cloneNode(true);
@@ -47,10 +48,10 @@ export function createDom(parentNode, component, lastComponent) {
 }
 
 export function updateDom(component) {
+	console.log('update', component);
 	const newNode = getNode(component);
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
-	console.log(parentNode);
 	clearEvent(component);
 
 	if (parentNode === null) return;

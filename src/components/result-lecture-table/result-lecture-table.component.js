@@ -30,12 +30,12 @@ export default class ResultLectureTable extends Component {
         ${resultlectureTableHeader.render()}
         <div class="result-lecture-table__body">
        			   ${
-						isLoading
-							? `<div class="result-lecture-table__loading-container">${loading.render()}</div>`
-							: resultlectureTableList.render({
-									...this.props,
-							  })
-					}
+									isLoading
+										? `<div class="result-lecture-table__loading-container">${loading.render()}</div>`
+										: resultlectureTableList.render({
+												...this.props,
+										  })
+								}
         </div>
       </div>
       `;

@@ -17,8 +17,10 @@ export async function signOut() {
 
 export function init() {
 	sessionStorage.setItem('isInit', true);
-	const { router } = store.getState();
-	router.navigate('/mypage');
+}
+
+export function unInit() {
+	sessionStorage.setItem('isInit', false);
 }
 
 export function checkIsSignIn() {

@@ -24,7 +24,6 @@ export default class MyInfo extends Component {
 
 	async fetchMyInfo() {
 		try {
-			console.log(this);
 			const result = await fetchGetMyInfo();
 			this.setState({
 				studentNumber: result.studentNumber,

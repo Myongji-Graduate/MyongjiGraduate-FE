@@ -1,7 +1,7 @@
 import { handleErrorResponse } from '../helper/errorHandler';
 import { showSuccessModal } from '../helper/successHandler';
 import { SUCCESS_TYPES } from '../store/types';
-import { signIn, init } from '../helper/auth';
+import { signIn, init, signOut, unInit } from '../helper/auth';
 
 export async function fetchSignIn(formData) {
 	const response = await fetch('/api/signin', {
@@ -54,15 +54,26 @@ export async function fetchSignUp(formData) {
 export async function fetchValidateATK() {
 	const response = await fetch('/api/check-atk');
 
-	if (response.status === 200) return true;
-	if (response.status === 400) return false;
+	if (response.status === 200) {
+		signIn();
+		return true;
+	}
+	if (response.status === 400) {
+		signOut();
+		return false;
+	}
 	return false;
 }
 
 export async function fetchValidateInit() {
 	const response = await fetch('/api/check-init');
 
-	if (response.status === 200) return true;
-	if (response.status === 400) return false;
+	if (response.status === 200) {
+		init();
+		return true;
+	}
+	if (response.status === 400) {
+		unInit();
+	}
 	return false;
 }
