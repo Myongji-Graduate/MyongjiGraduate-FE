@@ -72,6 +72,7 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 
 	try {
 		const pdfText = await parsePDF(formData);
+		console.log(pdfText);
 
 		const accessToken = getAuthorizationCookie(req);
 		const response = await axios.post(
@@ -85,8 +86,10 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 				},
 			}
 		);
+		console.log(response);
 		res.status(200).json(response.data);
 	} catch (error) {
+		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
@@ -96,6 +99,7 @@ router.post('/signin', async function (req, res) {
 		userId: req.body.id,
 		password: req.body.password,
 	};
+	console.log(formData);
 
 	try {
 		const result = await axios.post(`${ROOT_URL}/auth/sign-in`, formData);
@@ -110,6 +114,7 @@ router.post('/signin', async function (req, res) {
 		});
 		res.status(200).json({ isInit: response.data.init });
 	} catch (error) {
+		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
