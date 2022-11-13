@@ -3,7 +3,7 @@ import { store, createAction, actionType } from '../store/store';
 import * as dom from './dom';
 
 import { userRule } from '../helper/types';
-import { fetchValidateATK, fetchValidateInit } from '../async/auth';
+import { fetchValidateUser } from '../async/auth';
 
 export default class BrowserRouter extends Router {
 	lastPage;
@@ -45,11 +45,14 @@ export default class BrowserRouter extends Router {
 	async authentication(routerObject) {
 		if (routerObject.authentication === userRule.guest) return routerObject;
 
-		if ((await fetchValidateATK()) === false) return this.redirectAuthPage();
+		const auth = await fetchValidateUser();
+		console.log(auth);
+
+		if (auth.validToken === false) return this.redirectAuthPage();
 
 		if (routerObject.authentication === userRule.init) return routerObject;
 
-		if ((await fetchValidateInit()) === false) return this.redirectInitPage();
+		if (auth.init === false) return this.redirectInitPage();
 
 		return routerObject;
 	}

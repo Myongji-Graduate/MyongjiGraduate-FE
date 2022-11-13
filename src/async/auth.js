@@ -65,15 +65,33 @@ export async function fetchValidateATK() {
 	return false;
 }
 
-export async function fetchValidateInit() {
-	const response = await fetch('/api/check-init');
+export async function fetchValidateUser() {
+	console.log('user검증');
+	const response = await fetch('/api/check-user');
 
 	if (response.status === 200) {
-		init();
-		return true;
+		const result = await response.json();
+
+		if (result.validToken) {
+			signIn();
+		} else {
+			signOut();
+		}
+
+		if (result.init) {
+			init();
+		} else {
+			unInit();
+		}
+
+		return result;
 	}
-	if (response.status === 400) {
-		unInit();
-	}
-	return false;
+
+	signOut();
+	unInit();
+
+	return {
+		validToken: false,
+		init: false,
+	};
 }

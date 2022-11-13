@@ -33,21 +33,6 @@ export async function validateAccessToken(req) {
 	}
 }
 
-export async function validateInit(req) {
-	const accessToken = getAuthorizationCookie(req);
-	if (accessToken === undefined) return false;
-	try {
-		const response = await axios.get(`${ROOT_URL}/users/me/init`, {
-			headers: {
-				Authorization: accessToken,
-			},
-		});
-		return response.data.init;
-	} catch (error) {
-		return false;
-	}
-}
-
 export async function parsePDF(formData) {
 	const response = await axios.post(
 		'https://ig81au5s0j.execute-api.ap-northeast-2.amazonaws.com/mju-graduate/parse',
@@ -130,8 +115,9 @@ router.post('/signin', async function (req, res) {
 });
 
 router.get('/signout', function (req, res) {
-	res.cookie('authorization', 'logout', {
+	res.cookie('authorization', null, {
 		httpOnly: true,
+		maxAge: 0,
 	});
 	res.status(200).end();
 });
@@ -227,12 +213,19 @@ router.post('/update-lecture', async function (req, res) {
 router.get('/myInfo', async function (req, res) {
 	try {
 		const accessToken = getAuthorizationCookie(req);
-		const result = await axios.get(`${ROOT_URL}/users/me/information`, {
-			headers: {
-				Authorization: accessToken,
-			},
-		});
-		res.status(200).json(result.data);
+		if (accessToken === 'null') {
+			res.status(500).json({
+				code: 500,
+				message: '서버에 장애가 있습니다.',
+			});
+		} else {
+			const result = await axios.get(`${ROOT_URL}/users/me/information`, {
+				headers: {
+					Authorization: accessToken,
+				},
+			});
+			res.status(200).json(result.data);
+		}
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
@@ -252,11 +245,22 @@ router.get('/graduation-result', async function (req, res) {
 	}
 });
 
-router.get('/check-init', async function (req, res) {
-	if (await validateInit(req)) {
-		res.status(200).end();
-	} else {
+router.get('/check-user', async function (req, res) {
+	console.log('check-user');
+	const accessToken = req.cookies.authorization;
+	if (accessToken === undefined) {
 		res.status(400).end();
+	} else {
+		try {
+			const response = await axios.get(`${ROOT_URL}/users/me/init`, {
+				headers: {
+					Authorization: accessToken,
+				},
+			});
+			res.status(200).json(response.data);
+		} catch (error) {
+			apiErrorHandler(res, error);
+		}
 	}
 });
 
