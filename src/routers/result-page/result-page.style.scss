@@ -35,13 +35,8 @@
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 0.8rem;
     grid-row-gap: 0.8rem;
-    @include mobile{      
-      margin-top: 1rem;
-      display: flex;   
-      overflow-x: scroll;
-      width: 100%;    
-      left: 0;
-      position: fixed;
+    @include mobile{         
+      grid-column-gap: 0;
     }
   }
 }
