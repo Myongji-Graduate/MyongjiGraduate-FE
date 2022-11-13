@@ -9,6 +9,11 @@ export function redirectSignInPage() {
 	router.navigate('/sign-in');
 }
 
+export function redirectMypage() {
+	const { router } = store.getState();
+	router.navigate('/mypage');
+}
+
 export async function signOut() {
 	try {
 		await fetch('/api/signout');
