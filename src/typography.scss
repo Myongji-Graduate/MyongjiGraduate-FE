@@ -57,6 +57,10 @@ html {
   @include mobile {
     font-size: 22px;
   }
+
+  @include mini {
+    font-size: 20px;
+  }
 }
 
 @mixin main-title {

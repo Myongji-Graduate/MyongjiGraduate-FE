@@ -185,11 +185,6 @@ export default class SignupForm extends Component {
 				key: 'sign-up-englishLevel',
 			};
 
-			// const gosignin = () => {
-			// 	const { router } = store.getState();
-			// 	router.navigate('/sign-in');
-			// };
-
 			return `
         <div class="sign-up-form">		
         ${modalLoadingContainer.render(modalLoadingProps)}

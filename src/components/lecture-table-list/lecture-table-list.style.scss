@@ -20,10 +20,11 @@
             padding: 0.2rem 0.4rem;
             color: white;
             transform: translate(0, -50%);
+        
         }
         &--addedLecture {
             color: $color-point_blue;
         }
     }
-    &__tr:last-child{border-bottom:0px}    
+    &__body:last-child{border-bottom:0px}    
 }

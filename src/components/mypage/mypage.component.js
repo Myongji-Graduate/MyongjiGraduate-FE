@@ -10,6 +10,7 @@ export default class Mypage extends Component {
 			name: '',
 			studentNumber: '',
 			department: '',
+      complete: false,
 		};
 	}
 
@@ -17,16 +18,21 @@ export default class Mypage extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 			const pieChart = this.addChild(PieChart);
-			const { totalCredit, takenCredit, name, studentNumber, department } = this.props;
+			const { totalCredit, takenCredit, name, studentNumber, department, complete } = this.props;
 
 			const percentage = Math.round((takenCredit / totalCredit) * 100);
+      const leftCredit = totalCredit - takenCredit;
 
 			return `
         <div class="mypage">
-        <div class="mypage__totalcredit">
-        <div>총 기준학점보다 </div>       
-        <div class="mypage__totalcredit-credit">&nbsp;${totalCredit - takenCredit}&nbsp;</div> 
-        <div> 학점이 부족합니다</div>        
+        <div class="mypage__totalcredit">       
+       ${complete
+       ? `<div class="mypage__totalcredit-credit">${name}</div> 
+          <div>님 졸업을 축하합니다 ! </div>`
+       : `<div>총 기준학점보다 </div>       
+          <div class="mypage__totalcredit-credit">&nbsp;${leftCredit}&nbsp;</div> 
+          <div> 학점이 부족합니다</div> `
+       }      
         </div>
 
         <div class="mypage__info">
@@ -37,12 +43,14 @@ export default class Mypage extends Component {
         <div>학과</div>
         <div>총 기준 학점</div>
         <div>총 이수 학점</div>
+        <div>졸업사정결과</div>
         </div>
         <div class="mypage__info__table-value">
         <div>${name}</div>  
         <div>${studentNumber}</div>  
         <div>${department}</div>  
         <div>${totalCredit}</div>  
+        <div>${takenCredit}</div>  
         <div>${takenCredit}</div>  
         </div>    
          </div> 

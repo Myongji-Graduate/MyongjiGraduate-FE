@@ -21,7 +21,8 @@
   }
 
   &__taken-lecture-list-container {
-    height: 20rem;
+    height: min-content;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
   }

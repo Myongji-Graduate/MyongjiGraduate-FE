@@ -37,6 +37,7 @@
     grid-row-gap: 0.8rem;
     @include mobile{         
       grid-column-gap: 0;
+      overflow-x: hidden;
     }
   }
 }

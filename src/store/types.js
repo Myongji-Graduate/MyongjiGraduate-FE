@@ -38,4 +38,8 @@ export const SUCCESS_TYPES = {
 		code: 100,
 		message: '회원가입에 성공하셨습니다.',
 	},
+	CUSTOM_LECTURE: {
+		code: 101,
+		message: '커스텀한 과목을 추가하였습니다.',
+	},
 };
