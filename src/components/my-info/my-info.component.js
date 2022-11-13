@@ -35,7 +35,9 @@ export default class MyInfo extends Component {
 	}
 
 	componentDidMount() {
-		this.fetchMyInfo();
+		if (checkIsSignIn()) {
+			this.fetchMyInfo();
+		}
 	}
 
 	template() {
