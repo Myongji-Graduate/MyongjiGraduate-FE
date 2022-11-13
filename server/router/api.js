@@ -3,7 +3,6 @@ import multer from 'multer';
 import FormData from 'form-data';
 import fs from 'fs';
 import axios from 'axios';
-import { objectToQueryString } from '../../src/helper/utils';
 
 const router = express.Router();
 
@@ -221,4 +220,18 @@ router.post('/update-lecture', async function (req, res) {
 	}
 });
 
+router.get('/myInfo', async function (req, res) {
+	try {
+		const accessToken = req.cookies.authorization;
+		const result = await axios.get(`${ROOT_URL}/users/me/information`, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		res.status(200).json(result.data);
+		console.log(result)
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
 export default router;

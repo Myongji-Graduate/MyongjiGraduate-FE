@@ -5,6 +5,7 @@ import TakenLecture from '../taken-lecture/taken-lecture.component';
 import { createAction, store } from '../../store/store';
 import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
 import { fetchGetTakenLectures, fetchUpdateTakenLecture } from '../../async/lecture';
+
 import { handleErrorObject } from '../../helper/errorHandler';
 
 export default class MypageBody extends Component {

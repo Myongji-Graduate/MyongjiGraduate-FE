@@ -22,8 +22,8 @@ export default class MypagePage extends Component {
             <div class="mypage-page__content">
               <div class="mypage-page__info-container"> 
                   ${infoLogout.render()}  
-                </div>
-                <div class="mypage-page__divider"></div>
+              </div>
+              <div class="mypage-page__divider"></div>
                ${body.render()}
             </div>
           </div>
