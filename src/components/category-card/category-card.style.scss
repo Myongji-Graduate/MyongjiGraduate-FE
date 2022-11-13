@@ -38,7 +38,8 @@
   &__footer {
     display: flex;
     width: 100%;
-    justify-content: space-around
+    justify-content: space-around;
+    height: 1.25rem;
   }
 
   &__display-credits {

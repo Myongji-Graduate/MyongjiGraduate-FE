@@ -30,8 +30,14 @@ export default class CategoryCard extends Component {
 
 	hasDetails() {
 		const { title } = this.props;
-		if (title === '일반교양' || title === '자유선택') return false;
+		if (title === '일반교양' || title === '자유선택' || title === '채플') return false;
 		return true;
+	}
+
+	isChaple() {
+		const { title } = this.props;
+		if (title === '채플') return true;
+		return false;
 	}
 
 	template() {
@@ -71,11 +77,11 @@ export default class CategoryCard extends Component {
           <div class="category-card__footer">
             <div class="category-card__display-credits">
               <div class="category-card__total-credits-container">
-                <div class="category-card__row-text">기준학점</div>
+                <div class="category-card__row-text">${this.isChaple() ? '기준횟수' : '기준학점'}</div>
                 <div class="category-card__row-total-credits">${totalCredit}</div>
               </div>
               <div class="category-card__taken-credits-container">
-                <div class="category-card__row-text">이수학점</div>
+                <div class="category-card__row-text">${this.isChaple() ? '이수횟수' : '이수학점'}</div>
                 <div class="category-card__row-taken-credits">${takenCredit}</div>
               </div>
             </div>

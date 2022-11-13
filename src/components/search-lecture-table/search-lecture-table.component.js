@@ -12,7 +12,7 @@ export default class SearchLectureTable extends Component {
 	initState() {
 		this.state = {
 			searchText: '',
-			option: searchLectureOptionTypes.code,
+			option: searchLectureOptionTypes.name,
 			searchedLectures: [],
 			isLoading: false,
 		};

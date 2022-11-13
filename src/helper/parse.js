@@ -1,3 +1,20 @@
+export const detailCategoryToKorean = {
+	CAREER: '진로',
+	CHRISTIAN: '기독교',
+	ENGLISH: '영어',
+	EXPRESSION: '사고와 표현',
+	HISTORY_AND_PHILOSOPHY: '역사와 철학',
+	SOCIETY_AND_COMMUNITY: '사회와 공동체',
+	SCIENCE_AND_TECHNOLOGY: '고확과 기술',
+	CULTURE_AND_ART: '문화와 예술',
+	ICT: 'ICT융합대학',
+	RAW: '법과대학',
+	MANAGEMENT_INFORMATION: '경영정보',
+	INTERNATIONAL_TRADE: '국제통상',
+	HUMANITY: '인문대학',
+	SOCIAL_SCIENCE: '사회과학대학',
+};
+
 export const parseMandatoryMajorResult = (majorResult) => {
 	const mandatoryMajor = majorResult.detailCategory[0].takenMandatoryLectures.reduce(
 		(acc, lecture) => {
@@ -95,7 +112,8 @@ export const parseGraduationResult = (result) => {
 	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
 
 	electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
-
+	mandatoryMajor.detailCategory[0].detailCategoryName = '전공필수';
+	electiveyMajor.detailCategory[0].detailCategoryName = '전공선택';
 	categoryList.push(mandatoryMajor);
 	categoryList.push(electiveyMajor);
 	result.commonCulture.categoryName = '공통교양';
@@ -112,6 +130,12 @@ export const parseGraduationResult = (result) => {
 
 	result.freeElective.categoryName = '자유선택';
 	categoryList.push({ ...result.freeElective });
+
+	result.chapelResult.categoryName = '채플';
+	result.chapelResult.takenCredit = result.chapelResult.takenCount;
+	result.chapelResult.totalCredit = result.chapelResult.totalCount;
+
+	categoryList.push({ ...result.chapelResult });
 
 	const filteredCategoryList = filterCategoryListCredit(categoryList);
 	return {

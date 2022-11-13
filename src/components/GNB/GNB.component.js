@@ -84,7 +84,6 @@ export default class GNB extends Component {
 			router.navigate('/mypage');
 		});
 		this.addEvent('click', '.gnb-result', () => {
-			console.log('asd');
 			router.navigate('/result');
 		});
 		this.addEvent('click', '.gnb-signin', () => {

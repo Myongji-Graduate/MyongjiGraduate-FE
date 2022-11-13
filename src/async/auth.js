@@ -66,7 +66,6 @@ export async function fetchValidateATK() {
 }
 
 export async function fetchValidateUser() {
-	console.log('user검증');
 	const response = await fetch('/api/check-user');
 
 	if (response.status === 200) {

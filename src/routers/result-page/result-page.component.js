@@ -46,7 +46,7 @@ export default class ResultPage extends Component {
 		});
 		try {
 			const result = await fetchGraduationResult();
-			console.log(result);
+
 			const parseResult = parseGraduationResult(result);
 			this.setState({
 				basicUserInfo: parseResult.basicUserInfo,
@@ -84,7 +84,7 @@ export default class ResultPage extends Component {
 		const modalElectiveLecture = this.addChild(ModalElectiveLecture);
 		const mypage = this.addChild(Mypage);
 		const loading = this.addChild(Loading);
-		const categoryCardList = new Array(7).fill().map(() => this.addChild(CategoryCard));
+		const categoryCardList = new Array(8).fill().map(() => this.addChild(CategoryCard));
 
 		return (props) => {
 			if (props) this.setProps(props);

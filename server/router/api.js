@@ -127,7 +127,7 @@ router.post('/signup', async function (req, res) {
 		userId: req.body.id,
 		password: req.body.password,
 		studentNumber: req.body.studentId,
-		engLv: req.body.eglishLevel,
+		engLv: req.body.englishLevel,
 	};
 
 	try {
@@ -246,7 +246,6 @@ router.get('/graduation-result', async function (req, res) {
 });
 
 router.get('/check-user', async function (req, res) {
-	console.log('check-user');
 	const accessToken = req.cookies.authorization;
 	if (accessToken === undefined) {
 		res.status(400).end();
