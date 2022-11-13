@@ -31,7 +31,7 @@ export default class ModalAgreement extends Component {
 				<li>현재 검사 가능한 학과-학번은 아래과 같습니다. 검사대상에 속하지 않다면 검사가 불가능합니다. <strong>꼭 검사대상인지 확인하세요!</strong></li>
 				</ol>
 				<ul>
-				<li>대학: 경영대학, 법과대학, 사회과학대학, ICT융합대학</li>
+				<li>대학: 경영대학, 법과대학, 사회과학대학, ICT융합대학, 인문대학, <span class="modal-agreement__important">미래융합대학(불가)</span></li>
 				<li>학번: 16 ~ 22학번</li>
 				</ul>
 				<ol start="2">
