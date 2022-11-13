@@ -31,13 +31,14 @@ export default class SignupForm extends Component {
 			isValidationOfPassword: false,
 			isValidationOfReconfirm: false,
 			isValidationOfStudentId: false,
+			isValidationOfEnglishLevel: false,
 			totalValidation: false,
 		};
 	}
 
 	validationTotal() {
-		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId } = this.state;
-		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId) {
+		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId, isValidationOfEnglishLevel } = this.state;
+		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId && isValidationOfEnglishLevel ) {
 			return true;
 		}
 		return false;
@@ -73,6 +74,14 @@ export default class SignupForm extends Component {
 		if (validateLength(studentId, 8) || validateOnlyNumber(studentId)) resultStudentId = false;
 		this.setState({
 			isValidationOfStudentId: resultStudentId,
+		});
+	}
+
+	validationCallbackOfEnglishLevel(englishLevel) {
+		let resultEnglishLevel = true;
+		if (englishLevel==='') resultEnglishLevel = false;
+		this.setState({
+			isValidationOfEnglishLevel: resultEnglishLevel,
 		});
 	}
 
@@ -179,6 +188,7 @@ export default class SignupForm extends Component {
 					if (newValue === '면제') this.setState({ englishLevel: 'FREE' });
 				},
 				isValidation: this.state.isValidationOfEnglishLevel,
+				validationCallback: this.validationCallbackOfEnglishLevel.bind(this),
 				key: 'sign-up-englishLevel',
 			};
 
