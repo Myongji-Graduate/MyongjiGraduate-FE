@@ -4,12 +4,16 @@ export function signIn() {
 	sessionStorage.setItem('isLogin', true);
 }
 
+export function redirectSignInPage() {
+	const { router } = store.getState();
+	router.navigate('/sign-in');
+}
+
 export async function signOut() {
 	try {
 		await fetch('/api/signout');
 		sessionStorage.setItem('isLogin', false);
-		const { router } = store.getState();
-		router.navigate('/sign-in');
+		redirectSignInPage();
 	} catch (err) {
 		console.log(err);
 	}
@@ -35,9 +39,4 @@ export function checkIsInit() {
 	const isInit = sessionStorage.getItem('isInit');
 	if (isInit === null || isInit === 'false') return false;
 	return true;
-}
-
-export function redirectSignInPage() {
-	const { router } = store.getState();
-	router.navigate('/sign-in');
 }
