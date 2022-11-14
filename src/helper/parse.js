@@ -5,7 +5,7 @@ export const detailCategoryToKorean = {
 	EXPRESSION: '사고와 표현',
 	HISTORY_AND_PHILOSOPHY: '역사와 철학',
 	SOCIETY_AND_COMMUNITY: '사회와 공동체',
-	SCIENCE_AND_TECHNOLOGY: '고확과 기술',
+	SCIENCE_AND_TECHNOLOGY: '과확과 기술',
 	CULTURE_AND_ART: '문화와 예술',
 	ICT: 'ICT융합대학',
 	RAW: '법과대학',
