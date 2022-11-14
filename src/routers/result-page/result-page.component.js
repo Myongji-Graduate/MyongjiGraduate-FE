@@ -49,10 +49,10 @@ export default class ResultPage extends Component {
 			console.log(result);
 
 			const parseResult = parseGraduationResult(result);
-			console.log(parseResult);
 			this.setState({
 				basicUserInfo: parseResult.basicUserInfo,
 				categoryList: parseResult.categoryList,
+				graduated: parseResult.graduated,
 				isLoading: false,
 			});
 		} catch (error) {
@@ -92,7 +92,7 @@ export default class ResultPage extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { isLoading, basicUserInfo, selectedCategoryData, categoryList } = this.state;
+			const { isLoading, basicUserInfo, selectedCategoryData, categoryList, graduated } = this.state;
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
@@ -121,7 +121,7 @@ export default class ResultPage extends Component {
 						? `<div class="result-page__loading-container">${loading.render()}</div>`
 						: `
 						<div class="result-page__content">
-						<div class="result-page__summary">${mypage.render({ ...basicUserInfo, complete: this.isGraduation() })}</div>
+						<div class="result-page__summary">${mypage.render({ ...basicUserInfo, complete: graduated })}</div>
 						<div class="result-page__category-grid-container">
 							${categoryList
 								.map(({ categoryName, totalCredit, takenCredit }, index) => {
