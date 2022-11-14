@@ -23,7 +23,7 @@ export default class ModalResultContent extends Component {
 			return `
       <div class="modal-result-content">
         ${detailCategory
-					.map((category) => {
+					.map((category, index) => {
 						let lectures = [];
 						if (category.haveToMandatoryLectures.length !== 0) lectures = category.haveToMandatoryLectures;
 						if (category.haveToElectiveLectures.length !== 0) lectures = category.haveToElectiveLectures;
@@ -42,7 +42,9 @@ export default class ModalResultContent extends Component {
 						})}
             </div>
           <div class="modal-result-content__complete-content">
-          ${resultCompleteContent.render()}
+          ${resultCompleteContent.render({
+						key: index,
+					})}
           </div>
           </div>
           `;

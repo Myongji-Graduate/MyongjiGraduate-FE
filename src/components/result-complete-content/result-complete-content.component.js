@@ -1,15 +1,15 @@
 import Component from '../../core/component';
 import { getResponseiveImage } from '../../helper/images';
 
-
-const checkSizes = {//추후 수정
+const checkSizes = {
 	mobile: 580,
 	tablet: 690,
 	sm: 690,
 	md: 890,
 	lg: 1180,
 };
-const backgroundSizes = {//추후 수정
+const backgroundSizes = {
+	// 추후 수정
 	mobile: 580,
 	tablet: 690,
 	sm: 690,
@@ -17,17 +17,21 @@ const backgroundSizes = {//추후 수정
 	lg: 1180,
 };
 
-const [checkSizeAttr, checkSrcsetAttr] = getResponseiveImage(checkSizes,`${IMAGE_URL}/images/complete-check.svg`);
-const [backgroundSizeAttr, backgroundSrcsetAttr] = getResponseiveImage(backgroundSizes,`${IMAGE_URL}/images/complete-background.png`);
-
+const [checkSizeAttr, checkSrcsetAttr] = getResponseiveImage(checkSizes, `${IMAGE_URL}/images/complete-check.svg`);
+const [backgroundSizeAttr, backgroundSrcsetAttr] = getResponseiveImage(
+	backgroundSizes,
+	`${IMAGE_URL}/images/complete-background.png`
+);
 
 export default class ResultCompleteContent extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
 
+			const { key } = this.props;
+
 			return `
-        <div class="result-complete-content">
+        <div class="result-complete-content__${key} result-complete-content">
           <img  	  
 				sizes="${backgroundSizeAttr}"
 				srcset="${backgroundSrcsetAttr}"               

@@ -112,6 +112,13 @@ export const parseGraduationResult = (result) => {
 	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
 
 	electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
+
+	electiveyMajor.detailCategory[0].completed =
+		electiveyMajor.detailCategory[0].takenCredits >= electiveyMajor.detailCategory[0].totalCredits;
+	mandatoryMajor.detailCategory[0].completed =
+		mandatoryMajor.detailCategory[0].takenCredits >= mandatoryMajor.detailCategory[0].totalCredits;
+
+	console.log(electiveyMajor);
 	mandatoryMajor.detailCategory[0].detailCategoryName = '전공필수';
 	electiveyMajor.detailCategory[0].detailCategoryName = '전공선택';
 	categoryList.push(mandatoryMajor);
