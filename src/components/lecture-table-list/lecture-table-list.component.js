@@ -27,10 +27,12 @@ export default class LectureTableList extends Component {
 
 		return lectures
 			.map((lecture) => {
+				const year = lecture.year ? lecture.year : '커스텀';
+				const semester = lecture.semester ? lecture.semester : '커스텀';
 				return `
             <div class="lecture-table-list__body">
-			<div class="lecture-table-list__body__column">${lecture.year}</div>
-            <div class="lecture-table-list__body__column">${lecture.semester}</div>
+			<div class="lecture-table-list__body__column">${year}</div>
+            <div class="lecture-table-list__body__column">${semester}</div>
             <div class="lecture-table-list__body__column">${lecture.code}</div>
             <div class="lecture-table-list__body__column">${lecture.name}</div>
             <div class="lecture-table-list__body__column">${lecture.credit}</div>
@@ -76,10 +78,12 @@ export default class LectureTableList extends Component {
 	}
 
 	getEditableTableItemTemplate(lecture, type) {
+		const year = lecture.year ? lecture.year : '커스텀';
+		const semester = lecture.semester ? lecture.semester : '커스텀';
 		return `
       <div class="lecture-table-list__body--${lecture.code} lecture-table-list__body lecture-table-list__body--${type}">
-		<div class="lecture-table-list__body__column">${lecture.year}</div>
-		<div class="lecture-table-list__body__column">${lecture.semester}</div>   
+		<div class="lecture-table-list__body__column">${year}</div>
+		<div class="lecture-table-list__body__column">${semester}</div>   
 		<div class="lecture-table-list__body__column">${lecture.code}</div>
         <div class="lecture-table-list__body__column">${lecture.name}</div>
         <div class="lecture-table-list__body__column">${lecture.credit}</div>
