@@ -94,14 +94,16 @@ export const parseMandatoryMajorResult = (majorResult) => {
 			mandatoryMajor = parseMandatoruMajorDetailCategory(majorResult.detailCategory[1], '전공필수');
 			mandatoryMajor.detailCategory[1] = { ...majorResult.detailCategory[0] };
 			mandatoryMajor.detailCategory[1].detailCategoryName = '전공선택필수';
-			mandatoryMajor.totalCredit += mandatoryMajor.detailCategory[1].totalCredits;
-			mandatoryMajor.takenCredit += mandatoryMajor.detailCategory[1].takenCredits;
+			const { totalCredits, takenCredits } = mandatoryMajor.detailCategory[1];
+			mandatoryMajor.totalCredit += totalCredits;
+			mandatoryMajor.takenCredit += Math.min(totalCredits, takenCredits);
 		} else {
 			mandatoryMajor = parseMandatoruMajorDetailCategory(majorResult.detailCategory[0], '전공필수');
 			mandatoryMajor.detailCategory[1] = { ...majorResult.detailCategory[1] };
 			mandatoryMajor.detailCategory[1].detailCategoryName = '전공선택필수';
-			mandatoryMajor.totalCredit += mandatoryMajor.detailCategory[1].totalCredits;
-			mandatoryMajor.takenCredit += mandatoryMajor.detailCategory[1].takenCredits;
+			const { totalCredits, takenCredits } = mandatoryMajor.detailCategory[1];
+			mandatoryMajor.totalCredit += totalCredits;
+			mandatoryMajor.takenCredit += Math.min(totalCredits, takenCredits);
 		}
 	} else {
 		mandatoryMajor = parseMandatoruMajorDetailCategory(majorResult.detailCategory[0], '전공필수');
@@ -115,8 +117,14 @@ export const parseElectiveMajorResult = (majorResult) => {
 	if (majorResult.detailCategory.length === 2) {
 		if (majorResult.detailCategory[0].detailCategoryName.search(/_A$/) > 0) {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[1], '전공선택');
+			const { totalCredits, takenCredits } = majorResult.detailCategory[0];
+			const leftCredits = Math.max(0, takenCredits - totalCredits);
+			electiveMajor.takenCredit += leftCredits;
 		} else {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
+			const { totalCredits, takenCredits } = majorResult.detailCategory[1];
+			const leftCredits = Math.max(0, takenCredits - totalCredits);
+			electiveMajor.takenCredit += leftCredits;
 		}
 	} else {
 		electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
