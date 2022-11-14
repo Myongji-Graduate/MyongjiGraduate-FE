@@ -37,14 +37,15 @@ export default class SearchLectureBar extends Component {
 	setEvent() {
 		const { onChange, buttonKey } = this.props;
 
-		this.addEvent('input', `.search-lecture-bar__input`, (_, target) => {
+		this.addEvent('change', `.search-lecture-bar__input`, (_, target) => {
 			onChange(target.value);
 		});
 
 		if (buttonKey) {
 			this.addEvent('keypress', `.search-lecture-bar__input`, (event, target) => {
-				if (event.keyCode === 13 && event.isComposing === false) {
+				if (event.keyCode === 13) {
 					event.preventDefault();
+					document.querySelector(`.search-lecture-bar__input`).blur();
 					document.querySelector(`.button__${buttonKey}`).click();
 				}
 			});

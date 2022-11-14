@@ -40,6 +40,6 @@ export const SUCCESS_TYPES = {
 	},
 	CUSTOM_LECTURE: {
 		code: 101,
-		message: '커스텀한 과목을 추가하였습니다.',
+		message: '커스텀에 성공하셨습니다.',
 	},
 };
