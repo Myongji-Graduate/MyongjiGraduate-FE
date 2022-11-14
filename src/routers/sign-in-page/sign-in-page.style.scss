@@ -6,9 +6,7 @@
 
      &__img-container{
       width: 11.25rem;
-      @include mobile {
-        display: none;
-      }
+
      }
 
      &__img {
@@ -16,6 +14,7 @@
      }
     &__content {
       padding: 1rem;
+      box-sizing: border-box;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -25,7 +24,7 @@
 
   &__content {
     @include mobile {
-      margin: 0 3rem;
+      flex-direction: column-reverse;
     }
     display: flex;
     position: relative;
