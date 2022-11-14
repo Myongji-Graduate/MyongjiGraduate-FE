@@ -44,7 +44,7 @@ export default class Mypage extends Component {
         <div>학과</div>
         <div>총 기준 학점</div>
         <div>총 이수 학점</div>
-        <div>졸업사정결과</div>
+        <div>졸업가능여부</div>
         </div>
         <div class="mypage__info__table-value">
         <div>${name}</div>  
@@ -52,7 +52,7 @@ export default class Mypage extends Component {
         <div>${department}</div>  
         <div>${totalCredit}</div>  
         <div>${takenCredit}</div>  
-        <div>${takenCredit}</div>  
+        <div>${complete ? '가능' : '불가능'}</div>  
         </div>    
          </div> 
         <div class="mypage__info__piechart">${pieChart.render({
