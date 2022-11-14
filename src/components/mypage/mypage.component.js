@@ -45,6 +45,7 @@ export default class Mypage extends Component {
         <div>총 기준 학점</div>
         <div>총 이수 학점</div>
         <div>졸업가능여부</div>
+        <div class="mypage__info__table-key__explain">모든 기준 학점은 채플을 포함하지 않습니다.</div>
         </div>
         <div class="mypage__info__table-value">
         <div>${name}</div>  
