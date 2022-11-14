@@ -62,10 +62,11 @@ export default class ResultPage extends Component {
 
 	isGraduation() {
 		const { categoryList } = this.state;
-		console.log(categoryList)
-		return categoryList.filter(category => {
-			return category.completed === false
-		}).length === 0;
+		return (
+			categoryList.filter((category) => {
+				return category.completed === false;
+			}).length === 0
+		);
 	}
 
 	clickCategoryButton(index) {

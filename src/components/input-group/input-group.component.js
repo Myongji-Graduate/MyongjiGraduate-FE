@@ -80,7 +80,7 @@ export default class InputGroup extends Component {
 	setEvent() {
 		const { type, onChange, validationCallback, buttonKey } = this.props;
 
-		this.addEvent('change', `.input-group__${type}`, (_, target) => {
+		this.addEvent('input', `.input-group__${type}`, (_, target) => {
 			onChange(target.value);
 		});
 		this.addEvent('focusout', `.input-group__${type}`, (_, target) => {
@@ -88,7 +88,7 @@ export default class InputGroup extends Component {
 		});
 
 		if (buttonKey) {
-			this.addEvent('keyup', `.input-group__${type}`, (event, target) => {
+			this.addEvent('keypress', `.input-group__${type}`, (event, target) => {
 				if (event.keyCode === 13) {
 					event.preventDefault();
 					document.querySelector(`.button__${buttonKey}`).click();

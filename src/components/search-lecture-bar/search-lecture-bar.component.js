@@ -10,7 +10,7 @@ const sizes = {
 	lg: 32,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/search-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/search-icon.svg`);
 
 export default class SearchLectureBar extends Component {
 	setDefaultProps() {
@@ -37,13 +37,13 @@ export default class SearchLectureBar extends Component {
 	setEvent() {
 		const { onChange, buttonKey } = this.props;
 
-		this.addEvent('change', `.search-lecture-bar__input`, (_, target) => {
+		this.addEvent('input', `.search-lecture-bar__input`, (_, target) => {
 			onChange(target.value);
 		});
 
 		if (buttonKey) {
-			this.addEvent('keyup', `.search-lecture-bar__input`, (event, target) => {
-				if (event.keyCode === 13) {
+			this.addEvent('keypress', `.search-lecture-bar__input`, (event, target) => {
+				if (event.keyCode === 13 && event.isComposing === false) {
 					event.preventDefault();
 					document.querySelector(`.button__${buttonKey}`).click();
 				}

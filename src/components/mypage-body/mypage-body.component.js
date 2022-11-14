@@ -60,7 +60,6 @@ export default class MypageBody extends Component {
 	}
 
 	async submitEditedLecture() {
-		console.log("test0")
 		const { deletedTakenLecutures, addedTakenLecutures } = this.state;
 		const formData = {};
 		formData.deletedTakenLectures = deletedTakenLecutures.map((deletedTakenLecuture) => deletedTakenLecuture.id);
