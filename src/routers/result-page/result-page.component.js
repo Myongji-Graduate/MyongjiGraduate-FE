@@ -46,7 +46,6 @@ export default class ResultPage extends Component {
 		});
 		try {
 			const result = await fetchGraduationResult();
-			console.log(result);
 
 			const parseResult = parseGraduationResult(result);
 			this.setState({
