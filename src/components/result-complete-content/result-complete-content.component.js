@@ -2,19 +2,18 @@ import Component from '../../core/component';
 import { getResponseiveImage } from '../../helper/images';
 
 const checkSizes = {
-	mobile: 580,
-	tablet: 690,
-	sm: 690,
-	md: 890,
-	lg: 1180,
+	mobile: 40,
+	tablet: 50,
+	sm: 50,
+	md: 60,
+	lg: 90,
 };
 const backgroundSizes = {
-	// 추후 수정
-	mobile: 580,
-	tablet: 690,
-	sm: 690,
-	md: 890,
-	lg: 1180,
+	mobile: 540,
+	tablet: 700,
+	sm: 700,
+	md: 8900,
+	lg: 1200,
 };
 
 const [checkSizeAttr, checkSrcsetAttr] = getResponseiveImage(checkSizes, `${IMAGE_URL}/images/complete-check.svg`);

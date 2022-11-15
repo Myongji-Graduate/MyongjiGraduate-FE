@@ -7,12 +7,11 @@ import { buttonTypes } from '../../helper/types';
 import { getResponseiveImage } from '../../helper/images';
 
 const sizes = {
-	// 추후수정
-	mobile: 650,
-	tablet: 1008,
-	sm: 1440,
-	md: 1920,
-	lg: 1920,
+	mobile: 10,
+	tablet: 12,
+	sm: 12,
+	md: 15,
+	lg: 20,
 };
 
 const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/book-icon.svg`);
