@@ -37,7 +37,13 @@ export default class SignupForm extends Component {
 
 	validationTotal() {
 		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId } = this.state;
-		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId && this.selectedenglishLevel(this.state.englishLevel)) {
+		if (
+			isValidationOfId &&
+			isValidationOfPassword &&
+			isValidationOfReconfirm &&
+			isValidationOfStudentId &&
+			this.validationEnglishLevel(this.state.englishLevel)
+		) {
 			return true;
 		}
 		return false;
@@ -76,8 +82,8 @@ export default class SignupForm extends Component {
 		});
 	}
 
-	selectedenglishLevel(englishLevel) {
-		return englishLevel !== "";
+	validationEnglishLevel(englishLevel) {
+		return englishLevel !== '';
 	}
 
 	async submitData() {
