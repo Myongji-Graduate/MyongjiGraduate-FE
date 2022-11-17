@@ -25,13 +25,6 @@
             @include mobile{ 
                 margin-right: 1rem;
             }
-            &__explain{
-                width: 10rem;
-                margin-right: 0;
-                font-size: smaller;
-                color:#CFCFCF;
-                padding-top: 0.5rem;
-            }
             }
             &-value{
                 white-space: nowrap;
@@ -52,5 +45,10 @@
             width: 4.67rem;
             height: 4.67rem;            
         }
+    }
+    &__explain{
+        @include subhead2;
+        color:#CFCFCF;
+        padding-top: 0.5rem;
     }
 }
