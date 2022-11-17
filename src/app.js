@@ -1,5 +1,6 @@
 import Component from './core/component';
 import ModalError from './components/modal-error/modal-error.component';
+import ModalSuccess from './components/modal-success/modal-success.component';
 
 export default class App extends Component {
 	getChildComponent() {
@@ -16,6 +17,7 @@ export default class App extends Component {
 
 	template() {
 		const modalError = this.addChild(ModalError);
+		const modalSuccess = this.addChild(ModalSuccess);
 		return (props) => {
 			if (props) this.setProps(props);
 
@@ -26,7 +28,11 @@ export default class App extends Component {
           <div class="app__eror-modal">
             ${modalError.render()}
           </div>
+		  <div class="app__success-modal">
+		  ${modalSuccess.render()}
+		  </div>
           ${childComponent.render()}
+		  
         </div>
       `;
 		};

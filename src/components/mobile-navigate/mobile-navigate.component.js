@@ -24,10 +24,10 @@ export default class MobileNavigate extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { title, key } = this.props;
+			const { title, navigate } = this.props;
 
 			return `
-            <div class="mobile-navigate__${key} mobile-navigate">
+            <div class="mobile-navigate__${navigate} mobile-navigate" key=${navigate}>
                 <img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="mobile-navigate__img" alt="mobile-navigate__img" />
                 <div class="mobile-navigate__name">${title}</div>
                 <div class="mobile-navigate__arrow">></div>
@@ -38,7 +38,7 @@ export default class MobileNavigate extends Component {
 
 	setEvent() {
 		const { navigate } = this.props;
-		this.addEvent('click', '.mobile-navigate', () => {
+		this.addEvent('click', `.mobile-navigate__${navigate}`, () => {
 			const { router } = store.getState();
 			router.navigate(`/${navigate}`);
 		});

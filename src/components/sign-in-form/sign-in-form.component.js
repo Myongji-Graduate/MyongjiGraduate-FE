@@ -28,17 +28,14 @@ export default class SigninForm extends Component {
 			isLoading: true,
 		});
 		const result = await fetchSignIn({
-			id: 'didtjdgns852',
-			password: 'hj@1027612',
+			id: this.state.id,
+			password: this.state.password,
 		});
 		this.setState({
 			isLoading: false,
 		});
 
 		if (result) {
-			signIn();
-			// todo
-			// init();
 			const { router } = store.getState();
 			router.navigate('/mypage');
 		}

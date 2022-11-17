@@ -3,7 +3,6 @@ import multer from 'multer';
 import FormData from 'form-data';
 import fs from 'fs';
 import axios from 'axios';
-import { objectToQueryString } from '../../src/helper/utils';
 
 const router = express.Router();
 
@@ -13,8 +12,14 @@ const DEFAULT_HOST = 'http://ec2-15-165-61-122.ap-northeast-2.compute.amazonaws.
 const PREFIX = '/api/v1';
 const ROOT_URL = DEFAULT_HOST + PREFIX;
 
-export async function validateAccessToken(req) {
+export function getAuthorizationCookie(req) {
 	const accessToken = req.cookies.authorization;
+	if (accessToken === undefined) return 'null';
+	return accessToken;
+}
+
+export async function validateAccessToken(req) {
+	const accessToken = getAuthorizationCookie(req);
 	if (accessToken === undefined) return false;
 	try {
 		await axios.get(`${ROOT_URL}/auth/check-atk`, {
@@ -23,22 +28,6 @@ export async function validateAccessToken(req) {
 			},
 		});
 		return true;
-	} catch (error) {
-		return false;
-	}
-}
-
-export async function validateInit(req) {
-	const accessToken = req.cookies.authorization;
-	if (accessToken === undefined) return false;
-	try {
-		const response = await axios.get(`${ROOT_URL}/users/me/init`, {
-			headers: {
-				Authorization: accessToken,
-			},
-		});
-		console.log(response);
-		return response.data.init;
 	} catch (error) {
 		return false;
 	}
@@ -84,7 +73,7 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 	try {
 		const pdfText = await parsePDF(formData);
 
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const response = await axios.post(
 			`${ROOT_URL}/users/me/taken-lectures`,
 			{
@@ -96,10 +85,8 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 				},
 			}
 		);
-		console.log('file-upload', response);
 		res.status(200).json(response.data);
 	} catch (error) {
-		console.log('error', error);
 		apiErrorHandler(res, error);
 	}
 });
@@ -115,15 +102,22 @@ router.post('/signin', async function (req, res) {
 		res.cookie('authorization', result.headers.authorization, {
 			httpOnly: true,
 		});
-		res.status(200).end();
+
+		const response = await axios.get(`${ROOT_URL}/users/me/init`, {
+			headers: {
+				Authorization: result.headers.authorization,
+			},
+		});
+		res.status(200).json({ isInit: response.data.init });
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
 });
 
 router.get('/signout', function (req, res) {
-	res.cookie('authorization', 'logout', {
+	res.cookie('authorization', null, {
 		httpOnly: true,
+		maxAge: 0,
 	});
 	res.status(200).end();
 });
@@ -133,7 +127,7 @@ router.post('/signup', async function (req, res) {
 		userId: req.body.id,
 		password: req.body.password,
 		studentNumber: req.body.studentId,
-		engLv: req.body.eglishLevel,
+		engLv: req.body.englishLevel,
 	};
 
 	try {
@@ -166,24 +160,22 @@ router.get('/check-atk', async function (req, res) {
 
 router.get('/takenLectures', async function (req, res) {
 	try {
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const result = await axios.get(`${ROOT_URL}/users/me/taken-lectures`, {
 			headers: {
 				Authorization: accessToken,
 			},
 		});
-		console.log(result);
-		res.json(result.data);
+		res.status(200).json(result.data);
 		// res.json(result.data);
 	} catch (error) {
-		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
 
 router.get('/search-lecture', async function (req, res) {
 	try {
-		const accessToken = req.cookies.authorization;
+		const accessToken = getAuthorizationCookie(req);
 		const response = await axios.get(`${ROOT_URL}/lectures`, {
 			headers: {
 				Authorization: accessToken,
@@ -198,5 +190,77 @@ router.get('/search-lecture', async function (req, res) {
 	}
 });
 
+router.post('/update-lecture', async function (req, res) {
+	const formData = {
+		deletedTakenLectures: req.body.deletedTakenLectures,
+		addedTakenLectures: req.body.addedTakenLectures,
+	};
+
+	try {
+		const accessToken = getAuthorizationCookie(req);
+		const result = await axios.patch(`${ROOT_URL}/users/me/taken-lectures`, formData, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+
+		res.status(200).end();
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/myInfo', async function (req, res) {
+	try {
+		const accessToken = getAuthorizationCookie(req);
+		if (accessToken === 'null') {
+			res.status(500).json({
+				code: 500,
+				message: '서버에 장애가 있습니다.',
+			});
+		} else {
+			const result = await axios.get(`${ROOT_URL}/users/me/information`, {
+				headers: {
+					Authorization: accessToken,
+				},
+			});
+			res.status(200).json(result.data);
+		}
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/graduation-result', async function (req, res) {
+	try {
+		const accessToken = getAuthorizationCookie(req);
+		const result = await axios.get(`${ROOT_URL}/graduation/result`, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		res.status(200).json(result.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/check-user', async function (req, res) {
+	const accessToken = req.cookies.authorization;
+	if (accessToken === undefined) {
+		res.status(400).end();
+	} else {
+		try {
+			const response = await axios.get(`${ROOT_URL}/users/me/init`, {
+				headers: {
+					Authorization: accessToken,
+				},
+			});
+			res.status(200).json(response.data);
+		} catch (error) {
+			apiErrorHandler(res, error);
+		}
+	}
+});
 
 export default router;

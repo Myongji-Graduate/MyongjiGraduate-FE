@@ -10,37 +10,43 @@ import App from '../app';
 import BrowserRouter from '../core/browser-router';
 import ServerRouter from '../core/server-router';
 
+import { userRule } from '../helper/types';
+
 export const routerObjects = [
 	{
 		path: '/',
 		element: MainPage,
+		authentication: userRule.guest,
 		children: [
-			{
-				path: 'result',
-				element: ResultPage,
-				authentication: true,
-			},
 			{
 				path: 'tutorial',
 				element: TutorialPage,
+				authentication: userRule.guest,
 			},
 			{
 				path: 'sign-up',
 				element: SignUpPage,
+				authentication: userRule.guest,
 			},
 			{
 				path: 'sign-in',
 				element: SignInPage,
+				authentication: userRule.guest,
 			},
 			{
 				path: 'file-upload',
 				element: FileUploadPage,
-				authentication: true,
+				authentication: userRule.init,
 			},
 			{
 				path: 'mypage',
 				element: MypagePage,
-				authentication: true,
+				authentication: userRule.normal,
+			},
+			{
+				path: 'result',
+				element: ResultPage,
+				authentication: userRule.normal,
 			},
 		],
 	},

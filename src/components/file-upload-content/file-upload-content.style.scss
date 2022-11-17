@@ -26,6 +26,7 @@
     @include body2;
     display: flex;
     justify-content: end;
+    cursor: pointer;
     color: $color-grey-scale1;  
   }
 

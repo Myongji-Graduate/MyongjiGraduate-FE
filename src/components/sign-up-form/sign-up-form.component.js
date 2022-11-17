@@ -31,15 +31,14 @@ export default class SignupForm extends Component {
 			isValidationOfPassword: false,
 			isValidationOfReconfirm: false,
 			isValidationOfStudentId: false,
+			isValidationOfEnglishLevel: false,
 			totalValidation: false,
 		};
 	}
 
-
-	
 	validationTotal() {
-		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId } = this.state;
-		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId) {
+		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId, isValidationOfEnglishLevel } = this.state;
+		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId && isValidationOfEnglishLevel ) {
 			return true;
 		}
 		return false;
@@ -78,12 +77,20 @@ export default class SignupForm extends Component {
 		});
 	}
 
+	validationCallbackOfEnglishLevel(englishLevel) {
+		let resultEnglishLevel = true;
+		if (englishLevel==='') resultEnglishLevel = false;
+		this.setState({
+			isValidationOfEnglishLevel: resultEnglishLevel,
+		});
+	}
+
 	async submitData() {
 		const result = await fetchSignUp({
 			id: this.state.id,
 			password: this.state.password,
 			studentId: this.state.studentId,
-			englishLevel: this.state.eglishLevel,
+			englishLevel: this.state.englishLevel,
 		});
 
 		if (result) {
@@ -91,7 +98,6 @@ export default class SignupForm extends Component {
 			router.navigate('/sign-in');
 		}
 	}
-
 
 	template() {
 		const header = this.addChild(modalHeader);
@@ -177,18 +183,14 @@ export default class SignupForm extends Component {
 				type: inputTypes.select,
 				options: ['기초영어', 'Level12', 'Level34', '면제'],
 				onChange: (newValue) => {
-					if(newValue==='기초영어'||newValue==='Level12') this.setState({ englishLevel: 0 });
-					if(newValue==='Level34') this.setState({ englishLevel: 1 });
-					if(newValue==='면제') this.setState({ englishLevel: 2 });
+					if (newValue === '기초영어' || newValue === 'Level12') this.setState({ englishLevel: 'ENG12' });
+					if (newValue === 'Level34') this.setState({ englishLevel: 'ENG34' });
+					if (newValue === '면제') this.setState({ englishLevel: 'FREE' });
 				},
 				isValidation: this.state.isValidationOfEnglishLevel,
+				validationCallback: this.validationCallbackOfEnglishLevel.bind(this),
 				key: 'sign-up-englishLevel',
 			};
-
-			// const gosignin = () => {
-			// 	const { router } = store.getState();
-			// 	router.navigate('/sign-in');
-			// };
 
 			return `
         <div class="sign-up-form">		

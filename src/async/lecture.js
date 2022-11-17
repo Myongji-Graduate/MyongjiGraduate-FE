@@ -1,4 +1,6 @@
-import { handleErrorResponse } from '../helper/errorHandler';
+import { makeError } from '../helper/errorHandler';
+import { showSuccessModal } from '../helper/successHandler';
+import { SUCCESS_TYPES } from '../store/types';
 import { objectToQueryString } from '../helper/utils';
 
 export async function fetchGetSearchedLecture(query) {
@@ -16,4 +18,31 @@ export async function fetchGetSearchedLecture(query) {
 	return result;
 }
 
-export function a() {}
+export async function fetchUpdateTakenLecture(formData) {
+	showSuccessModal(SUCCESS_TYPES.CUSTOM_LECTURE);
+	const response = await fetch('/api/update-lecture', {
+		method: 'POST',
+		body: JSON.stringify(formData),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	
+	if (response.status === 400 || response.status === 500) {
+		throw await makeError(response);
+	}
+	
+	showSuccessModal(SUCCESS_TYPES.CUSTOM_LECTURE)
+	return false;
+}
+
+export async function fetchGetTakenLectures() {
+	const response = await fetch('/api/takenLectures');
+
+	if (response.status === 400 || response.status === 500) {
+		throw await makeError(response);
+	}
+	const result = await response.json();
+	return result;
+}

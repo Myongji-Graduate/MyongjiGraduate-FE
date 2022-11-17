@@ -1,6 +1,5 @@
 import Component from '../../core/component';
 import { lectureTableItemTypes } from '../../helper/types';
-import Loading from '../loading/loading.component';
 
 export default class LectureTableList extends Component {
 	setDefaultProps() {
@@ -26,15 +25,21 @@ export default class LectureTableList extends Component {
 	getPlainTableList() {
 		const { lectures } = this.props;
 
-		return lectures.map((lecture) => {
-			return `
+		return lectures
+			.map((lecture) => {
+				const year = lecture.year ? lecture.year : '커스텀';
+				const semester = lecture.semester ? lecture.semester : '커스텀';
+				return `
             <div class="lecture-table-list__body">
+			<div class="lecture-table-list__body__column">${year}</div>
+            <div class="lecture-table-list__body__column">${semester}</div>
             <div class="lecture-table-list__body__column">${lecture.code}</div>
             <div class="lecture-table-list__body__column">${lecture.name}</div>
             <div class="lecture-table-list__body__column">${lecture.credit}</div>
             </div>
             `;
-		});
+			})
+			.join('');
 	}
 
 	getEditableTableList() {
@@ -73,19 +78,22 @@ export default class LectureTableList extends Component {
 	}
 
 	getEditableTableItemTemplate(lecture, type) {
+		const year = lecture.year ? lecture.year : '커스텀';
+		const semester = lecture.semester ? lecture.semester : '커스텀';
 		return `
-      <div class="lecture-table-list__body--${lecture.id} lecture-table-list__body lecture-table-list__body--${type}">
-        <div class="lecture-table-list__body__column">${lecture.code}</div>
+      <div class="lecture-table-list__body--${lecture.code} lecture-table-list__body lecture-table-list__body--${type}">
+		<div class="lecture-table-list__body__column">${year}</div>
+		<div class="lecture-table-list__body__column">${semester}</div>   
+		<div class="lecture-table-list__body__column">${lecture.code}</div>
         <div class="lecture-table-list__body__column">${lecture.name}</div>
         <div class="lecture-table-list__body__column">${lecture.credit}</div>
-        <div class="lecture-table-list__body__button lecture-table-list__body__button--${lecture.id}">삭제</div>
+        <div class="lecture-table-list__body__button lecture-table-list__body__button--${lecture.code}">삭제</div>
       </div>`;
 	}
 
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-
 			return `
         <div class="lecture-table-list">
           ${this.getTableList()}
@@ -98,13 +106,13 @@ export default class LectureTableList extends Component {
 		const { isEditableMode, deleteTakenLecture, addedTakenLecutures, deleteAddedTakenLecture } = this.props;
 		if (isEditableMode) {
 			this.getNotDeletedTakenLectureList().forEach((lecture) => {
-				this.addEvent('click', `.lecture-table-list__body__button--${lecture.id}`, () => {
+				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {
 					deleteTakenLecture(lecture);
 				});
 			});
 
 			addedTakenLecutures.forEach((lecture) => {
-				this.addEvent('click', `.lecture-table-list__body__button--${lecture.id}`, () => {
+				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {
 					deleteAddedTakenLecture(lecture);
 				});
 			});

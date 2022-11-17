@@ -4,12 +4,21 @@ export function signIn() {
 	sessionStorage.setItem('isLogin', true);
 }
 
+export function redirectSignInPage() {
+	const { router } = store.getState();
+	router.navigate('/sign-in');
+}
+
+export function redirectMypage() {
+	const { router } = store.getState();
+	router.navigate('/mypage');
+}
+
 export async function signOut() {
 	try {
 		await fetch('/api/signout');
 		sessionStorage.setItem('isLogin', false);
-		const { router } = store.getState();
-		router.navigate('/sign-in');
+		redirectSignInPage();
 	} catch (err) {
 		console.log(err);
 	}
@@ -17,8 +26,10 @@ export async function signOut() {
 
 export function init() {
 	sessionStorage.setItem('isInit', true);
-	const { router } = store.getState();
-	router.navigate('/mypage');
+}
+
+export function unInit() {
+	sessionStorage.setItem('isInit', false);
 }
 
 export function checkIsSignIn() {
@@ -33,9 +44,4 @@ export function checkIsInit() {
 	const isInit = sessionStorage.getItem('isInit');
 	if (isInit === null || isInit === 'false') return false;
 	return true;
-}
-
-export function redirectSignInPage() {
-	const { router } = store.getState();
-	router.navigate('/sign-in');
 }

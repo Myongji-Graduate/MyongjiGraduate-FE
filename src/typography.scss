@@ -20,7 +20,7 @@
 @font-face {
   font-family: pretendard;
   font-weight: 500;
-  src: local('pretendard')
+  src: local('pretendard'),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Medium.woff2") format("woff2"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Medium.woff") format("woff");
   font-display: swap;
@@ -29,7 +29,7 @@
 @font-face {
   font-family: pretendard;
   font-weight: 700;
-  src: local('pretendard')
+  src: local('pretendard'),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Bold.woff2") format("woff2"),
         url("https://dc49tfy8ac9y2.cloudfront.net/fonts/Pretendard-Bold.woff") format("woff");
   font-display: swap;
@@ -56,6 +56,10 @@ html {
 
   @include mobile {
     font-size: 22px;
+  }
+
+  @include mini {
+    font-size: 20px;
   }
 }
 

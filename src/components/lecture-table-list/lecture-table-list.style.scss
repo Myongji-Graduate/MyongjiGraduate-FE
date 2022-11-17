@@ -9,7 +9,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);          
         &__column{              
             margin: 0.44rem 0;
-            width:33%;        
+            width:19%;        
         }
         &__button {
             position: absolute;
@@ -20,10 +20,11 @@
             padding: 0.2rem 0.4rem;
             color: white;
             transform: translate(0, -50%);
+            cursor: pointer;
         }
         &--addedLecture {
             color: $color-point_blue;
         }
     }
-    &__tr:last-child{border-bottom:0px}    
+    &__body:last-child{border-bottom:0px}    
 }

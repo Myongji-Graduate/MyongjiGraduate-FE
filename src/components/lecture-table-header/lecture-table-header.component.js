@@ -7,6 +7,8 @@ export default class LectureTableHeader extends Component {
 
 			return `
         <div class="lecture-table-header">
+          <div class="lecture-table-header__column">수강년도</div>
+          <div class="lecture-table-header__column">수강학기</div>
           <div class="lecture-table-header__column">과목코드</div>
           <div class="lecture-table-header__column">과목명</div>
           <div class="lecture-table-header__column">학점</div>

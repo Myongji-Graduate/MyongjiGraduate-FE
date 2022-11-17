@@ -5,8 +5,9 @@ import Modal from '../../components/modal/modal.component';
 import ModalElectiveLecture from '../../components/modal-elective-lecture/modal-elective-lecture.component';
 import CategoryCard from '../../components/category-card/category-card.component';
 import Mypage from '../../components/mypage/mypage.component';
-
-import { store } from '../../store/store';
+import { fetchGraduationResult } from '../../async/graduation';
+import { parseGraduationResult } from '../../helper/parse';
+import Loading from '../../components/loading/loading.component';
 
 export default class ResultPage extends Component {
 	initState() {
@@ -17,6 +18,15 @@ export default class ResultPage extends Component {
 				totalCredits: 0,
 				detailCategory: [],
 			},
+			basicUserInfo: {
+				name: '',
+				studentNumber: '',
+				department: '',
+				totalCredit: 0,
+				takenCredit: 0,
+			},
+			categoryList: [],
+			isLoading: false,
 		};
 	}
 
@@ -26,8 +36,43 @@ export default class ResultPage extends Component {
 		});
 	}
 
+	componentDidMount() {
+		this.fetchData();
+	}
+
+	async fetchData() {
+		this.setState({
+			isLoading: true,
+		});
+		try {
+			const result = await fetchGraduationResult();
+			console.log(result);
+
+			const parseResult = parseGraduationResult(result);
+			this.setState({
+				basicUserInfo: parseResult.basicUserInfo,
+				categoryList: parseResult.categoryList,
+				graduated: parseResult.graduated,
+				isLoading: false,
+			});
+		} catch (error) {
+			this.setState({
+				isLoading: false,
+			});
+		}
+	}
+
+	isGraduation() {
+		const { categoryList } = this.state;
+		return (
+			categoryList.filter((category) => {
+				return category.completed === false;
+			}).length === 0
+		);
+	}
+
 	clickCategoryButton(index) {
-		const { categoryList } = store.getState();
+		const { categoryList } = this.state;
 		const categoryData = { ...categoryList[index] };
 
 		this.setState({
@@ -41,20 +86,18 @@ export default class ResultPage extends Component {
 		const modal = this.addChild(Modal);
 		const modalElectiveLecture = this.addChild(ModalElectiveLecture);
 		const mypage = this.addChild(Mypage);
-		const categoryCardList = new Array(7).fill().map(() => this.addChild(CategoryCard));
-		// const categoryCardList = this.addChild(CategoryCard);
+		const loading = this.addChild(Loading);
+		const categoryCardList = new Array(8).fill().map(() => this.addChild(CategoryCard));
 
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { selectedCategoryData } = this.state;
-			const { basicUserInfo, categoryList } = store.getState();
+			const { isLoading, basicUserInfo, selectedCategoryData, categoryList, graduated } = this.state;
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
 				categoryData: selectedCategoryData,
 			};
-
 			return `
 			<div class="result-page">
 				<div class="result-page__modal-container">
@@ -68,28 +111,35 @@ export default class ResultPage extends Component {
 					key: 'lecture',
 				})}
 				</div>
-					<div class="result-page__header">
-           			 ${header.render()}           
-        			  </div>
-					<div class="result-page__body">
+				<div class="result-page__header">
+					${header.render()}           
+				</div>
+				<div class="result-page__body">
+						
+				${
+					isLoading
+						? `<div class="result-page__loading-container">${loading.render()}</div>`
+						: `
 						<div class="result-page__content">
-						<div class="result-page__summary">${mypage.render({ ...basicUserInfo })}</div>
-							<div class="result-page__category-grid-container">
-								${categoryList
-									.map(({ categoryName, totalCredit, takenCredit }, index) => {
-										return categoryCardList[index].render({
-											title: categoryName,
-											totalCredit,
-											takenCredit,
-											key: index + 1,
-											buttonOnClick: this.clickCategoryButton.bind(this, index),
-										});
-									})
-									.toString()
-									.replaceAll(',', '')}
-							</div>
+						<div class="result-page__summary">${mypage.render({ ...basicUserInfo, complete: graduated })}</div>
+						<div class="result-page__category-grid-container">
+							${categoryList
+								.map(({ categoryName, totalCredit, takenCredit }, index) => {
+									return categoryCardList[index].render({
+										title: categoryName,
+										totalCredit,
+										takenCredit,
+										key: index + 1,
+										buttonOnClick: this.clickCategoryButton.bind(this, index),
+									});
+								})
+								.join('')}
 						</div>
+						</div>
+			`
+				}
 					</div>
+					
 				</div>
 					`;
 		};

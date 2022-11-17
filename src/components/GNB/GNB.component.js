@@ -12,7 +12,7 @@ const sizes = {
 	lg: 240,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/main-logo.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/icons/main-logo.svg`);
 
 export default class GNB extends Component {
 	initState() {

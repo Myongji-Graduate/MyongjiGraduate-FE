@@ -6,15 +6,15 @@ import Button from '../button/button.component';
 import { buttonTypes } from '../../helper/types';
 import { getResponseiveImage } from '../../helper/images';
 
-const sizes = {//추후수정
-	mobile: 650,
-	tablet: 1008,
-	sm: 1440,
-	md: 1920,
-	lg: 1920,
+const sizes = {
+	mobile: 10,
+	tablet: 12,
+	sm: 12,
+	md: 15,
+	lg: 20,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/book-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/book-icon.svg`);
 
 export default class CategoryCard extends Component {
 	setDefaultProps() {
@@ -25,6 +25,18 @@ export default class CategoryCard extends Component {
 			takenCredit: 12,
 			buttonOnClick: () => {},
 		};
+	}
+
+	hasDetails() {
+		const { title } = this.props;
+		if (title === '일반교양' || title === '자유선택' || title === '채플') return false;
+		return true;
+	}
+
+	isChaple() {
+		const { title } = this.props;
+		if (title === '채플') return true;
+		return false;
 	}
 
 	template() {
@@ -48,7 +60,6 @@ export default class CategoryCard extends Component {
 				key,
 				onClick: buttonOnClick,
 			};
-
 			return `
         <div class="category-card__${key} category-card">
           <div class="category-card__header">
@@ -65,17 +76,23 @@ export default class CategoryCard extends Component {
           <div class="category-card__footer">
             <div class="category-card__display-credits">
               <div class="category-card__total-credits-container">
-                <div class="category-card__row-text">기준학점</div>
+                <div class="category-card__row-text">${this.isChaple() ? '기준횟수' : '기준학점'}</div>
                 <div class="category-card__row-total-credits">${totalCredit}</div>
               </div>
               <div class="category-card__taken-credits-container">
-                <div class="category-card__row-text">이수학점</div>
+                <div class="category-card__row-text">${this.isChaple() ? '이수횟수' : '이수학점'}</div>
                 <div class="category-card__row-taken-credits">${takenCredit}</div>
               </div>
             </div>
-            <div class="category-card__create-modal-button">
+						${
+							this.hasDetails()
+								? `
+						<div class="category-card__create-modal-button">
               ${createModalButton.render(createModalButtonProps)}
-            </div>
+            </div>`
+								: ''
+						}
+
           </div>
         </div>
       `;

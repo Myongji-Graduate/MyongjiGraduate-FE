@@ -1,8 +1,15 @@
+$mobile-width: 365px;
 $tablet-width: 650px;
 $pc-width: 1008px;
 
 $standard-width: 1920px;
 $medium-width: 1440px;
+
+@mixin mini {
+  @media (max-width: #{$mobile-width - 1px}) {
+    @content;   
+  }
+}
 
 @mixin mobile {
   @media (max-width: #{$tablet-width - 1px}) {

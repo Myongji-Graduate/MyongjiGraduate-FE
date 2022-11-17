@@ -6,8 +6,7 @@ import Modal from '../../components/modal/modal.component';
 import ModalLoading from '../../components/modal-loading/modal-loading.component';
 import { fetchPDFFileUpload } from '../../async/file';
 import { handleErrorObject } from '../../helper/errorHandler';
-import { store } from '../../store/store';
-import { init } from '../../helper/auth';
+import { init, redirectMypage } from '../../helper/auth';
 
 export default class FileUploadPage extends Component {
 	initState() {
@@ -33,8 +32,8 @@ export default class FileUploadPage extends Component {
 		try {
 			await fetchPDFFileUpload(formData);
 			init();
+			redirectMypage();
 		} catch (error) {
-			console.log('asdad');
 			handleErrorObject(error);
 		}
 		this.setState({

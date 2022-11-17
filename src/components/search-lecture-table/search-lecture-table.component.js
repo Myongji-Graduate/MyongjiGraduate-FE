@@ -12,7 +12,7 @@ export default class SearchLectureTable extends Component {
 	initState() {
 		this.state = {
 			searchText: '',
-			option: searchLectureOptionTypes.code,
+			option: searchLectureOptionTypes.name,
 			searchedLectures: [],
 			isLoading: false,
 		};
@@ -49,6 +49,7 @@ export default class SearchLectureTable extends Component {
 					error: ERROR_TYPES.SEARCH_TEXT_LENGTH,
 				})
 			);
+			return;
 		}
 
 		const formData = {

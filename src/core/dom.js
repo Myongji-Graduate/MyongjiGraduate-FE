@@ -50,7 +50,6 @@ export function updateDom(component) {
 	const newNode = getNode(component);
 	const parentNode = document.querySelector(`.${newNode.classList[0]}`);
 
-	console.log(parentNode);
 	clearEvent(component);
 
 	if (parentNode === null) return;

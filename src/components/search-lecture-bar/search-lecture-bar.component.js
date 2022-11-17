@@ -10,7 +10,7 @@ const sizes = {
 	lg: 32,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/search-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/search-icon.svg`);
 
 export default class SearchLectureBar extends Component {
 	setDefaultProps() {
@@ -42,9 +42,10 @@ export default class SearchLectureBar extends Component {
 		});
 
 		if (buttonKey) {
-			this.addEvent('keyup', `.search-lecture-bar__input`, (event, target) => {
+			this.addEvent('keypress', `.search-lecture-bar__input`, (event, target) => {
 				if (event.keyCode === 13) {
 					event.preventDefault();
+					document.querySelector(`.search-lecture-bar__input`).blur();
 					document.querySelector(`.button__${buttonKey}`).click();
 				}
 			});

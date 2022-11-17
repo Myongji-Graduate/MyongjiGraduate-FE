@@ -37,7 +37,9 @@
 
   &__footer {
     display: flex;
-    justify-content: space-around
+    width: 100%;
+    justify-content: space-around;
+    height: 1.25rem;
   }
 
   &__display-credits {

@@ -24,7 +24,7 @@ export default class GuideTutorial extends Component {
 							fix : false,
 							img: 'tutorial0',
 							title: '1.',
-							explain: 'MyiWeb MSI에 접속 후 로그인',
+							explain: 'MyiWeb MSI에 접속 후 로그인(PC환경 권장)',
 						})}</div>		
 					</a>
 						<div class="guide-tutorial__body-item">${imgExplain.render({
@@ -37,13 +37,13 @@ export default class GuideTutorial extends Component {
 							fix : false,
 							img: 'tutorial2',
 							title: '3.',
-							explain: '우측 상단 조회버튼 클릭 → 프린트 아이콘 클릭',
+							explain: '우측 상단 조회버튼 클릭 → 프린트 아이콘 클릭 (모바일 환경에서는 뜨지 않을 수 있습니다.)',
 						})}</div>
 						<div class="guide-tutorial__body-item">${imgExplain.render({
 							fix : false,
 							img: 'tutorial3',
 							title: '4.',
-							explain: '인쇄 정보의 대상(PDF로 저장) 설정 → 하단 저장 버튼 클릭',
+							explain: '인쇄 정보의 대상(PDF로 저장) 설정 → 하단 저장 버튼 클릭 (비율이 깨지지 않도록 조심해주세요.)',
 						})}</div>
 						<div class="guide-tutorial__body-item">${imgExplain.render({
 							fix : false,

@@ -19,7 +19,7 @@ export default class FileUploadContent extends Component {
 			return `
         <div class="file-upload-content">
           <div class="file-upload-content__header">             
-              성적표 입력으로 </br> 맞춤형 결과를 확인하세요 !             
+              한 번의 성적표 입력으로 </br> 맞춤형 결과를 확인하세요 !             
           </div>
           <div class="file-upload-content__divider"></div>
           <div class="file-upload-content__body">
@@ -27,8 +27,9 @@ export default class FileUploadContent extends Component {
               ${guide.render()}
             </div>
             <div class="file-upload-content__more">
-            자세히 확인하기
+            방법을 잘 모르겠다면 ?
             </div>
+
             <div class="file-upload-content__file-upload-box-container">
               ${fileUploadBox.render({ ...this.props })}
             </div>
