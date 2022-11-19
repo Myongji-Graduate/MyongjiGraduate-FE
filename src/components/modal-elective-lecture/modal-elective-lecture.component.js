@@ -15,6 +15,8 @@ export default class ModalElectiveLecture extends Component {
 		};
 	}
 
+
+
 	template() {
 		const resultHeader = this.addChild(ResultHeader);
 		const resultContent = this.addChild(ResultContent);
@@ -29,7 +31,7 @@ export default class ModalElectiveLecture extends Component {
 				part,
 				explain,
 				toggleLecture,
-				categoryData: { totalCredit, takenCredit, detailCategory },
+				categoryData: { totalCredit, takenCredit, detailCategory,},
 			} = this.props;
 			return `
         <div class="modal-elective-lecture">

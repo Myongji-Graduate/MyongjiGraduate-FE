@@ -28,11 +28,12 @@ export async function fetchUpdateTakenLecture(formData) {
 		},
 	});
 
+	
 	if (response.status === 400 || response.status === 500) {
 		throw await makeError(response);
 	}
-
-	showSuccessModal(SUCCESS_TYPES.CUSTOM_LECTURE);
+	
+	showSuccessModal(SUCCESS_TYPES.CUSTOM_LECTURE)
 	return false;
 }
 

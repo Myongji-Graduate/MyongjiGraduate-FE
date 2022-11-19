@@ -10,7 +10,7 @@ const sizes = {
 	md: 72,
 	lg: 96,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/mobile-navigate.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/mobile-navigate.png`);
 
 export default class MobileNavigate extends Component {
 	setDefaultProps() {

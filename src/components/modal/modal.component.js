@@ -1,10 +1,10 @@
 import Component from '../../core/component';
 
+
 import * as utils from '../../helper/utils';
 import { getResponseiveImage } from '../../helper/images';
 
-const sizes = {
-	// 추후수정
+const sizes = {//추후수정
 	mobile: 50,
 	tablet: 50,
 	sm: 50,
@@ -12,7 +12,7 @@ const sizes = {
 	lg: 70,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/close_btn.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/close_btn.svg`);
 
 export default class Modal extends Component {
 	setDefaultProps() {
@@ -45,11 +45,7 @@ export default class Modal extends Component {
 			return `
         <div class="${this.createKeyClass()} modal" style=${utils.getInlineStyle(modalStyle)}>
          <div class="modal__body" style=${utils.getInlineStyle(modalBodyStyle)}>
-         ${
-						isShowCloseBtn
-							? `<img class='modal__close-btn' sizes="${sizesAttr}" srcset="${srcsetAttr}" alt="modal__close-btn" />`
-							: ''
-					}
+         ${isShowCloseBtn ? `<img class='modal__close-btn' sizes="${sizesAttr}" srcset="${srcsetAttr}" alt="modal__close-btn" />` : ''}
          <div class="modal__body-content">
          ${contentComponent.render(contentComponentProps)}
          </div>
