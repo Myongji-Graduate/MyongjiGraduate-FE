@@ -4,7 +4,6 @@ export default class ModalResultHeader extends Component {
 	setDefaultProps() {
 		this.props = {
 			part: '',
-			explain: '',
 			takenCredit: 0,
 			totalCredit: 0,
 		};
@@ -13,7 +12,6 @@ export default class ModalResultHeader extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-
 			const { part, explain, takenCredit, totalCredit } = this.props;
 
 			return `
@@ -36,5 +34,12 @@ export default class ModalResultHeader extends Component {
         </div>
       `;
 		};
+	}
+
+	setEvent() {
+		const { toggleLecture } = this.props;
+		this.addEvent('click', '.modal-result-header__title__explain__toggle', () => {
+			toggleLecture();
+		});
 	}
 }

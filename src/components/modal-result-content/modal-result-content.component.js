@@ -8,6 +8,7 @@ export default class ModalResultContent extends Component {
 	setDefaultProps() {
 		this.props = {
 			detailCategory: [],
+			explain: false,
 		};
 	}
 
@@ -19,6 +20,7 @@ export default class ModalResultContent extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 			const { detailCategory, explain } = this.props;
+
 			return `
       <div class="modal-result-content">
         ${detailCategory
@@ -26,32 +28,18 @@ export default class ModalResultContent extends Component {
 						let lectures = [];
 						if (category.haveToMandatoryLectures.length !== 0) lectures = category.haveToMandatoryLectures;
 						if (category.haveToElectiveLectures.length !== 0) lectures = category.haveToElectiveLectures;
+						let takenLectures = [];
+						if (category.takenMandatoryLectures.length !== 0) takenLectures = category.takenMandatoryLectures;
+						if (category.takenElectiveLectures.length !== 0) takenLectures = category.takenElectiveLectures;
+
 						const partName =
 							category.detailCategoryName in detailCategoryToKorean
 								? detailCategoryToKorean[category.detailCategoryName]
 								: category.detailCategoryName;
-						if (category.completed)
-							return `
-          <div class="modal-result-content__content">
-          <div class="modal-result-content__info">
-            ${info.render({
-							part: partName,
-							totalCredits: category.totalCredits,
-							takenCredits: category.takenCredits,
-						})}
-            </div>
-          <div class="modal-result-content__complete-content">
-          ${resultCompleteContent.render({
-						key: index,
-					})}
-          </div>
-          </div>
-          `;
-
 						return `
-          <div class="modal-result-content__content">
-          <div class="modal-result-content__info">
-         ${info.render({
+			<div class="modal-result-content__content">
+				<div class="modal-result-content__info">
+					${info.render({
 						part: partName,
 						totalCredits: category.totalCredits,
 						takenCredits: category.takenCredits,
@@ -80,7 +68,7 @@ export default class ModalResultContent extends Component {
 			`;
 					})
 					.join('')}
-      `;
+      </div>`;
 		};
 	}
 }

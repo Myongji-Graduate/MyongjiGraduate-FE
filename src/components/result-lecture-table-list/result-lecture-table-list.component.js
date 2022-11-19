@@ -1,10 +1,14 @@
 import Component from '../../core/component';
 import { lectureTableItemTypes } from '../../helper/types';
+import { detailCategoryToKorean } from '../../helper/parse';
+import * as utils from '../../helper/utils';
 
 export default class ResultLectureTableList extends Component {
 	setDefaultProps() {
 		this.props = {
+			part: '',
 			lectures: [],
+			takenLectures: [],
 			isEditableMode: false,
 			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
@@ -22,13 +26,31 @@ export default class ResultLectureTableList extends Component {
 		return this.getEditableTableList();
 	}
 
-	getPlainTableList() {
-		const { lectures } = this.props;
+	isManyCategory(part) {
+		const filterList = Object.keys(detailCategoryToKorean).slice(0, 8);
+		return filterList.includes(part);
+	}
 
-		return lectures
+	getLectures() {
+		const { lectures, takenLectures, part } = this.props;
+		let concatLectures = [];
+		if (takenLectures.length === 0) return lectures;
+		if (lectures.length > 0 && this.isManyCategory(part)) {
+			concatLectures = takenLectures.concat(lectures);
+			return concatLectures;
+		}
+		return takenLectures;
+	}
+
+	getPlainTableList() {
+		const { takenLectures, part } = this.props;
+		return this.getLectures()
 			.map((lecture) => {
+				const modalStyle = {
+					color: takenLectures.includes(lecture) && this.isManyCategory(part) ? 'blue' : 'black',
+				};
 				return `
-            <div class="result-lecture-table-list__body">
+            <div class="result-lecture-table-list__body" style=${utils.getInlineStyle(modalStyle)}>
             <div class="result-lecture-table-list__body__column">${lecture.code}</div>
             <div class="result-lecture-table-list__body__column">${lecture.name}</div>
             <div class="result-lecture-table-list__body__column">${lecture.credit}</div>
