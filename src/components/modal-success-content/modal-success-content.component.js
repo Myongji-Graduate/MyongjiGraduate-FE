@@ -10,7 +10,7 @@ const sizes = {
 	lg: 150,
 };
 
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/success_maru.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/success_maru.png`);
 
 export default class ModalSuccessContent extends Component {
 	template() {

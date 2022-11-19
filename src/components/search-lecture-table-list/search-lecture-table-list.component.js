@@ -12,7 +12,7 @@ const sizes = {
 	lg: 192,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/lecture-icon.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/lecture-icon.svg`);
 
 export default class SearchLectureTableList extends Component {
 	setDefaultProps() {
@@ -43,11 +43,12 @@ export default class SearchLectureTableList extends Component {
 	}
 
 	getEditableTableItemTemplate(lecture) {
-
-		const Style = { color : lecture.revoke ? 'red' : 'black' };
+		const Style = { color: lecture.revoke ? 'red' : 'black' };
 
 		return `
-		<div class="search-lecture-table-list__tr--${lecture.id} search-lecture-table-list__tr" style=${utils.getInlineStyle(Style)}>
+		<div class="search-lecture-table-list__tr--${lecture.id} search-lecture-table-list__tr" style=${utils.getInlineStyle(
+			Style
+		)}>
 			<div class="search-lecture-table-list__tr__column">${lecture.lectureCode}</div>
 			<div class="search-lecture-table-list__tr__column">${lecture.name}</div>
 			<div class="search-lecture-table-list__tr__column">${lecture.credit}</div>
