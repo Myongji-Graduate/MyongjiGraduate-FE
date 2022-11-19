@@ -7,12 +7,18 @@
     &__title{
         &__part{           
             @include title;
+            display: flex;
             color : $color-title;
         }
         &__explain{
+            display: flex;
             @include subhead5;
             color : #9F9F9F;
             margin-top: 0.5rem;
+            &__option{                
+                @include subhead5;
+                border: 1px solid #9F9F9F;
+            }
         }
     }
     &__credit{            
