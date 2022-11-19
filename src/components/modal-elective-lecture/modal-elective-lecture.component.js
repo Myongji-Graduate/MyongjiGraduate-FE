@@ -5,8 +5,8 @@ import ResultContent from '../modal-result-content/modal-result-content.componen
 export default class ModalElectiveLecture extends Component {
 	setDefaultProps() {
 		this.props = {
-			part: '',
-			explain: '',
+			part: '학문기초교양',
+			explain: 'ICT융합대학 학문기초교양 중 미수강한 과목이 표시됩니다.',
 			categoryData: {
 				takenCredit: 0,
 				totalCredit: 0,
@@ -14,8 +14,6 @@ export default class ModalElectiveLecture extends Component {
 			},
 		};
 	}
-
-
 
 	template() {
 		const resultHeader = this.addChild(ResultHeader);
@@ -29,26 +27,21 @@ export default class ModalElectiveLecture extends Component {
 
 			const {
 				part,
-				explain,
-				toggleLecture,
-				categoryData: { totalCredit, takenCredit, detailCategory,},
+				categoryData: { totalCredit, takenCredit, detailCategory },
 			} = this.props;
+
 			return `
         <div class="modal-elective-lecture">
           <div class="modal-elective-lecture__header">
           ${resultHeader.render({
 						part,
-						explain,
+						explain: part,
 						totalCredit,
 						takenCredit,
-						toggleLecture,
 					})}
           </div>
           <div class="modal-elective-lecture__content">
-        ${resultContent.render({
-					detailCategory,
-					explain,
-				})}
+        ${resultContent.render({ detailCategory })}
           </div>
        </div>
       `;

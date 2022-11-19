@@ -6,9 +6,7 @@ import Loading from '../loading/loading.component';
 export default class ResultLectureTable extends Component {
 	setDefaultProps() {
 		this.props = {
-			part: '',
 			lectures: [],
-			takenLectures: [],
 			isEditableMode: false,
 			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
@@ -26,6 +24,7 @@ export default class ResultLectureTable extends Component {
 			if (props) this.setProps(props);
 
 			const { isLoading } = this.props;
+
 			return `
       <div class="result-lecture-table">
         ${resultlectureTableHeader.render()}

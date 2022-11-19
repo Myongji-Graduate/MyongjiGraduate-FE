@@ -54,7 +54,7 @@ export default class CategoryCard extends Component {
 			};
 
 			const createModalButtonProps = {
-				content: '과목 확인',
+				content: '미이수과목 확인',
 				type: buttonTypes.primary,
 				size: 'sm',
 				key,
