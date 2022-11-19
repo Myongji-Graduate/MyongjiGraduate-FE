@@ -46,8 +46,7 @@ export default class ModalAgreement extends Component {
 				<li><a target='_blank' href="https://www.mju.ac.kr/mjukr/257/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNDMlMkYxOTExMjAlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMyUyNnNyY2hDb2x1bW4lM0QlMjZzcmNoV3JkJTNEJTI2YmJzQ2xTZXElM0QlMjZiYnNPcGVuV3JkU2VxJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNmlzVmlldyUzRHRydWUlMjZwYXNzd29yZCUzRCUyNg%3D%3D">명지대학교 학사안내문 참고 링크</a></li>
 				</ul>
 				<ol start="5">
-				<li><p>명지대학교에서 공식적으로 만든 사이트가 아니므로 <strong>검사 결과가 정확하지 않을 수 있습니다.</strong> (반드시 학사안내문을 통한 졸업요건 2차 검증을 해야합니다.)</p>
-				</li>
+				<li>본 서비스 정보는 <strong>공식적인 효력을 갖지 않으며, 정확한 졸업사정결과를 위해서는 소속 단과대 교학팀에서의 확인을 권장</strong>합니다.</li>
 				<li><p>저장된 사용자 데이터베이스는 익명화되어 저장되고 과목추천 및 교양과목 통계에만 사용되며, 익명 다른 용도로 사용되지 않습니다.</p>
 				</li>
 				<li><p>졸업요건 기준이 잘못 설정되었거나, 오류발생 시 우측 하단 채널톡으로 피드백 부탁드립니다.</p>

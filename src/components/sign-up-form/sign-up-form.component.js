@@ -31,14 +31,19 @@ export default class SignupForm extends Component {
 			isValidationOfPassword: false,
 			isValidationOfReconfirm: false,
 			isValidationOfStudentId: false,
-			isValidationOfEnglishLevel: false,
 			totalValidation: false,
 		};
 	}
 
 	validationTotal() {
-		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId, isValidationOfEnglishLevel } = this.state;
-		if (isValidationOfId && isValidationOfPassword && isValidationOfReconfirm && isValidationOfStudentId && isValidationOfEnglishLevel ) {
+		const { isValidationOfId, isValidationOfPassword, isValidationOfReconfirm, isValidationOfStudentId } = this.state;
+		if (
+			isValidationOfId &&
+			isValidationOfPassword &&
+			isValidationOfReconfirm &&
+			isValidationOfStudentId &&
+			this.validationEnglishLevel(this.state.englishLevel)
+		) {
 			return true;
 		}
 		return false;
@@ -77,12 +82,8 @@ export default class SignupForm extends Component {
 		});
 	}
 
-	validationCallbackOfEnglishLevel(englishLevel) {
-		let resultEnglishLevel = true;
-		if (englishLevel==='') resultEnglishLevel = false;
-		this.setState({
-			isValidationOfEnglishLevel: resultEnglishLevel,
-		});
+	validationEnglishLevel(englishLevel) {
+		return englishLevel !== '';
 	}
 
 	async submitData() {
@@ -187,8 +188,6 @@ export default class SignupForm extends Component {
 					if (newValue === 'Level34') this.setState({ englishLevel: 'ENG34' });
 					if (newValue === '면제') this.setState({ englishLevel: 'FREE' });
 				},
-				isValidation: this.state.isValidationOfEnglishLevel,
-				validationCallback: this.validationCallbackOfEnglishLevel.bind(this),
 				key: 'sign-up-englishLevel',
 			};
 

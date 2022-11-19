@@ -45,7 +45,6 @@ export default class Mypage extends Component {
         <div>졸업필요학점</div>
         <div>총 이수 학점</div>
         <div>졸업가능여부</div>
-        <div class="mypage__info__table-key__explain">*모든 기준 학점은 채플을 포함하지 않습니다.</div>
         </div>
         <div class="mypage__info__table-value">
           <div>${name}</div>  
@@ -59,6 +58,10 @@ export default class Mypage extends Component {
         <div class="mypage__info__piechart">${pieChart.render({
 					percentage,
 				})}</div> 
+        </div>
+        <div class="mypage__explain">
+        *모든 기준 학점은 채플을 포함하지 않습니다.</br>
+        *서비스의 결과는 공식적인 효력을 갖지 않습니다. 정확한 졸업사정결과는 소속 단과대 교학팀에서의 확인을 권장합니다.
         </div>
         </div>
       `;
