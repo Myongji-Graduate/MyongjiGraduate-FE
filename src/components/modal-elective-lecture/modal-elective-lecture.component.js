@@ -6,7 +6,7 @@ export default class ModalElectiveLecture extends Component {
 	setDefaultProps() {
 		this.props = {
 			part: '',
-			explain: '',
+			completionList: false,
 			categoryData: {
 				takenCredit: 0,
 				totalCredit: 0,
@@ -29,7 +29,7 @@ export default class ModalElectiveLecture extends Component {
 
 			const {
 				part,
-				explain,
+				completionList,
 				toggleLecture,
 				categoryData: { totalCredit, takenCredit, detailCategory,},
 			} = this.props;
@@ -38,7 +38,7 @@ export default class ModalElectiveLecture extends Component {
           <div class="modal-elective-lecture__header">
           ${resultHeader.render({
 						part,
-						explain,
+						completionList,
 						totalCredit,
 						takenCredit,
 						toggleLecture,
@@ -47,7 +47,7 @@ export default class ModalElectiveLecture extends Component {
           <div class="modal-elective-lecture__content">
         ${resultContent.render({
 					detailCategory,
-					explain,
+					completionList,
 				})}
           </div>
        </div>

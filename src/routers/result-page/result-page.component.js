@@ -13,7 +13,7 @@ export default class ResultPage extends Component {
 	initState() {
 		this.state = {
 			isModalShow: false,
-			explain: false,
+			completionList: false,
 			selectedCategoryData: {
 				takenCredits: 0,
 				totalCredits: 0,
@@ -39,7 +39,7 @@ export default class ResultPage extends Component {
 
 	toggleLecture() {
 		this.setState({
-			explain: !this.state.explain,
+			completionList: !this.state.completionList,
 		});
 	}
 
@@ -84,7 +84,7 @@ export default class ResultPage extends Component {
 		this.setState({
 			selectedCategoryData: categoryData,
 			isModalShow: true,
-			explain: false,
+			completionList: false,
 		});
 	}
 
@@ -104,7 +104,7 @@ export default class ResultPage extends Component {
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
 				categoryData: selectedCategoryData,
-				explain: this.state.explain,
+				completionList: this.state.completionList,
 				toggleLecture: this.toggleLecture.bind(this),
 			};
 			return `

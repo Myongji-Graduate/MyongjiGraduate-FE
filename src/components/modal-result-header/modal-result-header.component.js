@@ -12,25 +12,29 @@ export default class ModalResultHeader extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-			const { part, explain, takenCredit, totalCredit } = this.props;
+			const { part, completionList, takenCredit, totalCredit } = this.props;
 
 			return `
         <div class="modal-result-header">
             <div class="modal-result-header__title">
-               <div class="modal-result-header__title__part">${part}</div>
+               		<div class="modal-result-header__title__part">${part}</div>
 					<div class="modal-result-header__title__explain">
 						${part} 과목 중 &nbsp;
-						<div class="modal-result-header__title__explain__text">${explain ? `수강` : `미수강`} </div>  
+						<div class="modal-result-header__title__explain__text">${completionList ? `수강` : `미수강`} </div>  
 						한 과목이 표시됩니다.
-						<div class="modal-result-header__title__explain__toggle">🔎${explain ? `미수강` : `수강`}과목 보기</div>
-					</div>
-					         
+						<label class="modal-result-header__togglebox">
+						<span>기수강</span>
+						<input role="switch" type="checkbox" class="modal-result-header__toggle" />
+						<span>미수강</span>
+						</label>						
+				    </div>
+
 			</div>
+
             <div class="modal-result-header__credit">
                <div class="modal-result-header__credit__info"> <span>${takenCredit}</span> / ${totalCredit} </div>  
                <div class="modal-result-header__credit__underline"></div>   
             </div>
-			
         </div>
       `;
 		};
@@ -38,8 +42,9 @@ export default class ModalResultHeader extends Component {
 
 	setEvent() {
 		const { toggleLecture } = this.props;
-		this.addEvent('click', '.modal-result-header__title__explain__toggle', () => {
+		
+		this.addEvent('click', '.modal-result-header__toggle', () => {
 			toggleLecture();
-		});
+			});
 	}
 }

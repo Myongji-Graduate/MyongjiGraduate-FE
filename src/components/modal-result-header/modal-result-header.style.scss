@@ -18,16 +18,8 @@
             &__text{
                 color: $color-grey-scale1;
             }
-            &__toggle{                
-                font-size: smaller;
-                color: $color-grey-scale1;
-                margin-left: 1rem;
-            &__option{                
-                @include subhead5;
-                border: 1px solid #9F9F9F;
-            }
-        }
     }
+   }
     &__credit{            
         &__info{
             color: $color-title;
@@ -46,5 +38,37 @@
             float: right;
         }
     }
- 
+    &__togglebox{
+        margin-left: 1rem;
+        display: inline-flex;
+        gap : 0.3rem;
+        font-size: small;
+    }
+    &__toggle{      
+        appearance: none;
+        position: relative;
+        border: 1px solid $color-grey-scale4;
+        border-radius: 0.3rem;
+        width: 1rem;
+        height: 0.5rem;
+    }
+    &__toggle::before {
+        content: "";
+        position: absolute;
+        left: 0rem;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        transform: scale(0.8);
+        background-color: gray;
+        transition: left 200ms linear;
+    }
+    &__toggle:checked {
+        background-color: $color-primary;
+        border-color: $color-primary;
+    }
+    &__toggle:checked::before {
+        background-color: white;
+        left: 0.5rem;
+    }
 }
