@@ -18,8 +18,7 @@ export default class ModalResultContent extends Component {
 
 		return (props) => {
 			if (props) this.setProps(props);
-			const { detailCategory } = this.props;
-
+			const { detailCategory, explain } = this.props;
 			return `
       <div class="modal-result-content">
         ${detailCategory
@@ -58,13 +57,25 @@ export default class ModalResultContent extends Component {
 						takenCredits: category.takenCredits,
 					})}
 				</div>
-				
-					${resultLectureTable.render({
-				
-
-						lectures,
-					})}
-			
+				<div class="modal-result-content__complete-content">
+					${
+						// eslint-disable-next-line no-nested-ternary
+						explain
+							? resultLectureTable.render({
+									part: category.detailCategoryName,
+									takenLectures,
+									lectures,
+							  })
+							: category.completed
+							? resultCompleteContent.render({
+									key: index,
+							  })
+							: resultLectureTable.render({
+									lectures,
+									takenLectures: [],
+							  })
+					} 
+				</div>
 			</div>
 			`;
 					})

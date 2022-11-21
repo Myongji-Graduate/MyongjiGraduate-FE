@@ -11,8 +11,16 @@
         }
         &__explain{
             @include subhead5;
-            color : #9F9F9F;
+            color : $color-grey-scale4;
             margin-top: 0.5rem;
+            &__text{
+                color: $color-grey-scale1;
+            }
+            &__toggle{                
+                font-size: smaller;
+                color: $color-grey-scale1;
+                margin-left: 1rem;
+            }
         }
     }
     &__credit{            
