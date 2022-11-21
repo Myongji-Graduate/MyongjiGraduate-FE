@@ -20,14 +20,8 @@ export default class ModalResultHeader extends Component {
         <div class="modal-result-header">
             <div class="modal-result-header__title">
                <div class="modal-result-header__title__part">${part}</div>
-					<div class="modal-result-header__title__explain">
-						${part} 과목 중 &nbsp;
-						<div class="modal-result-header__title__explain__text">${explain ? `수강` : `미수강`} </div>  
-						한 과목이 표시됩니다.
-						<div class="modal-result-header__title__explain__toggle">🔎${explain ? `미수강` : `수강`}과목 보기</div>
-					</div>
-					         
-			</div>
+               <div class="modal-result-header__title__explain">${explain} 과목 중 미수강한 과목이 표시됩니다.</div>
+            </div>
             <div class="modal-result-header__credit">
                <div class="modal-result-header__credit__info"> <span>${takenCredit}</span> / ${totalCredit} </div>  
                <div class="modal-result-header__credit__underline"></div>   
