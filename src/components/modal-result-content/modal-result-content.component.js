@@ -57,12 +57,16 @@ export default class ModalResultContent extends Component {
 						totalCredits: category.totalCredits,
 						takenCredits: category.takenCredits,
 					})}
-          </div>
+				</div>
+				
 					${resultLectureTable.render({
+				
+
 						lectures,
 					})}
-          </div>
-          `;
+			
+			</div>
+			`;
 					})
 					.join('')}
       `;
