@@ -13,6 +13,7 @@ export const detailCategoryToKorean = {
 	INTERNATIONAL_TRADE: '국제통상',
 	HUMANITY: '인문대학',
 	SOCIAL_SCIENCE: '사회과학대학',
+	BUSINESS: '경영',
 };
 
 export function parseMandatoruMajorDetailCategory(detailCatory, categoryName) {

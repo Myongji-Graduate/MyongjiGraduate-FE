@@ -44,7 +44,7 @@ export default class SearchLectureTableList extends Component {
 
 	getEditableTableItemTemplate(lecture) {
 
-		const Style = { color : lecture.revoke ? 'red' : 'black' };
+		const Style = { color : lecture.revoked ? 'red' : 'black' };
 
 		return `
 		<div class="search-lecture-table-list__tr--${lecture.id} search-lecture-table-list__tr" style=${utils.getInlineStyle(Style)}>
