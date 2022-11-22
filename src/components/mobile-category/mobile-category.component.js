@@ -42,6 +42,11 @@ export default class MobileCategory extends Component {
 							title: '튜토리얼',
 							navigate: 'tutorial',
 						})}</div>
+						<div class="mobile-category__content-menu">${tutorialNavigate.render({
+							title: '팀소개',
+							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
+							type: 'href',
+						})}</div>
 					 				
 					 <div class="mobile-category__content-signout">로그아웃</div>			
 				`
@@ -52,6 +57,11 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
 							title: '튜토리얼',
 							navigate: 'tutorial',
+						})}</div>
+						<div class="mobile-category__content-menu">${tutorialNavigate.render({
+							title: '팀소개',
+							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
+							type: 'href',
 						})}</div>
 					 
 					 <div class="mobile-category__content-signin">로그인</div>

@@ -11,7 +11,6 @@ import ModalAgreement from '../modal-agreement/modal-agreement.component';
 
 import { buttonTypes, inputTypes } from '../../helper/types';
 import { fetchSignIn } from '../../async/auth';
-import { signIn, init } from '../../helper/auth';
 
 export default class SigninForm extends Component {
 	initState() {

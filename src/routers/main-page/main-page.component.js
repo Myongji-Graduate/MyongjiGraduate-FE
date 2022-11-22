@@ -3,7 +3,8 @@ import Component from '../../core/component';
 import Maintitle from '../../components/main-title/main-title.component';
 import MainBtn from '../../components/button/button.component';
 import GNB from '../../components/GNB/GNB.component';
-
+import Modal from '../../components/modal/modal.component';
+import ModalNotice from '../../components/modal-notice/modal-notice.component';
 import { store } from '../../store/store';
 
 import { getResponseiveImage } from '../../helper/images';
@@ -29,11 +30,14 @@ const [roundSizeAttr, roundSrcsetAttr] = getResponseiveImage(roundSizes, `${IMAG
 export default class MainPage extends Component {
 	initState() {
 		this.state = {
-			isModalShow: true,
+			isModalShow: localStorage.getItem('notice') !== 'done',
 		};
 	}
 
 	toggleModal() {
+		if (this.state.isModalShow) {
+			localStorage.setItem('notice', 'done');
+		}
 		this.setState({
 			isModalShow: !this.state.isModalShow,
 		});
@@ -43,9 +47,20 @@ export default class MainPage extends Component {
 		const gnb = this.addChild(GNB);
 		const maintitle = this.addChild(Maintitle);
 		const startBtn = this.addChild(MainBtn);
+		const noticeModal = this.addChild(Modal);
+		const noticeModalContent = this.addChild(ModalNotice);
 
 		return (props) => {
 			if (props) this.setProps(props);
+
+			const modalNoticeProps = {
+				isModalShow: this.state.isModalShow,
+				toggleModal: this.toggleModal.bind(this),
+				contentComponent: noticeModalContent,
+				width: 800,
+				padding: 35,
+				key: 'notice-modal',
+			};
 
 			return `
 			<div class="main-page">
@@ -53,6 +68,7 @@ export default class MainPage extends Component {
 			${gnb.render()}
 			</div>
 				<div class="main-page__body" >
+				${noticeModal.render(modalNoticeProps)}
 					<img class="main-page__background-img" sizes="${sizeAttr}" srcset="${srcsetAttr}" alt="main-page__background-img"/>				
 					<img class="main-page__round-logo" sizes="${roundSizeAttr}" srcset="${roundSrcsetAttr}" alt="main-page__round-logo" />
 					<div class="main-page__content">
