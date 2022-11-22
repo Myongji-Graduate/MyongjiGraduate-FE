@@ -19,6 +19,7 @@ export default class MobileCategory extends Component {
 		const tutorialNavigate = this.addChild(MobileNavigate);
 		const mypageNavigate = this.addChild(MobileNavigate);
 		const resultNavigate = this.addChild(MobileNavigate);
+		const aboutNavigate = this.addChild(MobileNavigate);
 		return (props) => {
 			if (props) this.setProps(props);
 			const { ismobileCategoryShow, isLogin } = this.props;
@@ -42,7 +43,7 @@ export default class MobileCategory extends Component {
 							title: '튜토리얼',
 							navigate: 'tutorial',
 						})}</div>
-						<div class="mobile-category__content-menu">${tutorialNavigate.render({
+						<div class="mobile-category__content-menu">${aboutNavigate.render({
 							title: '팀소개',
 							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
 							type: 'href',
@@ -58,7 +59,7 @@ export default class MobileCategory extends Component {
 							title: '튜토리얼',
 							navigate: 'tutorial',
 						})}</div>
-						<div class="mobile-category__content-menu">${tutorialNavigate.render({
+						<div class="mobile-category__content-menu">${aboutNavigate.render({
 							title: '팀소개',
 							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
 							type: 'href',
