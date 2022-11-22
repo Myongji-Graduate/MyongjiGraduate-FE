@@ -166,7 +166,7 @@ export const parseGraduationResult = (result) => {
 
 	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
 
-	electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
+	electiveyMajor.detailCategory[0].takenCredits = electiveyMajor.takenCredit;
 
 	checkCompletedDetailCategory(electiveyMajor);
 	checkCompletedDetailCategory(mandatoryMajor);

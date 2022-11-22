@@ -53,12 +53,14 @@ export default class ResultPage extends Component {
 		});
 		try {
 			const result = await fetchGraduationResult();
+			console.log(result);
 
 			const parseResult = parseGraduationResult(result);
+			console.log(parseResult);
 			this.setState({
 				basicUserInfo: parseResult.basicUserInfo,
 				categoryList: parseResult.categoryList,
-				graduated: parseResult.graduated,
+				graduated: result.graduated,
 				isLoading: false,
 			});
 		} catch (error) {
