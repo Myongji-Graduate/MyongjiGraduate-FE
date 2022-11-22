@@ -11,13 +11,13 @@
             color : $color-title;
         }
         &__explain{
-            display: inline-flex;
+            display: flex;
             align-items: center;
             @include subhead5;
             color : $color-grey-scale4;
             margin-top: 0.5rem;
-    }
-   }
+            }
+        }
     &__credit{            
         &__info{
             color: $color-title;
@@ -44,14 +44,23 @@
         width: 2.6rem;
         height: 1rem;
         z-index: 0;
+        &-part{
+            @include mobile{ display: none; }
+        }
+        &-set{
+            display: flex;
+            align-items: center;
+        }
         &-text{
             z-index: 1;
             position: relative;
         }
-        &-left{
+        &-explain{
             left: -1rem;
             position: relative;
+        
         }
+      
     }
     &__toggle::before {
         content: "";
