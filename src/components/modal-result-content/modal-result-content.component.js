@@ -43,6 +43,7 @@ export default class ModalResultContent extends Component {
 						part: partName,
 						totalCredits: category.totalCredits,
 						takenCredits: category.takenCredits,
+						leftCredits: category.leftCredit,
 					})}
 				</div>
 				<div class="modal-result-content__complete-content">

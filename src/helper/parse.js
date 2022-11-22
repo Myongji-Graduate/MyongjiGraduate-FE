@@ -121,14 +121,19 @@ export const parseElectiveMajorResult = (majorResult) => {
 			const { totalCredits, takenCredits } = majorResult.detailCategory[0];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
+			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		} else {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
 			const { totalCredits, takenCredits } = majorResult.detailCategory[1];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
+			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		}
 	} else {
+		const { totalCredits, takenCredits } = majorResult.detailCategory[0];
+		const leftCredits = Math.max(0, takenCredits - totalCredits);
 		electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
+		// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 	}
 
 	return electiveMajor;
@@ -160,7 +165,6 @@ export const parseGraduationResult = (result) => {
 
 	const mandatoryMajor = parseMandatoryMajorResult(result.major);
 	const electiveyMajor = parseElectiveMajorResult(result.major);
-
 	electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
 
 	electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
