@@ -53,6 +53,7 @@ export default class ModalResultContent extends Component {
 									part: category.detailCategoryName,
 									takenLectures,
 									lectures,
+									completionList,
 							  })
 							: category.completed
 							? resultCompleteContent.render({
@@ -60,7 +61,7 @@ export default class ModalResultContent extends Component {
 							  })
 							: resultLectureTable.render({
 									lectures,
-									takenLectures: [],
+									completionList,
 							  })
 					} 
 				</div>

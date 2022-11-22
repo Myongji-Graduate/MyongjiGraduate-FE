@@ -9,6 +9,7 @@ export default class ResultLectureTableList extends Component {
 			part: '',
 			lectures: [],
 			takenLectures: [],
+			completionList: false,
 			isEditableMode: false,
 			addedTakenLecutures: [],
 			deletedTakenLecutures: [],
@@ -32,14 +33,17 @@ export default class ResultLectureTableList extends Component {
 	}
 
 	getLectures() {
-		const { lectures, takenLectures, part } = this.props;
+		const { lectures, takenLectures, part, completionList } = this.props;
 		let concatLectures = [];
-		if (takenLectures.length === 0) return lectures;
-		if (lectures.length > 0 && this.isManyCategory(part)) {
-			concatLectures = takenLectures.concat(lectures);
-			return concatLectures;
+
+		if (completionList) {
+			if (this.isManyCategory(part)) {
+				concatLectures = takenLectures.concat(lectures);
+				return concatLectures;
+			}
+			return takenLectures;
 		}
-		return takenLectures;
+		return lectures;
 	}
 
 	getPlainTableList() {
