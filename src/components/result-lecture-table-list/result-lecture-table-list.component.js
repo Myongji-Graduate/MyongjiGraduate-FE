@@ -43,11 +43,11 @@ export default class ResultLectureTableList extends Component {
 	}
 
 	getPlainTableList() {
-		const { takenLectures, part } = this.props;
+		const { takenLectures } = this.props;
 		return this.getLectures()
 			.map((lecture) => {
 				const modalStyle = {
-					color: takenLectures.includes(lecture) && this.isManyCategory(part) ? 'blue' : 'black',
+					color: takenLectures.includes(lecture) ? 'blue' : 'black',
 				};
 				return `
             <div class="result-lecture-table-list__body" style=${utils.getInlineStyle(modalStyle)}>
