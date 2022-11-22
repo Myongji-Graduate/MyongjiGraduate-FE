@@ -8,6 +8,7 @@ export default class ModalResultContent extends Component {
 	setDefaultProps() {
 		this.props = {
 			detailCategory: [],
+			completionList: false,
 		};
 	}
 
@@ -18,54 +19,58 @@ export default class ModalResultContent extends Component {
 
 		return (props) => {
 			if (props) this.setProps(props);
-			const { detailCategory } = this.props;
+			const { detailCategory, completionList } = this.props;
 
 			return `
       <div class="modal-result-content">
         ${detailCategory
 					.map((category, index) => {
-						let lectures = [];
-						if (category.haveToMandatoryLectures.length !== 0) lectures = category.haveToMandatoryLectures;
-						if (category.haveToElectiveLectures.length !== 0) lectures = category.haveToElectiveLectures;
+						const lectures = [];
+						if (category.haveToMandatoryLectures.length !== 0) lectures.push(...category.haveToMandatoryLectures);
+						if (category.haveToElectiveLectures.length !== 0) lectures.push(...category.haveToElectiveLectures);
+						const takenLectures = [];
+						if (category.takenMandatoryLectures.length !== 0) takenLectures.push(...category.takenMandatoryLectures);
+						if (category.takenElectiveLectures.length !== 0) takenLectures.push(...category.takenElectiveLectures);
+
 						const partName =
 							category.detailCategoryName in detailCategoryToKorean
 								? detailCategoryToKorean[category.detailCategoryName]
 								: category.detailCategoryName;
-						if (category.completed)
-							return `
-          <div class="modal-result-content__content">
-          <div class="modal-result-content__info">
-            ${info.render({
-							part: partName,
-							totalCredits: category.totalCredits,
-							takenCredits: category.takenCredits,
-						})}
-            </div>
-          <div class="modal-result-content__complete-content">
-          ${resultCompleteContent.render({
-						key: index,
-					})}
-          </div>
-          </div>
-          `;
-
 						return `
-          <div class="modal-result-content__content">
-          <div class="modal-result-content__info">
-         ${info.render({
+			<div class="modal-result-content__content">
+				<div class="modal-result-content__info">
+					${info.render({
 						part: partName,
 						totalCredits: category.totalCredits,
 						takenCredits: category.takenCredits,
+						leftCredits: category.leftCredit,
 					})}
-          </div>
-					${resultLectureTable.render({
-						lectures,
-					})}
-          </div>
-          `;
+				</div>
+				<div class="modal-result-content__complete-content">
+					${
+						// eslint-disable-next-line no-nested-ternary
+						completionList
+							? resultLectureTable.render({
+									part: category.detailCategoryName,
+									takenLectures,
+									lectures,
+									completionList,
+							  })
+							: category.completed
+							? resultCompleteContent.render({
+									key: index,
+							  })
+							: resultLectureTable.render({
+									lectures,
+									completionList,
+							  })
+					} 
+				</div>
+			</div>
+			`;
 					})
 					.join('')}
-      `;
+      </div>`;
 		};
 	}
 }

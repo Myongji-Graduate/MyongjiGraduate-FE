@@ -13,6 +13,7 @@ export const detailCategoryToKorean = {
 	INTERNATIONAL_TRADE: '국제통상',
 	HUMANITY: '인문대학',
 	SOCIAL_SCIENCE: '사회과학대학',
+	BUSINESS: '경영',
 };
 
 export function parseMandatoruMajorDetailCategory(detailCatory, categoryName) {
@@ -120,14 +121,19 @@ export const parseElectiveMajorResult = (majorResult) => {
 			const { totalCredits, takenCredits } = majorResult.detailCategory[0];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
+			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		} else {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
-			const { totalCredits, takenCredits } = majorResult.detailCtegory[1];
+			const { totalCredits, takenCredits } = majorResult.detailCategory[1];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
+			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		}
 	} else {
+		const { totalCredits, takenCredits } = majorResult.detailCategory[0];
+		const leftCredits = Math.max(0, takenCredits - totalCredits);
 		electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
+		// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 	}
 
 	return electiveMajor;
@@ -159,14 +165,13 @@ export const parseGraduationResult = (result) => {
 
 	const mandatoryMajor = parseMandatoryMajorResult(result.major);
 	const electiveyMajor = parseElectiveMajorResult(result.major);
-
 	electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
 
 	electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
 
 	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
 
-	electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
+	electiveyMajor.detailCategory[0].takenCredits = electiveyMajor.takenCredit;
 
 	checkCompletedDetailCategory(electiveyMajor);
 	checkCompletedDetailCategory(mandatoryMajor);

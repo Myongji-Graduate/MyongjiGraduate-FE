@@ -42,9 +42,7 @@ export function updateElement(parentNode, newNode, oldNode) {
 		return;
 	}
 	if (newNode.nodeName !== oldNode.nodeName) {
-		const index = [...parentNode.childNodes].indexOf(oldNode);
-		oldNode.remove();
-		parentNode.appendChild(newNode, index);
+		parentNode.replaceChild(newNode, oldNode);
 		return;
 	}
 
