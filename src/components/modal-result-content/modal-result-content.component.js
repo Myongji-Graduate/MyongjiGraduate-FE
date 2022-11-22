@@ -25,12 +25,12 @@ export default class ModalResultContent extends Component {
       <div class="modal-result-content">
         ${detailCategory
 					.map((category, index) => {
-						let lectures = [];
-						if (category.haveToMandatoryLectures.length !== 0) lectures = category.haveToMandatoryLectures;
-						if (category.haveToElectiveLectures.length !== 0) lectures = category.haveToElectiveLectures;
-						let takenLectures = [];
-						if (category.takenMandatoryLectures.length !== 0) takenLectures = category.takenMandatoryLectures;
-						if (category.takenElectiveLectures.length !== 0) takenLectures = category.takenElectiveLectures;
+						const lectures = [];
+						if (category.haveToMandatoryLectures.length !== 0) lectures.push(...category.haveToMandatoryLectures);
+						if (category.haveToElectiveLectures.length !== 0) lectures.push(...category.haveToElectiveLectures);
+						const takenLectures = [];
+						if (category.takenMandatoryLectures.length !== 0) takenLectures.push(...category.takenMandatoryLectures);
+						if (category.takenElectiveLectures.length !== 0) takenLectures.push(...category.takenElectiveLectures);
 
 						const partName =
 							category.detailCategoryName in detailCategoryToKorean

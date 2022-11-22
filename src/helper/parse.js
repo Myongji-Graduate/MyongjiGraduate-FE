@@ -122,7 +122,7 @@ export const parseElectiveMajorResult = (majorResult) => {
 			electiveMajor.takenCredit += leftCredits;
 		} else {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
-			const { totalCredits, takenCredits } = majorResult.detailCtegory[1];
+			const { totalCredits, takenCredits } = majorResult.detailCategory[1];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
 		}
