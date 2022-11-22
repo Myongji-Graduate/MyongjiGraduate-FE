@@ -37,7 +37,7 @@ export default class ResultLectureTableList extends Component {
 		let concatLectures = [];
 
 		if (completionList) {
-			if (this.isManyCategory(part)) {
+			if (this.isManyCategory(part) || part === '전공선택필수') {
 				concatLectures = takenLectures.concat(lectures);
 				return concatLectures;
 			}
