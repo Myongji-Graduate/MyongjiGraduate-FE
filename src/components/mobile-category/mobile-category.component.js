@@ -17,6 +17,7 @@ export default class MobileCategory extends Component {
 	template() {
 		const myInfo = this.addChild(MyInfo);
 		const tutorialNavigate = this.addChild(MobileNavigate);
+		const loadmapNavigate = this.addChild(MobileNavigate);
 		const mypageNavigate = this.addChild(MobileNavigate);
 		const resultNavigate = this.addChild(MobileNavigate);
 		const aboutNavigate = this.addChild(MobileNavigate);
@@ -38,7 +39,11 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-divider"></div>
 					 
 					 <div class="mobile-category__content-menu">${resultNavigate.render({ title: '결과페이지', navigate: 'result' })}</div>
-					 <div class="mobile-category__content-menu">${mypageNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>			
+					 <div class="mobile-category__content-menu">${mypageNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>		
+					 <div class="mobile-category__content-menu">${loadmapNavigate.render({
+							title: '로드맵',
+							navigate: 'loadmap',
+						})}</div>	
 					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
 							title: '튜토리얼',
 							navigate: 'tutorial',
@@ -54,7 +59,10 @@ export default class MobileCategory extends Component {
 					: `
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
-					 
+					 <div class="mobile-category__content-menu">${loadmapNavigate.render({
+							title: '로드맵',
+							navigate: 'loadmap',
+						})}</div>
 					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
 							title: '튜토리얼',
 							navigate: 'tutorial',

@@ -1,0 +1,26 @@
+.loadmap-page{
+  &__header {
+    background-color: $color-primary;
+    height: 7.1rem;
+    position: relative;
+  }
+  
+  &__body{
+    display: flex;
+    justify-content: center;        
+    &__content{
+      width: 70%;
+      @include mobile{
+        width: 90%;
+    }
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: -3rem;       
+      z-index: 10;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  }
+}
