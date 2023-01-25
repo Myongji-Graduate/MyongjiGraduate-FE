@@ -107,7 +107,7 @@ export default class SigninForm extends Component {
         ${modalLoadingContainer.render(modalLoadingProps)}
 		${modalAgreementContainer.render(modalAggrementProps)}
         <div class="sign-in-form__header">${header.render({ title: '로그인' })}</div>
-          <div class="sign-in-form__body">
+        <div class="sign-in-form__body">
             <div class="sign-in-form__id-input-group-container"> ${idInputGroup.render(
 							idInputProps
 						)}</div>                  
@@ -122,18 +122,29 @@ export default class SigninForm extends Component {
 							})}
             </div>
 			<div class="sign-in-form__footer">
-			계정이 필요하신가요? 
-			<div class="sign-in-form__footer-signup">가입하기</div>
-			</div>
-          </div>
+				<div class="sign-in-form__footer-item findId">아이디 찾기</div>
+				<div class="sign-in-form__footer-itembar">|</div>
+				<div class="sign-in-form__footer-item findPw">비밀번호 찾기</div>
+				<div class="sign-in-form__footer-itembar">|</div>
+				<div class="sign-in-form__footer-item signUp">회원가입하기</div>
+        	</div>
         </div>
+		</div>
       `;
 		};
 	}
 
 	setEvent() {
-		this.addEvent('click', '.sign-in-form__footer-signup', () => {
+		this.addEvent('click', '.signUp', () => {
 			this.agreementModal();
+		});
+		this.addEvent('click', '.findId', () => {
+			const { router } = store.getState();
+			router.navigate('/find-id');
+		});
+		this.addEvent('click', '.findPw', () => {
+			const { router } = store.getState();
+			router.navigate('/find-pw');
 		});
 	}
 }

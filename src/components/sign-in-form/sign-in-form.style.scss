@@ -24,6 +24,13 @@
     @include subhead2;
     color: $color-grey-scale4;
     justify-content: center;
+    &-item{
+      cursor: pointer;
+      margin-left: .3rem;
+    }
+    &-itembar{
+      margin-left: .3rem;
+    }
   }
 
   &__password-input-group-container {

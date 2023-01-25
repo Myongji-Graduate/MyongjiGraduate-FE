@@ -263,4 +263,21 @@ router.get('/check-user', async function (req, res) {
 	}
 });
 
+router.post('/findId', async function (req, res) {
+	const formData = {
+		studentId: req.body.studentId,
+	};
+	try {
+		const accessToken = getAuthorizationCookie(req);
+		const result = await axios.get(`${ROOT_URL}/users/by/student-number/${formData.studentId}`, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		res.status(200).json(result.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
 export default router;

@@ -51,6 +51,23 @@ export async function fetchSignUp(formData) {
 	return false;
 }
 
+export async function fetchId(formData) {
+	const response = await fetch('/api/findId', {
+		method: 'POST',
+		body: JSON.stringify(formData),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.status === 200) {
+		return true;
+	}
+	if (response.status === 400) {
+		return false;
+	}
+	return false;
+}
+
 export async function fetchValidateATK() {
 	const response = await fetch('/api/check-atk');
 

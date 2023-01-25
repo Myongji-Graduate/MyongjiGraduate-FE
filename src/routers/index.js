@@ -6,6 +6,8 @@ import SignUpPage from './sign-up-page/sign-up-page.component';
 import FileUploadPage from './file-upload-page/file-upload-page.component';
 import MypagePage from './mypage-page/mypage-page.component';
 import LoadmapPage from './loadmap-page/loadmap-page.component';
+import FindIdPage from './find-id-page/find-id-page.component';
+import FindPwPage from './find-pw-page/find-pw-page.component';
 
 import App from '../app';
 import BrowserRouter from '../core/browser-router';
@@ -37,6 +39,16 @@ export const routerObjects = [
 			{
 				path: 'sign-in',
 				element: SignInPage,
+				authentication: userRule.guest,
+			},
+			{
+				path: 'find-id',
+				element: FindIdPage,
+				authentication: userRule.guest,
+			},
+			{
+				path: 'find-pw',
+				element: FindPwPage,
 				authentication: userRule.guest,
 			},
 			{
