@@ -1,3 +1,4 @@
+import * as utils from '../../helper/utils';
 import Component from '../../core/component';
 
 import { buttonTypes } from '../../helper/types';
@@ -10,6 +11,7 @@ export default class Button extends Component {
 			type: buttonTypes.normal,
 			size: 'lg',
 			disabled: false,
+			styleOption: {},
 		};
 	}
 
@@ -17,11 +19,10 @@ export default class Button extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { content, type, size, key, disabled } = this.props;
+			const { content, type, size, key, disabled, styleOption } = this.props;
 			return `
-        <button ${disabled && 'disabled'} class="${
-				key ? `button__${key} ` : ''
-			}button--${type} button--${size} button" > 
+        <button ${disabled && 'disabled'} class="${key ? `button__${key} ` : ''}button--${type} button--${size} button" 
+			style=${utils.getInlineStyle(styleOption)}> 
 		${content} 
 		</button>
       `;
