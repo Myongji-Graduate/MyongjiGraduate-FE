@@ -2,6 +2,8 @@
 import Component from '../../core/component';
 import { getResponseiveImage } from '../../helper/images';
 import { parseLectureResult } from '../../helper/parse';
+import ModalLoading from '../modal-loading/modal-loading.component';
+import Modal from '../modal/modal.component';
 
 import InputGroup from '../input-group/input-group.component';
 import Button from '../button/button.component';
@@ -24,8 +26,8 @@ const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/
 export default class Loadmap extends Component {
 	setDefaultProps() {
 		this.props = {
-			year: '',
-			major: '',
+			year: '22',
+			major: '응용소프트웨어전공',
 		};
 	}
 
@@ -34,6 +36,7 @@ export default class Loadmap extends Component {
 			auth: false,
 			categoryList: {},
 			lectureList: {},
+			isLoading: false,
 		};
 	}
 
@@ -43,7 +46,13 @@ export default class Loadmap extends Component {
 			entryYear: year,
 			department: major,
 		};
+		this.setState({
+			isLoading: true,
+		});
 		const response = await fetchLoadmapInfos(formData);
+		this.setState({
+			isLoading: false,
+		});
 		if (response) {
 			const parseResult = parseLectureResult(response[1]);
 			this.setState({ auth: true, categoryList: response[0], lectureList: parseResult });
@@ -68,7 +77,6 @@ export default class Loadmap extends Component {
 
 	validation() {
 		const { year, major } = this.props;
-		console.log(major === '' || year === '');
 		return major === '' || year === '';
 	}
 
@@ -80,29 +88,35 @@ export default class Loadmap extends Component {
 			'border-radius': '2rem',
 			width: '8rem',
 		};
-
+		const modalLoadingContainer = this.addChild(Modal);
+		const modalLoading = this.addChild(ModalLoading);
 		const yearInputGroup = this.addChild(InputGroup);
 		const majorInputGroup = this.addChild(InputGroup);
 		const loadmapButton = this.addChild(Button);
 
+		const { isLoading } = this.state;
+
+		const modalLoadingProps = {
+			isModalShow: isLoading,
+			contentComponent: modalLoading,
+			width: 790,
+			padding: 200,
+			key: 'sign-in-loading',
+		};
 		const yearInputProps = {
-			value: this.props.year,
 			type: inputTypes.select,
-			options: ['19', '20', '21', '22'],
+			options: ['16', '17', '18', '19', '20', '21', '22'],
 			onChange: (newYear) => {
 				this.setProps({ year: newYear });
-				console.log(this.props);
 			},
 			key: 'loadmap-year',
 			styleOption: inputStyle,
 		};
 		const majorInputProps = {
-			value: this.props.major,
 			type: inputTypes.select,
 			options: Object.keys(departmentList),
 			onChange: (newMajor) => {
 				this.setProps({ major: newMajor });
-				console.log(this.props);
 			},
 			key: 'loadmap-major',
 			styleOption: inputStyle,
@@ -113,6 +127,7 @@ export default class Loadmap extends Component {
 
 			return `
 			<div class="loadmap">
+			${modalLoadingContainer.render(modalLoadingProps)}
 				<div class="box">
 					<div class="loadmap__explain">
 						<div class="loadmap__explain-title"> <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="loadmap__explain-icon" alt="loadmap__explain-icon" />나와 맞는 과목 정보 확인하기</div>

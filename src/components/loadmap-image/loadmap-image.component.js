@@ -25,12 +25,11 @@ export default class LoadmapImage extends Component {
 					: departmentList[major];
 
 			const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/department/${majorImage}.png`);
-			const [noneSizeAttr, noneSrcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/department/none.png`);
 
 			return `
         <div class="loadmap-image" > 
 			<div class="loadmap-image__title">전공이수로드맵</div>
-			<img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="loadmap-image__content" alt="loadmap-image__content" onerror="srcset='${noneSrcsetAttr}'"/>
+			<img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="loadmap-image__content" alt="loadmap-image__content"/>
         </div>
       `;
 		};
