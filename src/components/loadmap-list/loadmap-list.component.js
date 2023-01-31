@@ -11,14 +11,33 @@ export default class LoadmapList extends Component {
 
 	initState() {
 		this.state = {
-			common: true,
+			common: false,
 		};
+	}
+
+	isNote(partName) {
+		const { year } = this.props;
+		let text = '';
+		if (this.state.common) {
+			text = '선택 1';
+		}
+		if (partName === '기독교') {
+			year < 20 ? (text = '성서와 인간이해(필수)외 선택 1') : (text = '선택 2');
+		}
+		if (partName === '영어') {
+			text = '교과목(영어, 영어회화)당 1,2 또는 3,4 이수';
+		}
+		return text;
 	}
 
 	getList(props) {
 		return props
 			.map((prop) => {
-				return `<div class="loadmap-list__info__category__content__item-list__item">${prop.name}</div>`;
+				return `
+				<div class="loadmap-list__info__category__content__item-list__item">
+					<div class="loadmap-list__info__category__content__item-list__item-name">${prop.name}</div>
+					<div class="loadmap-list__info__category__content__item-list__item-credit">${prop.credit}학점</div>
+				</div>`;
 			})
 			.join('');
 	}
@@ -43,6 +62,7 @@ export default class LoadmapList extends Component {
 					return `<div class="loadmap-list__info__category__content__item">
 							<div class="loadmap-list__info__category__content__item-detailcatogory">${partName}</div>
 							<div class="loadmap-list__info__category__content__item-list">${this.getList(value.lectures)}</div>
+							<div class="loadmap-list__info__category__content__item-notice">${this.isNote(partName)}</div>
 							</div>`;
 				})
 				.join('')}

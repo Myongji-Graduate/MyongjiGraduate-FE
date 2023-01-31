@@ -12,13 +12,13 @@ export default class LoadmapResult extends Component {
 		const loadmapmore = this.addChild(LoadmapMore);
 		return (props) => {
 			if (props) this.setProps(props);
-			const { credit, lecture, major } = this.props;
+			const { credit, lecture, major, year } = this.props;
 
 			return `
         <div class="loadmap-result">          
 			<div class="loadmap-result__sort">${loadmapSort.render({ ...credit })}</div>
 			<div class="loadmap-result-bar"></div>
-			<div class="loadmap-result__list">${loadmapList.render({ lecture })}</div>
+			<div class="loadmap-result__list">${loadmapList.render({ lecture, year })}</div>
 			<div class="loadmap-result-bar"></div>
 			<div class="loadmap-result__img">${loadmapImage.render({ major })}</div>
 			<div class="loadmap-result__more">${loadmapmore.render({ major })}</div>

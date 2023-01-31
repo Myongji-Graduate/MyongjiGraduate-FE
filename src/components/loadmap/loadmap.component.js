@@ -22,10 +22,15 @@ const sizes = {
 const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/loadmap.png`);
 
 export default class Loadmap extends Component {
-	initState() {
-		this.state = {
+	setDefaultProps() {
+		this.props = {
 			year: '',
 			major: '',
+		};
+	}
+
+	initState() {
+		this.state = {
 			auth: false,
 			categoryList: {},
 			lectureList: {},
@@ -33,28 +38,37 @@ export default class Loadmap extends Component {
 	}
 
 	async submitData() {
-		const { year, major } = this.state;
+		const { year, major } = this.props;
 		const formData = {
 			entryYear: year,
 			department: major,
 		};
-		this.setState({
-			isLoading: true,
-		});
-
 		const response = await fetchLoadmapInfos(formData);
-		this.setState({
-			isLoading: false,
-		});
-
 		if (response) {
 			const parseResult = parseLectureResult(response[1]);
 			this.setState({ auth: true, categoryList: response[0], lectureList: parseResult });
 		}
 	}
 
+	showDetail() {
+		const loadmapResult = this.addChild(LoadmapResult);
+		const { categoryList, lectureList } = this.state;
+		const { major, year } = this.props;
+		return `${
+			this.state.auth
+				? `<div class="box">${loadmapResult.render({
+						credit: categoryList,
+						lecture: lectureList,
+						major,
+						year,
+				  })}</div>`
+				: `<div></div>`
+		}`;
+	}
+
 	validation() {
-		const { major, year } = this.state;
+		const { year, major } = this.props;
+		console.log(major === '' || year === '');
 		return major === '' || year === '';
 	}
 
@@ -70,24 +84,25 @@ export default class Loadmap extends Component {
 		const yearInputGroup = this.addChild(InputGroup);
 		const majorInputGroup = this.addChild(InputGroup);
 		const loadmapButton = this.addChild(Button);
-		const loadmapResult = this.addChild(LoadmapResult);
 
 		const yearInputProps = {
-			value: this.state.year,
+			value: this.props.year,
 			type: inputTypes.select,
 			options: ['19', '20', '21', '22'],
-			onChange: (newValue) => {
-				this.setState({ year: newValue });
+			onChange: (newYear) => {
+				this.setProps({ year: newYear });
+				console.log(this.props);
 			},
 			key: 'loadmap-year',
 			styleOption: inputStyle,
 		};
 		const majorInputProps = {
-			value: this.state.major,
+			value: this.props.major,
 			type: inputTypes.select,
 			options: Object.keys(departmentList),
-			onChange: (newValue) => {
-				this.setState({ major: newValue });
+			onChange: (newMajor) => {
+				this.setProps({ major: newMajor });
+				console.log(this.props);
 			},
 			key: 'loadmap-major',
 			styleOption: inputStyle,
@@ -95,7 +110,7 @@ export default class Loadmap extends Component {
 
 		return (props) => {
 			if (props) this.setProps(props);
-			const { categoryList, lectureList, major } = this.state;
+
 			return `
 			<div class="loadmap">
 				<div class="box">
@@ -115,22 +130,14 @@ export default class Loadmap extends Component {
 					</div>
 					<div class="loadmap__btn">${loadmapButton.render({
 						content: '확인',
-						type: this.validation() ? buttonTypes.grey : buttonTypes.primary,
+						type: buttonTypes.primary,
 						size: 'md',
 						key: 'loadmap-btn',
 						disabled: this.validation(),
 						onClick: this.submitData.bind(this),
 					})}</div>
 				</div>
-					${
-						this.state.auth
-							? `<div class="box">${loadmapResult.render({
-									credit: categoryList,
-									lecture: lectureList,
-									major,
-							  })}</div>`
-							: `<div></div>`
-					}
+				${this.state.auth ? this.showDetail() : `<div></div>`}
 			</div>
 			`;
 		};

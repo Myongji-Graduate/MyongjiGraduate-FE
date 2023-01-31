@@ -1,4 +1,5 @@
 .loadmap-list{
+  
     &__title{
         @include title5;
     }
@@ -8,7 +9,7 @@
         border-top: 5px solid $color-grey-scale3;
         &__option{
             position: relative;
-            top: -40px;
+            top: -50px;
             right: -40px;
             @include mobile{top: -30px;}
             float: right;
@@ -35,6 +36,7 @@
         @include mobile {
             width: 100%;
             margin: 1.5rem 0rem;
+            font: smaller;
         }
             margin: 1.5rem 1rem;
         &__categoryName{
@@ -72,14 +74,33 @@
                     color: $color-title;
                     &__item{
                         display: flex;
-                        padding: .33rem;
-                        justify-content: center;
-                        border-bottom: 1px solid rgba(0, 0, 0, 0.1);          
+                        padding: .33rem 0.5rem;
+                        justify-content:space-between;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.1);    
+                        &-name{
+                            width: 75%;
+                        }
+                        &-credit{
+                            color: $color-grey-scale4;
+                        }
                     }
                     &__item:last-child{border-bottom:0px}    
+                }
+                &-notice{
+                    float: right;
+                    @include subhead3;
+                    color: $color-grey-scale1;
+                    max-width: 80%;
+                    @include mobile{
+                       font: smaller;
+                    }
+                    border-bottom : 1px solid rgba(0, 0, 0, 0.3);
+                   
+           
                 }
             }
         }
     }
+    
 }
 }
