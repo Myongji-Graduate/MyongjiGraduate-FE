@@ -24,24 +24,19 @@ const sizes = {
 const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/loadmap.png`);
 
 export default class Loadmap extends Component {
-	setDefaultProps() {
-		this.props = {
-			year: '22',
-			major: '응용소프트웨어전공',
-		};
-	}
-
 	initState() {
 		this.state = {
 			auth: false,
 			categoryList: {},
 			lectureList: {},
 			isLoading: false,
+			year: '',
+			major: '',
 		};
 	}
 
 	async submitData() {
-		const { year, major } = this.props;
+		const { year, major } = this.state;
 		const formData = {
 			entryYear: year,
 			department: major,
@@ -61,10 +56,9 @@ export default class Loadmap extends Component {
 
 	showDetail() {
 		const loadmapResult = this.addChild(LoadmapResult);
-		const { categoryList, lectureList } = this.state;
-		const { major, year } = this.props;
+		const { categoryList, lectureList, major, year, auth } = this.state;
 		return `${
-			this.state.auth
+			auth
 				? `<div class="box">${loadmapResult.render({
 						credit: categoryList,
 						lecture: lectureList,
@@ -76,7 +70,7 @@ export default class Loadmap extends Component {
 	}
 
 	validation() {
-		const { year, major } = this.props;
+		const { year, major } = this.state;
 		return major === '' || year === '';
 	}
 
@@ -103,24 +97,6 @@ export default class Loadmap extends Component {
 			padding: 200,
 			key: 'sign-in-loading',
 		};
-		const yearInputProps = {
-			type: inputTypes.select,
-			options: ['16', '17', '18', '19', '20', '21', '22'],
-			onChange: (newYear) => {
-				this.setProps({ year: newYear });
-			},
-			key: 'loadmap-year',
-			styleOption: inputStyle,
-		};
-		const majorInputProps = {
-			type: inputTypes.select,
-			options: Object.keys(departmentList),
-			onChange: (newMajor) => {
-				this.setProps({ major: newMajor });
-			},
-			key: 'loadmap-major',
-			styleOption: inputStyle,
-		};
 
 		return (props) => {
 			if (props) this.setProps(props);
@@ -136,16 +112,34 @@ export default class Loadmap extends Component {
 					<div class="loadmap__select">
 						<div class="loadmap__select__bundle">
 							<div class="loadmap__select__bundle-label">학과</div>
-							<div class="loadmap__select__bundle-input">${majorInputGroup.render(majorInputProps)}</div>
+							<div class="loadmap__select__bundle-input">${majorInputGroup.render({
+								value: this.state.major,
+								type: inputTypes.select,
+								options: Object.keys(departmentList),
+								onChange: (newMajor) => {
+									this.setState({ major: newMajor });
+								},
+								key: 'loadmap-major',
+								styleOption: inputStyle,
+							})}</div>
 						</div>
 						<div class="loadmap__select__bundle">
 							<div class="loadmap__select__bundle-label">학번</div>
-							<div class="loadmap__select__bundle-input">${yearInputGroup.render(yearInputProps)}</div>
+							<div class="loadmap__select__bundle-input">${yearInputGroup.render({
+								value: this.state.year,
+								type: inputTypes.select,
+								options: ['16', '17', '18', '19', '20', '21', '22'],
+								onChange: (newYear) => {
+									this.setState({ year: newYear });
+								},
+								key: 'loadmap-year',
+								styleOption: inputStyle,
+							})}</div>
 						</div>
 					</div>
 					<div class="loadmap__btn">${loadmapButton.render({
 						content: '확인',
-						type: buttonTypes.primary,
+						type: this.validation() ? buttonTypes.grey : buttonTypes.primary,
 						size: 'md',
 						key: 'loadmap-btn',
 						disabled: this.validation(),
