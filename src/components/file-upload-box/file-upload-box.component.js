@@ -4,7 +4,6 @@ import { createAction, store } from '../../store/store';
 import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
 import { getResponseiveImage } from '../../helper/images';
 
-
 const sizes = {
 	mobile: 30,
 	tablet: 35,
@@ -13,9 +12,14 @@ const sizes = {
 	lg: 60,
 };
 
-
-const [completeCheckSizesAttr, completeCheckSrcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/complete-check.svg`);
-const [fileUploadSizesAttr, fileUploadSrcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/file-upload-icon.svg`);
+const [completeCheckSizesAttr, completeCheckSrcsetAttr] = getResponseiveImage(
+	sizes,
+	`${IMAGE_URL}/images/complete-check.svg`
+);
+const [fileUploadSizesAttr, fileUploadSrcsetAttr] = getResponseiveImage(
+	sizes,
+	`${IMAGE_URL}/images/file-upload-icon.svg`
+);
 
 export default class FileUploadBox extends Component {
 	setDefaultProps() {

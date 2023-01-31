@@ -172,6 +172,27 @@ router.get('/takenLectures', async function (req, res) {
 		apiErrorHandler(res, error);
 	}
 });
+router.get('/takenloadmapInfos', async function (req, res) {
+	try {
+		//	const accessToken = getAuthorizationCookie(req);
+		const lectureResult = await axios.get(`${ROOT_URL}/bachelor-info/lectures`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			params: req.query,
+		});
+		const creditResult = await axios.get(`${ROOT_URL}/bachelor-info/requirement`, {
+			headers: {
+				//	Authorization: accessToken,
+				'Content-Type': 'application/json',
+			},
+			params: req.query,
+		});
+		res.json([creditResult.data, lectureResult.data]);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
 
 router.get('/search-lecture', async function (req, res) {
 	try {
@@ -260,23 +281,6 @@ router.get('/check-user', async function (req, res) {
 		} catch (error) {
 			apiErrorHandler(res, error);
 		}
-	}
-});
-
-router.post('/findId', async function (req, res) {
-	const formData = {
-		studentId: req.body.studentId,
-	};
-	try {
-		const accessToken = getAuthorizationCookie(req);
-		const result = await axios.get(`${ROOT_URL}/users/by/student-number/${formData.studentId}`, {
-			headers: {
-				Authorization: accessToken,
-			},
-		});
-		res.status(200).json(result.data);
-	} catch (error) {
-		apiErrorHandler(res, error);
 	}
 });
 

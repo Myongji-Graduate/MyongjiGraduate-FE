@@ -10,7 +10,7 @@ const sizes = {
 	lg: 150,
 };
 
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/error-image.png`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/error-image.png`);
 
 export default class ModalErrorContent extends Component {
 	template() {

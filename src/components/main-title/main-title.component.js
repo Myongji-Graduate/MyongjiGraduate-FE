@@ -10,7 +10,7 @@ const sizes = {
 	lg: 130,
 };
 
-const [sizesAttr, srcsetAttr] = getResponseiveImage( sizes, `${IMAGE_URL}/images/main_title_cap.svg`);
+const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/main_title_cap.svg`);
 
 export default class maintitle extends Component {
 	template() {

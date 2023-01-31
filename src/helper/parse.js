@@ -16,6 +16,18 @@ export const detailCategoryToKorean = {
 	BUSINESS: '경영',
 };
 
+export const categoryNameToKorean = {
+	commonCulture: '공통교양',
+	coreCulture: '핵심교양',
+	basicAcademicalCulture: '학문기초교양',
+	normalCulture: '일반교양',
+	major: '전공',
+	madantory: '전공필수',
+	elective: '전공선택',
+	freeElective: '자유선택',
+	total: '총 학점',
+};
+
 export function parseMandatoruMajorDetailCategory(detailCatory, categoryName) {
 	const major = detailCatory.takenMandatoryLectures.reduce(
 		(acc, lecture) => {
@@ -91,7 +103,7 @@ export function parseDetailElectiveMajorResult(detailCatory, categoryName) {
 export const parseMandatoryMajorResult = (majorResult) => {
 	let mandatoryMajor;
 	if (majorResult.detailCategory.length === 2) {
-		if (majorResult.detailCategory[0].detailCategoryName.search(/_A$/) > 0) {
+		if (majorResult.detailCategory[0].detailCategƒoryName.search(/_A$/) > 0) {
 			mandatoryMajor = parseMandatoruMajorDetailCategory(majorResult.detailCategory[1], '전공필수');
 			mandatoryMajor.detailCategory[1] = { ...majorResult.detailCategory[0] };
 			mandatoryMajor.detailCategory[1].detailCategoryName = '전공선택필수';
@@ -206,4 +218,18 @@ export const parseGraduationResult = (result) => {
 		basicUserInfo,
 		categoryList: filteredCategoryList,
 	};
+};
+
+export const parseLectureResult = (result) => {
+	const lectureList = [];
+	const unique = [];
+	const common = [];
+
+	unique.push({ major: result.major });
+	unique.push({ basicAcademicalCulture: result.basicAcademicalCulture });
+	common.push({ coreCulture: result.coreCulture });
+	common.push({ commonCulture: result.commonCulture });
+	lectureList.push(unique);
+	lectureList.push(common);
+	return lectureList;
 };

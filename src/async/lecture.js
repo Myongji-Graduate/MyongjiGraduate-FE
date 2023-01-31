@@ -28,12 +28,11 @@ export async function fetchUpdateTakenLecture(formData) {
 		},
 	});
 
-	
 	if (response.status === 400 || response.status === 500) {
 		throw await makeError(response);
 	}
-	
-	showSuccessModal(SUCCESS_TYPES.CUSTOM_LECTURE)
+
+	showSuccessModal(SUCCESS_TYPES.CUSTOM_LECTURE);
 	return false;
 }
 
@@ -44,5 +43,25 @@ export async function fetchGetTakenLectures() {
 		throw await makeError(response);
 	}
 	const result = await response.json();
+	return result;
+}
+
+export async function fetchLoadmapInfos(query) {
+	const queryString = objectToQueryString(query);
+
+	const response = await fetch(`/api/takenloadmapInfos?${queryString}`, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	if (response.status === 400 || response.status === 500) {
+		const result = await response.json();
+		const error = new Error(result.message);
+		error.code = result.code;
+		throw error;
+	}
+	const result = await response.json();
+
 	return result;
 }
