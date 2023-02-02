@@ -3,4 +3,9 @@
     flex-direction: column;
     align-items: center;
     margin: 2.2292rem;
+    &__secession{
+        @include subhead2;
+        color: $color-grey-scale4;
+        padding: .625rem;
+    }
 }

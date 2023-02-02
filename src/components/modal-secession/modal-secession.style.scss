@@ -1,0 +1,11 @@
+.modal-secession{     
+  text-align: center;
+     &__context{
+         margin: 0.8rem;
+         @include subhead3;
+         padding: 0.5rem;
+       &-input{
+            margin: 1rem;
+       }
+     }
+ }
