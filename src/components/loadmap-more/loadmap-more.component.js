@@ -27,7 +27,6 @@ export default class LoadmapMore extends Component {
 			size: 'md',
 			key: 'majorpageButton',
 			styleOption,
-			onClick: () => window.open(`https://www.mju.ac.kr/mjukr/${departmentList[this.props.major]}/subview.do`),
 		};
 		const guideButtonProps = {
 			content: '학사안내문으로 이동',
@@ -35,10 +34,6 @@ export default class LoadmapMore extends Component {
 			size: 'md',
 			key: 'guideButton',
 			styleOption,
-			onClick: () =>
-				window.open(
-					'https://www.mju.ac.kr/mjukr/257/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNDMlMkYxOTU4MTElMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0QlMjZzcmNoV3JkJTNEJTI2YmJzQ2xTZXElM0QlMjZiYnNPcGVuV3JkU2VxJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNmlzVmlldyUzRHRydWUlMjZwYXNzd29yZCUzRCUyNg%3D%3D'
-				),
 		};
 		return (props) => {
 			if (props) this.setProps(props);
@@ -51,8 +46,16 @@ export default class LoadmapMore extends Component {
 				<div class="loadmap-more__content-explain__subtitle">더 확인하고 싶다면 클릭!</div>
 				</div>
 				<div class="loadmap-more__content-btn">
-					<div class="loadmap-more__content-btn-item">${majorPageButton.render(majorPageButtonProps)}	</div>
-					<div class="loadmap-more__content-btn-item">${guideButton.render(guideButtonProps)}	</div>
+					<div class="loadmap-more__content-btn-item">
+							<a target='_blank' href="https://www.mju.ac.kr/mjukr/${departmentList[this.props.major]}/subview.do">
+							${majorPageButton.render(majorPageButtonProps)}	
+							</a>
+					</div>
+					<div class="loadmap-more__content-btn-item">
+							<a target='_blank' href="https://www.mju.ac.kr/mjukr/257/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNDMlMkYxOTU4MTElMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0QlMjZzcmNoV3JkJTNEJTI2YmJzQ2xTZXElM0QlMjZiYnNPcGVuV3JkU2VxJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNmlzVmlldyUzRHRydWUlMjZwYXNzd29yZCUzRCUyNg%3D%3D">
+							${guideButton.render(guideButtonProps)}	
+							</a>
+					</div>
 				</div>
 			</div>
 	    </div>
