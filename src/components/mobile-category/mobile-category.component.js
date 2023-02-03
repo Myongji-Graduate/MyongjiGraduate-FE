@@ -17,8 +17,10 @@ export default class MobileCategory extends Component {
 	template() {
 		const myInfo = this.addChild(MyInfo);
 		const tutorialNavigate = this.addChild(MobileNavigate);
+		const loadmapNavigate = this.addChild(MobileNavigate);
 		const mypageNavigate = this.addChild(MobileNavigate);
 		const resultNavigate = this.addChild(MobileNavigate);
+		const aboutNavigate = this.addChild(MobileNavigate);
 		return (props) => {
 			if (props) this.setProps(props);
 			const { ismobileCategoryShow, isLogin } = this.props;
@@ -37,10 +39,19 @@ export default class MobileCategory extends Component {
 					 <div class="mobile-category__content-divider"></div>
 					 
 					 <div class="mobile-category__content-menu">${resultNavigate.render({ title: '결과페이지', navigate: 'result' })}</div>
-					 <div class="mobile-category__content-menu">${mypageNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>			
+					 <div class="mobile-category__content-menu">${mypageNavigate.render({ title: '마이페이지', navigate: 'mypage' })}</div>		
+					 <div class="mobile-category__content-menu">${loadmapNavigate.render({
+							title: '로드맵',
+							navigate: 'loadmap',
+						})}</div>	
 					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
 							title: '튜토리얼',
 							navigate: 'tutorial',
+						})}</div>
+						<div class="mobile-category__content-menu">${aboutNavigate.render({
+							title: '팀소개',
+							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
+							type: 'href',
 						})}</div>
 					 				
 					 <div class="mobile-category__content-signout">로그아웃</div>			
@@ -48,10 +59,18 @@ export default class MobileCategory extends Component {
 					: `
 					 <div class="mobile-category__content-info">${myInfo.render()}</div>
 					 <div class="mobile-category__content-divider"></div>
-					 
+					 <div class="mobile-category__content-menu">${loadmapNavigate.render({
+							title: '로드맵',
+							navigate: 'loadmap',
+						})}</div>
 					 <div class="mobile-category__content-menu">${tutorialNavigate.render({
 							title: '튜토리얼',
 							navigate: 'tutorial',
+						})}</div>
+						<div class="mobile-category__content-menu">${aboutNavigate.render({
+							title: '팀소개',
+							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
+							type: 'href',
 						})}</div>
 					 
 					 <div class="mobile-category__content-signin">로그인</div>

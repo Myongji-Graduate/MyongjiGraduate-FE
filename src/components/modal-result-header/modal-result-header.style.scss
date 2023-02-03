@@ -7,14 +7,17 @@
     &__title{
         &__part{           
             @include title;
+            display: flex;
             color : $color-title;
         }
         &__explain{
+            display: flex;
+            align-items: center;
             @include subhead5;
-            color : #9F9F9F;
+            color : $color-grey-scale4;
             margin-top: 0.5rem;
+            }
         }
-    }
     &__credit{            
         &__info{
             color: $color-title;
@@ -33,5 +36,50 @@
             float: right;
         }
     }
- 
+    &__toggle{
+        appearance: none;
+        position: relative;
+        border: 1px solid $color-grey-scale4;
+        border-radius: 0.5rem;
+        width: 2.6rem;
+        height: 1rem;
+        z-index: 0;
+        &-part{
+            @include mobile{ display: none; }
+        }
+        &-set{
+            display: flex;
+            align-items: center;
+        }
+        &-text{
+            z-index: 1;
+            position: relative;
+        }
+        &-explain{
+            left: -1rem;
+            position: relative;
+        
+        }
+      
+    }
+    &__toggle::before {
+        content: "";
+        font-size: 16px;
+        position: absolute;
+        left: 0rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        transform: scale(0.8);
+        background-color: gray;
+        transition: left 200ms linear;
+    }
+    &__toggle:checked {     
+        background-color: $color-primary;
+        border-color: $color-primary;
+    }
+    &__toggle:checked::before {       
+        background-color: white;
+        left: 1.5rem;
+    }
 }

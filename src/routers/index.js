@@ -5,6 +5,7 @@ import SignInPage from './sign-in-page/sign-in-page.component';
 import SignUpPage from './sign-up-page/sign-up-page.component';
 import FileUploadPage from './file-upload-page/file-upload-page.component';
 import MypagePage from './mypage-page/mypage-page.component';
+import LoadmapPage from './loadmap-page/loadmap-page.component';
 
 import App from '../app';
 import BrowserRouter from '../core/browser-router';
@@ -21,6 +22,11 @@ export const routerObjects = [
 			{
 				path: 'tutorial',
 				element: TutorialPage,
+				authentication: userRule.guest,
+			},
+			{
+				path: 'loadmap',
+				element: LoadmapPage,
 				authentication: userRule.guest,
 			},
 			{

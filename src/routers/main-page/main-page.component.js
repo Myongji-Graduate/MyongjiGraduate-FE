@@ -3,7 +3,6 @@ import Component from '../../core/component';
 import Maintitle from '../../components/main-title/main-title.component';
 import MainBtn from '../../components/button/button.component';
 import GNB from '../../components/GNB/GNB.component';
-
 import { store } from '../../store/store';
 
 import { getResponseiveImage } from '../../helper/images';
@@ -27,18 +26,6 @@ const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/m
 const [roundSizeAttr, roundSrcsetAttr] = getResponseiveImage(roundSizes, `${IMAGE_URL}/images/round-logo.svg`);
 
 export default class MainPage extends Component {
-	initState() {
-		this.state = {
-			isModalShow: true,
-		};
-	}
-
-	toggleModal() {
-		this.setState({
-			isModalShow: !this.state.isModalShow,
-		});
-	}
-
 	template() {
 		const gnb = this.addChild(GNB);
 		const maintitle = this.addChild(Maintitle);

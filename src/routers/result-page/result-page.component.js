@@ -13,6 +13,7 @@ export default class ResultPage extends Component {
 	initState() {
 		this.state = {
 			isModalShow: false,
+			completionList: false,
 			selectedCategoryData: {
 				takenCredits: 0,
 				totalCredits: 0,
@@ -36,6 +37,12 @@ export default class ResultPage extends Component {
 		});
 	}
 
+	toggleLecture() {
+		this.setState({
+			completionList: !this.state.completionList,
+		});
+	}
+
 	componentDidMount() {
 		this.fetchData();
 	}
@@ -46,13 +53,12 @@ export default class ResultPage extends Component {
 		});
 		try {
 			const result = await fetchGraduationResult();
-			console.log(result);
 
 			const parseResult = parseGraduationResult(result);
 			this.setState({
 				basicUserInfo: parseResult.basicUserInfo,
 				categoryList: parseResult.categoryList,
-				graduated: parseResult.graduated,
+				graduated: result.graduated,
 				isLoading: false,
 			});
 		} catch (error) {
@@ -78,6 +84,7 @@ export default class ResultPage extends Component {
 		this.setState({
 			selectedCategoryData: categoryData,
 			isModalShow: true,
+			completionList: false,
 		});
 	}
 
@@ -97,6 +104,8 @@ export default class ResultPage extends Component {
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
 				categoryData: selectedCategoryData,
+				completionList: this.state.completionList,
+				toggleLecture: this.toggleLecture.bind(this),
 			};
 			return `
 			<div class="result-page">

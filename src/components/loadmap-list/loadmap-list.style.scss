@@ -1,0 +1,106 @@
+.loadmap-list{
+  
+    &__title{
+        @include title5;
+    }
+    &__content{
+        margin: 2rem 0;
+        width: 100%;
+        border-top: 5px solid $color-grey-scale3;
+        &__option{
+            position: relative;
+            top: -50px;
+            right: -40px;
+            @include mobile{top: -30px;}
+            float: right;
+            @include subhead4;
+            display: flex;
+            &-major{ cursor: pointer;}
+            &-culture{
+                cursor: pointer;
+                margin-left: 1.5rem;
+            }
+        }
+        &__bar{
+            border-radius: 4px;
+            border-top: 7px solid $color-g2;
+            width: 2rem;
+            position: relative;
+            top:-6px;
+            z-index:1;
+            float: right;
+        }
+    }
+    &__info{
+        &__category{
+        @include mobile {
+            width: 100%;
+            margin: 1.5rem 0rem;
+            font: smaller;
+        }
+            margin: 1.5rem 1rem;
+        &__categoryName{
+            width:fit-content;
+            background-color: $color-secondary;
+            padding: .33rem 1rem;
+            color : white;
+            @include title2;
+            margin-bottom: .5rem;
+        }
+        &__content{
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap-reverse;
+            justify-content: flex-start;
+            &__item{
+                width: 45%;
+                margin: .33rem auto;
+                &-detailcatogory{
+                display: flex;
+                justify-content: center;
+                background-color: $color-g1;
+                padding: .33rem;
+                color : $color-g2;
+                @include title2;
+                border-radius: 1.875rem;
+                margin-bottom: .5rem;
+                }
+                &-list{
+                    border : 1px solid rgba(0, 0, 0, 0.3);
+                    border-radius: 1rem;
+                    height: 8rem;
+                    overflow: scroll;
+                    @include subhead3;
+                    color: $color-title;
+                    &__item{
+                        display: flex;
+                        padding: .33rem 0.5rem;
+                        justify-content:space-between;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.1);    
+                        &-name{
+                            width: 75%;
+                        }
+                        &-credit{
+                            color: $color-grey-scale4;
+                        }
+                    }
+                    &__item:last-child{border-bottom:0px}    
+                }
+                &-notice{
+                    float: right;
+                    @include subhead3;
+                    color: $color-grey-scale1;
+                    max-width: 80%;
+                    @include mobile{
+                       font: smaller;
+                    }
+                    border-bottom : 1px solid rgba(0, 0, 0, 0.3);
+                   
+           
+                }
+            }
+        }
+    }
+    
+}
+}

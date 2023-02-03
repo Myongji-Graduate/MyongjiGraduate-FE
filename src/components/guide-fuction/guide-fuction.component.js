@@ -4,7 +4,6 @@ import GuideTutorial from '../guide-tutorial/guide-tutorial.component';
 import ImgExplain from '../img-explain/img-explain.component';
 import modalHeader from '../modal-header/modal-header.component';
 
-
 export default class GuideFuction extends Component {
 	initState() {
 		this.state = {

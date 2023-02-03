@@ -1,4 +1,5 @@
 import Component from '../../core/component';
+import * as utils from '../../helper/utils';
 
 import { inputTypes } from '../../helper/types';
 
@@ -16,6 +17,7 @@ export default class InputGroup extends Component {
 			validationCallback: () => {},
 			errorMessage: '',
 			buttonKey: undefined,
+			styleOption: {},
 		};
 	}
 
@@ -65,10 +67,12 @@ export default class InputGroup extends Component {
 	}
 
 	getSelect() {
-		const { name, placeholder, value, options, key } = this.props;
+		const { name, placeholder, value, options, key, styleOption } = this.props;
 
 		return `
-      <select class="input-group__select__${key} input-group__select" name=${name} required>
+      <select class="input-group__select__${key} input-group__select" name=${name} required style=${utils.getInlineStyle(
+			styleOption
+		)}>
         <option class="input-group__select-placeholder" value="" ${
 					value === '' ? 'selected' : ''
 				}>${placeholder}</option>

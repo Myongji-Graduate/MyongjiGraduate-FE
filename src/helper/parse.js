@@ -13,6 +13,19 @@ export const detailCategoryToKorean = {
 	INTERNATIONAL_TRADE: '국제통상',
 	HUMANITY: '인문대학',
 	SOCIAL_SCIENCE: '사회과학대학',
+	BUSINESS: '경영',
+};
+
+export const categoryNameToKorean = {
+	commonCulture: '공통교양',
+	coreCulture: '핵심교양',
+	basicAcademicalCulture: '학문기초교양',
+	normalCulture: '일반교양',
+	major: '전공',
+	madantory: '전공필수',
+	elective: '전공선택',
+	freeElective: '자유선택',
+	total: '총 학점',
 };
 
 export function parseMandatoruMajorDetailCategory(detailCatory, categoryName) {
@@ -90,7 +103,7 @@ export function parseDetailElectiveMajorResult(detailCatory, categoryName) {
 export const parseMandatoryMajorResult = (majorResult) => {
 	let mandatoryMajor;
 	if (majorResult.detailCategory.length === 2) {
-		if (majorResult.detailCategory[0].detailCategoryName.search(/_A$/) > 0) {
+		if (majorResult.detailCategory[0].detailCategƒoryName.search(/_A$/) > 0) {
 			mandatoryMajor = parseMandatoruMajorDetailCategory(majorResult.detailCategory[1], '전공필수');
 			mandatoryMajor.detailCategory[1] = { ...majorResult.detailCategory[0] };
 			mandatoryMajor.detailCategory[1].detailCategoryName = '전공선택필수';
@@ -120,14 +133,19 @@ export const parseElectiveMajorResult = (majorResult) => {
 			const { totalCredits, takenCredits } = majorResult.detailCategory[0];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
+			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		} else {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
-			const { totalCredits, takenCredits } = majorResult.detailCtegory[1];
+			const { totalCredits, takenCredits } = majorResult.detailCategory[1];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
+			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		}
 	} else {
+		const { totalCredits, takenCredits } = majorResult.detailCategory[0];
+		const leftCredits = Math.max(0, takenCredits - totalCredits);
 		electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
+		// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 	}
 
 	return electiveMajor;
@@ -159,14 +177,13 @@ export const parseGraduationResult = (result) => {
 
 	const mandatoryMajor = parseMandatoryMajorResult(result.major);
 	const electiveyMajor = parseElectiveMajorResult(result.major);
-
 	electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
 
 	electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
 
 	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
 
-	electiveyMajor.detailCategory[0].takenCredit = electiveyMajor.takenCredit;
+	electiveyMajor.detailCategory[0].takenCredits = electiveyMajor.takenCredit;
 
 	checkCompletedDetailCategory(electiveyMajor);
 	checkCompletedDetailCategory(mandatoryMajor);
@@ -201,4 +218,18 @@ export const parseGraduationResult = (result) => {
 		basicUserInfo,
 		categoryList: filteredCategoryList,
 	};
+};
+
+export const parseLectureResult = (result) => {
+	const lectureList = [];
+	const unique = [];
+	const common = [];
+
+	unique.push({ major: result.major });
+	unique.push({ basicAcademicalCulture: result.basicAcademicalCulture });
+	common.push({ coreCulture: result.coreCulture });
+	common.push({ commonCulture: result.commonCulture });
+	lectureList.push(unique);
+	lectureList.push(common);
+	return lectureList;
 };

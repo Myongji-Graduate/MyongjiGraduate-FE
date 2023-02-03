@@ -1,21 +1,20 @@
 import Component from '../../core/component';
 
-
 export default class Info extends Component {
-    setDefaultProps() {
+	setDefaultProps() {
 		this.props = {
 			studentName: '',
-            department: '',
-            studentNumber: '',
-            exist: false,
+			department: '',
+			studentNumber: '',
+			exist: false,
 		};
 	}
 
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-            const { studentName, department, studentNumber, exist } = this.props;
-           
+			const { studentName, department, studentNumber, exist } = this.props;
+
 			return `							
         <div class="my-info-text">	   
             <div class="my-info-text__name">

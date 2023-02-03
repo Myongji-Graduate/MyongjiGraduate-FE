@@ -12,7 +12,7 @@ const sizes = {
 	md: 405,
 	lg: 540,
 };
-const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes,`${IMAGE_URL}/images/mju-maru.jpg`);
+const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/mju-maru.jpg`);
 
 export default class SignInPage extends Component {
 	template() {
