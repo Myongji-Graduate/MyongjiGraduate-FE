@@ -36,7 +36,9 @@ export default class LoadmapList extends Component {
 				return `
 				<div class="loadmap-list__info__category__content__item-list__item">
 					<div class="loadmap-list__info__category__content__item-list__item-name">${prop.name}</div>
-					<div class="loadmap-list__info__category__content__item-list__item-credit">${prop.credit}학점</div>
+					<div class="loadmap-list__info__category__content__item-list__item-credit">${
+						prop.credit === 0 ? `0.5` : prop.credit
+					}학점</div>
 				</div>`;
 			})
 			.join('');
