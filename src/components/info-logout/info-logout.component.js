@@ -10,7 +10,7 @@ import ModalScession from '../modal-secession/modal-secession.component';
 export default class InfoLogout extends Component {
 	initState() {
 		this.state = {
-			isModalShow: true,
+			isModalShow: false,
 		};
 	}
 
