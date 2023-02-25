@@ -89,7 +89,6 @@ export default class SigninForm extends Component {
 				},
 				key: 'sign-in-id',
 			};
-
 			const passwordInputProps = {
 				name: '비밀번호',
 				placeholder: '비밀번호를 입력해주세요',
@@ -108,32 +107,43 @@ export default class SigninForm extends Component {
 		${modalAgreementContainer.render(modalAggrementProps)}
         <div class="sign-in-form__header">${header.render({ title: '로그인' })}</div>
           <div class="sign-in-form__body">
-            <div class="sign-in-form__id-input-group-container"> ${idInputGroup.render(
-							idInputProps
-						)}</div>                  
-			<div class="sign-in-form__password-input-group-container"> ${passwordInputGroup.render(passwordInputProps)}  </div>   		
-            <div class="sign-in-form__create-modal-button-container">
-              ${signinButton.render({
-								content: '로그인',
-								type: buttonTypes.primary,
-								size: 'md',
-								key: 'sign-in',
-								onClick: this.submitData.bind(this),
-							})}
-            </div>
-			<div class="sign-in-form__footer">
-			계정이 필요하신가요? 
-			<div class="sign-in-form__footer-signup">가입하기</div>
+				<div class="sign-in-form__body__id-input-group-container"> ${idInputGroup.render(idInputProps)}</div>                  
+				<div class="sign-in-form__body__password-input-group-container"> ${passwordInputGroup.render(
+					passwordInputProps
+				)}  </div>   		
+				<div class="sign-in-form__body__create-modal-button-container">
+				${signinButton.render({
+					content: '로그인',
+					type: buttonTypes.primary,
+					size: 'md',
+					key: 'sign-in',
+					onClick: this.submitData.bind(this),
+				})}
+				</div>
+			<div class="sign-in-form__body__option">
+				<div class="sign-in-form__body__option-item findId">아이디 찾기</div>
+				<div class="sign-in-form__body__option-itembar">|</div>
+				<div class="sign-in-form__body__option-item findPw">비밀번호 재설정</div>
+				<div class="sign-in-form__body__option-itembar">|</div>
+				<div class="sign-in-form__body__option-item signUp">회원가입하기</div>
 			</div>
-          </div>
+		</div>	
         </div>
       `;
 		};
 	}
 
 	setEvent() {
-		this.addEvent('click', '.sign-in-form__footer-signup', () => {
+		this.addEvent('click', '.signUp', () => {
 			this.agreementModal();
+		});
+		this.addEvent('click', '.findId', () => {
+			const { router } = store.getState();
+			router.navigate('/find-id');
+		});
+		this.addEvent('click', '.findPw', () => {
+			const { router } = store.getState();
+			router.navigate('/find-pw');
 		});
 	}
 }

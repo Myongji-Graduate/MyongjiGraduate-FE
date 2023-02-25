@@ -49,17 +49,14 @@ export async function fetchGetTakenLectures() {
 export async function fetchLoadmapInfos(query) {
 	const queryString = objectToQueryString(query);
 
-	const response = await fetch(`/api/takenloadmapInfos?${queryString}`, {
+	const response = await fetch(`/api/loadmapInfos?${queryString}`, {
 		headers: {
 			'Content-Type': 'application/json',
 		},
 	});
 
 	if (response.status === 400 || response.status === 500) {
-		const result = await response.json();
-		const error = new Error(result.message);
-		error.code = result.code;
-		throw error;
+		throw await makeError(response);
 	}
 	const result = await response.json();
 

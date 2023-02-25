@@ -87,14 +87,13 @@
                     &__item:last-child{border-bottom:0px}    
                 }
                 &-notice{
-                    float: right;
                     @include subhead3;
-                    color: $color-grey-scale1;
-                    max-width: 80%;
+                    color: $color-grey-scale4;
+                   padding: 0.2rem 0.5rem;
                     @include mobile{
                        font: smaller;
                     }
-                    border-bottom : 1px solid rgba(0, 0, 0, 0.3);
+                   
                    
            
                 }

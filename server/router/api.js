@@ -150,6 +150,40 @@ router.post('/signup', async function (req, res) {
 	}
 });
 
+router.post('/secession', async function (req, res) {
+	const formData = {
+		password: req.body.password,
+	};
+	const accessToken = getAuthorizationCookie(req);
+	try {
+		const result = await axios.post(`${ROOT_URL}/users/leave`, formData, {
+			headers: {
+				Authorization: accessToken,
+			},
+		});
+		res.status(200).end();
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.post('/userConfirm', async function (req, res) {
+	const formData = {
+		userId: req.body.id,
+		studentNumber: req.body.studentNumber,
+	};
+	try {
+		await axios.post(`${ROOT_URL}/users/pwinquiry`, formData, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		res.status(200).end();
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
 router.get('/check-atk', async function (req, res) {
 	if (await validateAccessToken(req)) {
 		res.status(200).end();
@@ -167,14 +201,12 @@ router.get('/takenLectures', async function (req, res) {
 			},
 		});
 		res.status(200).json(result.data);
-		// res.json(result.data);
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
 });
-router.get('/takenloadmapInfos', async function (req, res) {
+router.get('/loadmapInfos', async function (req, res) {
 	try {
-		//	const accessToken = getAuthorizationCookie(req);
 		const lectureResult = await axios.get(`${ROOT_URL}/bachelor-info/lectures`, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -261,6 +293,34 @@ router.get('/graduation-result', async function (req, res) {
 			},
 		});
 		res.status(200).json(result.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.get('/findId', async function (req, res) {
+	try {
+		const path = req._parsedUrl.query;
+		const response = await axios.get(`${ROOT_URL}/users/by/student-number/${path}`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		res.status(200).json(response.data);
+	} catch (error) {
+		apiErrorHandler(res, error);
+	}
+});
+
+router.post('/findPw', async function (req, res) {
+	const formData = {
+		userId: req.body.userId,
+		newPassword: req.body.newPassword,
+		passwordCheck: req.body.passwordCheck,
+	};
+	try {
+		const result = await axios.post(`${ROOT_URL}/users/reset-pw`, formData);
+		res.status(200).end();
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}

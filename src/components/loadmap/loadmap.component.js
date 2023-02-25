@@ -1,4 +1,3 @@
-// import { result1, result2 } from './data';
 import Component from '../../core/component';
 import { getResponseiveImage } from '../../helper/images';
 import { parseLectureResult } from '../../helper/parse';

@@ -1,0 +1,23 @@
+.find-pw-form{
+    &__header {
+      margin-bottom: 1.5rem; 
+    }
+  
+    &__body {
+      padding: 0 0.6rem;
+   
+    &__input-group-container {
+        margin: 2rem auto 1.5rem auto;
+        width: 11.3rem;
+        &-item{
+          margin: 0.5rem 0 ;
+        }
+    }
+
+    &__button-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom : 0.75rem ;
+    }
+  }
+  }
