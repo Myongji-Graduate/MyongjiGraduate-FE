@@ -18,6 +18,7 @@ export default class InputGroup extends Component {
 			errorMessage: '',
 			buttonKey: undefined,
 			styleOption: {},
+			readonly: false,
 		};
 	}
 
@@ -61,9 +62,11 @@ export default class InputGroup extends Component {
 	}
 
 	getTextInput() {
-		const { name, placeholder, value, key } = this.props;
+		const { name, placeholder, value, key, readonly } = this.props;
 
-		return `<input class="input-group__text__${key} input-group__text" type="text" id=${name} value="${value}" placeholder="${placeholder}" >`;
+		return `<input class="input-group__text__${key} input-group__text" type="text" id=${name} value="${value}" placeholder="${placeholder}" ${
+			readonly && 'readonly'
+		} >`;
 	}
 
 	getSelect() {

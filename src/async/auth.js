@@ -2,6 +2,7 @@ import { handleErrorResponse } from '../helper/errorHandler';
 import { showSuccessModal } from '../helper/successHandler';
 import { SUCCESS_TYPES } from '../store/types';
 import { signIn, init, signOut, unInit } from '../helper/auth';
+// import { objectToQueryString } from '../helper/utils';
 
 export async function fetchSignIn(formData) {
 	const response = await fetch('/api/signin', {
@@ -47,12 +48,65 @@ export async function fetchSignUp(formData) {
 		handleErrorResponse(response);
 		return false;
 	}
-
 	return false;
 }
 
-export async function fetchId(formData) {
-	const response = await fetch('/api/findId', {
+export async function fetchSecession(formData) {
+	const response = await fetch('/api/secession', {
+		method: 'POST',
+		body: JSON.stringify(formData),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	if (response.status === 200) {
+		return true;
+	}
+	if (response.status === 400) {
+		handleErrorResponse(response);
+		return false;
+	}
+	return false;
+}
+
+export async function fetchId(studentId) {
+	const response = await fetch(`/api/findId?${studentId}`, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	if (response.status === 400 || response.status === 500) {
+		handleErrorResponse(response);
+	}
+	if (response.status === 200) {
+		const result = await response.json();
+		return result;
+	}
+	return false;
+}
+
+export async function fetchPw(formData) {
+	const response = await fetch('/api/findPw', {
+		method: 'POST',
+		body: JSON.stringify(formData),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	if (response.status === 200) {
+		return true;
+	}
+	if (response.status === 400) {
+		handleErrorResponse(response);
+		return false;
+	}
+	return false;
+}
+
+export async function fetchUserConfirm(formData) {
+	const response = await fetch('/api/userConfirm', {
 		method: 'POST',
 		body: JSON.stringify(formData),
 		headers: {
@@ -62,9 +116,7 @@ export async function fetchId(formData) {
 	if (response.status === 200) {
 		return true;
 	}
-	if (response.status === 400) {
-		return false;
-	}
+	handleErrorResponse(response);
 	return false;
 }
 

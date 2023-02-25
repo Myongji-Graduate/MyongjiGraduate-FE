@@ -3,12 +3,33 @@ import modalHeader from '../modal-header/modal-header.component';
 import { buttonTypes, inputTypes } from '../../helper/types';
 import Button from '../button/button.component';
 import InputGroup from '../input-group/input-group.component';
+import { store, createAction } from '../../store/store';
+import { fetchSecession } from '../../async/auth';
+import { ERROR_ACTION_TYPES, ERROR_TYPES } from '../../store/types';
 
 export default class ModalSecession extends Component {
 	initState() {
 		this.state = {
 			password: '',
 		};
+	}
+
+	async submitData() {
+		const { password } = this.state;
+		if (password === '') {
+			store.dispatch(
+				createAction(ERROR_ACTION_TYPES.SHOW_ERROR, {
+					error: ERROR_TYPES.NULL_INPUT_VALUE,
+				})
+			);
+		} else {
+			const result = await fetchSecession({ password });
+			if (result) {
+				sessionStorage.setItem('isLogin', false);
+				const { router } = store.getState();
+				router.navigate('/');
+			}
+		}
 	}
 
 	template() {
@@ -42,7 +63,7 @@ export default class ModalSecession extends Component {
 					type: buttonTypes.primary,
 					size: 'sm',
 					key: 'scession-btn',
-					onClick: null,
+					onClick: this.submitData.bind(this),
 				})}
 				</div>
 				졸업을 부탁해 서비스를 이용해 주셔서 감사합니다.

@@ -6,6 +6,9 @@
     &__secession{
         @include subhead2;
         color: $color-grey-scale4;
-        padding: .625rem;
+        padding: .625rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 }

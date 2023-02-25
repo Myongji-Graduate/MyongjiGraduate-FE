@@ -6,12 +6,15 @@
     &__body {
       padding: 0 0.6rem;
    
-    &__studentId-input-group-container {
-        margin: 2rem auto;
+    &__input-group-container {
+        margin: 2rem auto 1.5rem auto;
         width: 11.3rem;
+        &-item{
+          margin: 0.5rem 0 ;
+        }
     }
 
-    &__create-modal-button-container {
+    &__button-container {
         display: flex;
         justify-content: center;
         margin-bottom : 0.75rem ;

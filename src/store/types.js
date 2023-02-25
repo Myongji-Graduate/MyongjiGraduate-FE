@@ -31,6 +31,10 @@ export const ERROR_TYPES = {
 		code: 101,
 		message: '이미 수강한 과목입니다.',
 	},
+	NULL_INPUT_VALUE: {
+		code: 100,
+		message: '입력하지 않은 값이 존재합니다.',
+	},
 };
 
 export const SUCCESS_TYPES = {
