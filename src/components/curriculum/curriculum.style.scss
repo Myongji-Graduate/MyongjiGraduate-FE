@@ -1,0 +1,78 @@
+.curriculum {
+	width: 100%;
+	&__explain {
+		&-icon {
+			margin-right: 0.3rem;
+			width: 3%;
+			@include mobile {
+				width: 5%;
+			}
+		}
+		&-title {
+			@include title5;
+			margin: 0.3rem 0;
+		}
+		&-detail {
+			@include subhead5;
+			color: $color-grey-scale4;
+		}
+	}
+	&__select {
+		margin: 1.25rem 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #cfcfcf;
+		border-radius: 0.75rem;
+		display: flex;
+		@include mobile {
+			display: flex;
+			flex-direction: column;
+		}
+		@include tablet {
+			display: flex;
+			flex-direction: column;
+		}
+		&__bundle {
+			display: flex;
+			margin: 1.25rem auto;
+			@include mobile {
+				margin: 0.5rem 0;
+			}
+			@include tablet {
+				margin: 0.5rem 0;
+			}
+			&-label {
+				margin-right: 0.5rem;
+				margin-top: 0.1rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 1.25rem;
+				width: 2.5rem;
+				background-color: $color-g2;
+				border-radius: 100px;
+				@include subhead5;
+				color: #ffffff;
+			}
+			&-input {
+				padding-right: 0rem;
+			}
+		}
+	}
+	&__btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+.box {
+	@include mobile {
+		padding: 1rem;
+	}
+	padding: 2rem;
+	background-color: white;
+	border-radius: 16px;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1rem;
+}

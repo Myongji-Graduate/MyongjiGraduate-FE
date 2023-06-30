@@ -1,0 +1,23 @@
+.curriculum-page {
+	&__header {
+		background-color: $color-primary;
+		height: 7.1rem;
+		position: relative;
+	}
+
+	&__body {
+		display: flex;
+		justify-content: center;
+		&__content {
+			width: 80%;
+			@include mobile {
+				width: 90%;
+			}
+			top: -3rem;
+			z-index: 10;
+			display: flex;
+			justify-content: center;
+			position: relative;
+		}
+	}
+}
