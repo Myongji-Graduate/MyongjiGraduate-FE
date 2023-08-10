@@ -46,10 +46,10 @@ export async function fetchGetTakenLectures() {
 	return result;
 }
 
-export async function fetchLoadmapInfos(query) {
+export async function fetchCurriculumInfos(query) {
 	const queryString = objectToQueryString(query);
 
-	const response = await fetch(`/api/loadmapInfos?${queryString}`, {
+	const response = await fetch(`/api/curriculumInfos?${queryString}`, {
 		headers: {
 			'Content-Type': 'application/json',
 		},

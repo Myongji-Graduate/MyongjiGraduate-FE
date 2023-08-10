@@ -60,7 +60,7 @@ export default class GNB extends Component {
 				  <div class="GNB__tab-navigator__general-item gnb-result">결과페이지</div>`
 						: `<div class="GNB__tab-navigator__general-item gnb-signin">로그인</div>`
 				}
-				 <div class="GNB__tab-navigator__general-item gnb-loadmap">로드맵</div>
+				 <div class="GNB__tab-navigator__general-item gnb-curriculum">커리큘럼</div>
 				 <div class="GNB__tab-navigator__general-item gnb-tutorial">튜토리얼</div>
 				 <div class="GNB__tab-navigator__general-item gnb-about">팀소개</div>
 			  </div>
@@ -94,8 +94,8 @@ export default class GNB extends Component {
 		this.addEvent('click', '.gnb-tutorial', () => {
 			router.navigate('/tutorial');
 		});
-		this.addEvent('click', '.gnb-loadmap', () => {
-			router.navigate('/loadmap');
+		this.addEvent('click', '.gnb-curriculum', () => {
+			router.navigate('/curriculum');
 		});
 		this.addEvent('click', '.gnb-about', () => {
 			window.location.href = 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1';
