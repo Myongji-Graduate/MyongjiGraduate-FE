@@ -6,9 +6,9 @@ import Modal from '../modal/modal.component';
 
 import InputGroup from '../input-group/input-group.component';
 import Button from '../button/button.component';
-import LoadmapResult from '../loadmap-result/loadmap-result.component';
+import CurriculumResult from '../curriculum-result/curriculum-result.component';
 
-import { fetchLoadmapInfos } from '../../async/lecture';
+import { fetchCurriculumInfos } from '../../async/lecture';
 import { inputTypes, buttonTypes } from '../../helper/types';
 import { departmentList } from '../../helper/data';
 
@@ -22,7 +22,7 @@ const sizes = {
 
 const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/loadmap.png`);
 
-export default class Loadmap extends Component {
+export default class Curriculum extends Component {
 	initState() {
 		this.state = {
 			auth: false,
@@ -43,7 +43,7 @@ export default class Loadmap extends Component {
 		this.setState({
 			isLoading: true,
 		});
-		const response = await fetchLoadmapInfos(formData);
+		const response = await fetchCurriculumInfos(formData);
 		this.setState({
 			isLoading: false,
 		});
@@ -54,11 +54,11 @@ export default class Loadmap extends Component {
 	}
 
 	showDetail() {
-		const loadmapResult = this.addChild(LoadmapResult);
+		const curriculumResult = this.addChild(CurriculumResult);
 		const { categoryList, lectureList, major, year, auth } = this.state;
 		return `${
 			auth
-				? `<div class="box">${loadmapResult.render({
+				? `<div class="box">${curriculumResult.render({
 						credit: categoryList,
 						lecture: lectureList,
 						major,
@@ -85,7 +85,7 @@ export default class Loadmap extends Component {
 		const modalLoading = this.addChild(ModalLoading);
 		const yearInputGroup = this.addChild(InputGroup);
 		const majorInputGroup = this.addChild(InputGroup);
-		const loadmapButton = this.addChild(Button);
+		const curriculumButton = this.addChild(Button);
 
 		const { isLoading } = this.state;
 
@@ -101,46 +101,46 @@ export default class Loadmap extends Component {
 			if (props) this.setProps(props);
 
 			return `
-			<div class="loadmap">
+			<div class="curriculum">
 			${modalLoadingContainer.render(modalLoadingProps)}
 				<div class="box">
-					<div class="loadmap__explain">
-						<div class="loadmap__explain-title"> <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="loadmap__explain-icon" alt="loadmap__explain-icon" />나와 맞는 과목 정보 확인하기</div>
-						<div class="loadmap__explain-detail">학과와 학번을 선택하시면 해당 조건과 일치하는 과목 정보들을 알려드릴게요!</div>
+					<div class="curriculum__explain">
+						<div class="curriculum__explain-title"> <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="curriculum__explain-icon" alt="curriculum__explain-icon" />나와 맞는 과목 정보 확인하기</div>
+						<div class="curriculum__explain-detail">학과와 학번을 선택하시면 해당 조건과 일치하는 과목 정보들을 알려드릴게요!</div>
 					</div>
-					<div class="loadmap__select">
-						<div class="loadmap__select__bundle">
-							<div class="loadmap__select__bundle-label">학과</div>
-							<div class="loadmap__select__bundle-input">${majorInputGroup.render({
+					<div class="curriculum__select">
+						<div class="curriculum__select__bundle">
+							<div class="curriculum__select__bundle-label">학과</div>
+							<div class="curriculum__select__bundle-input">${majorInputGroup.render({
 								value: this.state.major,
 								type: inputTypes.select,
 								options: Object.keys(departmentList),
 								onChange: (newMajor) => {
 									this.setState({ major: newMajor });
 								},
-								key: 'loadmap-major',
+								key: 'curriculum-major',
 								styleOption: inputStyle,
 							})}</div>
 						</div>
-						<div class="loadmap__select__bundle">
-							<div class="loadmap__select__bundle-label">학번</div>
-							<div class="loadmap__select__bundle-input">${yearInputGroup.render({
+						<div class="curriculum__select__bundle">
+							<div class="curriculum__select__bundle-label">학번</div>
+							<div class="curriculum__select__bundle-input">${yearInputGroup.render({
 								value: this.state.year,
 								type: inputTypes.select,
 								options: ['16', '17', '18', '19', '20', '21', '22'],
 								onChange: (newYear) => {
 									this.setState({ year: newYear });
 								},
-								key: 'loadmap-year',
+								key: 'curriculum-year',
 								styleOption: inputStyle,
 							})}</div>
 						</div>
 					</div>
-					<div class="loadmap__btn">${loadmapButton.render({
+					<div class="curriculum__btn">${curriculumButton.render({
 						content: '확인',
 						type: this.validation() ? buttonTypes.grey : buttonTypes.primary,
 						size: 'md',
-						key: 'loadmap-btn',
+						key: 'curriculum-btn',
 						disabled: this.validation(),
 						onClick: this.submitData.bind(this),
 					})}</div>

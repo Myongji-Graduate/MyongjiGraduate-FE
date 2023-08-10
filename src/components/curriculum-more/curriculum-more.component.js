@@ -13,7 +13,7 @@ const sizes = {
 };
 const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/maru_upperbody.png`);
 
-export default class LoadmapMore extends Component {
+export default class CurriculumMore extends Component {
 	template() {
 		const styleOption = {
 			background: '#F5F5F5',
@@ -38,20 +38,20 @@ export default class LoadmapMore extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 			return `
-	    <div class="loadmap-more">
-			<img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="loadmap-more__img" alt="loadmap-more__img" />
-			<div class="loadmap-more__content">
-				<div class="loadmap-more__content-explain">
-				<div class="loadmap-more__content-explain__title">학과 관련 정보</div>
-				<div class="loadmap-more__content-explain__subtitle">더 확인하고 싶다면 클릭!</div>
+	    <div class="curriculum-more">
+			<img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="curriculum-more__img" alt="curriculum-more__img" />
+			<div class="curriculum-more__content">
+				<div class="curriculum-more__content-explain">
+				<div class="curriculum-more__content-explain__title">학과 관련 정보</div>
+				<div class="curriculum-more__content-explain__subtitle">더 확인하고 싶다면 클릭!</div>
 				</div>
-				<div class="loadmap-more__content-btn">
-					<div class="loadmap-more__content-btn-item">
+				<div class="curriculum-more__content-btn">
+					<div class="curriculum-more__content-btn-item">
 							<a target='_blank' href="https://www.mju.ac.kr/mjukr/${departmentList[this.props.major]}/subview.do">
 							${majorPageButton.render(majorPageButtonProps)}	
 							</a>
 					</div>
-					<div class="loadmap-more__content-btn-item">
+					<div class="curriculum-more__content-btn-item">
 							<a target='_blank' href="https://www.mju.ac.kr/mjukr/257/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNDMlMkYxOTU4MTElMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0QlMjZzcmNoV3JkJTNEJTI2YmJzQ2xTZXElM0QlMjZiYnNPcGVuV3JkU2VxJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNmlzVmlldyUzRHRydWUlMjZwYXNzd29yZCUzRCUyNg%3D%3D">
 							${guideButton.render(guideButtonProps)}	
 							</a>
