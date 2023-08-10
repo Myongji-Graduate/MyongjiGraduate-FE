@@ -73,6 +73,7 @@
 						border-radius: 1rem;
 						height: 8rem;
 						overflow: scroll;
+
 						@include subhead3;
 						color: $color-title;
 						&__item {
@@ -90,6 +91,9 @@
 						&__item:last-child {
 							border-bottom: 0px;
 						}
+					}
+					&-list::-webkit-scrollbar {
+						display: none; /* Chrome, Safari, Opera*/
 					}
 					&-notice {
 						@include subhead3;
