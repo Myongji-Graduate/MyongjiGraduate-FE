@@ -10,7 +10,7 @@ const sizes = {
 	lg: 1300,
 };
 
-export default class CurriculumImage extends Component {
+export default class LoadmapImage extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
@@ -27,9 +27,9 @@ export default class CurriculumImage extends Component {
 			const [sizeAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/department/${majorImage}.png`);
 
 			return `
-        <div class="curriculum-image" > 
-			<div class="curriculum-image__title">전공이수로드맵</div>
-			<img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="curriculum-image__content" alt="curriculum-image__content"/>
+        <div class="loadmap-image" > 
+			<div class="loadmap-image__title">전공이수로드맵</div>
+			<img sizes="${sizeAttr}" srcset="${srcsetAttr}" class="loadmap-image__content" alt="loadmap-image__content"/>
         </div>
       `;
 		};

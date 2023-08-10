@@ -205,7 +205,7 @@ router.get('/takenLectures', async function (req, res) {
 		apiErrorHandler(res, error);
 	}
 });
-router.get('/curriculumInfos', async function (req, res) {
+router.get('/loadmapInfos', async function (req, res) {
 	try {
 		const lectureResult = await axios.get(`${ROOT_URL}/bachelor-info/lectures`, {
 			headers: {
