@@ -30,11 +30,14 @@ const [roundSizeAttr, roundSrcsetAttr] = getResponseiveImage(roundSizes, `${IMAG
 export default class MainPage extends Component {
 	initState() {
 		this.state = {
-			isModalShow: true,
+			isModalShow: typeof window !== 'undefined' ? sessionStorage.getItem('notice') !== 'done' : null,
 		};
 	}
 
 	toggleModal() {
+		if (this.state.isModalShow) {
+			sessionStorage.setItem('notice', 'done');
+		}
 		this.setState({
 			isModalShow: !this.state.isModalShow,
 		});
