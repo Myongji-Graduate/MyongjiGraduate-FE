@@ -30,7 +30,7 @@ export default class ModalNotice extends Component {
 					/>
 					<div class="modal-notice__context-text">
 						졸업을 부탁해는 학우님들에게 더 정확한 서비스를 제공해드리기 위해 <br/>
-						9월 15일 까지 <strong> 2023-2학기 학사정보</strong>를 업데이트 중에 있습니다. </br>
+						10월 1일 까지 <strong> 2023-2학기 학사정보</strong>를 업데이트 중에 있습니다. </br>
 						이에 따라 서비스 결과가 부정확할 수 있음을 안내드리며, 지연된 업데이트 일정에 죄송하다는 말씀을 드립니다.</br>
 					</div>
 				</div>		
