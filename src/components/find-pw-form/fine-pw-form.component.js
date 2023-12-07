@@ -21,7 +21,7 @@ export default class FindPwForm extends Component {
 	async resettingPassword() {
 		const { id, repassword, reconfirmpassword } = this.state;
 		const result = await fetchPw({
-			userId: id,
+			authId: id,
 			newPassword: repassword,
 			passwordCheck: reconfirmpassword,
 		});
@@ -122,7 +122,6 @@ export default class FindPwForm extends Component {
 				key: 'find-pw',
 				onClick: find ? this.resettingPassword.bind(this) : this.confirmUser.bind(this),
 			};
-			// style="display: ${find ? `none` : `block`}"
 
 			return `
         <div class="find-pw-form">	

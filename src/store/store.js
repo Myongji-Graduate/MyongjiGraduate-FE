@@ -6,8 +6,8 @@ const initState = {
 	test: 'ok',
 	router: () => {},
 	isLoadingModalShow: false,
-	error: { code: null, message: null },
-	success: { code: null, message: null },
+	error: { status: null, message: null },
+	success: { status: null, message: null },
 };
 
 export const actionType = {
@@ -32,7 +32,7 @@ export const reducer = (state = initState, action = {}) => {
 			return {
 				...state,
 				error: {
-					code: null,
+					status: null,
 					message: null,
 				},
 			};
@@ -42,7 +42,7 @@ export const reducer = (state = initState, action = {}) => {
 			return {
 				...state,
 				success: {
-					code: null,
+					status: null,
 					message: null,
 				},
 			};

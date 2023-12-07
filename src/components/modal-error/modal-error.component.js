@@ -18,7 +18,7 @@ export default class ModalError extends Component {
 			if (props) this.setProps(props);
 
 			const { error } = store.getState();
-			const isShow = !!error.code;
+			const isShow = !!error.status;
 
 			const modalErrorContentProps = {
 				errorMessage: error.message,

@@ -22,7 +22,7 @@ export default class ResultPage extends Component {
 			basicUserInfo: {
 				name: '',
 				studentNumber: '',
-				department: '',
+				major: '',
 				totalCredit: 0,
 				takenCredit: 0,
 			},

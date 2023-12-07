@@ -10,7 +10,7 @@ export async function fetchGetSearchedLecture(query) {
 	if (response.status === 400 || response.status === 500) {
 		const result = await response.json();
 		const error = new Error(result.message);
-		error.code = result.code;
+		error.status = result.status;
 		throw error;
 	}
 
@@ -43,22 +43,5 @@ export async function fetchGetTakenLectures() {
 		throw await makeError(response);
 	}
 	const result = await response.json();
-	return result;
-}
-
-export async function fetchCurriculumInfos(query) {
-	const queryString = objectToQueryString(query);
-
-	const response = await fetch(`/api/curriculumInfos?${queryString}`, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-
-	if (response.status === 400 || response.status === 500) {
-		throw await makeError(response);
-	}
-	const result = await response.json();
-
 	return result;
 }

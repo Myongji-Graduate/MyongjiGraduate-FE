@@ -18,7 +18,7 @@ export const lectureTableItemTypes = {
 };
 
 export const searchLectureOptionTypes = {
-	code: '과목코드',
+	status: '과목코드',
 	name: '과목명',
 };
 

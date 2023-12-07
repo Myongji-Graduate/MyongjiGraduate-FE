@@ -87,8 +87,8 @@ export async function fetchId(studentId) {
 }
 
 export async function fetchPw(formData) {
-	const response = await fetch('/api/findPw', {
-		method: 'POST',
+	const response = await fetch('/users/password', {
+		method: 'PATCH',
 		body: JSON.stringify(formData),
 		headers: {
 			'Content-Type': 'application/json',

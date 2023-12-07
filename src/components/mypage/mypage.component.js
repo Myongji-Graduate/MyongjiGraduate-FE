@@ -9,7 +9,7 @@ export default class Mypage extends Component {
 			takenCredit: 0,
 			name: '',
 			studentNumber: '',
-			department: '',
+			major: '',
 			complete: false,
 		};
 	}
@@ -18,7 +18,7 @@ export default class Mypage extends Component {
 		const pieChart = this.addChild(PieChart);
 		return (props) => {
 			if (props) this.setProps(props);
-			const { totalCredit, takenCredit, name, studentNumber, department, complete } = this.props;
+			const { totalCredit, takenCredit, name, studentNumber, major, complete } = this.props;
 
 			const percentage = Math.round((takenCredit / totalCredit) * 100);
 			const leftCredit = totalCredit - takenCredit;
@@ -49,7 +49,7 @@ export default class Mypage extends Component {
         <div class="mypage__info__table-value">
           <div>${name}</div>  
           <div>${studentNumber}</div>  
-          <div>${department}</div>  
+          <div>${major}</div>  
           <div>${totalCredit}</div>  
           <div>${takenCredit}</div>  
           <div>${complete ? '가능' : '불가능'}</div>  

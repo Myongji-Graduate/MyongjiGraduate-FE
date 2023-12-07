@@ -42,7 +42,7 @@ export const fetchSign = (formData) => (dispatch, getState) => {
 			return response.json();
 		})
 		.then((result) => {
-			if (result.code) {
+			if (result.status) {
 				dispatch(
 					createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED, {
 						error: result,
