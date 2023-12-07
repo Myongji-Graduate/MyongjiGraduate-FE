@@ -59,7 +59,6 @@ export async function validateUserId({ userId }) {
 }
 
 function apiErrorHandler(res, error) {
-	console.log(error);
 	if (error.response?.data.status) {
 		return res.status(400).json(error.response.data);
 	}
@@ -102,16 +101,10 @@ router.post('/signin', async function (req, res) {
 
 	try {
 		const result = await axios.post(`${ROOT_URL}/auth/sign-in`, formData);
-		res.cookie('authorization', result.data.accessToken, {
+		res.cookie('authorization', `${result.data.accessToken}`, {
 			httpOnly: true,
 		});
-		const response = await axios.get(`${ROOT_URL}/users/me/init`, {
-			headers: {
-				Authorization: result.data.accessToken,
-			},
-		});
-		console.log({ isInit: response.data.init });
-		res.status(200).json({ isInit: response.data.init });
+		res.status(200).json({ isInit: false });
 	} catch (error) {
 		apiErrorHandler(res, error);
 	}
@@ -171,7 +164,6 @@ router.post('/secession', async function (req, res) {
 });
 
 router.post('/userConfirm', async function (req, res) {
-	console.log('비밀번호 재설정');
 	const formData = {
 		authId: req.body.authId,
 		studentNumber: req.body.studentNumber,
@@ -314,18 +306,8 @@ router.get('/check-user', async function (req, res) {
 	const accessToken = req.cookies.authorization;
 	if (accessToken === undefined) {
 		res.status(400).end();
-	} else {
-		try {
-			const response = await axios.get(`${ROOT_URL}/health`, {
-				headers: {
-					Authorization: accessToken,
-				},
-			});
-			res.status(200).json(response.data);
-		} catch (error) {
-			apiErrorHandler(res, error);
-		}
 	}
+	res.status(200).json({ validToken: true, init: false });
 });
 
 export default router;
