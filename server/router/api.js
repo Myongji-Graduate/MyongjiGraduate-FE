@@ -3,6 +3,7 @@ import multer from 'multer';
 import FormData from 'form-data';
 import fs from 'fs';
 import axios from 'axios';
+import { assert } from 'console';
 
 const router = express.Router();
 
@@ -150,6 +151,7 @@ router.post('/secession', async function (req, res) {
 		password: req.body.password,
 	};
 	const accessToken = getAuthorizationCookie(req);
+	console.log(accessToken);
 	try {
 		const result = await axios.delete(`${ROOT_URL}/users/me`, formData, {
 			headers: {
