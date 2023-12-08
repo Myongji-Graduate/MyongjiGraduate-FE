@@ -151,7 +151,7 @@ router.post('/secession', async function (req, res) {
 	};
 	const accessToken = getAuthorizationCookie(req);
 	try {
-		const result = await axios.delete(`${ROOT_URL}/users`, formData, {
+		const result = await axios.delete(`${ROOT_URL}/users/me`, formData, {
 			headers: {
 				Authorization: accessToken,
 			},

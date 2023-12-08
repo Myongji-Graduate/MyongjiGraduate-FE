@@ -28,6 +28,7 @@ export default class MypageBody extends Component {
 
 		try {
 			const result = await fetchGetTakenLectures();
+			console.log(result);
 			this.setState({
 				takenLectures: result.takenLectures,
 				totalCredit: result.totalCredit,

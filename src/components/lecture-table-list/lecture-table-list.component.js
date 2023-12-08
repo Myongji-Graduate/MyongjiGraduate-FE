@@ -33,8 +33,8 @@ export default class LectureTableList extends Component {
             <div class="lecture-table-list__body">
 			<div class="lecture-table-list__body__column">${year}</div>
             <div class="lecture-table-list__body__column">${semester}</div>
-            <div class="lecture-table-list__body__column">${lecture.status}</div>
-            <div class="lecture-table-list__body__column">${lecture.name}</div>
+            <div class="lecture-table-list__body__column">${lecture.lectureCode}</div>
+            <div class="lecture-table-list__body__column">${lecture.lectureName}</div>
             <div class="lecture-table-list__body__column">${lecture.credit}</div>
             </div>
             `;
