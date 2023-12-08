@@ -31,7 +31,9 @@ export default class MyInfo extends Component {
 				major: result.major,
 				isLoading: false,
 			});
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	componentDidMount() {

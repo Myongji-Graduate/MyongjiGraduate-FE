@@ -15,7 +15,7 @@ const ROOT_URL = DEFAULT_HOST + PREFIX;
 export function getAuthorizationCookie(req) {
 	const accessToken = req.cookies.authorization;
 	if (accessToken === undefined) return 'null';
-	return accessToken;
+	return `Bearer ${accessToken}`;
 }
 
 export async function validateAccessToken(req) {
@@ -74,7 +74,6 @@ router.post('/file-upload', upload.single('file'), async function (req, res) {
 
 	try {
 		const pdfText = await parsePDF(formData);
-
 		const accessToken = getAuthorizationCookie(req);
 		const response = await axios.post(
 			`${ROOT_URL}/parsing-text`,
@@ -248,7 +247,7 @@ router.get('/myInfo', async function (req, res) {
 				message: '서버에 장애가 있습니다.',
 			});
 		} else {
-			const result = await axios.get(`${ROOT_URL}/users`, {
+			const result = await axios.get(`${ROOT_URL}/users/me`, {
 				headers: {
 					Authorization: accessToken,
 				},

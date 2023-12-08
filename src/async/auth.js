@@ -149,14 +149,14 @@ export async function fetchValidateUser() {
 		if (result.init) {
 			init();
 		} else {
-			unInit();
+			// unInit();
 		}
 
 		return result;
 	}
 
 	signOut();
-	unInit();
+	// unInit();
 
 	return {
 		validToken: false,

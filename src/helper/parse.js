@@ -29,13 +29,13 @@ export const categoryNameToKorean = {
 };
 
 export function parseMandatoruMajorDetailCategory(detailCatory, categoryName) {
-	const major = detailCatory.takenMandatoryLectures.reduce(
+	const major = detailCatory.takenLectures.reduce(
 		(acc, lecture) => {
 			acc.totalCredit += lecture.credit;
 			acc.takenCredit += lecture.credit;
 			acc.detailCategory[0].totalCredits += lecture.credit;
 			acc.detailCategory[0].takenCredits += lecture.credit;
-			acc.detailCategory[0].takenMandatoryLectures.push(lecture);
+			acc.detailCategory[0].takenLectures.push(lecture);
 			return acc;
 		},
 		{
@@ -47,31 +47,29 @@ export function parseMandatoruMajorDetailCategory(detailCatory, categoryName) {
 					categoryName,
 					totalCredits: 0,
 					takenCredits: 0,
-					takenMandatoryLectures: [],
-					haveToMandatoryLectures: [],
-					takenElectiveLectures: [],
-					haveToElectiveLectures: [],
+					takenLectures: [],
+					haveToLectures: [],
 				},
 			],
 		}
 	);
 
-	return detailCatory.haveToMandatoryLectures.reduce((acc, lecture) => {
+	return detailCatory.haveToLectures.reduce((acc, lecture) => {
 		acc.totalCredit += lecture.credit;
 		acc.detailCategory[0].totalCredits += lecture.credit;
-		acc.detailCategory[0].haveToMandatoryLectures.push(lecture);
+		acc.detailCategory[0].haveToLectures.push(lecture);
 		return acc;
 	}, major);
 }
 
 export function parseDetailElectiveMajorResult(detailCatory, categoryName) {
-	const major = detailCatory.takenElectiveLectures.reduce(
+	const major = detailCatory.takenLectures.reduce(
 		(acc, lecture) => {
 			acc.totalCredit += lecture.credit;
 			acc.takenCredit += lecture.credit;
 			acc.detailCategory[0].totalCredits += lecture.credit;
 			acc.detailCategory[0].takenCredits += lecture.credit;
-			acc.detailCategory[0].takenElectiveLectures.push(lecture);
+			acc.detailCategory[0].takenLectures.push(lecture);
 			return acc;
 		},
 		{
@@ -83,10 +81,8 @@ export function parseDetailElectiveMajorResult(detailCatory, categoryName) {
 					categoryName,
 					totalCredits: 0,
 					takenCredits: 0,
-					takenMandatoryLectures: [],
-					haveToMandatoryLectures: [],
-					takenElectiveLectures: [],
-					haveToElectiveLectures: [],
+					takenLectures: [],
+					haveToLectures: [],
 				},
 			],
 		}
@@ -103,10 +99,9 @@ export function parseDetailElectiveMajorResult(detailCatory, categoryName) {
 export const parseMandatoryMajorResult = (majorResult) => {
 	let mandatoryMajor;
 	if (majorResult.detailCategory.length === 2) {
-		if (majorResult.detailCategory[0].detailCategƒoryName.search(/_A$/) > 0) {
+		if (majorResult.detailCategory[0].categoryName.search(/_A$/) > 0) {
 			mandatoryMajor = parseMandatoruMajorDetailCategory(majorResult.detailCategory[1], '전공필수');
 			mandatoryMajor.detailCategory[1] = { ...majorResult.detailCategory[0] };
-			mandatoryMajor.detailCategory[1].detailCategoryName = '전공선택필수';
 			const { totalCredits, takenCredits } = mandatoryMajor.detailCategory[1];
 			mandatoryMajor.totalCredit += totalCredits;
 			mandatoryMajor.takenCredit += Math.min(totalCredits, takenCredits);
@@ -133,35 +128,18 @@ export const parseElectiveMajorResult = (majorResult) => {
 			const { totalCredits, takenCredits } = majorResult.detailCategory[0];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
-			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		} else {
 			electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
 			const { totalCredits, takenCredits } = majorResult.detailCategory[1];
 			const leftCredits = Math.max(0, takenCredits - totalCredits);
 			electiveMajor.takenCredit += leftCredits;
-			// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 		}
 	} else {
 		const { totalCredits, takenCredits } = majorResult.detailCategory[0];
 		const leftCredits = Math.max(0, takenCredits - totalCredits);
 		electiveMajor = parseDetailElectiveMajorResult(majorResult.detailCategory[0], '전공선택');
-		// electiveMajor.detailCategory[0].leftCredit = leftCredits;
 	}
-
 	return electiveMajor;
-};
-
-export const filterCategoryListCredit = (categoryList) => {
-	return categoryList.map((category) => {
-		category.takenCredit = Math.min(category.takenCredit, category.totalCredit);
-		if (category.detailCategory) {
-			category.detailCategory = category.detailCategory.map((detail) => {
-				detail.takenCredits = Math.min(detail.takenCredits, detail.totalCredits);
-				return detail;
-			});
-		}
-		return category;
-	});
 };
 
 export function checkCompletedDetailCategory(category) {
@@ -174,49 +152,32 @@ export function checkCompletedDetailCategory(category) {
 export const parseGraduationResult = (result) => {
 	const basicUserInfo = { ...result.basicInfo };
 	const categoryList = [];
-
-	const mandatoryMajor = parseMandatoryMajorResult(result.major);
-	const electiveyMajor = parseElectiveMajorResult(result.major);
-	electiveyMajor.totalCredit = result.major.totalCredit - mandatoryMajor.totalCredit;
-
-	electiveyMajor.detailCategory[0].totalCredits = electiveyMajor.totalCredit;
-
-	electiveyMajor.takenCredit = Math.min(electiveyMajor.takenCredit, electiveyMajor.totalCredit);
-
-	electiveyMajor.detailCategory[0].takenCredits = electiveyMajor.takenCredit;
-
-	checkCompletedDetailCategory(electiveyMajor);
-	checkCompletedDetailCategory(mandatoryMajor);
-
-	mandatoryMajor.detailCategory[0].detailCategoryName = '전공필수';
-	electiveyMajor.detailCategory[0].detailCategoryName = '전공선택';
-	categoryList.push(mandatoryMajor);
-	categoryList.push(electiveyMajor);
-	result.commonCulture.categoryName = '공통교양';
-	categoryList.push({ ...result.commonCulture });
-
-	result.coreCulture.categoryName = '핵심교양';
-	categoryList.push({ ...result.coreCulture });
-
-	result.basicAcademicalCulture.categoryName = '학문기초교양';
-	categoryList.push({ ...result.basicAcademicalCulture });
-
-	result.normalCulture.categoryName = '일반교양';
-	categoryList.push({ ...result.normalCulture });
-
-	result.freeElective.categoryName = '자유선택';
-	categoryList.push({ ...result.freeElective });
-
-	result.chapelResult.categoryName = '채플';
+	categoryList.push({
+		categoryName: result.major.detailCategory[0].categoryName,
+		totalCredit: result.major.detailCategory[0].totalCredits,
+		takenCredit: result.major.detailCategory[0].takenCredits,
+		completed: result.major.detailCategory[0].completed,
+		detailCategory: [{ ...result.major.detailCategory[0] }],
+	});
+	categoryList.push({
+		categoryName: result.major.detailCategory[1].categoryName,
+		totalCredit: result.major.detailCategory[1].totalCredits,
+		takenCredit: result.major.detailCategory[1].takenCredits,
+		completed: result.major.detailCategory[1].completed,
+		detailCategory: [{ ...result.major.detailCategory[1] }],
+	});
+	categoryList.push({ ...result.commonCulture, categoryName: categoryNameToKorean.commonCulture });
+	categoryList.push({ ...result.coreCulture, categoryName: categoryNameToKorean.coreCulture });
+	categoryList.push({ ...result.basicAcademicalCulture, categoryName: categoryNameToKorean.basicAcademicalCulture });
+	categoryList.push({ ...result.normalCulture, categoryName: categoryNameToKorean.normalCulture });
+	categoryList.push({ ...result.freeElective, categoryName: categoryNameToKorean.freeElective });
 	result.chapelResult.takenCredit = result.chapelResult.takenCount;
 	result.chapelResult.totalCredit = result.chapelResult.totalCount;
-
-	categoryList.push({ ...result.chapelResult });
-
-	const filteredCategoryList = filterCategoryListCredit(categoryList);
+	categoryList.push({ ...result.chapelResult, categoryName: '채플', totalCredit: 4 });
+	console.log(categoryList);
 	return {
 		basicUserInfo,
-		categoryList: filteredCategoryList,
+		categoryList,
 	};
 };
 

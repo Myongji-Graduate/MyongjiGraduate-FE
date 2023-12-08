@@ -3,7 +3,7 @@ import Component from '../../core/component';
 export default class CategoryInfo extends Component {
 	setDefaultProps() {
 		this.props = {
-			part: '',
+			categoryName: '',
 			totalCredits: '',
 			takenCredits: '',
 			leftCredits: '',
@@ -30,11 +30,11 @@ export default class CategoryInfo extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { part } = this.props;
+			const { categoryName } = this.props;
 
 			return `
 				<div class="category-info">
-					<div class="category-info__label">${part}</div>
+					<div class="category-info__label">${categoryName}</div>
 					${this.getCredit()}
 				</div>
       `;

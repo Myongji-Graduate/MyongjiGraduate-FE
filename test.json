@@ -1,0 +1,236 @@
+{
+	"totalCredit": 70,
+	"takenCredit": 33,
+	"detailCategory": [
+		{
+			"categoryName": "전공필수",
+			"totalCredits": 18,
+			"takenCredits": 18,
+			"takenLectures": [
+				{
+					"id": 1796,
+					"code": "HEB01103",
+					"name": "객체지향적사고와프로그래밍",
+					"credit": 3
+				},
+				{
+					"id": 1803,
+					"code": "HEC01208",
+					"name": "데이터구조와알고리즘1",
+					"credit": 3
+				},
+				{
+					"id": 1794,
+					"code": "HEB01101",
+					"name": "절차적사고와프로그래밍",
+					"credit": 3
+				},
+				{
+					"id": 1806,
+					"code": "HEC01211",
+					"name": "웹프로그래밍1",
+					"credit": 3
+				},
+				{
+					"id": 1800,
+					"code": "HEC01204",
+					"name": "DB설계및구현1",
+					"credit": 3
+				},
+				{
+					"id": 1798,
+					"code": "HEC01202",
+					"name": "패턴중심사고와프로그래밍",
+					"credit": 3
+				}
+			],
+			"haveToLectures": [],
+			"completed": true
+		},
+		{
+			"categoryName": "전공선택",
+			"totalCredits": 52,
+			"takenCredits": 15,
+			"takenLectures": [
+				{
+					"id": 1804,
+					"code": "HEC01209",
+					"name": "웹프로그래밍2",
+					"credit": 3
+				},
+				{
+					"id": 1811,
+					"code": "HEC01305",
+					"name": "DB설계및구현2",
+					"credit": 3
+				},
+				{
+					"id": 1802,
+					"code": "HEC01207",
+					"name": "데이터구조와알고리즘2",
+					"credit": 3
+				},
+				{
+					"id": 1807,
+					"code": "HEC01212",
+					"name": "시스템프로그래밍1",
+					"credit": 3
+				},
+				{
+					"id": 1805,
+					"code": "HEC01210",
+					"name": "클라이언트서버프로그래밍",
+					"credit": 3
+				}
+			],
+			"haveToLectures": [
+				{
+					"id": 1820,
+					"code": "HEC01318",
+					"name": "모바일프로그래밍",
+					"credit": 3
+				},
+				{
+					"id": 1818,
+					"code": "HEC01316",
+					"name": "시스템프로그래밍2",
+					"credit": 3
+				},
+				{
+					"id": 1819,
+					"code": "HEC01317",
+					"name": "분산프로그래밍2",
+					"credit": 3
+				},
+				{
+					"id": 1814,
+					"code": "HEC01310",
+					"name": "로보틱프로세스자동화",
+					"credit": 3
+				},
+				{
+					"id": 1826,
+					"code": "HEC01410",
+					"name": "컴퓨터보안",
+					"credit": 3
+				},
+				{
+					"id": 1816,
+					"code": "HEC01314",
+					"name": "네트워크컴퓨팅",
+					"credit": 3
+				},
+				{
+					"id": 1829,
+					"code": "HEC01413",
+					"name": "클라우드서비스개념과설계",
+					"credit": 3
+				},
+				{
+					"id": 1830,
+					"code": "HEC01414",
+					"name": "캡스톤디자인",
+					"credit": 3
+				},
+				{
+					"id": 1817,
+					"code": "HEC01315",
+					"name": "프로그래밍언어론/컴파일러",
+					"credit": 3
+				},
+				{
+					"id": 1827,
+					"code": "HEC01411",
+					"name": "인공지능2",
+					"credit": 3
+				},
+				{
+					"id": 1815,
+					"code": "HEC01313",
+					"name": "RPA실습",
+					"credit": 3
+				},
+				{
+					"id": 1828,
+					"code": "HEC01412",
+					"name": "인공지능1",
+					"credit": 3
+				},
+				{
+					"id": 1823,
+					"code": "HEC01406",
+					"name": "팀프로젝트II",
+					"credit": 3
+				},
+				{
+					"id": 1824,
+					"code": "HEC01407",
+					"name": "SW기술세미나2",
+					"credit": 3
+				},
+				{
+					"id": 1801,
+					"code": "HEC01206",
+					"name": "비즈니스모델링2",
+					"credit": 3
+				},
+				{
+					"id": 1812,
+					"code": "HEC01306",
+					"name": "클라우드컴퓨팅",
+					"credit": 3
+				},
+				{
+					"id": 1813,
+					"code": "HEC01309",
+					"name": "ERP개론",
+					"credit": 3
+				},
+				{
+					"id": 1825,
+					"code": "HEC01409",
+					"name": "SW인턴쉽",
+					"credit": 3
+				},
+				{
+					"id": 1822,
+					"code": "HEC01402",
+					"name": "SW기술세미나1",
+					"credit": 3
+				},
+				{
+					"id": 1810,
+					"code": "HEC01304",
+					"name": "게임을통한경영의이해",
+					"credit": 3
+				},
+				{
+					"id": 1808,
+					"code": "HEC01301",
+					"name": "체계적SW개발프로세스",
+					"credit": 3
+				},
+				{
+					"id": 1821,
+					"code": "HEC01401",
+					"name": "팀프로젝트I",
+					"credit": 3
+				},
+				{
+					"id": 1809,
+					"code": "HEC01302",
+					"name": "분산프로그래밍1",
+					"credit": 3
+				},
+				{
+					"id": 1799,
+					"code": "HEC01203",
+					"name": "비즈니스모델링1",
+					"credit": 3
+				}
+			],
+			"completed": false
+		}
+	],
+	"completed": false
+}

@@ -5,7 +5,6 @@ export async function fetchPDFFileUpload(formData) {
 		method: 'POST',
 		body: formData,
 	});
-
 	if (response.status === 400 || response.status === 500) {
 		throw await makeError(response);
 	}

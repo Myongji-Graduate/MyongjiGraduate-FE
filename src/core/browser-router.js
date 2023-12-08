@@ -51,7 +51,7 @@ export default class BrowserRouter extends Router {
 
 		if (routerObject.authentication === userRule.init) return routerObject;
 
-		if (auth.init === false) return this.redirectInitPage();
+		if (auth.init === true) return this.redirectInitPage(); //
 
 		return routerObject;
 	}
