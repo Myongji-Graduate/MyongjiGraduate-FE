@@ -174,7 +174,6 @@ export const parseGraduationResult = (result) => {
 	result.chapelResult.takenCredit = result.chapelResult.takenCount;
 	result.chapelResult.totalCredit = result.chapelResult.totalCount;
 	categoryList.push({ ...result.chapelResult, categoryName: '채플', totalCredit: 4 });
-	console.log(categoryList);
 	return {
 		basicUserInfo,
 		categoryList,

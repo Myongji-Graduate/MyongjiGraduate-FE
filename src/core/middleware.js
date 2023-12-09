@@ -6,9 +6,6 @@ export const logger = (store) => (next) => (action) => {
 		};
 	}, {});
 	const result = next(action);
-	// console.log('prevState', prevState);
-	// console.log('action', action);
-	// console.log('nextState', store.getState());
 	return result;
 };
 

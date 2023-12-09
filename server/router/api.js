@@ -156,7 +156,6 @@ router.post('/secession', async function (req, res) {
 		});
 		res.status(200).end();
 	} catch (error) {
-		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
