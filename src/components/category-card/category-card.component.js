@@ -19,7 +19,7 @@ const [sizesAttr, srcsetAttr] = getResponseiveImage(sizes, `${IMAGE_URL}/images/
 export default class CategoryCard extends Component {
 	setDefaultProps() {
 		this.props = {
-			title: '공통교양',
+			categoryName: '공통교양',
 			key: 1,
 			totalCredit: 30,
 			takenCredit: 12,
@@ -28,14 +28,14 @@ export default class CategoryCard extends Component {
 	}
 
 	hasDetails() {
-		const { title } = this.props;
-		if (title === '일반교양' || title === '자유선택' || title === '채플') return false;
+		const { categoryName } = this.props;
+		if (categoryName === '일반교양' || categoryName === '자유선택' || categoryName === '채플') return false;
 		return true;
 	}
 
 	isChaple() {
-		const { title } = this.props;
-		if (title === '채플') return true;
+		const { categoryName } = this.props;
+		if (categoryName === '채플') return true;
 		return false;
 	}
 
@@ -46,9 +46,8 @@ export default class CategoryCard extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { title, totalCredit, takenCredit, key, buttonOnClick } = this.props;
+			const { categoryName, totalCredit, takenCredit, key, buttonOnClick } = this.props;
 			const percentage = Math.round((takenCredit / totalCredit) * 100);
-
 			const pieChartProps = {
 				percentage,
 			};
@@ -66,7 +65,7 @@ export default class CategoryCard extends Component {
             <div class="category-card__icon-container">
               <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="category-card__icon" alt="category-card__icon" />
             </div>
-            ${title}
+            ${categoryName}
           </div>
           <div class="category-card__body">
             <div class="category-card__pie-chart-container">

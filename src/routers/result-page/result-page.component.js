@@ -53,7 +53,6 @@ export default class ResultPage extends Component {
 		});
 		try {
 			const result = await fetchGraduationResult();
-
 			const parseResult = parseGraduationResult(result);
 			this.setState({
 				basicUserInfo: parseResult.basicUserInfo,
@@ -135,7 +134,7 @@ export default class ResultPage extends Component {
 							${categoryList
 								.map(({ categoryName, totalCredit, takenCredit }, index) => {
 									return categoryCardList[index].render({
-										title: categoryName,
+										categoryName,
 										totalCredit,
 										takenCredit,
 										key: index + 1,

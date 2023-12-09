@@ -1,21 +1,3 @@
-export const detailCategoryToKorean = {
-	CAREER: '진로',
-	CHRISTIAN: '기독교',
-	ENGLISH: '영어',
-	EXPRESSION: '사고와 표현',
-	HISTORY_AND_PHILOSOPHY: '역사와 철학',
-	SOCIETY_AND_COMMUNITY: '사회와 공동체',
-	SCIENCE_AND_TECHNOLOGY: '과학과 기술',
-	CULTURE_AND_ART: '문화와 예술',
-	ICT: 'ICT융합대학',
-	RAW: '법과대학',
-	MANAGEMENT_INFORMATION: '경영정보',
-	INTERNATIONAL_TRADE: '국제통상',
-	HUMANITY: '인문대학',
-	SOCIAL_SCIENCE: '사회과학대학',
-	BUSINESS: '경영',
-};
-
 export const categoryNameToKorean = {
 	commonCulture: '공통교양',
 	coreCulture: '핵심교양',
@@ -152,28 +134,29 @@ export function checkCompletedDetailCategory(category) {
 export const parseGraduationResult = (result) => {
 	const basicUserInfo = { ...result.basicInfo };
 	const categoryList = [];
-	categoryList.push({
-		categoryName: result.major.detailCategory[0].categoryName,
-		totalCredit: result.major.detailCategory[0].totalCredits,
-		takenCredit: result.major.detailCategory[0].takenCredits,
-		completed: result.major.detailCategory[0].completed,
-		detailCategory: [{ ...result.major.detailCategory[0] }],
+
+	result.major.detailCategory.forEach((category) => {
+		categoryList.push({
+			categoryName: category.categoryName,
+			totalCredit: category.totalCredits,
+			takenCredit: category.takenCredits,
+			completed: category.completed,
+			detailCategory: [{ ...category }],
+		});
+	});
+	const categoryName = ['commonCulture', 'coreCulture', 'basicAcademicalCulture', 'normalCulture', 'freeElective'];
+	categoryName.forEach((category) => {
+		categoryList.push({
+			...result[category],
+			categoryName: categoryNameToKorean[category],
+		});
 	});
 	categoryList.push({
-		categoryName: result.major.detailCategory[1].categoryName,
-		totalCredit: result.major.detailCategory[1].totalCredits,
-		takenCredit: result.major.detailCategory[1].takenCredits,
-		completed: result.major.detailCategory[1].completed,
-		detailCategory: [{ ...result.major.detailCategory[1] }],
+		...result.chapelResult,
+		categoryName: '채플',
+		totalCredit: 4,
+		takenCredit: result.chapelResult.takenCount,
 	});
-	categoryList.push({ ...result.commonCulture, categoryName: categoryNameToKorean.commonCulture });
-	categoryList.push({ ...result.coreCulture, categoryName: categoryNameToKorean.coreCulture });
-	categoryList.push({ ...result.basicAcademicalCulture, categoryName: categoryNameToKorean.basicAcademicalCulture });
-	categoryList.push({ ...result.normalCulture, categoryName: categoryNameToKorean.normalCulture });
-	categoryList.push({ ...result.freeElective, categoryName: categoryNameToKorean.freeElective });
-	result.chapelResult.takenCredit = result.chapelResult.takenCount;
-	result.chapelResult.totalCredit = result.chapelResult.totalCount;
-	categoryList.push({ ...result.chapelResult, categoryName: '채플', totalCredit: 4 });
 	return {
 		basicUserInfo,
 		categoryList,
