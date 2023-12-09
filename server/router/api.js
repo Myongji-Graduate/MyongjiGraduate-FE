@@ -3,7 +3,6 @@ import multer from 'multer';
 import FormData from 'form-data';
 import fs from 'fs';
 import axios from 'axios';
-import { assert } from 'console';
 
 const router = express.Router();
 
@@ -147,19 +146,17 @@ router.post('/signup', async function (req, res) {
 });
 
 router.post('/secession', async function (req, res) {
-	const formData = {
-		password: req.body.password,
-	};
 	const accessToken = getAuthorizationCookie(req);
-	console.log(accessToken);
 	try {
-		const result = await axios.delete(`${ROOT_URL}/users/me`, formData, {
+		const result = await axios.delete(`${ROOT_URL}/users/me`, {
+			data: { password: req.body.password },
 			headers: {
 				Authorization: accessToken,
 			},
 		});
 		res.status(200).end();
 	} catch (error) {
+		console.log(error);
 		apiErrorHandler(res, error);
 	}
 });
@@ -170,7 +167,7 @@ router.post('/userConfirm', async function (req, res) {
 		studentNumber: req.body.studentNumber,
 	};
 	try {
-		await axios.get(`${ROOT_URL}/users/${formData.studentNumber}/validate`, formData, {
+		await axios.get(`${ROOT_URL}/users/${formData.studentNumber}/validate?auth-id=${formData.authId}`, formData, {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -213,7 +210,7 @@ router.get('/search-lecture', async function (req, res) {
 			params: req.query,
 		});
 		res.status(200).json({
-			searchedLectures: response.data,
+			searchedLectures: response.data.lectures,
 		});
 	} catch (error) {
 		apiErrorHandler(res, error);
@@ -291,7 +288,7 @@ router.get('/findId', async function (req, res) {
 
 router.post('/findPw', async function (req, res) {
 	const formData = {
-		authId: req.body.userId,
+		authId: req.body.authId,
 		newPassword: req.body.newPassword,
 		passwordCheck: req.body.passwordCheck,
 	};

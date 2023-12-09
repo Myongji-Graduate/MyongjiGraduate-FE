@@ -15,10 +15,6 @@ export async function fetchSignIn(formData) {
 
 	if (response.status === 200) {
 		signIn();
-		const result = await response.json();
-		if (result.isInit) {
-			init();
-		}
 		return true;
 	}
 
