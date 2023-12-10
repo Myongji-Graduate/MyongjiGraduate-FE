@@ -17,7 +17,7 @@ export default class PieChart extends Component {
 			return `
         <div class="pie-chart" style="--percentage:${percentage}; --border:0.6rem; --main-color:${color}">
           <div class="pie-chart__percentage-text">
-          ${percentage}%
+          ${percentage > 100 ? 100 : percentage}%
           </div>  
         </div>
       `;

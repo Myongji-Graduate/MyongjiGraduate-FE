@@ -52,7 +52,7 @@ export default class FindPwForm extends Component {
 		const passwordInputProps = {
 			name: '변경할 비밀번호',
 			id: 'repassword',
-			placeholder: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하',
+			placeholder: '기호(!@#$%^&*)를 포함한 8자 이상 20자 이하',
 			value: repassword,
 			onChange: (newValue) => {
 				this.setState({ repassword: newValue });
