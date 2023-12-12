@@ -35,15 +35,15 @@ export default class ModalAgreement extends Component {
 				<li>학번: 16 ~ 22학번</li>
 				</ul>
 				<ol start="2">
-				<li><p>교직, 다전공, 편입, 전과, 재외국민/외국인전형에 해당하는 사용자는 검사 기준이 따로 설정되지 않아 검사가 불가능합니다.</p>
+				<li><p>교직, 다전공, 연계전공, 편입, 전과, 재외국민/외국인전형에 해당하는 사용자는 검사 기준이 따로 설정되지 않아 검사가 불가능합니다.</p>
 				</li>
 				<li><p>검사를 위해선 성적표를 직접 업로드해야하므로 <strong>PC환경</strong>에서 진행하는 것을 권장합니다.</p>
 				</li>
-				<li><p>검사 기준은 최신버전 학사안내문(2022.07.28) 반영하여 설정되었으며, 학사안내문은 매년 개편되므로 자신이 알고 있는 구버전과 다를 수 있습니다.</p>
+				<li><p>검사 기준은 최신버전 학사안내문(2023.07.24) 반영하여 설정되었으며, 학사안내문은 매년 개편되므로 자신이 알고 있는 구버전과 다를 수 있습니다.</p>
 				</li>
 				</ol>
 				<ul>
-				<li><a target='_blank' href="https://www.mju.ac.kr/mjukr/257/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNDMlMkYxOTExMjAlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMyUyNnNyY2hDb2x1bW4lM0QlMjZzcmNoV3JkJTNEJTI2YmJzQ2xTZXElM0QlMjZiYnNPcGVuV3JkU2VxJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNmlzVmlldyUzRHRydWUlMjZwYXNzd29yZCUzRCUyNg%3D%3D">명지대학교 학사안내문 참고 링크</a></li>
+				<li><a target='_blank' href="https://www.mju.ac.kr/mjukr/257/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNDMlMkYyMDI1ODAlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0RzaiUyNnNyY2hXcmQlM0QlRUQlOTUlOTklRUMlODIlQUMlMjZiYnNDbFNlcSUzRCUyNmJic09wZW5XcmRTZXElM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNnJnc0VuZGRlU3RyJTNEJTI2aXNWaWV3TWluZSUzRGZhbHNlJTI2aXNWaWV3JTNEdHJ1ZSUyNnBhc3N3b3JkJTNEJTI2">명지대학교 학사안내문 참고 링크</a></li>
 				</ul>
 				<ol start="5">
 				<li>본 서비스 정보는 <strong>공식적인 효력을 갖지 않으며, 정확한 졸업사정결과를 위해서는 소속 단과대 교학팀에서의 확인을 권장</strong>합니다.</li>
