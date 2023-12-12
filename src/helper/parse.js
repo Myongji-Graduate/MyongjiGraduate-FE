@@ -19,10 +19,23 @@ const parseGeneralElectiveSubject = (result) => {
 		normalCulture: '일반교양',
 		freeElective: '자유선택',
 	};
-	return Object.keys(GeneralElectiveSubject).map((category) => ({
+	const categories = Object.keys(GeneralElectiveSubject).map((category) => ({
 		...result[category],
 		categoryName: GeneralElectiveSubject[category],
 	}));
+
+	const { takenCount } = result.chapelResult;
+	const chapelInfo = { code: 'KMA02101', credit: 0.5, id: 0, name: '채플' };
+	categories[0].detailCategory.push({
+		categoryName: '채플',
+		completed: takenCount === 4,
+		takenCredits: takenCount * 0.5,
+		totalCredits: 2,
+		haveToLectures: takenCount < 4 ? [chapelInfo] : [],
+		takenLectures: takenCount > 0 ? [chapelInfo] : [],
+	});
+
+	return categories;
 };
 
 const parseChapelSubject = (chapel) => {

@@ -31,7 +31,7 @@ export default class Mypage extends Component {
 						? `<div class="mypage__totalcredit-credit">${name}</div> 
           <div>님 졸업을 축하합니다 ! </div>`
 						: `<div>졸업필요학점보다 </div>       
-          <div class="mypage__totalcredit-credit">&nbsp;${leftCredit}&nbsp;</div> 
+          <div class="mypage__totalcredit-credit">&nbsp;${leftCredit < 0 ? 0 : leftCredit}&nbsp;</div> 
           <div> 학점이 부족합니다</div> `
 				}      
         </div>
