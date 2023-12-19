@@ -16,34 +16,34 @@ export const SIGNIN_ACTION_TYPES = {
 
 export const ERROR_TYPES = {
 	FILE_EXTENSTION: {
-		code: 100,
+		status: 100,
 		message: '파일 형식이 pdf가 아닙니다.',
 	},
 	SEARCH_TEXT_LENGTH: {
-		code: 101,
+		status: 101,
 		message: '검색어를 2자리 이상 입력해주세요',
 	},
 	ALREADY_ADD_LECTURE: {
-		code: 100,
+		status: 100,
 		message: '이미 추가한 과목입니다.',
 	},
 	ALREADY_ADD_TAKEN: {
-		code: 101,
+		status: 101,
 		message: '이미 수강한 과목입니다.',
 	},
 	NULL_INPUT_VALUE: {
-		code: 100,
+		status: 100,
 		message: '입력하지 않은 값이 존재합니다.',
 	},
 };
 
 export const SUCCESS_TYPES = {
 	SIGN_UP: {
-		code: 100,
+		status: 100,
 		message: '회원가입에 성공하셨습니다.',
 	},
 	CUSTOM_LECTURE: {
-		code: 101,
+		status: 101,
 		message: '커스텀에 성공하셨습니다.',
 	},
 };

@@ -1,6 +1,5 @@
 import { createAction } from './store';
 import { RESULT_ACTION_TYPES, SIGNIN_ACTION_TYPES } from './types';
-import { parseGraduationResult } from '../helper/parse';
 
 const ROOT_URL = 'https://1db2775e-5c12-4472-ba45-a118a0c06ef5.mock.pstmn.io/test'; // eslint-disable-line no-unused-vars
 
@@ -42,7 +41,7 @@ export const fetchSign = (formData) => (dispatch, getState) => {
 			return response.json();
 		})
 		.then((result) => {
-			if (result.code) {
+			if (result.status) {
 				dispatch(
 					createAction(SIGNIN_ACTION_TYPES.FETCH_SIGNIN_FAILED, {
 						error: result,

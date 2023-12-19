@@ -27,7 +27,7 @@ export default class SigninForm extends Component {
 			isLoading: true,
 		});
 		const result = await fetchSignIn({
-			id: this.state.id,
+			authId: this.state.id,
 			password: this.state.password,
 		});
 		this.setState({

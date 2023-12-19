@@ -12,7 +12,7 @@ export function showErrorModal(error) {
 export async function makeError(response) {
 	const result = await response.json();
 	const error = new Error(result.message);
-	error.code = result.code;
+	error.status = result.status;
 	return error;
 }
 
@@ -23,7 +23,7 @@ export async function handleErrorResponse(response) {
 
 export async function handleErrorObject(error) {
 	showErrorModal({
-		code: error.code,
+		status: error.status,
 		message: error.message,
 	});
 }

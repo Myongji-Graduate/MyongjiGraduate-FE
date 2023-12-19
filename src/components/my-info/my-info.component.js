@@ -18,7 +18,7 @@ export default class MyInfo extends Component {
 		this.state = {
 			studentNumber: 'studnetId',
 			studentName: 'name',
-			department: 'department',
+			major: 'major',
 		};
 	}
 
@@ -28,10 +28,12 @@ export default class MyInfo extends Component {
 			this.setState({
 				studentNumber: result.studentNumber,
 				studentName: result.studentName,
-				department: result.department,
+				major: result.major,
 				isLoading: false,
 			});
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	componentDidMount() {
@@ -45,7 +47,7 @@ export default class MyInfo extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { studentNumber, studentName, department } = this.state;
+			const { studentNumber, studentName, major } = this.state;
 			const { key } = this.props;
 
 			return `
@@ -57,13 +59,13 @@ export default class MyInfo extends Component {
 								? info.render({
 										studentName,
 										studentNumber,
-										department,
+										major,
 										exist: true,
 								  })
 								: info.render({
 										studentName: 'GUEST',
 										studentNumber: '',
-										department: '로그인이 필요합니다.',
+										major: '로그인이 필요합니다.',
 										exist: false,
 								  })
 						}

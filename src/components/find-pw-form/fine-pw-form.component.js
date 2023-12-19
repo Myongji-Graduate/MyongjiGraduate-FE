@@ -21,7 +21,7 @@ export default class FindPwForm extends Component {
 	async resettingPassword() {
 		const { id, repassword, reconfirmpassword } = this.state;
 		const result = await fetchPw({
-			userId: id,
+			authId: id,
 			newPassword: repassword,
 			passwordCheck: reconfirmpassword,
 		});
@@ -52,7 +52,7 @@ export default class FindPwForm extends Component {
 		const passwordInputProps = {
 			name: '변경할 비밀번호',
 			id: 'repassword',
-			placeholder: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하',
+			placeholder: '기호(!@#$%^&*)를 포함한 8자 이상 20자 이하',
 			value: repassword,
 			onChange: (newValue) => {
 				this.setState({ repassword: newValue });
@@ -122,7 +122,6 @@ export default class FindPwForm extends Component {
 				key: 'find-pw',
 				onClick: find ? this.resettingPassword.bind(this) : this.confirmUser.bind(this),
 			};
-			// style="display: ${find ? `none` : `block`}"
 
 			return `
         <div class="find-pw-form">	

@@ -5,7 +5,6 @@ import SignInPage from './sign-in-page/sign-in-page.component';
 import SignUpPage from './sign-up-page/sign-up-page.component';
 import FileUploadPage from './file-upload-page/file-upload-page.component';
 import MypagePage from './mypage-page/mypage-page.component';
-import CurriculumPage from './curriculum-page/curriculum-page.component';
 import FindIdPage from './find-id-page/find-id-page.component';
 import FindPwPage from './find-pw-page/find-pw-page.component';
 import App from '../app';
@@ -23,11 +22,6 @@ export const routerObjects = [
 			{
 				path: 'tutorial',
 				element: TutorialPage,
-				authentication: userRule.guest,
-			},
-			{
-				path: 'curriculum',
-				element: CurriculumPage,
 				authentication: userRule.guest,
 			},
 			{

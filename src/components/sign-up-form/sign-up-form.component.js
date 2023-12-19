@@ -140,14 +140,14 @@ export default class SignupForm extends Component {
 			const passwordInputProps = {
 				name: '비밀번호',
 				id: 'password',
-				placeholder: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하',
+				placeholder: '기호(!@#$%^&*)를 포함한 8자 이상 20자 이하',
 				value: this.state.password,
 				onChange: (newValue) => {
 					this.setState({ password: newValue });
 				},
 				isValidation: this.state.isValidationOfPassword,
 				validationCallback: this.validationCallbackOfPassword.bind(this),
-				errorMessage: '문자, 숫자, 기호(!@#$%^&*) 조합 8자 이상 20자 이하이어야 합니다',
+				errorMessage: '기호(!@#$%^&*)를 포함한 8자 이상 20자 이하이어야 합니다',
 				key: 'sign-up-password',
 				type: inputTypes.password,
 			};

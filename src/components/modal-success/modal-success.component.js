@@ -18,7 +18,7 @@ export default class ModalSuccess extends Component {
 			if (props) this.setProps(props);
 
 			const { success } = store.getState();
-			const isShow = !!success.code;
+			const isShow = !!success.status;
 
 			const modalSuccessContentProps = {
 				successMessage: success.message,

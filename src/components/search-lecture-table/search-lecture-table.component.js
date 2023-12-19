@@ -54,7 +54,7 @@ export default class SearchLectureTable extends Component {
 
 		const formData = {
 			keyword: searchText,
-			qtype: searchLectureOptionTypes.code === option ? 'code' : 'name',
+			type: searchLectureOptionTypes.code === option ? 'code' : 'name',
 		};
 
 		this.setState({

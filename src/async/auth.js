@@ -15,10 +15,6 @@ export async function fetchSignIn(formData) {
 
 	if (response.status === 200) {
 		signIn();
-		const result = await response.json();
-		if (result.isInit) {
-			init();
-		}
 		return true;
 	}
 
@@ -135,31 +131,22 @@ export async function fetchValidateATK() {
 }
 
 export async function fetchValidateUser() {
-	const response = await fetch('/api/check-user');
+	const response = await fetch('/api/myInfo');
 
 	if (response.status === 200) {
 		const result = await response.json();
-
-		if (result.validToken) {
-			signIn();
-		} else {
-			signOut();
-		}
-
-		if (result.init) {
+		if (!result.studentName) {
 			init();
-		} else {
-			unInit();
+			return { init: true };
 		}
-
-		return result;
+		unInit();
+		return { init: false };
 	}
 
 	signOut();
 	unInit();
 
 	return {
-		validToken: false,
-		init: false,
+		init: true,
 	};
 }

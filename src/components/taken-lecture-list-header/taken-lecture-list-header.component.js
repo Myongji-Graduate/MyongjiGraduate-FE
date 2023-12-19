@@ -102,7 +102,7 @@ export default class TakenLectureListHeader extends Component {
       <div class="taken-lecture-list-header">
 			 ${modalCustomContainer.render(modalCustomProps)}
           <div class="taken-lecture-list-header__header">
-            ${tableInfo.render({ part: '내 기이수 과목' })}
+            ${tableInfo.render({ categoryName: '내 기이수 과목' })}
             <div class="taken-lecture-list-header__header-button-container">
             ${
 							isEditableMode
@@ -116,7 +116,6 @@ export default class TakenLectureListHeader extends Component {
 				${uploadNavigationButton.render(uploadNavigationButtonProps)}
 				`
 						}
-              
             </div>
           </div>
         </div>

@@ -47,11 +47,9 @@ export default class BrowserRouter extends Router {
 
 		const auth = await fetchValidateUser();
 
-		if (auth.validToken === false) return this.redirectAuthPage();
-
 		if (routerObject.authentication === userRule.init) return routerObject;
 
-		if (auth.init === false) return this.redirectInitPage();
+		if (auth.init === true) return this.redirectInitPage();
 
 		return routerObject;
 	}

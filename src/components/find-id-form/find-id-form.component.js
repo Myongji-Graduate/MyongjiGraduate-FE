@@ -28,7 +28,7 @@ export default class FindIdForm extends Component {
 			);
 		} else {
 			const response = await fetchId(studentId);
-			response && this.setState({ id: response.userId, find: true });
+			response && this.setState({ id: response.authId, find: true });
 		}
 	}
 
