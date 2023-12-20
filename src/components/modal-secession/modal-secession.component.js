@@ -25,7 +25,7 @@ export default class ModalSecession extends Component {
 		} else {
 			const result = await fetchSecession({ password });
 			if (result) {
-				sessionStorage.setItem('isLogin', false);
+				localStorage.setItem('isLogin', false);
 				const { router } = store.getState();
 				router.navigate('/');
 			}
