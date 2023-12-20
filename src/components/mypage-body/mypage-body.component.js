@@ -83,17 +83,16 @@ export default class MypageBody extends Component {
 	countChaple() {
 		const { addedTakenLecutures, takenLectures } = this.state;
 		const Chaple = {
-			code: 'KMA02101',
+			lectureCode: 'KMA02101',
 		};
 		return this.countLecture(addedTakenLecutures, Chaple) + this.countLecture(takenLectures, Chaple);
 	}
 
 	addTakenLecture(lecture) {
 		const { addedTakenLecutures, takenLectures, whiteList } = this.state;
-
 		const newLecture = this.formatLecture(lecture);
 
-		if (whiteList.includes(newLecture.code)) {
+		if (whiteList.includes(newLecture.lectureCode)) {
 			this.setState({
 				addedTakenLecutures: [...this.state.addedTakenLecutures, newLecture],
 			});
@@ -128,8 +127,8 @@ export default class MypageBody extends Component {
 			id: searchedLecture.id,
 			year: '커스텀',
 			semester: '커스텀',
-			code: searchedLecture.lectureCode,
-			name: searchedLecture.name,
+			lectureCode: searchedLecture.lectureCode,
+			lectureName: searchedLecture.name,
 			credit: searchedLecture.credit,
 		};
 	}
@@ -140,13 +139,13 @@ export default class MypageBody extends Component {
 
 	countLecture(lectures, lecture) {
 		return lectures.filter((lec) => {
-			return lec.code === lecture.code;
+			return lec.lectureCode === lecture.lectureCode;
 		}).length;
 	}
 
 	deleteAddedTakenLecture(lecture) {
 		const newAddedTakenLecutures = this.state.addedTakenLecutures.filter(
-			(addedTakenLecuture) => addedTakenLecuture.code !== lecture.code
+			(addedTakenLecuture) => addedTakenLecuture.lectureCode !== lecture.lectureCode
 		);
 		this.setState({
 			addedTakenLecutures: newAddedTakenLecutures,

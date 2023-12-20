@@ -81,13 +81,13 @@ export default class LectureTableList extends Component {
 		const year = lecture.year ? lecture.year : '커스텀';
 		const semester = lecture.semester ? lecture.semester : '커스텀';
 		return `
-      <div class="lecture-table-list__body--${lecture.code} lecture-table-list__body lecture-table-list__body--${type}">
+      <div class="lecture-table-list__body--${lecture.lectureCode} lecture-table-list__body lecture-table-list__body--${type}">
 		<div class="lecture-table-list__body__column">${year}</div>
 		<div class="lecture-table-list__body__column">${semester}</div>   
-		<div class="lecture-table-list__body__column">${lecture.code}</div>
-        <div class="lecture-table-list__body__column">${lecture.name}</div>
+		<div class="lecture-table-list__body__column">${lecture.lectureCode}</div>
+        <div class="lecture-table-list__body__column">${lecture.lectureName}</div>
         <div class="lecture-table-list__body__column">${lecture.credit}</div>
-        <div class="lecture-table-list__body__button lecture-table-list__body__button--${lecture.code}">삭제</div>
+        <div class="lecture-table-list__body__button lecture-table-list__body__button--${lecture.lectureCode}">삭제</div>
       </div>`;
 	}
 
@@ -106,13 +106,13 @@ export default class LectureTableList extends Component {
 		const { isEditableMode, deleteTakenLecture, addedTakenLecutures, deleteAddedTakenLecture } = this.props;
 		if (isEditableMode) {
 			this.getNotDeletedTakenLectureList().forEach((lecture) => {
-				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {
+				this.addEvent('click', `.lecture-table-list__body__button--${lecture.lectureCode}`, () => {
 					deleteTakenLecture(lecture);
 				});
 			});
 
 			addedTakenLecutures.forEach((lecture) => {
-				this.addEvent('click', `.lecture-table-list__body__button--${lecture.code}`, () => {
+				this.addEvent('click', `.lecture-table-list__body__button--${lecture.lectureCode}`, () => {
 					deleteAddedTakenLecture(lecture);
 				});
 			});
