@@ -21,6 +21,7 @@ export default class CategoryCard extends Component {
 		this.props = {
 			categoryName: '공통교양',
 			key: 1,
+			degree: undefined,
 			totalCredit: 30,
 			takenCredit: 12,
 			buttonOnClick: () => {},
@@ -46,7 +47,7 @@ export default class CategoryCard extends Component {
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { categoryName, totalCredit, takenCredit, key, buttonOnClick } = this.props;
+			const { categoryName, degree, totalCredit, takenCredit, key, buttonOnClick } = this.props;
 			const percentage = Math.round((takenCredit / totalCredit) * 100);
 			const pieChartProps = {
 				percentage,
@@ -63,7 +64,16 @@ export default class CategoryCard extends Component {
         <div class="category-card__${key} category-card">
           <div class="category-card__header">
             <div class="category-card__icon-container">
-              <img sizes="${sizesAttr}" srcset="${srcsetAttr}" class="category-card__icon" alt="category-card__icon" />
+             ${
+								degree
+									? `<div class="category-card__icon__text">${degree}</div>`
+									: `	<img
+					sizes="${sizesAttr}"
+					srcset="${srcsetAttr}"
+					class="category-card__icon"
+					alt="category-card__icon"
+				/>`
+							} 
             </div>
             ${categoryName}
           </div>

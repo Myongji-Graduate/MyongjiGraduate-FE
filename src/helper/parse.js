@@ -1,7 +1,23 @@
-const parseMajorSubject = (majorList) => {
-	return majorList.map((category) => {
-		const { categoryName, totalCredits, takenCredits, completed } = category;
+const addMajorCategory = (categories, degree) => {
+	return categories.map((category) => {
 		return {
+			...category,
+			degree,
+		};
+	});
+};
+
+const parseMajorSubject = (result) => {
+	const { major, doulbeMajor, subMajor } = result;
+
+	const majorList = [];
+	if (doulbeMajor) majorList.push(...addMajorCategory(doulbeMajor.detailCategory, '복수'));
+	if (subMajor) majorList.push(...addMajorCategory(subMajor.detailCategory, '복수'));
+	majorList.unshift(...addMajorCategory(major.detailCategory, majorList.length === 0 ? undefined : '주'));
+	return majorList.map((category) => {
+		const { categoryName, totalCredits, takenCredits, completed, degree } = category;
+		return {
+			degree,
 			categoryName,
 			completed,
 			totalCredit: totalCredits,
@@ -48,17 +64,19 @@ const parseChapelSubject = (chapel) => {
 		},
 	];
 };
+
 export const parseGraduationResult = (result) => {
-	const basicUserInfo = { ...result.basicInfo };
 	const categoryList = [];
-	const majorResult = parseMajorSubject(result.major.detailCategory, categoryList);
-	const generalElectiveResult = parseGeneralElectiveSubject(result, categoryList);
-	const chapelResult = parseChapelSubject(result.chapelResult, categoryList);
+
+	const majorResult = parseMajorSubject(result);
+	const generalElectiveResult = parseGeneralElectiveSubject(result);
+	const chapelResult = parseChapelSubject(result.chapelResult);
+
 	categoryList.push(...majorResult);
 	categoryList.push(...generalElectiveResult);
 	categoryList.push(...chapelResult);
 	return {
-		basicUserInfo,
+		basicUserInfo: result.basicInfo,
 		categoryList,
 	};
 };

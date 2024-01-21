@@ -93,19 +93,20 @@ export default class ResultPage extends Component {
 		const modalElectiveLecture = this.addChild(ModalElectiveLecture);
 		const mypage = this.addChild(Mypage);
 		const loading = this.addChild(Loading);
-		const categoryCardList = new Array(8).fill().map(() => this.addChild(CategoryCard));
 
 		return (props) => {
 			if (props) this.setProps(props);
 
-			const { isLoading, basicUserInfo, selectedCategoryData, categoryList, graduated } = this.state;
+			const { isLoading, completionList, basicUserInfo, selectedCategoryData, categoryList, graduated } = this.state;
+			const categoryCardList = new Array(categoryList.length).fill().map(() => this.addChild(CategoryCard));
 
 			const modalContentProps = {
 				part: selectedCategoryData.categoryName,
 				categoryData: selectedCategoryData,
-				completionList: this.state.completionList,
+				completionList,
 				toggleLecture: this.toggleLecture.bind(this),
 			};
+
 			return `
 			<div class="result-page">
 				<div class="result-page__modal-container">
@@ -123,7 +124,6 @@ export default class ResultPage extends Component {
 					${header.render()}           
 				</div>
 				<div class="result-page__body">
-						
 				${
 					isLoading
 						? `<div class="result-page__loading-container">${loading.render()}</div>`
@@ -132,13 +132,14 @@ export default class ResultPage extends Component {
 						<div class="result-page__summary">${mypage.render({ ...basicUserInfo, complete: graduated })}</div>
 						<div class="result-page__category-grid-container">
 							${categoryList
-								.map(({ categoryName, totalCredit, takenCredit }, index) => {
+								.map(({ categoryName, degree, totalCredit, takenCredit }, index) => {
 									return categoryCardList[index].render({
 										categoryName,
 										totalCredit,
 										takenCredit,
 										key: index + 1,
 										buttonOnClick: this.clickCategoryButton.bind(this, index),
+										degree,
 									});
 								})
 								.join('')}
