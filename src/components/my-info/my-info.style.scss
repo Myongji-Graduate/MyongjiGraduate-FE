@@ -1,51 +1,50 @@
-.my-info{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @include mobile{
-        flex-direction: row;
-    }
+.my-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	@include mobile {
+		flex-direction: row;
+	}
 
-    &-img{
-        width: 3.6rem;
-        margin: 0 1rem;
-    }
-    &-text{
-        margin: 1.1875rem 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;      
-        @include mobile{
-            align-items:flex-start;
-        }
-        &__name{
-            @include mobile{
-                order: 1;
-                margin:.3rem 0 .5rem;
-            }
-            @include title4;
-            margin-bottom: .75rem;
-            display: flex;       
-            &-suffix{
-                font-weight: 400 !important;
-            }
-        }
-        &__major{
-            @include mobile{
-                order: 0;
-                margin-bottom:0rem;
-            }
-            margin-bottom:0.5rem;
-            @include subhead3;
-            font-weight: 400 !important;
-        }
-        &__studentId{
-            @include mobile{
-                order: 2;
-            }
-            @include subhead3;
-            font-weight: 400 !important;
-            color: $color-grey-scale4;
-        }
-    }
+	&-img {
+		width: 3.6rem;
+		margin: 0 1rem;
+	}
+	&-text {
+		margin: 1.1875rem 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@include mobile {
+			align-items: flex-start;
+		}
+		&__name {
+			@include mobile {
+				order: 1;
+				margin: 0.3rem 0;
+			}
+			@include title4;
+			margin-bottom: 0.75rem;
+			display: flex;
+			&-suffix {
+				font-weight: 400 !important;
+			}
+		}
+		&__major {
+			@include mobile {
+				order: 0;
+			}
+			margin-bottom: 0.5rem;
+			@include subhead3;
+			font-weight: 400 !important;
+		}
+		&__studentId {
+			@include mobile {
+				order: 2;
+			}
+			@include subhead3;
+			font-weight: 400 !important;
+			color: $color-grey-scale4;
+		}
+	}
 }

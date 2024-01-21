@@ -13,7 +13,8 @@ export default class Info extends Component {
 	template() {
 		return (props) => {
 			if (props) this.setProps(props);
-			const { studentName, major, studentNumber, exist } = this.props;
+			const { studentName, studentNumber, exist } = this.props;
+			const major = { primaryMajor: '응용소프트웨어전공', doulbeMajor: '법학과', subMajor: '경영학과' };
 
 			return `							
         <div class="my-info-text">	   
@@ -21,7 +22,9 @@ export default class Info extends Component {
                 <div class="my-info-text__name-data">${studentName}</div>
                 <div class="my-info-text__name-suffix">${exist ? '님' : ''}</div>
             </div>
-                <div class="my-info-text__major">${major}</div>
+				${major.primaryMajor && `<div class="my-info-text__major">${major.primaryMajor}</div>`}
+				${major.doulbeMajor && `<div class="my-info-text__major">${major.doulbeMajor}</div>`}
+				${major.subMajor && `<div class="my-info-text__major">${major.subMajor}</div>`}
                 <div class="my-info-text__studentId">${studentNumber}</div>
         </div>
       `;

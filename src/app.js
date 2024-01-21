@@ -32,7 +32,6 @@ export default class App extends Component {
 		  ${modalSuccess.render()}
 		  </div>
           ${childComponent.render()}
-		  
         </div>
       `;
 		};
