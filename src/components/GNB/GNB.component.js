@@ -94,7 +94,7 @@ export default class GNB extends Component {
 			router.navigate('/tutorial');
 		});
 		this.addEvent('click', '.gnb-about', () => {
-			window.location.href = 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1';
+			window.location.href = 'https://pastoral-topaz-a50.notion.site/b2c4549dba8b455ca3f6cc83f851a801?pvs=4';
 		});
 		this.addEvent('click', '.GNB__tab-navigator__mobile', () => {
 			this.togglemobileCategory();

@@ -45,10 +45,9 @@ export default class MobileCategory extends Component {
 						})}</div>
 						<div class="mobile-category__content-menu">${aboutNavigate.render({
 							title: '팀소개',
-							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
+							navigate: 'https://pastoral-topaz-a50.notion.site/b2c4549dba8b455ca3f6cc83f851a801?pvs=4',
 							type: 'href',
 						})}</div>
-					 				
 					 <div class="mobile-category__content-signout">로그아웃</div>			
 				`
 					: `
@@ -60,10 +59,9 @@ export default class MobileCategory extends Component {
 						})}</div>
 						<div class="mobile-category__content-menu">${aboutNavigate.render({
 							title: '팀소개',
-							navigate: 'https://jade-sofa-1be.notion.site/7ebf97e49afe403eab8394eaec8e32a1',
+							navigate: 'https://pastoral-topaz-a50.notion.site/b2c4549dba8b455ca3f6cc83f851a801?pvs=4',
 							type: 'href',
 						})}</div>
-					 
 					 <div class="mobile-category__content-signin">로그인</div>
 				`
 			}
