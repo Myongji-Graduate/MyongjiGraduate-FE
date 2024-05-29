@@ -1,41 +1,92 @@
-# 기능 요구사항
+<div align="center">
+<img width="413" alt="스크린샷 2024-02-11 오전 10 55 51" src="https://github.com/Myongji-Graduate/MyongjiGraduate-Next/assets/75975946/1f96dc0f-aa21-4503-ad77-4d2e2798f27f">
 
-[[https://www.notion.so/de10da88385c4e35bcd28291022d4845?v=4834038f407f49a8937061701386b85b](https://www.notion.so/de10da88385c4e35bcd28291022d4845)](https://www.notion.so/myoungji-graduate/7fdc7768a2264b2fa8966d9cbfefc1d5?v=e9c52a4d057b4da5aedf386bc90d915a)
+### [졸부서비스 바로가기](https://mju-graduate.com)
 
-# project board
+</div>
 
-- `No Status` : 작업 대기인 이슈
-- `ToDo`: 오늘 작업할 이슈
-- `InProgress`: 작업중인 이슈
-- `Done`: 작업 끝난 이슈 
+## 💻 프로젝트 소개
 
-# workflow
+- 졸업을 부탁해는 학우들이 자신의 졸업요건은 직접 계산해야하지만 수강과목, 졸업요건과 같은 정보들이 파편화되고 방대해 어려움을 겪는다는 문제점에서 시작된 프로젝트입니다.
+- 학교 홈페이지에서 제공하는 성적확인원 PDF 업로드를 통해 졸업 요건 충족도 및 미이수 과목 정보를 확인할 수 있고, 커스텀 기능을 통해 미리 자신의 졸업 요건 충족도를 예측할 수 있습니다.
 
-### **Remote 정보**
+### 🎃 조회수 & 사용자 통계
 
-- upstream: boostcampwm-2022/javascript-p1-cashbook
-- origin: seonghunYang/javascript-p1-cashbook
+<img width="80%" height="80%" src="https://github.com/Myongji-Graduate/MyongjiGraduate-BE/assets/64758861/86857528-df46-4055-b7f8-bf5cdf0865a4">
 
-### **브랜치 정보**
+### 🥇 교내 SW 경진대회 대상
 
-- dev: upstream에 PR을 날리는 브랜치
-- feature: 작업 브랜치, dev 브랜치를 기준으로 생성, issue단위로 생성하고 개발 완료 후 dev 브랜치에 merge
+[명지투데이 - '제1회 ICT융합대학 SW프로그램 개발 경진대회 시상식' 열려](https://www.mju.ac.kr/mjukr/302/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGbWp1a3IlMkYxNjYlMkYxOTQzMDclMkZhcnRjbFZpZXcuZG8lM0Y%3D)
 
-### **작업 순서**
+## 🤟 졸부팀 소개
 
-1. origin에서 dev 브랜치를 기준으로 이슈 단위의 작업을 위한 feature 브랜치 생성
-2. 작업이 완료되면 origin dev 브랜치에 merge
-3. 매일 저녁 11시 upstream J112 브랜치에 PR
-4. upstream 관리자가 PR을 확인 후 merge
+### Front-End
 
-# commit convention
+<table>
+  <tr>
+    <td>
+        <a href="https://github.com/seonghunYang">
+            <img src="https://avatars.githubusercontent.com/u/52571252?v=4" width="100px" />
+        </a>
+    </td>
+    <td>
+        <a href="https://github.com/yougyung">
+            <img src="https://avatars.githubusercontent.com/u/75975946?v=4" width="100px" />
+        </a>
+    </td>
+     <td>
+        <a href="https://github.com/gahyuun">
+            <img src="https://avatars.githubusercontent.com/u/81469686?v=4" width="100px" />
+        </a>
+    </td>
+  </tr>
+  <tr>
+    <td><b>양성훈</b></td>
+    <td><b>모유경</b></td>
+    <td><b>박가현</b></td>
+  </tr>
+  <tr>
+    <td><b>FE Developer</b></td>
+    <td><b>FE Developer</b></td>
+    <td><b>FE Developer</b></td>
+  </tr>
+</table>
 
-- `feat` : 기능 개발
-- `fix` : 버그 수정 - 수정 이유와 수정 내역
-- `refactor` : 기능 변경이 없는 코드 수정 (예: 변수명 수정) - 수정 이유와 수정 내역
-- `test` : 테스트 코드 작성 및 수정
-- `docs` : 문서 작성 및 수정
-- `build` : 빌드 파일 작성 및 수정
-- `style` : 스타일 변경(reformat, indent)
-- `setting`: 개발 환경 설정
-- `chore` : 단순한 작업 (예: 파일 경로)
+### Back-End
+
+<table>
+  <tr>
+    <td>
+        <a href="https://github.com/dojinyou">
+            <img src="https://avatars.githubusercontent.com/u/61923768?v=4" width="100px" />
+        </a>
+    </td>
+    <td>
+        <a href="https://github.com/stophwan">
+            <img src="https://avatars.githubusercontent.com/u/64758861?v=4" width="100px" />
+        </a>
+    </td>
+    <td>
+        <a href="https://github.com/5uhwann">
+            <img src="https://avatars.githubusercontent.com/u/106325839?v=4" width="100px" />
+        </a>
+    </td>
+    <td>
+        <a href="https://github.com/5uhwann">
+            <img src="https://avatars.githubusercontent.com/u/96857599?v=4" width="100px" />
+        </a>
+    </td>
+  </tr>
+  <tr>
+    <td><b>유도진</b></td>
+    <td><b>정지환</b></td>
+    <td><b>박수환</b></td>
+    <td><b>나경호</b></td>
+  </tr>
+  <tr>
+    <td><b>BE Developer</b></td>
+    <td><b>BE Developer</b></td>
+    <td><b>BE Developer</b></td>
+    <td><b>BE Developer</b></td>
+  </tr>
+</table>
