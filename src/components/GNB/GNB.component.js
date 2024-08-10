@@ -94,7 +94,7 @@ export default class GNB extends Component {
 			router.navigate('/tutorial');
 		});
 		this.addEvent('click', '.gnb-about', () => {
-			window.location.href = 'https://pastoral-topaz-a50.notion.site/b2c4549dba8b455ca3f6cc83f851a801?pvs=4';
+			window.location.href = 'https://soft-anorak-0ca.notion.site/e35e3b210995463fa748f35aab536f2c';
 		});
 		this.addEvent('click', '.GNB__tab-navigator__mobile', () => {
 			this.togglemobileCategory();
